@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>1004.最大连续1的个数 III 最大连续1的个数 III | My New Hugo Site</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="今天的每日一题太难了，于是自己找题做。今天的题是哈希表&#43;滑动窗口算法，虽然感觉只用了滑动窗口算法。
+class Solution: def longestOnes(self, nums: List[int], k: int) -&gt; int: k_mean = k # 用于记录现在有多少子数组 flag = 0 # 用于记录最大地子数组 max_flag = 0 for start in range(len(nums)): tail = start while k &gt;= 0 and tail &lt;= len(nums) - 1: if nums[tail] == 1: tail &#43;= 1 flag &#43;= 1 elif nums[tail] == 0 and k &gt; 0: tail &#43;= 1 k -= 1 flag &#43;= 1 elif nums[tail] == 0 and k == 0: k = k_mean max_flag = max(max_flag, flag) flag = 0 break if tail == len(nums): max_flag = max(max_flag, flag) flag = 0 break return max_flag 这是一开始我的做法，虽然用了双指针，但是却没有那种灵活性，很空洞的感觉，很干巴巴的滑动。 以下@Lincoln@Lincoln 大佬的 做法，只做为一个记录自己看，不作为我的题解发表">
+    <meta name="generator" content="Hugo 0.110.0">
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="1004.最大连续1的个数 III 最大连续1的个数 III" />
+<meta property="og:description" content="今天的每日一题太难了，于是自己找题做。今天的题是哈希表&#43;滑动窗口算法，虽然感觉只用了滑动窗口算法。
+class Solution: def longestOnes(self, nums: List[int], k: int) -&gt; int: k_mean = k # 用于记录现在有多少子数组 flag = 0 # 用于记录最大地子数组 max_flag = 0 for start in range(len(nums)): tail = start while k &gt;= 0 and tail &lt;= len(nums) - 1: if nums[tail] == 1: tail &#43;= 1 flag &#43;= 1 elif nums[tail] == 0 and k &gt; 0: tail &#43;= 1 k -= 1 flag &#43;= 1 elif nums[tail] == 0 and k == 0: k = k_mean max_flag = max(max_flag, flag) flag = 0 break if tail == len(nums): max_flag = max(max_flag, flag) flag = 0 break return max_flag 这是一开始我的做法，虽然用了双指针，但是却没有那种灵活性，很空洞的感觉，很干巴巴的滑动。 以下@Lincoln@Lincoln 大佬的 做法，只做为一个记录自己看，不作为我的题解发表" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://longsizhuo123.github.io/posts/1004/" /><meta property="article:section" content="posts" />
+
+
+<meta itemprop="name" content="1004.最大连续1的个数 III 最大连续1的个数 III">
+<meta itemprop="description" content="今天的每日一题太难了，于是自己找题做。今天的题是哈希表&#43;滑动窗口算法，虽然感觉只用了滑动窗口算法。
+class Solution: def longestOnes(self, nums: List[int], k: int) -&gt; int: k_mean = k # 用于记录现在有多少子数组 flag = 0 # 用于记录最大地子数组 max_flag = 0 for start in range(len(nums)): tail = start while k &gt;= 0 and tail &lt;= len(nums) - 1: if nums[tail] == 1: tail &#43;= 1 flag &#43;= 1 elif nums[tail] == 0 and k &gt; 0: tail &#43;= 1 k -= 1 flag &#43;= 1 elif nums[tail] == 0 and k == 0: k = k_mean max_flag = max(max_flag, flag) flag = 0 break if tail == len(nums): max_flag = max(max_flag, flag) flag = 0 break return max_flag 这是一开始我的做法，虽然用了双指针，但是却没有那种灵活性，很空洞的感觉，很干巴巴的滑动。 以下@Lincoln@Lincoln 大佬的 做法，只做为一个记录自己看，不作为我的题解发表">
+
+<meta itemprop="wordCount" content="174">
+<meta itemprop="keywords" content="[Python],[已解决 题解]," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="1004.最大连续1的个数 III 最大连续1的个数 III"/>
+<meta name="twitter:description" content="今天的每日一题太难了，于是自己找题做。今天的题是哈希表&#43;滑动窗口算法，虽然感觉只用了滑动窗口算法。
+class Solution: def longestOnes(self, nums: List[int], k: int) -&gt; int: k_mean = k # 用于记录现在有多少子数组 flag = 0 # 用于记录最大地子数组 max_flag = 0 for start in range(len(nums)): tail = start while k &gt;= 0 and tail &lt;= len(nums) - 1: if nums[tail] == 1: tail &#43;= 1 flag &#43;= 1 elif nums[tail] == 0 and k &gt; 0: tail &#43;= 1 k -= 1 flag &#43;= 1 elif nums[tail] == 0 and k == 0: k = k_mean max_flag = max(max_flag, flag) flag = 0 break if tail == len(nums): max_flag = max(max_flag, flag) flag = 0 break return max_flag 这是一开始我的做法，虽然用了双指针，但是却没有那种灵活性，很空洞的感觉，很干巴巴的滑动。 以下@Lincoln@Lincoln 大佬的 做法，只做为一个记录自己看，不作为我的题解发表"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        My New Hugo Site
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+</div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">1004.最大连续1的个数 III 最大连续1的个数 III</h1>
+      
+      
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>今天的每日一题太难了，于是自己找题做。今天的题是哈希表+滑动窗口算法，虽然感觉只用了滑动窗口算法。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">longestOnes</span>(self, nums: List[int], k: int) <span style="color:#f92672">-&gt;</span> int:
+</span></span><span style="display:flex;"><span>        k_mean <span style="color:#f92672">=</span> k
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 用于记录现在有多少子数组</span>
+</span></span><span style="display:flex;"><span>        flag <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 用于记录最大地子数组</span>
+</span></span><span style="display:flex;"><span>        max_flag <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> start <span style="color:#f92672">in</span> range(len(nums)):
+</span></span><span style="display:flex;"><span>            tail <span style="color:#f92672">=</span> start
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">while</span> k <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">and</span> tail <span style="color:#f92672">&lt;=</span> len(nums) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>:
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> nums[tail] <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>:
+</span></span><span style="display:flex;"><span>                    tail <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>                    flag <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">elif</span> nums[tail] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">and</span> k <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>                    tail <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>                    k <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>                    flag <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">elif</span> nums[tail] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">and</span> k <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>                    k <span style="color:#f92672">=</span> k_mean
+</span></span><span style="display:flex;"><span>                    max_flag <span style="color:#f92672">=</span> max(max_flag, flag)
+</span></span><span style="display:flex;"><span>                    flag <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> tail <span style="color:#f92672">==</span> len(nums):
+</span></span><span style="display:flex;"><span>                    max_flag <span style="color:#f92672">=</span> max(max_flag, flag)
+</span></span><span style="display:flex;"><span>                    flag <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> max_flag
+</span></span></code></pre></div><p>这是一开始我的做法，虽然用了双指针，但是却没有那种灵活性，很空洞的感觉，很干巴巴的滑动。
+以下<a href="/u/lincoln">@Lincoln</a>@Lincoln 大佬的 做法，只做为一个记录自己看，不作为我的题解发表</p>
+<pre tabindex="0"><code>class Solution:
+    def longestOnes(self, nums: List[int], k: int) -&gt; int:
+        &#34;&#34;&#34;
+        思路：1. k=0可以理解为求最长重复子串问题
+             2. 如果当前窗口值-窗口中1的个数 &lt;= k: 则扩大窗口(right+1)
+                如果当前窗口值-窗口中1的个数 &gt; k: 则向右滑动窗口(left+1)
+        方法：哈希表 + 滑动窗口
+        &#34;&#34;&#34;
+        n = len(nums)
+        o_res = 0
+        left = right = 0
+        while right &lt; n:
+            if nums[right]== 1: o_res += 1
+            if right-left+1- o_res &gt; k:
+                if nums[left]== 1: o_res -= 1 
+                left += 1
+            right += 1
+        return right - left
+</code></pre><p>看了Lincoln大佬的思路，非常清晰，记住了</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Related</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/posts/2309%E5%85%BC%E5%85%B7%E5%A4%A7%E5%B0%8F%E5%86%99%E7%9A%84%E6%9C%80%E5%A5%BD%E8%8B%B1%E6%96%87%E5%AD%97%E6%AF%8D/">2309. 兼具大小写的最好英文字母 每日一题</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/6338%E7%8C%B4%E5%AD%90%E7%A2%B0%E6%92%9E%E7%9A%84%E6%96%B9%E6%B3%95%E6%95%B0/">6338. 猴子碰撞的方法数 周赛</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/1669%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E9%93%BE%E8%A1%A8/">1669. 合并两个链表 每日一题</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/1664%E7%94%9F%E6%88%90%E5%B9%B3%E8%A1%A1%E6%95%B0%E7%BB%84%E7%9A%84%E6%96%B9%E6%A1%88%E6%95%B0/">1664. 生成平衡数组的方案数 每日一题</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/1814/">1814. 统计一个数组中好对子的数目 每日一题</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/1825%E6%B1%82%E5%87%BA-mk-%E5%B9%B3%E5%9D%87%E5%80%BC/">1825. 求出 MK 平均值</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/1824%E6%9C%80%E5%B0%91%E4%BE%A7%E8%B7%B3%E6%AC%A1%E6%95%B0/">1825. 求出 MK 平均值</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/217%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0-desktop-o7485ro/">217. 存在重复元素 C&#43;&#43;/Python3</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/217%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0/">217. 存在重复元素 C&#43;&#43;/Python3</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/350%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86/">350.两个数组的交集</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/offer43/">剑指 Offer 43. 1～n 整数中 1 出现的次数</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/1551%E4%BD%BF%E6%95%B0%E7%BB%84%E4%B8%AD%E6%89%80%E6%9C%89%E5%85%83%E7%B4%A0%E7%9B%B8%E7%AD%89%E7%9A%84%E6%9C%80%E5%B0%8F%E6%93%8D%E4%BD%9C%E6%95%B0/">1551. 使数组中所有元素相等的最小操作数</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/1663%E5%85%B7%E6%9C%89%E7%BB%99%E5%AE%9A%E6%95%B0%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%8F%E5%AD%97%E7%AC%A6%E4%B8%B2/">1663. 具有给定数值的最小字符串 每日一题</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/1813/">1813. 句子相似性 III</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/1817%E6%9F%A5%E6%89%BE%E7%94%A8%E6%88%B7%E6%B4%BB%E8%B7%83%E5%88%86%E9%92%9F%E6%95%B0/">1817. 查找用户活跃分钟数 每日一题</a>
+        </li>
+	    
+    </ul>
+</div>
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://longsizhuo123.github.io/" >
+    &copy;  My New Hugo Site 2023 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>271. 字符串的编码与解码 - Python 添加转义符解法 复杂度双O(n) | My New Hugo Site</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Problem: 271. 字符串的编码与解码
+[TOC]
+思路 第一反应是不是对字符串进行加密解密，但是读题后发现是将列表转化为字符串，然后第二部分对自己处理过的字符串转化回源列表。
+解题方法 列表可能有多个元素（由‘，’区分开的单词组），在每个元素中可能存在多个由空格隔开的单词。于是分开对list中的元素和空格进行处理。
+首先对列表进行第一层遍历，再对每个元素进行遍历，当读取到‘ ’的时候对预先声明的空列表中添加转义符（一开始打算自定义转义符，后来发现\t直接可行）在每一层遍历每一次结束的时候都在列表中添加新的，与‘ ’不同的转义符比如\n。最后&#39;&#39;.join()转换成字符串，return。 在解码时，预先声明一个空列表List和空字符串Str，当遍历读取到‘\t’的时候，就在字符串中加入空格Str = &#39;&#39;.join([Str, &#39; &#39;])，同理，读取到&rsquo;\n&rsquo;的时候就将Str添加到List中，并且将Str置空进行下一次的循环。 复杂度 时间复杂度: 添加时间复杂度, 示例： $O(n)$
+空间复杂度: 添加空间复杂度, 示例： $O(n)$
+Code class Codec: def encode(self, strs: list[str]) -&gt; str: &#34;&#34;&#34;Encodes a list of strings to a single string. &#34;&#34;&#34; List = [] for i in strs: for j in i: if j == &#39; &#39;: List.append(&#39;\t&#39;) else: List.append(j) List.append(&#39;\n&#39;) List = &#39;&#39;.join(List) return List def decode(self, s: str) -&gt; list[str]: &#34;&#34;&#34;Decodes a single string to a list of strings.">
+    <meta name="generator" content="Hugo 0.110.0">
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="271. 字符串的编码与解码 - Python 添加转义符解法 复杂度双O(n)" />
+<meta property="og:description" content="Problem: 271. 字符串的编码与解码
+[TOC]
+思路 第一反应是不是对字符串进行加密解密，但是读题后发现是将列表转化为字符串，然后第二部分对自己处理过的字符串转化回源列表。
+解题方法 列表可能有多个元素（由‘，’区分开的单词组），在每个元素中可能存在多个由空格隔开的单词。于是分开对list中的元素和空格进行处理。
+首先对列表进行第一层遍历，再对每个元素进行遍历，当读取到‘ ’的时候对预先声明的空列表中添加转义符（一开始打算自定义转义符，后来发现\t直接可行）在每一层遍历每一次结束的时候都在列表中添加新的，与‘ ’不同的转义符比如\n。最后&#39;&#39;.join()转换成字符串，return。 在解码时，预先声明一个空列表List和空字符串Str，当遍历读取到‘\t’的时候，就在字符串中加入空格Str = &#39;&#39;.join([Str, &#39; &#39;])，同理，读取到&rsquo;\n&rsquo;的时候就将Str添加到List中，并且将Str置空进行下一次的循环。 复杂度 时间复杂度: 添加时间复杂度, 示例： $O(n)$
+空间复杂度: 添加空间复杂度, 示例： $O(n)$
+Code class Codec: def encode(self, strs: list[str]) -&gt; str: &#34;&#34;&#34;Encodes a list of strings to a single string. &#34;&#34;&#34; List = [] for i in strs: for j in i: if j == &#39; &#39;: List.append(&#39;\t&#39;) else: List.append(j) List.append(&#39;\n&#39;) List = &#39;&#39;.join(List) return List def decode(self, s: str) -&gt; list[str]: &#34;&#34;&#34;Decodes a single string to a list of strings." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://longsizhuo123.github.io/posts/271/" /><meta property="article:section" content="posts" />
+
+
+<meta itemprop="name" content="271. 字符串的编码与解码 - Python 添加转义符解法 复杂度双O(n)">
+<meta itemprop="description" content="Problem: 271. 字符串的编码与解码
+[TOC]
+思路 第一反应是不是对字符串进行加密解密，但是读题后发现是将列表转化为字符串，然后第二部分对自己处理过的字符串转化回源列表。
+解题方法 列表可能有多个元素（由‘，’区分开的单词组），在每个元素中可能存在多个由空格隔开的单词。于是分开对list中的元素和空格进行处理。
+首先对列表进行第一层遍历，再对每个元素进行遍历，当读取到‘ ’的时候对预先声明的空列表中添加转义符（一开始打算自定义转义符，后来发现\t直接可行）在每一层遍历每一次结束的时候都在列表中添加新的，与‘ ’不同的转义符比如\n。最后&#39;&#39;.join()转换成字符串，return。 在解码时，预先声明一个空列表List和空字符串Str，当遍历读取到‘\t’的时候，就在字符串中加入空格Str = &#39;&#39;.join([Str, &#39; &#39;])，同理，读取到&rsquo;\n&rsquo;的时候就将Str添加到List中，并且将Str置空进行下一次的循环。 复杂度 时间复杂度: 添加时间复杂度, 示例： $O(n)$
+空间复杂度: 添加空间复杂度, 示例： $O(n)$
+Code class Codec: def encode(self, strs: list[str]) -&gt; str: &#34;&#34;&#34;Encodes a list of strings to a single string. &#34;&#34;&#34; List = [] for i in strs: for j in i: if j == &#39; &#39;: List.append(&#39;\t&#39;) else: List.append(j) List.append(&#39;\n&#39;) List = &#39;&#39;.join(List) return List def decode(self, s: str) -&gt; list[str]: &#34;&#34;&#34;Decodes a single string to a list of strings.">
+
+<meta itemprop="wordCount" content="120">
+<meta itemprop="keywords" content="[Python],[已解决 题解]," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="271. 字符串的编码与解码 - Python 添加转义符解法 复杂度双O(n)"/>
+<meta name="twitter:description" content="Problem: 271. 字符串的编码与解码
+[TOC]
+思路 第一反应是不是对字符串进行加密解密，但是读题后发现是将列表转化为字符串，然后第二部分对自己处理过的字符串转化回源列表。
+解题方法 列表可能有多个元素（由‘，’区分开的单词组），在每个元素中可能存在多个由空格隔开的单词。于是分开对list中的元素和空格进行处理。
+首先对列表进行第一层遍历，再对每个元素进行遍历，当读取到‘ ’的时候对预先声明的空列表中添加转义符（一开始打算自定义转义符，后来发现\t直接可行）在每一层遍历每一次结束的时候都在列表中添加新的，与‘ ’不同的转义符比如\n。最后&#39;&#39;.join()转换成字符串，return。 在解码时，预先声明一个空列表List和空字符串Str，当遍历读取到‘\t’的时候，就在字符串中加入空格Str = &#39;&#39;.join([Str, &#39; &#39;])，同理，读取到&rsquo;\n&rsquo;的时候就将Str添加到List中，并且将Str置空进行下一次的循环。 复杂度 时间复杂度: 添加时间复杂度, 示例： $O(n)$
+空间复杂度: 添加空间复杂度, 示例： $O(n)$
+Code class Codec: def encode(self, strs: list[str]) -&gt; str: &#34;&#34;&#34;Encodes a list of strings to a single string. &#34;&#34;&#34; List = [] for i in strs: for j in i: if j == &#39; &#39;: List.append(&#39;\t&#39;) else: List.append(j) List.append(&#39;\n&#39;) List = &#39;&#39;.join(List) return List def decode(self, s: str) -&gt; list[str]: &#34;&#34;&#34;Decodes a single string to a list of strings."/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        My New Hugo Site
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+</div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">271. 字符串的编码与解码 - Python 添加转义符解法 复杂度双O(n)</h1>
+      
+      
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><blockquote>
+<p>Problem: <a href="https://leetcode.cn/problems/encode-and-decode-strings/description/">271. 字符串的编码与解码</a></p>
+</blockquote>
+<p>[TOC]</p>
+<h1 id="思路">思路</h1>
+<blockquote>
+<p>第一反应是不是对字符串进行加密解密，但是读题后发现是将列表转化为字符串，然后第二部分对自己处理过的字符串转化回源列表。</p>
+</blockquote>
+<h1 id="解题方法">解题方法</h1>
+<blockquote>
+<p>列表可能有多个元素（由‘，’区分开的单词组），在每个元素中可能存在多个由空格隔开的单词。于是分开对list中的元素和空格进行处理。</p>
+</blockquote>
+<ol>
+<li>首先对列表进行第一层遍历，再对每个元素进行遍历，当读取到‘ ’的时候对预先声明的空列表中添加转义符（一开始打算自定义转义符，后来发现\t直接可行）在每一层遍历每一次结束的时候都在列表中添加新的，与‘ ’不同的转义符比如\n。最后<code>''.join()</code>转换成字符串，return。</li>
+<li>在解码时，预先声明一个空列表List和空字符串Str，当遍历读取到‘\t’的时候，就在字符串中加入空格<code>Str = ''.join([Str, ' '])</code>，同理，读取到&rsquo;\n&rsquo;的时候就将Str添加到List中，并且将Str置空进行下一次的循环。</li>
+</ol>
+<h1 id="复杂度">复杂度</h1>
+<ul>
+<li>时间复杂度:</li>
+</ul>
+<blockquote>
+<p>添加时间复杂度, 示例： $O(n)$</p>
+</blockquote>
+<ul>
+<li>空间复杂度:</li>
+</ul>
+<blockquote>
+<p>添加空间复杂度, 示例： $O(n)$</p>
+</blockquote>
+<h1 id="code">Code</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Codec</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">encode</span>(self, strs: list[str]) <span style="color:#f92672">-&gt;</span> str:
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;Encodes a list of strings to a single string.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        List <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> strs:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> i:
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> j <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39; &#39;</span>:
+</span></span><span style="display:flex;"><span>                    List<span style="color:#f92672">.</span>append(<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>                    List<span style="color:#f92672">.</span>append(j)
+</span></span><span style="display:flex;"><span>            List<span style="color:#f92672">.</span>append(<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>        List <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span><span style="color:#f92672">.</span>join(List)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> List
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">decode</span>(self, s: str) <span style="color:#f92672">-&gt;</span> list[str]:
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;Decodes a single string to a list of strings.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        List <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>        Str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> s:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> i <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">&#39;</span>:
+</span></span><span style="display:flex;"><span>                Str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span><span style="color:#f92672">.</span>join([Str, <span style="color:#e6db74">&#39; &#39;</span>])
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> i <span style="color:#f92672">!=</span> <span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>:
+</span></span><span style="display:flex;"><span>                    Str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span><span style="color:#f92672">.</span>join([Str, i])
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>                    List<span style="color:#f92672">.</span>append(Str)
+</span></span><span style="display:flex;"><span>                    Str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> List
+</span></span></code></pre></div><ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Related</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/posts/2309%E5%85%BC%E5%85%B7%E5%A4%A7%E5%B0%8F%E5%86%99%E7%9A%84%E6%9C%80%E5%A5%BD%E8%8B%B1%E6%96%87%E5%AD%97%E6%AF%8D/">2309. 兼具大小写的最好英文字母 每日一题</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/6338%E7%8C%B4%E5%AD%90%E7%A2%B0%E6%92%9E%E7%9A%84%E6%96%B9%E6%B3%95%E6%95%B0/">6338. 猴子碰撞的方法数 周赛</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/1669%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E9%93%BE%E8%A1%A8/">1669. 合并两个链表 每日一题</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/1664%E7%94%9F%E6%88%90%E5%B9%B3%E8%A1%A1%E6%95%B0%E7%BB%84%E7%9A%84%E6%96%B9%E6%A1%88%E6%95%B0/">1664. 生成平衡数组的方案数 每日一题</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/1814/">1814. 统计一个数组中好对子的数目 每日一题</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/1825%E6%B1%82%E5%87%BA-mk-%E5%B9%B3%E5%9D%87%E5%80%BC/">1825. 求出 MK 平均值</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/1824%E6%9C%80%E5%B0%91%E4%BE%A7%E8%B7%B3%E6%AC%A1%E6%95%B0/">1825. 求出 MK 平均值</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/217%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0/">217. 存在重复元素 C&#43;&#43;/Python3</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/217%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0-desktop-o7485ro/">217. 存在重复元素 C&#43;&#43;/Python3</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/350%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86/">350.两个数组的交集</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/offer43/">剑指 Offer 43. 1～n 整数中 1 出现的次数</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/1551%E4%BD%BF%E6%95%B0%E7%BB%84%E4%B8%AD%E6%89%80%E6%9C%89%E5%85%83%E7%B4%A0%E7%9B%B8%E7%AD%89%E7%9A%84%E6%9C%80%E5%B0%8F%E6%93%8D%E4%BD%9C%E6%95%B0/">1551. 使数组中所有元素相等的最小操作数</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/1663%E5%85%B7%E6%9C%89%E7%BB%99%E5%AE%9A%E6%95%B0%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%8F%E5%AD%97%E7%AC%A6%E4%B8%B2/">1663. 具有给定数值的最小字符串 每日一题</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/1813/">1813. 句子相似性 III</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/1817%E6%9F%A5%E6%89%BE%E7%94%A8%E6%88%B7%E6%B4%BB%E8%B7%83%E5%88%86%E9%92%9F%E6%95%B0/">1817. 查找用户活跃分钟数 每日一题</a>
+        </li>
+	    
+    </ul>
+</div>
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://longsizhuo123.github.io/" >
+    &copy;  My New Hugo Site 2023 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

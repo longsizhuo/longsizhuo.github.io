@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>My New Hugo Site</title>
+    <link>https://longsizhuo123.github.io/</link>
+    <description>Recent content on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 30 Jan 2023 16:56:31 +1100</lastBuildDate><atom:link href="https://longsizhuo123.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>1669. 合并两个链表 每日一题</title>
+      <link>https://longsizhuo123.github.io/posts/1669%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E9%93%BE%E8%A1%A8/</link>
+      <pubDate>Mon, 30 Jan 2023 16:56:31 +1100</pubDate>
+      
+      <guid>https://longsizhuo123.github.io/posts/1669%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E9%93%BE%E8%A1%A8/</guid>
+      <description>题目： 1669. 合并两个链表
+思想： 直接放上官方题解了，就是模拟链表。
+题目要求将 list1 的第 a 到 b 个节点都删除，将其替换为 list2 。因此，我们首先找到 list1 中第 a−1 个节点 preA，以及第 b+1 个节点 aftB。由于 1≤a≤b&amp;lt;n−1 （其中 n 是 list1 的长度），所以 preA 和 aftB 是一定存在的。
+然后我们让 preA 的 next 指向 list2 的头节点，再让 list2 的尾节点的 next 指向 aftB 即可。
+代码： class ListNode(object): def __init__(self, x): self.val = x self.next = None class Solution: def mergeInBetween(self, list1: ListNode, a: int, b: int, list2: ListNode) -&amp;gt; ListNode: preA = list1 for _ in range(a-1): preA = preA.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://longsizhuo123.github.io/posts/readme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://longsizhuo123.github.io/posts/readme/</guid>
+      <description>longsizhuo123.github.io &amp;ldquo;Maybe it could be a nice memory&amp;rdquo;
+Welcome to my personal blog repository on Github! My name is Sizhuo Long, and I am currently a student in Australia. This repository is home to my personal blog, which is built using the HEXO static site generator.
+On my blog, you&amp;rsquo;ll find a variety of content including my thoughts on technology, programming, and the latest developments in my field of study. I also share my experiences and lessons learned from the projects I&amp;rsquo;ve worked on.</description>
+    </item>
+    
+    <item>
+      <title>1004.最大连续1的个数 III 最大连续1的个数 III</title>
+      <link>https://longsizhuo123.github.io/posts/1004/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://longsizhuo123.github.io/posts/1004/</guid>
+      <description>今天的每日一题太难了，于是自己找题做。今天的题是哈希表+滑动窗口算法，虽然感觉只用了滑动窗口算法。
+class Solution: def longestOnes(self, nums: List[int], k: int) -&amp;gt; int: k_mean = k # 用于记录现在有多少子数组 flag = 0 # 用于记录最大地子数组 max_flag = 0 for start in range(len(nums)): tail = start while k &amp;gt;= 0 and tail &amp;lt;= len(nums) - 1: if nums[tail] == 1: tail += 1 flag += 1 elif nums[tail] == 0 and k &amp;gt; 0: tail += 1 k -= 1 flag += 1 elif nums[tail] == 0 and k == 0: k = k_mean max_flag = max(max_flag, flag) flag = 0 break if tail == len(nums): max_flag = max(max_flag, flag) flag = 0 break return max_flag 这是一开始我的做法，虽然用了双指针，但是却没有那种灵活性，很空洞的感觉，很干巴巴的滑动。 以下@Lincoln@Lincoln 大佬的 做法，只做为一个记录自己看，不作为我的题解发表</description>
+    </item>
+    
+    <item>
+      <title>1551. 使数组中所有元素相等的最小操作数</title>
+      <link>https://longsizhuo123.github.io/posts/1551%E4%BD%BF%E6%95%B0%E7%BB%84%E4%B8%AD%E6%89%80%E6%9C%89%E5%85%83%E7%B4%A0%E7%9B%B8%E7%AD%89%E7%9A%84%E6%9C%80%E5%B0%8F%E6%93%8D%E4%BD%9C%E6%95%B0/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://longsizhuo123.github.io/posts/1551%E4%BD%BF%E6%95%B0%E7%BB%84%E4%B8%AD%E6%89%80%E6%9C%89%E5%85%83%E7%B4%A0%E7%9B%B8%E7%AD%89%E7%9A%84%E6%9C%80%E5%B0%8F%E6%93%8D%E4%BD%9C%E6%95%B0/</guid>
+      <description>思想： 是做完周赛的第二题：6275使数组中所有元素相等的最小操作数II.md 后心血来潮做的第一版。和第二版完全不一样，本来想练习贪心算法的。但是做着做着就发现了存在数学规律。 引用一下[yong]大佬的话： 因为是等差数列,很可能找到一个数学公式,用O(1)的时间复杂度解决. 先举几个简单的例子找找规律
+n=3 最小操作数是 2 n=4 最小操作数是 1 + 3 n=5 最小操作数是 2 + 4 n=6 最小操作数是 1 + 3 + 5 n=7 最小操作数是 2 + 4 + 6 当n是偶数的时候,最小操作数是1 + 3 + 5 + ... + n-1 = n*n/4 当n是奇数的时候,最小操作数是2 + 4 + ... + n-1 = (n*n - 1) / 4 拿到这道题,感觉有点绕,仔细分析发现 arr[i] = (2 * i) + 1 (0 &amp;lt;= i &amp;lt; n)是典型的等差数列(1,3,5,7,9.</description>
+    </item>
+    
+    <item>
+      <title>1663. 具有给定数值的最小字符串 每日一题</title>
+      <link>https://longsizhuo123.github.io/posts/1663%E5%85%B7%E6%9C%89%E7%BB%99%E5%AE%9A%E6%95%B0%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%8F%E5%AD%97%E7%AC%A6%E4%B8%B2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://longsizhuo123.github.io/posts/1663%E5%85%B7%E6%9C%89%E7%BB%99%E5%AE%9A%E6%95%B0%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%8F%E5%AD%97%E7%AC%A6%E4%B8%B2/</guid>
+      <description>1663. 具有给定数值的最小字符串
+思想： 今天的每日一题读题可以得知：实际上是想求： 27 怎么拆解成 3 个数字 1 + 1 + 25 73 怎么拆解成 5 个数字 1 + 1 + 19 + 26 + 26 n是我们要返回的字符串个数，于是我们就把a当作是1，创建包含n个1的列表[1]*n 贪心思想 第一次尝试：从第一个数字开始加，加到26。每一次都判断是否与k相等，超时了。 第二次尝试：直接把经过的数字全部变成26，直接把经过的数字全部变成26，k再每一次-25，最后将剩余的数字加到我们遍历到的位置 ，最后一位+剩余的k。 最优解没有使用lambda函数将数字转化为字符串，而是直接在‘a’上变成‘z’。省去了大量的时间。
+代码： class Solution: def getSmallestString(self, n: int, k: int) -&amp;gt; str: def find(list_ans): for i in range(n): while list_ans[i] &amp;lt; 26: if sum(list_ans) == k: return list_ans list_ans[i] += 1 return list_ans list1 = [1] * n list1 = &amp;#39;&amp;#39;.</description>
+    </item>
+    
+    <item>
+      <title>1664. 生成平衡数组的方案数 每日一题</title>
+      <link>https://longsizhuo123.github.io/posts/1664%E7%94%9F%E6%88%90%E5%B9%B3%E8%A1%A1%E6%95%B0%E7%BB%84%E7%9A%84%E6%96%B9%E6%A1%88%E6%95%B0/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://longsizhuo123.github.io/posts/1664%E7%94%9F%E6%88%90%E5%B9%B3%E8%A1%A1%E6%95%B0%E7%BB%84%E7%9A%84%E6%96%B9%E6%A1%88%E6%95%B0/</guid>
+      <description> 1664. 生成平衡数组的方案数
+思想： 读题的时候看到 中等 就知道肯定不是真的要删除某个元素。否则会超时，所以试了试极具python特色的代码：用切片处理所有的数据； 不过超时了。。
+然后看官方题解，用的动态规划。中心思想是：
+不失一般性，现在我们将下标 i 的元素进行删除， 显而易见下标 i 之前的元素下标并不会因此发生改变，而下标 i 之后的原本在 j，j&amp;gt;i下标的数组元素会移动到下标 j−1， 即下标 i 之后的奇数下标元素会成为偶数下标元素， 偶数下标元素会成为奇数下标元素。
+代码 class Solution: def waysToMakeFair(self, nums: List[int]) -&amp;gt; int: flag = 0 for i in range(len(nums)): temp_nums = nums[:i] + nums[i+1:] if sum(temp_nums[::2])==sum(temp_nums[1::2]): flag += 1 return flag class Solution: def waysToMakeFair(self, nums: List[int]) -&amp;gt; int: res = odd1 = even1 = odd2 = even2 = 0 for i, num in enumerate(nums): if i &amp;amp; 1: odd2 += num else: even2 += num for i, num in enumerate(nums): if i &amp;amp; 1: odd2 -= num else: even2 -= num if odd1 + even2 == odd2 + even1: res += 1 if i &amp;amp; 1: odd1 += num else: even1 += num return res </description>
+    </item>
+    
+    <item>
+      <title>1801-1803 力扣新手初见！</title>
+      <link>https://longsizhuo123.github.io/posts/1802/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://longsizhuo123.github.io/posts/1802/</guid>
+      <description>就是每天写一道题，然后写下能让自己看懂的题解吧! 新的一年已经过了5天了，就一次性写完这5天的吧。
+首先是1801.1802.1803，这三天的每日一题其实是去年的一场高质量的周赛，连简单标签的也是普通的难度。
+解法的话就是进行一个三角形的堆叠，当达到边界后停止增加（如果继续增加的话会导致超时） 。
+当两边边界都达到后，直接在最上层平铺所有剩余砖块即可。
+1802. 有界数组中指定下标处的最大值 中等 182 company 亚马逊 company Facebook 给你三个正整数 n、index 和 maxSum 。你需要构造一个同时满足下述所有条件的数组 nums（下标 从 0 开始 计数）： nums.length == n nums[i] 是 正整数 ，其中 0 &amp;lt;= i &amp;lt; n abs(nums[i] - nums[i+1]) &amp;lt;= 1 ，其中 0 &amp;lt;= i &amp;lt; n-1 nums 中所有元素之和不超过 maxSum nums[index] 的值被 最大化 返回你所构造的数组中的 nums[index] 。 注意：abs(x) 等于 x 的前提是 x &amp;gt;= 0 ；否则，abs(x) 等于 -x 。 示例 1： 输入：n = 4, index = 2, maxSum = 6 输出：2 解释：数组 [1,1,2,1] 和 [1,2,2,1] 满足所有条件。不存在其他在指定下标处具有更大值的有效数组。 示例 2： 输入：n = 6, index = 1, maxSum = 10 输出：3 提示： 1 &amp;lt;= n &amp;lt;= maxSum &amp;lt;= 109 0 &amp;lt;= index &amp;lt; n class Solution: def maxValue(self, n: int, index: int, maxSum: int) -&amp;gt; int: diff = maxSum - n left = index right = index res = 1 dl = 0 dr = 0 while diff &amp;gt; 0: # 当还有剩余砖块时 left -= 1 right += 1 if left &amp;gt;= 0: dl = dl + 1 # 尚未到达左边界 if right &amp;lt; n: dr = dr + 1 # 尚未到达右边界 if left &amp;lt; 0 and right &amp;gt;= n: # 当到达左边界和右边界时 及时退出 # res+=diff%n==0?</description>
+    </item>
+    
+    <item>
+      <title>1813. 句子相似性 III</title>
+      <link>https://longsizhuo123.github.io/posts/1813/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://longsizhuo123.github.io/posts/1813/</guid>
+      <description>一个句子是由一些单词与它们之间的单个空格组成，且句子的开头和结尾没有多余空格。比方说，&amp;#34;Hello World&amp;#34; ，&amp;#34;HELLO&amp;#34; ，&amp;#34;hello world hello world&amp;#34; 都是句子。每个单词都 只 包含大写和小写英文字母。 如果两个句子 sentence1 和 sentence2 ，可以通过往其中一个句子插入一个任意的句子（可以是空句子）而得到另一个句子，那么我们称这两个句子是 相似的 。比方说，sentence1 = &amp;#34;Hello my name is Jane&amp;#34; 且 sentence2 = &amp;#34;Hello Jane&amp;#34; ，我们可以往 sentence2 中 &amp;#34;Hello&amp;#34; 和 &amp;#34;Jane&amp;#34; 之间插入 &amp;#34;my name is&amp;#34; 得到 sentence1 。 给你两个句子 sentence1 和 sentence2 ，如果 sentence1 和 sentence2 是相似的，请你返回 true ，否则返回 false 。 示例 1： 输入：sentence1 = &amp;#34;My name is Haley&amp;#34;, sentence2 = &amp;#34;My Haley&amp;#34; 输出：true 解释：可以往 sentence2 中 &amp;#34;My&amp;#34; 和 &amp;#34;Haley&amp;#34; 之间插入 &amp;#34;name is&amp;#34; ，得到 sentence1 。 示例 2： 输入：sentence1 = &amp;#34;of&amp;#34;, sentence2 = &amp;#34;A lot of words&amp;#34; 输出：false 解释：没法往这两个句子中的一个句子只插入一个句子就得到另一个句子。 示例 3： 输入：sentence1 = &amp;#34;Eating right now&amp;#34;, sentence2 = &amp;#34;Eating&amp;#34; 输出：true 解释：可以往 sentence2 的结尾插入 &amp;#34;right now&amp;#34; 得到 sentence1 。 示例 4： 输入：sentence1 = &amp;#34;Luky&amp;#34;, sentence2 = &amp;#34;Lucccky&amp;#34; 输出：false 提示： 1 &amp;lt;= sentence1.</description>
+    </item>
+    
+    <item>
+      <title>1814. 统计一个数组中好对子的数目 每日一题</title>
+      <link>https://longsizhuo123.github.io/posts/1814/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://longsizhuo123.github.io/posts/1814/</guid>
+      <description>题目 1814. 统计一个数组中好对子的数目 中等 86 company 优步 Uber 给你一个数组 nums ，数组中只包含非负整数。定义 rev(x) 的值为将整数 x 各个数字位反转得到的结果。比方说 rev(123) = 321 ， rev(120) = 21 。我们称满足下面条件的下标对 (i, j) 是 好的 ： 0 &amp;lt;= i &amp;lt; j &amp;lt; nums.length nums[i] + rev(nums[j]) == nums[j] + rev(nums[i]) 请你返回好下标对的数目。由于结果可能会很大，请将结果对 109 + 7 取余 后返回。 示例 1： 输入：nums = [42,11,1,97] 输出：2 解释：两个坐标对为： - (0,3)：42 + rev(97) = 42 + 79 = 121, 97 + rev(42) = 97 + 24 = 121 。 - (1,2)：11 + rev(1) = 11 + 1 = 12, 1 + rev(11) = 1 + 11 = 12 。 示例 2： 输入：nums = [13,10,35,24,76] 输出：4 提示： 1 &amp;lt;= nums.</description>
+    </item>
+    
+    <item>
+      <title>1817. 查找用户活跃分钟数 每日一题</title>
+      <link>https://longsizhuo123.github.io/posts/1817%E6%9F%A5%E6%89%BE%E7%94%A8%E6%88%B7%E6%B4%BB%E8%B7%83%E5%88%86%E9%92%9F%E6%95%B0/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://longsizhuo123.github.io/posts/1817%E6%9F%A5%E6%89%BE%E7%94%A8%E6%88%B7%E6%B4%BB%E8%B7%83%E5%88%86%E9%92%9F%E6%95%B0/</guid>
+      <description>
+1817. 查找用户活跃分钟数
+我的题解： 这道题主要是哈希表的知识点，但是我们可以用defaultdict来做，可以省下几行代码量。 defaultdict可以假设存在key的初始值，所以我们只用直接append()或者add()就行。 这次和官方题解一模一样呢!
+class Solution: def findingUsersActiveMinutes(self, logs: List[List[int]], k: int) -&amp;gt; List[int]: dict1 = defaultdict(set) list1 = [0] * k for i, j in logs: dict1[i].add(j) for i in dict1: print(dict1[i]) # TypeError object of type ‘type‘ has no len() 是因为dict少打了1 list1[len(dict1[i]) - 1] += 1 return list1 </description>
+    </item>
+    
+    <item>
+      <title>1819.序列中不同最大公约数的数目</title>
+      <link>https://longsizhuo123.github.io/posts/1819%E5%BA%8F%E5%88%97%E4%B8%AD%E4%B8%8D%E5%90%8C%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0%E7%9A%84%E6%95%B0%E7%9B%AE/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://longsizhuo123.github.io/posts/1819%E5%BA%8F%E5%88%97%E4%B8%AD%E4%B8%8D%E5%90%8C%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0%E7%9A%84%E6%95%B0%E7%9B%AE/</guid>
+      <description>https://leetcode.cn/problems/number-of-different-subsequences-gcds/solutions/?orderBy=most_votes
+题解 ：
+由于非空子序列的数量高达
+$$ 2^n-1 $$
+，直接回溯枚举是会超时的。不妨换一个视角，考虑值域。
+多个数的最大公约数等于 g，也反过来说明这些数都是 g 的倍数。例如 [8,12,6] 的最大公约数是 2，这些数都是 2 的倍数。
+那么，能不能反过来，枚举 g 的倍数呢？
+1,2,3, 2,4,6,⋯ 3,6,9,⋯ 看上去运行时间是个平方级别的，会超时。 ⌊ 1 U ​ ⌋ 先别急着否定，这里得来点数学。 设 U=max(nums)，那么 1 的倍数需要枚举 $⌊U1⌋\left\lfloor\dfrac{U}{1}\right\rfloor⌊ 1 U ​ ⌋ $个，222 的倍数需要枚举 ⌊U2⌋\left\lfloor\dfrac{U}{2}\right\rfloor⌊2 U ​ ⌋ 个，……，把这些加起来，去掉下取整，有4
+$$⌊U1⌋+⌊U2⌋+⋯+⌊UU⌋≤U⋅(11+12+⋯+1U) \left\lfloor\dfrac{U}{1}\right\rfloor + \left\lfloor\dfrac{U}{2}\right\rfloor +\cdots + \left\lfloor\dfrac{U}{U}\right\rfloor \le U\cdot\left(\dfrac{1}{1} + \dfrac{1}{2} + \cdots + \dfrac{1}{U}\right)$$
+右边括号中的叫做 调和级数部分和，可以看成是 $$O(log⁡U)O(\log U)O(logU)$$ 的，因此枚举倍数的时间复杂度为 $$O(Ulog⁡U)O(U\log U)O(UlogU)$$，不会超时。
+那么就枚举 $$i=1,2,⋯ ,Ui=1,2,\cdots,Ui=1,2,⋯,U$ 及其倍数，当作子序列中的数。</description>
+    </item>
+    
+    <item>
+      <title>1825. 求出 MK 平均值</title>
+      <link>https://longsizhuo123.github.io/posts/1824%E6%9C%80%E5%B0%91%E4%BE%A7%E8%B7%B3%E6%AC%A1%E6%95%B0/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://longsizhuo123.github.io/posts/1824%E6%9C%80%E5%B0%91%E4%BE%A7%E8%B7%B3%E6%AC%A1%E6%95%B0/</guid>
+      <description>题目： 1824最小侧跳次数
+题解： 我不会
+https://leetcode.cn/problems/minimum-sideway-jumps/solutions/2071617/cong-0-dao-1-de-0-1-bfspythonjavacgo-by-1m8z4/?orderBy=most_votes
+代码： class Solution: def minSideJumps(self, obstacles: List[int]) -&amp;gt; int: n = len(obstacles) dis = [[n] * 3 for _ in range(n)] dis[0][1] = 0 q = deque([(0, 1)]) # 起点 while True: i, j = q.popleft() d = dis[i][j] if i == n - 1: return d # 到达终点 if obstacles[i + 1] != j + 1 and d &amp;lt; dis[i + 1][j]: # 向右 dis[i + 1][j] = d q.</description>
+    </item>
+    
+    <item>
+      <title>1825. 求出 MK 平均值</title>
+      <link>https://longsizhuo123.github.io/posts/1825%E6%B1%82%E5%87%BA-mk-%E5%B9%B3%E5%9D%87%E5%80%BC/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://longsizhuo123.github.io/posts/1825%E6%B1%82%E5%87%BA-mk-%E5%B9%B3%E5%9D%87%E5%80%BC/</guid>
+      <description>解题思路 维护 3 个 multiset：lower（保存最小的 kkk 个数）、middle（中间的数）、upper（保存最大的 kkk 个数）。
+插入操作 ·如果 num≤max(lower)，则在 lower中插入 num ·如果 num≥min(upper)，则在 upper 中插入 num ·否则，在 middle 中插入 num 如果插入后，lower 或 upper 中的元素多于 k 个，则向 middle 中 转移 元素
+操作过程中维护 middle 的元素和 sum
+删除操作 ·设删除的元素为 d ·d 一定存在于 lower 或middle 或 upper 中的一个或多个集合中 ·择一删除即可 如果删除后，lower 或 upper 中的元素少于 k 个，则从 middle 中 索取 元素
+操作过程中维护 middle 的元素和 sum
+平均值操作 平均值 = sum/(m−2⋅k)sum / (m - 2\cdot k)sum/(m−2⋅k) （向下取整）。</description>
+    </item>
+    
+    <item>
+      <title>1828. 统计一个圆中点的数目 每日一题</title>
+      <link>https://longsizhuo123.github.io/posts/1828%E7%BB%9F%E8%AE%A1%E4%B8%80%E4%B8%AA%E5%9C%86%E4%B8%AD%E7%82%B9%E7%9A%84%E6%95%B0%E7%9B%AE/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://longsizhuo123.github.io/posts/1828%E7%BB%9F%E8%AE%A1%E4%B8%80%E4%B8%AA%E5%9C%86%E4%B8%AD%E7%82%B9%E7%9A%84%E6%95%B0%E7%9B%AE/</guid>
+      <description>题目： 1828. 统计一个圆中点的数目
+思想： 今天的题非常简单，我怀疑是不是跟昨天的题标反了。 问在queries的圆中有几个points数组中的点。 说实话被吓到了，以为这道题又是图的题。不过仔细读题了后发现只是一道简单的数学题， 我们可以用欧式距离的方式来求解（时间复杂度是On^2，我原以为有更好的解法，一看大家都这样（））
+欧式距离的公式如下：
+$\sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2}$
+具体操作我们来看代码：
+代码 class Solution: def countPoints(self, points: List[List[int]], queries: List[List[int]]) -&amp;gt; List[int]: # 求解点到圆心的欧式距离是否小于 r ans = [0] * len(queries) flag = 0 for x, y, r in queries: for i, j in points: if ((x - i) ** 2 + (y - j) ** 2) ** (1 / 2) &amp;lt;= r: ans[flag] += 1 flag += 1 return ans 再看看一个看不懂的python代码：</description>
+    </item>
+    
+    <item>
+      <title>217. 存在重复元素 C&#43;&#43;/Python3</title>
+      <link>https://longsizhuo123.github.io/posts/217%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0-desktop-o7485ro/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://longsizhuo123.github.io/posts/217%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0-desktop-o7485ro/</guid>
+      <description>217. 存在重复元素
+思想： 第一次用**C++**写题 两种方法：
+第一种是排序，每次判断前一个和后面一个是否相等； 第二种方法是哈希表，判断数字是否出现了第二次。 在C++中，力扣传入数组nums使用的vector，所以可以直接使用sort()函数。 想用Python中的字典（哈希表）的话，就得导入unordered_set&amp;lt;int&amp;gt;函数新建哈希表，再用find()和end()判断是否已经存在。 代码： class Solution { public: bool containsDuplicate(vector&amp;lt;int&amp;gt;&amp;amp; nums) { sort(nums.begin(),nums.end()); for (int i = 0; i &amp;lt; nums.size() - 1; i++){ if(nums[i] == nums[i+1]) { return true; } } return false; } }; class Solution { public: bool containsDuplicate(vector&amp;lt;int&amp;gt;&amp;amp; nums) { std::unordered_set&amp;lt;int&amp;gt; Hash; for(int i: nums){ if(Hash.find(i) != Hash.end()){ return true; } else{ Hash.insert(i); } } return false; } }; class Solution: def containsDuplicate(self, nums: List[int]) -&amp;gt; bool: dict1 = Counter(nums) dict1 = sorted(dict1.</description>
+    </item>
+    
+    <item>
+      <title>217. 存在重复元素 C&#43;&#43;/Python3</title>
+      <link>https://longsizhuo123.github.io/posts/217%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://longsizhuo123.github.io/posts/217%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0/</guid>
+      <description>217. 存在重复元素
+思想： 第一次用**C++**写题 两种方法：
+第一种是排序，每次判断前一个和后面一个是否相等； 第二种方法是哈希表，判断数字是否出现了第二次。 在C++中，力扣传入数组nums使用的vector，所以可以直接使用sort()函数。 想用Python中的字典（哈希表）的话，就得导入unordered_set&amp;lt;int&amp;gt;函数新建哈希表，再用find()和end()判断是否已经存在。 代码： class Solution { public: bool containsDuplicate(vector&amp;lt;int&amp;gt;&amp;amp; nums) { sort(nums.begin(),nums.end()); for (int i = 0; i &amp;lt; nums.size() - 1; i++){ if(nums[i] == nums[i+1]) { return true; } } return false; } }; class Solution { public: bool containsDuplicate(vector&amp;lt;int&amp;gt;&amp;amp; nums) { std::unordered_set&amp;lt;int&amp;gt; Hash; for(int i: nums){ if(Hash.find(i) != Hash.end()){ return true; } else{ Hash.insert(i); } } return false; } }; class Solution: def containsDuplicate(self, nums: List[int]) -&amp;gt; bool: dict1 = Counter(nums) dict1 = sorted(dict1.</description>
+    </item>
+    
+    <item>
+      <title>219.存在重复元素 II 哈希表图形学</title>
+      <link>https://longsizhuo123.github.io/posts/219/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://longsizhuo123.github.io/posts/219/</guid>
+      <description>思想 这道题一开始是在手机上做的，直接用的是双哈希表，一个存元素，一个存index，当某个元素超过2个的时候判断是否存在某两个他们的index相减小于等于k的情况。因此时间复杂度是O(n^3)。
+代码： class Solution: def containsNearbyDuplicate(self, nums: List[int], k: int) -&amp;gt; bool: hash_1={} hash_2={} for index, i in enumerate(nums): if i not in hash_1: hash_1[i] = 1 hash_2[i] = [index] else: hash_1[i] += 1 hash_2[i].append(index) for i in hash_1: if hash_1[i] &amp;gt;= 2: for j in range(len(hash_2[i])): for m in range(j + 1, len(hash_2[i])): if abs(hash_2[i][j]-hash_2[i][m]) &amp;lt;= k: return True return False 看@宫水三叶宫水三叶的解法后，才想起来，这道题的目的是为了练习双指针在哈希表中的应用，TA的原话是整理题意：是否存在长度不超过的 k+1k + 1k+1 窗口，窗口内有相同元素。
+#整理题意：是否存在长度不超过的 k+1k + 1k+1 窗口，窗口内有相同元素。class Solution:def containsNearbyDuplicate(self, nums: List[int], k: int) -&amp;gt; bool:n = len(nums)s = set()for i in range(n):if i &amp;gt; k:s.</description>
+    </item>
+    
+    <item>
+      <title>2303. 计算应缴税款总额</title>
+      <link>https://longsizhuo123.github.io/posts/2303%E8%AE%A1%E7%AE%97%E5%BA%94%E7%BC%B4%E7%A8%8E%E6%AC%BE%E6%80%BB%E9%A2%9D/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://longsizhuo123.github.io/posts/2303%E8%AE%A1%E7%AE%97%E5%BA%94%E7%BC%B4%E7%A8%8E%E6%AC%BE%E6%80%BB%E9%A2%9D/</guid>
+      <description>2303. 计算应缴税款总额
+思想： 坐了很久，感觉难得不像是“简单”。没做出来，看的题解。判断的情况特别多，所以写了很多判断，越写越觉得不对劲。
+来看看官方题解
+代码： from typing import List class Solution: def calculateTax(self, brackets: List[List[int]], income: int) -&amp;gt; float: if income == 0: return 0 tax: float = 0 index: int = 1 if income &amp;lt; brackets[0][0]: return income * brackets[0][1] / 100 else: tax += brackets[0][0] * brackets[0][1] / 100 while index &amp;lt; len(brackets): # 判断是不是在最后一位了 if index == len(brackets) - 1: # 比brackets最后一个还大 if income - brackets[index][0] &amp;lt; 0: tax += (income - brackets[index - 1][0]) * brackets[index][1] / 100 return tax if income &amp;gt;= brackets[index][0]: tax += (brackets[index][0]- brackets[index-1][0]) * brackets[index][1] / 100 if income &amp;lt; brackets[index-1][0]: break index += 1 return tax print(Solution.</description>
+    </item>
+    
+    <item>
+      <title>2309. 兼具大小写的最好英文字母 每日一题</title>
+      <link>https://longsizhuo123.github.io/posts/2309%E5%85%BC%E5%85%B7%E5%A4%A7%E5%B0%8F%E5%86%99%E7%9A%84%E6%9C%80%E5%A5%BD%E8%8B%B1%E6%96%87%E5%AD%97%E6%AF%8D/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://longsizhuo123.github.io/posts/2309%E5%85%BC%E5%85%B7%E5%A4%A7%E5%B0%8F%E5%86%99%E7%9A%84%E6%9C%80%E5%A5%BD%E8%8B%B1%E6%96%87%E5%AD%97%E6%AF%8D/</guid>
+      <description>2309. 兼具大小写的最好英文字母
+思想： 哈希表：看到题首先想到的是用字典解决。但是发现可以直接遍历字母表，从Z开始找，看是否大小写都存在，存在直接返回就行。 运行时间超过99.9% 位运算：我们可以用两个整数 mask1 和 mask2 分别记录字符串 s 中出现的小写字母和大写字母，其中 mask1 的第 i 位表示第 i 个小写字母是否出现，而 mask2 的第 i 位表示第 i 个大写字母是否出现。 然后我们将 mask1 和 mask2 进行与运算，得到的结果 mask 的第 i 位表示第 i 个字母的大小写是否同时出现。
+接下来只要获取 mask 的二进制表示中最高位的 1 的位置，将其转换为对应的大写字母即可。如果所有二进制位都不为 1，说明不存在大小写同时出现的字母，返回空字符串。
+作者：ylb 链接：https://leetcode.cn/problems/greatest-english-letter-in-upper-and-lower-case/solutions/2077636/by-lcbin-zbg0/ 来源：力扣（LeetCode） 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+代码： class Solution: def greatestLetter(self, s: str) -&amp;gt; str: for i in range(90, 64, -1): if chr(i) in s and chr(i+32) in s: return chr(i) return &amp;#34;&amp;#34; class Solution { public: string greatestLetter(string s) { unordered_set&amp;lt;char&amp;gt; strin(s.</description>
+    </item>
+    
+    <item>
+      <title>2315. 统计星号 每日一题</title>
+      <link>https://longsizhuo123.github.io/posts/2315%E7%BB%9F%E8%AE%A1%E6%98%9F%E5%8F%B7/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://longsizhuo123.github.io/posts/2315%E7%BB%9F%E8%AE%A1%E6%98%9F%E5%8F%B7/</guid>
+      <description> 2315. 统计星号
+思想： 我的：简单的出栈入栈的简单版 @ylq：对|的个数计数，当个数是2的倍数的时候进行*的计数
+代码： class Solution: def countAsterisks(self, s: str) -&amp;gt; int: stack = True flag = 0 for i in s: if stack: if i == &amp;#39;*&amp;#39;: flag += 1 if i == &amp;#39;|&amp;#39; and stack: stack = False elif i == &amp;#39;|&amp;#39; and not stack: stack = True return flag class Solution: def countAsterisks(self, s: str) -&amp;gt; int: count1, count2 = 0, 0 for i in range(len(s)): if s[i] == &amp;#39;|&amp;#39;: count1 += 1 if count1 % 2 == 0 and s[i] == &amp;#39;*&amp;#39;: count2 += 1 return count2 </description>
+    </item>
+    
+    <item>
+      <title>2527.查询数组Xor美丽值 周赛第三题</title>
+      <link>https://longsizhuo123.github.io/posts/2527/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://longsizhuo123.github.io/posts/2527/</guid>
+      <description>6289.查询数组 Xor 美丽值。
+这道题研究了很久，发现是一道数学题，但是又没想通透，因为不熟悉异或值。所以没有相出更好的解法。
+首先是读题得知需要计(nums[i]|nums[j])&amp;amp;nums[k]，因为ijk可以是数组里的任意值，所以用的三重for循环（肯定会超时），然后自己灵光了一点，也就一点，觉得i，j值互换的值是一样的，所以多加了一层判断（用的字典）。
+class Solution: def xorBeauty(self, nums: List[int]) -&amp;gt; int: ans = [] record = {} for i in range(len(nums)): for j in range(len(nums)): for k in range(len(nums)): if k not in record: if (i,j) not in record.values(): record[k] = (i,j) flag = (nums[i]|nums[j])&amp;amp;nums[k] if flag not in ans: ans.append(flag) else: ans.remove(flag) if len(ans) == 0: return 0 answer = ans[0] for i in range(1,len(ans)): answer ^= ans[i] return answer 今天出门的时候还一直在想怎么判断答案一样的情况，结果一看大@灵茶山艾府的解法，就一行，那没事了。</description>
+    </item>
+    
+    <item>
+      <title>271. 字符串的编码与解码 - Python 添加转义符解法 复杂度双O(n)</title>
+      <link>https://longsizhuo123.github.io/posts/271/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://longsizhuo123.github.io/posts/271/</guid>
+      <description>Problem: 271. 字符串的编码与解码
+[TOC]
+思路 第一反应是不是对字符串进行加密解密，但是读题后发现是将列表转化为字符串，然后第二部分对自己处理过的字符串转化回源列表。
+解题方法 列表可能有多个元素（由‘，’区分开的单词组），在每个元素中可能存在多个由空格隔开的单词。于是分开对list中的元素和空格进行处理。
+首先对列表进行第一层遍历，再对每个元素进行遍历，当读取到‘ ’的时候对预先声明的空列表中添加转义符（一开始打算自定义转义符，后来发现\t直接可行）在每一层遍历每一次结束的时候都在列表中添加新的，与‘ ’不同的转义符比如\n。最后&#39;&#39;.join()转换成字符串，return。 在解码时，预先声明一个空列表List和空字符串Str，当遍历读取到‘\t’的时候，就在字符串中加入空格Str = &#39;&#39;.join([Str, &#39; &#39;])，同理，读取到&amp;rsquo;\n&amp;rsquo;的时候就将Str添加到List中，并且将Str置空进行下一次的循环。 复杂度 时间复杂度: 添加时间复杂度, 示例： $O(n)$
+空间复杂度: 添加空间复杂度, 示例： $O(n)$
+Code class Codec: def encode(self, strs: list[str]) -&amp;gt; str: &amp;#34;&amp;#34;&amp;#34;Encodes a list of strings to a single string. &amp;#34;&amp;#34;&amp;#34; List = [] for i in strs: for j in i: if j == &amp;#39; &amp;#39;: List.append(&amp;#39;\t&amp;#39;) else: List.append(j) List.append(&amp;#39;\n&amp;#39;) List = &amp;#39;&amp;#39;.join(List) return List def decode(self, s: str) -&amp;gt; list[str]: &amp;#34;&amp;#34;&amp;#34;Decodes a single string to a list of strings.</description>
+    </item>
+    
+    <item>
+      <title>350.两个数组的交集</title>
+      <link>https://longsizhuo123.github.io/posts/350%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://longsizhuo123.github.io/posts/350%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86/</guid>
+      <description>350. 两个数组的交集 II 简单 883 company 亚马逊 company 字节跳动 company Facebook 给你两个整数数组 nums1 和 nums2 ，请你以数组形式返回两数组的交集。返回结果中每个元素出现的次数，应与元素在两个数组中都出现的次数一致（如果出现次数不一致，则考虑取较小值）。可以不考虑输出结果的顺序。 示例 1： 输入：nums1 = [1,2,2,1], nums2 = [2,2] 输出：[2,2] 示例 2: 输入：nums1 = [4,9,5], nums2 = [9,4,9,8,4] 输出：[4,9] 提示： 1 &amp;lt;= nums1.length, nums2.length &amp;lt;= 1000 0 &amp;lt;= nums1[i], nums2[i] &amp;lt;= 1000 进阶： 如果给定的数组已经排好序呢？你将如何优化你的算法？ 如果 nums1 的大小比 nums2 小，哪种方法更优？ 如果 nums2 的元素存储在磁盘上，内存是有限的，并且你不能一次加载所有的元素到内存中，你该怎么办？ class Solution: def containsNearbyDuplicate(self, nums: List[int], k: int) -&amp;gt; bool: hash_1 = {} hash_2 = {} for index, i in enumerate(nums): if i not in hash_1: hash_1[i] = 1 hash_2[i] = [index] else: hash_1[i] += 1 hash_2[i].</description>
+    </item>
+    
+    <item>
+      <title>6275. 使数组中所有元素相等的最小操作数 II</title>
+      <link>https://longsizhuo123.github.io/posts/6275%E4%BD%BF%E6%95%B0%E7%BB%84%E4%B8%AD%E6%89%80%E6%9C%89%E5%85%83%E7%B4%A0%E7%9B%B8%E7%AD%89%E7%9A%84%E6%9C%80%E5%B0%8F%E6%93%8D%E4%BD%9C%E6%95%B0/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://longsizhuo123.github.io/posts/6275%E4%BD%BF%E6%95%B0%E7%BB%84%E4%B8%AD%E6%89%80%E6%9C%89%E5%85%83%E7%B4%A0%E7%9B%B8%E7%AD%89%E7%9A%84%E6%9C%80%E5%B0%8F%E6%93%8D%E4%BD%9C%E6%95%B0/</guid>
+      <description>6275. 使数组中所有元素相等的最小操作数 II
+思想: 周赛第二题！！！
+·首先使用列表推导式计算每个元素之间的差异。 ·然后，初始化一个计数器以跟踪所需的操作数。 ·接下来遍历差异，并检查每个差异是否可以被整除。 ·如果不是，则返回 -1，因为数组不能与给定的操作相等。 ·如果它是可整除的，它将差值的绝对值除以添加到计数器中。 ·最后，它返回所需的操作数。
+比如：[3,0,-6,3]就是每个正数除以3的和，测试了很多遍，是因为最后一种特殊情况（当两个列表项等的情况）没有考虑到。
+代码： class Solution: def minOperations(self, nums1: List[int], nums2: List[int], k: int) -&amp;gt; int: if k &amp;lt;= 0: if nums1 != nums2: return -1 else: return 0 diff = [nums1[i] - nums2[i] for i in range(len(nums1))] if sum(diff) != 0: return -1 if sum(diff) % k != 0: return -1 operations = 0 for index, d in enumerate(diff): if d % k !</description>
+    </item>
+    
+    <item>
+      <title>6293. 统计好子数组的数目</title>
+      <link>https://longsizhuo123.github.io/posts/6293%E7%BB%9F%E8%AE%A1%E5%A5%BD%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%95%B0/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://longsizhuo123.github.io/posts/6293%E7%BB%9F%E8%AE%A1%E5%A5%BD%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%95%B0/</guid>
+      <description>一看这道题就是双指针，不过对与双指针实在不熟悉，在搭框架的时候就浪费了大部分的时间。
+这道题是周赛的第三题，前两题都很快秒杀了，但是因为睡过头了，打开电脑的时候只剩半小时了。
+一直在debug，今下午看看0x3f的题解吧。他滑动窗口算法和双指针的讲解有一套。
+from collections import Counter from itertools import count from typing import List class Solution: def countGood(self, nums: List[int], k: int) -&amp;gt; int: start = 0 tail = 0 flag = 0 if len(set(nums)) == 1: if k &amp;gt; len(nums) * (len(nums)-1) // 2: return 0 while start &amp;lt; len(nums) - 1: x = Counter(nums[start:tail]) if len(x) &amp;gt;= k: flag2 = 0 for j in x: if x[j] &amp;gt;= k: flag2 += 1 if flag2 &amp;gt;= k: flag += 1 else: for i in x: if x[i] * (x[i] - 1) // 2 &amp;gt;= k: flag += 1 if tail !</description>
+    </item>
+    
+    <item>
+      <title>6300. 最小公共值</title>
+      <link>https://longsizhuo123.github.io/posts/6300%E6%9C%80%E5%B0%8F%E5%85%AC%E5%85%B1%E5%80%BC/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://longsizhuo123.github.io/posts/6300%E6%9C%80%E5%B0%8F%E5%85%AC%E5%85%B1%E5%80%BC/</guid>
+      <description> 6300. 最小公共值
+思想： 本来是打算用元组一个个遍历找，但是超时了。 于是用intersection函数在O(1)的时间复杂度下解决
+代码： class Solution: def getCommon(self, nums1: List[int], nums2: List[int]) -&amp;gt; int: common = set(nums1).intersection(nums2) if common: return min(common) return -1 </description>
+    </item>
+    
+    <item>
+      <title>6338. 猴子碰撞的方法数 周赛</title>
+      <link>https://longsizhuo123.github.io/posts/6338%E7%8C%B4%E5%AD%90%E7%A2%B0%E6%92%9E%E7%9A%84%E6%96%B9%E6%B3%95%E6%95%B0/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://longsizhuo123.github.io/posts/6338%E7%8C%B4%E5%AD%90%E7%A2%B0%E6%92%9E%E7%9A%84%E6%96%B9%E6%B3%95%E6%95%B0/</guid>
+      <description> 6338. 猴子碰撞的方法数
+思想： 纯数学问题，就是$2^n - 2$。但是n最多有$10^9$那么大，直接返回会超时。 所以用了快速幂算法，
+使用快速幂算法来降低计算 2^n 的时间复杂度。 在这里，我们用变量 x 来存储 2^n，并在每次循环中将 x 平方。当 n 为奇数时，我们将结果乘以 x。这样可以在每次循环中计算出2^n。 在返回结果之前，我们需要用(res-2)%mod 去除边界情况
+代码： class Solution: def monkeyMove(self, n: int) -&amp;gt; int: mod = 10**9 + 7 res = 1 x = 2 while n &amp;gt; 0: if n % 2 == 1: res = (res * x) % mod x = (x * x) % mod n = n // 2 return (res-2) % mod </description>
+    </item>
+    
+    <item>
+      <title>704. 二分查找</title>
+      <link>https://longsizhuo123.github.io/posts/704%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://longsizhuo123.github.io/posts/704%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/</guid>
+      <description>https://leetcode.cn/leetbook/read/learning-algorithms-with-leetcode/xsshgi/ 不难，只是递归做个笔记
+class Solution: def search(self, nums: List[int], target: int) -&amp;gt; int: def recursion(nums, left, right, target): if left &amp;gt; right: # 递归结束 return -1 mid = left + (right - left) // 2 if nums[mid] == target: return mid elif nums[mid] &amp;lt; target: left = mid + 1 else: right = mid - 1 return recursion(nums, left, right, target) left = 0 right = len(nums) - 1 return recursion(nums, left, right, target) https://leetcode.</description>
+    </item>
+    
+    <item>
+      <title>brief_alternate 作业帮忙</title>
+      <link>https://longsizhuo123.github.io/posts/brief_alternate-%E4%BD%9C%E4%B8%9A%E5%B8%AE%E5%BF%99/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://longsizhuo123.github.io/posts/brief_alternate-%E4%BD%9C%E4%B8%9A%E5%B8%AE%E5%BF%99/</guid>
+      <description>题目 brief_alternate.pdf superstore_transaction.csv
+思想： 自学pandas进行数据处理，比之前import csv好用多了。
+其中的知识点需要记住的是：
+df[&amp;ldquo;列名&amp;rdquo;] 可以直接将第一行判定为列的名字，并且返回一个只包含列名的列表。 idxmax()返回包含最大值的index,max()饭回最大值 .loc 函数是 pandas 中的一个重要函数，用于选择和定位数据框中的数据。它允许您选择某些行和列，并将其以 DataFrame 或 Series 的形式返回。 通过使用行标签和列标签作为索引，您可以在数据框中执行如下操作： .选择单行数据 .选择多行数据 .选择单列数据 .选择多列数据 语法： df.loc[row_indexer, column_indexer] 其中，row_indexer 是要选择的行的标签，column_indexer 是要选择的列的标签。 unique()返回不重复的value的number计数。 代码如下： superstore
+# Import pandas library as pd import pandas as pd # Read CSV file named &amp;#39;superstore_transaction.csv&amp;#39; and store it in a dataframe named &amp;#39;df&amp;#39; df = pd.read_csv(&amp;#34;superstore_transaction.csv&amp;#34;) # Remove &amp;#34;$&amp;#34; and &amp;#34;,&amp;#34; from the values in the &amp;#39;Profit&amp;#39; column and convert it to integer df[&amp;#34;Profit&amp;#34;] = df[&amp;#34;Profit&amp;#34;].</description>
+    </item>
+    
+    <item>
+      <title>GO语言# GO语言可爱捏</title>
+      <link>https://longsizhuo123.github.io/posts/go/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://longsizhuo123.github.io/posts/go/</guid>
+      <description>
+package main import &amp;#34;fmt&amp;#34; func main() { fmt.Println(&amp;#34;Hello world&amp;#34;) arr := []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9} fmt.Println(a(arr)) } package main func a(x []int) []int { for i := 0; i &amp;lt; len(x); i++ { if i%2 == 0 { x[i] = 1 } } return x } </description>
+    </item>
+    
+    <item>
+      <title>Python 击败98.40% collections的Counter 方法！</title>
+      <link>https://longsizhuo123.github.io/posts/80/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://longsizhuo123.github.io/posts/80/</guid>
+      <description>Pyhton collection 包里 Counter() 可以对list里出现的元素进行计数，并且输出是字典。 比如nums=[1, 1, 1, 2, 2, 3] 对其Counter后的结果是Counter({1: 3, 2: 2, 3: 1})。
+因此遍历一次字典，当value&amp;gt;3的时候value=2，就可以将大于2个的元素计数变成2个。 所以我们将Counter({1: 3, 2: 2, 3: 1})变成Counter({1: 2, 2: 2, 3: 1})后再对其elements进行list操作就可以得到改变后的列表了。 由于题意中“输入数组是以「引用」方式传递的”，所以我们将nums清空再填入就好
+from collections import Counter # 导入包 class Solution: def removeDuplicates(self, nums: List[int]) -&amp;gt; List[int]: dict1 = Counter(nums) for i in dict1: if dict1[i] &amp;gt; 2: dict1[i] = 2 list1 = list(dict1.elements()) nums.clear() # 清空列表 nums.extend(list1) # 将集合添加到列表 return len(nums) 复杂度分析</description>
+    </item>
+    
+    <item>
+      <title>Python取巧，随机算法O(nlogn)搞定捏</title>
+      <link>https://longsizhuo123.github.io/posts/1968/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://longsizhuo123.github.io/posts/1968/</guid>
+      <description>思路历程：
+看了官方题解，和自己第一次的做法很相似，都是sorted后在新的列表里append。但是左思右想觉得不能证明正确性，因为是周赛不敢随意提交。 在想第一种解法时发现，我如果不停for i in 整个数组，判断是否满足条件再交换位置时，万一进入死循环怎么办？如果某种特殊情况每一次都失败都需要交换位置的话和随机打乱有什么区别？ 看了其他大佬的解法，自己还是太年轻了 def rearrangeArray(self, nums: List[int]) -&amp;gt; List[int]: i = 1 while i &amp;lt; len(nums)-1: if nums[i] == (nums[i - 1] + nums[i + 1]) // 2: random.shuffle(nums) i = 1 else: i += 1 else: return nums </description>
+    </item>
+    
+    <item>
+      <title>一些疑惑</title>
+      <link>https://longsizhuo123.github.io/posts/intro/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://longsizhuo123.github.io/posts/intro/</guid>
+      <description>目录 1.背景 2.假期 3.编程喜好
+1.背景： 我们有7个方向，分别是 1. Artificial Intelligence 2. Bioinformatics 3. Information Technology 4. Database Systems 5. e-Commerce Systems 6. Internet working 7. Data Science and Engineering
+我下学期的选课的选课方向是Artificial Intelligence 并不是因为我喜欢AI方向，只是因为下学期有一门课叫9814，很好拿高分，而且是AI的必修课。
+2.假期： 上学期选了一门课，教了Python，觉得Python是世界上最好的语言，所以就一直打算学习。这个假期的编程比赛和练习题全部都是用Python做的。
+但是在这个假期的实践中发现，Python的运用的地方十分地狭隘，在国内基本上只有人工智能的方向。 而我假期自学吴恩达的Machine Learning的课程，觉得不是很感兴趣，如果说“不学这个就找不到工作”， 那我也能学。 只是同学也不断在说，人工智能方向找不到工作，基本就是对于模型炼丹，没什么技术含量。我想了想，觉得说得对。类似于ChatGPT和绘画模型这种商业化的AI也不是我能写的。
+如果是走后端呢？ 那在我面前的有两条路可以走：Java 和 C++。 我打听了一下国内的行情，Java的需求仿佛更大，但也更接近于饱和。 那Java和*C++*在国外的需求又如何呢？Python在国外有需求吗？
+如果是前端呢？ 感觉就没有只走前端就能成功的案例，基本上都是全栈呢。 这个博客实际上也是昨天搞出来的，入门很简单，但是感觉想要深入十分困难，网上的文档比较少。
+如果是数据分析呢？ 感觉和人工智能差不多，但是路要广泛一点，而且好像也可以用Python？我不是很确定。
+3.编程喜好： 对于我的喜好而言的话，我现在只学了两门语言，C 和 Python（Java和C++和C#已经还给老师了）。 C的话就连一个链表都得自己敲出来，而我沉迷于Python的便捷。 比如同样的一道题，我拿753. 破解保险箱举例，它的Python的解法是：
+class Solution: def crackSafe(self, n: int, k: int) -&amp;gt; str: seen = set() ans = list() highest = 10 ** (n - 1) def dfs(node: int): for x in range(k): nei = node * 10 + x if nei not in seen: seen.</description>
+    </item>
+    
+    <item>
+      <title>剑指 Offer 43. 1～n 整数中 1 出现的次数</title>
+      <link>https://longsizhuo123.github.io/posts/offer43/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://longsizhuo123.github.io/posts/offer43/</guid>
+      <description>剑指 Offer 43. 1～n 整数中 1 出现的次数
+class Solution: def countDigitOne(self, n: int) -&amp;gt; int: mulk = 1 ans = 0 while n &amp;gt;= mulk: ans += (n//(mulk * 10)) * mulk + min(max(n % (mulk * 10) - mulk + 1, 0), mulk) mulk *= 10 return ans 那天心血来潮做了一套小米的测开题，其中第一道就是计算1～n中1出现的次数。
+力扣的题号是剑指offer 43 n是12的情况下，1 10 11 12中就出现了5次1。
+因为那套题中选择题都是简单难度，所以很自然地就想用暴力算法破解。
+但是拿到力扣中找相同的题的时候却发现标签是困难[汗颜R]。果不其然超时了[图2]。
+然后当时其实也想过直接用数学方法计算，但奈何太懒了不想去找规律，[图三]是标答，感觉以后得沉下心来慢慢去做才形捏。 #力扣 #算法#力扣算法 #Python
+错误答案：
+def countDigitOne(self, n: int) -&amp;gt; int: flag = 0 for i in range(1, int(n)+1): for j in &amp;#39;&amp;#39;.</description>
+    </item>
+    
+    <item>
+      <title>太累了</title>
+      <link>https://longsizhuo123.github.io/posts/%E4%B8%8D%E5%AF%B9/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://longsizhuo123.github.io/posts/%E4%B8%8D%E5%AF%B9/</guid>
+      <description>不对，这样太累了，不应该这样做笔记，得换个方式啊.</description>
+    </item>
+    
+    <item>
+      <title>每日一题 2283</title>
+      <link>https://longsizhuo123.github.io/posts/2283/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://longsizhuo123.github.io/posts/2283/</guid>
+      <description>2283.判断一个数的数字计数是否等于数位的值。
+class Solution: def digitCount(self, num: str) -&amp;gt; bool: hash_1 = {} for index, i in enumerate(num): if int(i) != 0: hash_1[str(index)] = int(i) hash_2 = Counter(num) if hash_1 == dict(hash_2): return True return False 这道题读题读了好一会儿，意思就是按照index来读取，index要出现num[index]次，1210就是说&amp;quot;0出现1次，&amp;ldquo;1出现2次，&amp;ldquo;2出现1次，&amp;ldquo;3出现0次。然后对num里的东西进行计数即可。
+因为前两天都在做哈希表的练习，所以这道题一眼哈希表，再直接用Counter函数进行计数，比较一下，结束</description>
+    </item>
+    
+    <item>
+      <title>每日一题 2293. 极大极小游戏</title>
+      <link>https://longsizhuo123.github.io/posts/2293/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://longsizhuo123.github.io/posts/2293/</guid>
+      <description>虽然是简单题，但是有递归思想。
+不断地将一维列表转化为二维列表进行操作（这样可以避免因为index的改变造成的混乱）
+然后用flag进行计数，进行最大值和最小值的比较。
+最后返回就行了，虽然肯定返回一个数字，不过还是‘nums[0]’来避免警告。
+2293. 极大极小游戏 简单 39 company 谷歌 Google 给你一个下标从 0 开始的整数数组 nums ，其长度是 2 的幂。 对 nums 执行下述算法： 设 n 等于 nums 的长度，如果 n == 1 ，终止 算法过程。否则，创建 一个新的整数数组 newNums ，新数组长度为 n / 2 ，下标从 0 开始。 对于满足 0 &amp;lt;= i &amp;lt; n / 2 的每个 偶数 下标 i ，将 newNums[i] 赋值 为 min(nums[2 * i], nums[2 * i + 1]) 。 对于满足 0 &amp;lt;= i &amp;lt; n / 2 的每个 奇数 下标 i ，将 newNums[i] 赋值 为 max(nums[2 * i], nums[2 * i + 1]) 。 用 newNums 替换 nums 。 从步骤 1 开始 重复 整个过程。 执行算法后，返回 nums 中剩下的那个数字。 示例 1： 输入：nums = [1,3,5,2,4,8,2,2] 输出：1 解释：重复执行算法会得到下述数组。 第一轮：nums = [1,5,4,2] 第二轮：nums = [1,4] 第三轮：nums = [1] 1 是最后剩下的那个数字，返回 1 。 示例 2： 输入：nums = [3] 输出：3 解释：3 就是最后剩下的数字，返回 3 。 提示： 1 &amp;lt;= nums.</description>
+    </item>
+    
+    <item>
+      <title>每日一题 2299. 强密码检验器 II</title>
+      <link>https://longsizhuo123.github.io/posts/2299%E5%BC%BA%E5%AF%86%E7%A0%81%E6%A3%80%E9%AA%8C%E5%99%A8ii/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://longsizhuo123.github.io/posts/2299%E5%BC%BA%E5%AF%86%E7%A0%81%E6%A3%80%E9%AA%8C%E5%99%A8ii/</guid>
+      <description>执行用时超过100%的用户，这道题本来什么可以讲的，但是有个位运算的知识点
+我的代码： class Solution: def strongPasswordCheckerII(self, password: str) -&amp;gt; bool: flag1 = flag2 = flag3 = flag4 = 1 ret = None for i in password: if ret == i: return False if i.isdigit(): flag1 = 0 elif i.isupper(): flag2 = 0 elif i.islower(): flag3 = 0 else: flag4 = 0 ret = i if sum([flag1, flag2, flag3, flag4]) == 0 and len(password) &amp;gt;= 8: return True return False 位运算代码： 方法一：模拟 + 位运算</description>
+    </item>
+    
+    <item>
+      <title>置顶文章</title>
+      <link>https://longsizhuo123.github.io/posts/hello-world/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://longsizhuo123.github.io/posts/hello-world/</guid>
+      <description>longsizhuo123.github.io &amp;ldquo;Maybe it could be a nice memory&amp;rdquo;
+Welcome to my personal blog repository on Github! My name is Sizhuo Long, and I am currently a student in Australia. This repository is home to my personal blog, which is built using the HEXO static site generator.
+On my blog, you&amp;rsquo;ll find a variety of content including my thoughts on technology, programming, and the latest developments in my field of study. I also share my experiences and lessons learned from the projects I&amp;rsquo;ve worked on.</description>
+    </item>
+    
+  </channel>
+</rss>

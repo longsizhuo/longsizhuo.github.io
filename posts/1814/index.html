@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>1814. 统计一个数组中好对子的数目 每日一题 | My New Hugo Site</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="题目 1814. 统计一个数组中好对子的数目 中等 86 company 优步 Uber 给你一个数组 nums ，数组中只包含非负整数。定义 rev(x) 的值为将整数 x 各个数字位反转得到的结果。比方说 rev(123) = 321 ， rev(120) = 21 。我们称满足下面条件的下标对 (i, j) 是 好的 ： 0 &lt;= i &lt; j &lt; nums.length nums[i] &#43; rev(nums[j]) == nums[j] &#43; rev(nums[i]) 请你返回好下标对的数目。由于结果可能会很大，请将结果对 109 &#43; 7 取余 后返回。 示例 1： 输入：nums = [42,11,1,97] 输出：2 解释：两个坐标对为： - (0,3)：42 &#43; rev(97) = 42 &#43; 79 = 121, 97 &#43; rev(42) = 97 &#43; 24 = 121 。 - (1,2)：11 &#43; rev(1) = 11 &#43; 1 = 12, 1 &#43; rev(11) = 1 &#43; 11 = 12 。 示例 2： 输入：nums = [13,10,35,24,76] 输出：4 提示： 1 &lt;= nums.">
+    <meta name="generator" content="Hugo 0.110.0">
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="1814. 统计一个数组中好对子的数目 每日一题" />
+<meta property="og:description" content="题目 1814. 统计一个数组中好对子的数目 中等 86 company 优步 Uber 给你一个数组 nums ，数组中只包含非负整数。定义 rev(x) 的值为将整数 x 各个数字位反转得到的结果。比方说 rev(123) = 321 ， rev(120) = 21 。我们称满足下面条件的下标对 (i, j) 是 好的 ： 0 &lt;= i &lt; j &lt; nums.length nums[i] &#43; rev(nums[j]) == nums[j] &#43; rev(nums[i]) 请你返回好下标对的数目。由于结果可能会很大，请将结果对 109 &#43; 7 取余 后返回。 示例 1： 输入：nums = [42,11,1,97] 输出：2 解释：两个坐标对为： - (0,3)：42 &#43; rev(97) = 42 &#43; 79 = 121, 97 &#43; rev(42) = 97 &#43; 24 = 121 。 - (1,2)：11 &#43; rev(1) = 11 &#43; 1 = 12, 1 &#43; rev(11) = 1 &#43; 11 = 12 。 示例 2： 输入：nums = [13,10,35,24,76] 输出：4 提示： 1 &lt;= nums." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://longsizhuo123.github.io/posts/1814/" /><meta property="article:section" content="posts" />
+
+
+<meta itemprop="name" content="1814. 统计一个数组中好对子的数目 每日一题">
+<meta itemprop="description" content="题目 1814. 统计一个数组中好对子的数目 中等 86 company 优步 Uber 给你一个数组 nums ，数组中只包含非负整数。定义 rev(x) 的值为将整数 x 各个数字位反转得到的结果。比方说 rev(123) = 321 ， rev(120) = 21 。我们称满足下面条件的下标对 (i, j) 是 好的 ： 0 &lt;= i &lt; j &lt; nums.length nums[i] &#43; rev(nums[j]) == nums[j] &#43; rev(nums[i]) 请你返回好下标对的数目。由于结果可能会很大，请将结果对 109 &#43; 7 取余 后返回。 示例 1： 输入：nums = [42,11,1,97] 输出：2 解释：两个坐标对为： - (0,3)：42 &#43; rev(97) = 42 &#43; 79 = 121, 97 &#43; rev(42) = 97 &#43; 24 = 121 。 - (1,2)：11 &#43; rev(1) = 11 &#43; 1 = 12, 1 &#43; rev(11) = 1 &#43; 11 = 12 。 示例 2： 输入：nums = [13,10,35,24,76] 输出：4 提示： 1 &lt;= nums.">
+
+<meta itemprop="wordCount" content="214">
+<meta itemprop="keywords" content="[Python],[已解决],[双指针],[哈希表]," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="1814. 统计一个数组中好对子的数目 每日一题"/>
+<meta name="twitter:description" content="题目 1814. 统计一个数组中好对子的数目 中等 86 company 优步 Uber 给你一个数组 nums ，数组中只包含非负整数。定义 rev(x) 的值为将整数 x 各个数字位反转得到的结果。比方说 rev(123) = 321 ， rev(120) = 21 。我们称满足下面条件的下标对 (i, j) 是 好的 ： 0 &lt;= i &lt; j &lt; nums.length nums[i] &#43; rev(nums[j]) == nums[j] &#43; rev(nums[i]) 请你返回好下标对的数目。由于结果可能会很大，请将结果对 109 &#43; 7 取余 后返回。 示例 1： 输入：nums = [42,11,1,97] 输出：2 解释：两个坐标对为： - (0,3)：42 &#43; rev(97) = 42 &#43; 79 = 121, 97 &#43; rev(42) = 97 &#43; 24 = 121 。 - (1,2)：11 &#43; rev(1) = 11 &#43; 1 = 12, 1 &#43; rev(11) = 1 &#43; 11 = 12 。 示例 2： 输入：nums = [13,10,35,24,76] 输出：4 提示： 1 &lt;= nums."/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        My New Hugo Site
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+</div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">1814. 统计一个数组中好对子的数目 每日一题</h1>
+      
+      
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="题目">题目</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>1814. 统计一个数组中好对子的数目
+</span></span><span style="display:flex;"><span>中等
+</span></span><span style="display:flex;"><span>86
+</span></span><span style="display:flex;"><span>company
+</span></span><span style="display:flex;"><span>优步 Uber
+</span></span><span style="display:flex;"><span>给你一个数组 nums ，数组中只包含非负整数。定义 rev(x) 的值为将整数 x 各个数字位反转得到的结果。比方说 rev(123) = 321 ， rev(120) = 21 。我们称满足下面条件的下标对 (i, j) 是 好的 ：
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>0 <span style="color:#960050;background-color:#1e0010">&lt;</span>= i &lt; <span style="color:#f92672">j</span> <span style="color:#960050;background-color:#1e0010">&lt;</span> <span style="color:#a6e22e">nums</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">length</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">nums</span><span style="color:#960050;background-color:#1e0010">[</span><span style="color:#a6e22e">i</span><span style="color:#960050;background-color:#1e0010">]</span> <span style="color:#960050;background-color:#1e0010">+</span> <span style="color:#a6e22e">rev</span><span style="color:#960050;background-color:#1e0010">(</span><span style="color:#a6e22e">nums</span><span style="color:#960050;background-color:#1e0010">[</span><span style="color:#a6e22e">j</span><span style="color:#960050;background-color:#1e0010">])</span> <span style="color:#960050;background-color:#1e0010">==</span> <span style="color:#a6e22e">nums</span><span style="color:#960050;background-color:#1e0010">[</span><span style="color:#a6e22e">j</span><span style="color:#960050;background-color:#1e0010">]</span> <span style="color:#960050;background-color:#1e0010">+</span> <span style="color:#a6e22e">rev</span><span style="color:#960050;background-color:#1e0010">(</span><span style="color:#a6e22e">nums</span><span style="color:#960050;background-color:#1e0010">[</span><span style="color:#a6e22e">i</span><span style="color:#960050;background-color:#1e0010">])</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">请你返回好下标对的数目。由于结果可能会很大，请将结果对</span> <span style="color:#a6e22e">109</span> <span style="color:#960050;background-color:#1e0010">+</span> <span style="color:#a6e22e">7</span> <span style="color:#960050;background-color:#1e0010">取余</span> <span style="color:#960050;background-color:#1e0010">后返回。</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">示例</span> <span style="color:#a6e22e">1</span><span style="color:#960050;background-color:#1e0010">：</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">输入：</span><span style="color:#a6e22e">nums </span><span style="color:#f92672">=</span> <span style="color:#e6db74">[42,11,1,97]</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">输出：</span><span style="color:#a6e22e">2</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">解释：两个坐标对为：</span>
+</span></span><span style="display:flex;"><span> <span style="color:#a6e22e">-</span> <span style="color:#960050;background-color:#1e0010">(</span><span style="color:#a6e22e">0</span><span style="color:#960050;background-color:#1e0010">,</span><span style="color:#a6e22e">3</span><span style="color:#960050;background-color:#1e0010">)：</span><span style="color:#a6e22e">42</span> <span style="color:#960050;background-color:#1e0010">+</span> <span style="color:#a6e22e">rev</span><span style="color:#960050;background-color:#1e0010">(</span><span style="color:#a6e22e">97</span><span style="color:#960050;background-color:#1e0010">)</span> <span style="color:#960050;background-color:#1e0010">=</span> <span style="color:#a6e22e">42</span> <span style="color:#960050;background-color:#1e0010">+</span> <span style="color:#a6e22e">79 </span><span style="color:#f92672">=</span> <span style="color:#e6db74">121,</span> <span style="color:#a6e22e">97</span> <span style="color:#960050;background-color:#1e0010">+</span> <span style="color:#a6e22e">rev</span><span style="color:#960050;background-color:#1e0010">(</span><span style="color:#a6e22e">42</span><span style="color:#960050;background-color:#1e0010">)</span> <span style="color:#960050;background-color:#1e0010">=</span> <span style="color:#a6e22e">97</span> <span style="color:#960050;background-color:#1e0010">+</span> <span style="color:#a6e22e">24 </span><span style="color:#f92672">=</span> <span style="color:#e6db74">121</span> <span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span> <span style="color:#a6e22e">-</span> <span style="color:#960050;background-color:#1e0010">(</span><span style="color:#a6e22e">1</span><span style="color:#960050;background-color:#1e0010">,</span><span style="color:#a6e22e">2</span><span style="color:#960050;background-color:#1e0010">)：</span><span style="color:#a6e22e">11</span> <span style="color:#960050;background-color:#1e0010">+</span> <span style="color:#a6e22e">rev</span><span style="color:#960050;background-color:#1e0010">(</span><span style="color:#a6e22e">1</span><span style="color:#960050;background-color:#1e0010">)</span> <span style="color:#960050;background-color:#1e0010">=</span> <span style="color:#a6e22e">11</span> <span style="color:#960050;background-color:#1e0010">+</span> <span style="color:#a6e22e">1 </span><span style="color:#f92672">=</span> <span style="color:#e6db74">12,</span> <span style="color:#a6e22e">1</span> <span style="color:#960050;background-color:#1e0010">+</span> <span style="color:#a6e22e">rev</span><span style="color:#960050;background-color:#1e0010">(</span><span style="color:#a6e22e">11</span><span style="color:#960050;background-color:#1e0010">)</span> <span style="color:#960050;background-color:#1e0010">=</span> <span style="color:#a6e22e">1</span> <span style="color:#960050;background-color:#1e0010">+</span> <span style="color:#a6e22e">11 </span><span style="color:#f92672">=</span> <span style="color:#e6db74">12</span> <span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">示例</span> <span style="color:#a6e22e">2</span><span style="color:#960050;background-color:#1e0010">：</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">输入：</span><span style="color:#a6e22e">nums </span><span style="color:#f92672">=</span> <span style="color:#e6db74">[13,10,35,24,76]</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">输出：</span><span style="color:#a6e22e">4</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">提示：</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">1</span> <span style="color:#960050;background-color:#1e0010">&lt;=</span> <span style="color:#a6e22e">nums</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">length</span> <span style="color:#960050;background-color:#1e0010">&lt;=</span> <span style="color:#a6e22e">105</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">0</span> <span style="color:#960050;background-color:#1e0010">&lt;=</span> <span style="color:#a6e22e">nums</span><span style="color:#960050;background-color:#1e0010">[</span><span style="color:#a6e22e">i</span><span style="color:#960050;background-color:#1e0010">]</span> <span style="color:#960050;background-color:#1e0010">&lt;=</span> <span style="color:#a6e22e">109</span>
+</span></span></code></pre></div><h1 id="思路">思路</h1>
+<p>这道题没想到是哈希表，还以为是双指针。
+做了很久，没想到解法，就直接看题解了，也看的半懂。
+总之就是，好对子其实就是 两个 <em>i - res(i)</em> 相同的数字!
+<strong>文字游戏</strong>的感觉：</p>
+<blockquote>
+<p>42 + rev(97) = 42 + 79 = 121, 97 + rev(42) = 97 + 24 = 121 。
+不就是 42-res(42) == 97 - res(97) 吗？</p>
+</blockquote>
+<p>当*cnt[i-res(i)]*不存在时，会返回0.</p>
+<pre><code>ans += cnt[i-j]
+</code></pre>
+<p>因此在<em>cnt[i-j]<em>有2次值的时候才会返回到ans中
+因为</em>cnt[i-j]=1</em>时，是不会经过ans赋值的</p>
+<pre><code>cnt[i-j] += 1
+</code></pre>
+<h1 id="解法">解法：</h1>
+<p>·元素为numsW - rev(num[il)
+·计算每个元素出现次数
+·计算每个次数等差数列和
+@<a href="https://leetcode.cn/u/nsf/">懒人</a></p>
+<hr>
+<h1 id="代码如下">代码如下：</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">countNicePairs</span>(self, nums: List[int]) <span style="color:#f92672">-&gt;</span> int:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">res</span>(num: int) <span style="color:#f92672">-&gt;</span> int:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> int(str(num)[::<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>])
+</span></span><span style="display:flex;"><span>        cnt <span style="color:#f92672">=</span> Counter()
+</span></span><span style="display:flex;"><span>        ans <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> nums:
+</span></span><span style="display:flex;"><span>            j <span style="color:#f92672">=</span> res(i)
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># 当cnt[i-res(i)]不存在时，会返回0.</span>
+</span></span><span style="display:flex;"><span>            ans <span style="color:#f92672">+=</span> cnt[i<span style="color:#f92672">-</span>j]
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># 因此在cnt[i-j] 有2次值的时候才会返回到ans中</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># 因为cnt[]=1时，是不会经过ans赋值的</span>
+</span></span><span style="display:flex;"><span>            cnt[i<span style="color:#f92672">-</span>j] <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> ans <span style="color:#f92672">%</span> (<span style="color:#ae81ff">10</span> <span style="color:#f92672">**</span> <span style="color:#ae81ff">9</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">7</span>)
+</span></span></code></pre></div><ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Related</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/posts/2309%E5%85%BC%E5%85%B7%E5%A4%A7%E5%B0%8F%E5%86%99%E7%9A%84%E6%9C%80%E5%A5%BD%E8%8B%B1%E6%96%87%E5%AD%97%E6%AF%8D/">2309. 兼具大小写的最好英文字母 每日一题</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/6338%E7%8C%B4%E5%AD%90%E7%A2%B0%E6%92%9E%E7%9A%84%E6%96%B9%E6%B3%95%E6%95%B0/">6338. 猴子碰撞的方法数 周赛</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/1669%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E9%93%BE%E8%A1%A8/">1669. 合并两个链表 每日一题</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/1664%E7%94%9F%E6%88%90%E5%B9%B3%E8%A1%A1%E6%95%B0%E7%BB%84%E7%9A%84%E6%96%B9%E6%A1%88%E6%95%B0/">1664. 生成平衡数组的方案数 每日一题</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/1824%E6%9C%80%E5%B0%91%E4%BE%A7%E8%B7%B3%E6%AC%A1%E6%95%B0/">1825. 求出 MK 平均值</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/1825%E6%B1%82%E5%87%BA-mk-%E5%B9%B3%E5%9D%87%E5%80%BC/">1825. 求出 MK 平均值</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/217%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0/">217. 存在重复元素 C&#43;&#43;/Python3</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/217%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0-desktop-o7485ro/">217. 存在重复元素 C&#43;&#43;/Python3</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/350%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86/">350.两个数组的交集</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/offer43/">剑指 Offer 43. 1～n 整数中 1 出现的次数</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/1551%E4%BD%BF%E6%95%B0%E7%BB%84%E4%B8%AD%E6%89%80%E6%9C%89%E5%85%83%E7%B4%A0%E7%9B%B8%E7%AD%89%E7%9A%84%E6%9C%80%E5%B0%8F%E6%93%8D%E4%BD%9C%E6%95%B0/">1551. 使数组中所有元素相等的最小操作数</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/1663%E5%85%B7%E6%9C%89%E7%BB%99%E5%AE%9A%E6%95%B0%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%8F%E5%AD%97%E7%AC%A6%E4%B8%B2/">1663. 具有给定数值的最小字符串 每日一题</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/1813/">1813. 句子相似性 III</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/1817%E6%9F%A5%E6%89%BE%E7%94%A8%E6%88%B7%E6%B4%BB%E8%B7%83%E5%88%86%E9%92%9F%E6%95%B0/">1817. 查找用户活跃分钟数 每日一题</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/1819%E5%BA%8F%E5%88%97%E4%B8%AD%E4%B8%8D%E5%90%8C%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0%E7%9A%84%E6%95%B0%E7%9B%AE/">1819.序列中不同最大公约数的数目</a>
+        </li>
+	    
+    </ul>
+</div>
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://longsizhuo123.github.io/" >
+    &copy;  My New Hugo Site 2023 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

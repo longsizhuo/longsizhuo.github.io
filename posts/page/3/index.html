@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>My New Hugo Site</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="">
+    <meta name="generator" content="Hugo 0.110.0">
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+
+    
+
+    
+    
+      <link href="/posts/index.xml" rel="alternate" type="application/rss+xml" title="My New Hugo Site" />
+      <link href="/posts/index.xml" rel="feed" type="application/rss+xml" title="My New Hugo Site" />
+      
+    
+    
+    <meta property="og:title" content="Posts" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://longsizhuo123.github.io/posts/" />
+<meta itemprop="name" content="Posts">
+<meta itemprop="description" content=""><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Posts"/>
+<meta name="twitter:description" content=""/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+
+  <header>
+    <div class="pb3-m pb6-l bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        My New Hugo Site
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+</div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv3 ph3 ph4-ns">
+        <h1 class="f2 f-subheadline-l fw2 light-silver mb0 lh-title">
+          Posts
+        </h1>
+        
+      </div>
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+  <article class="pa3 pa4-ns nested-copy-line-height">
+    <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy mid-gray"></section>
+    <section class="flex-ns flex-wrap justify-around mt5">
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/2527/" class="link black dim">
+        2527.查询数组Xor美丽值 周赛第三题
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      6289.查询数组 Xor 美丽值。
+这道题研究了很久，发现是一道数学题，但是又没想通透，因为不熟悉异或值。所以没有相出更好的解法。
+首先是读题得知需要计(nums[i]|nums[j])&amp;nums[k]，因为ijk可以是数组里的任意值，所以用的三重for循环（肯定会超时），然后自己灵光了一点，也就一点，觉得i，j值互换的值是一样的，所以多加了一层判断（用的字典）。
+class Solution: def xorBeauty(self, nums: List[int]) -&gt; int: ans = [] record = {} for i in range(len(nums)): for j in range(len(nums)): for k in range(len(nums)): if k not in record: if (i,j) not in record.values(): record[k] = (i,j) flag = (nums[i]|nums[j])&amp;nums[k] if flag not in ans: ans.append(flag) else: ans.remove(flag) if len(ans) == 0: return 0 answer = ans[0] for i in range(1,len(ans)): answer ^= ans[i] return answer 今天出门的时候还一直在想怎么判断答案一样的情况，结果一看大@灵茶山艾府的解法，就一行，那没事了。
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/271/" class="link black dim">
+        271. 字符串的编码与解码 - Python 添加转义符解法 复杂度双O(n)
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Problem: 271. 字符串的编码与解码
+[TOC]
+思路 第一反应是不是对字符串进行加密解密，但是读题后发现是将列表转化为字符串，然后第二部分对自己处理过的字符串转化回源列表。
+解题方法 列表可能有多个元素（由‘，’区分开的单词组），在每个元素中可能存在多个由空格隔开的单词。于是分开对list中的元素和空格进行处理。
+首先对列表进行第一层遍历，再对每个元素进行遍历，当读取到‘ ’的时候对预先声明的空列表中添加转义符（一开始打算自定义转义符，后来发现\t直接可行）在每一层遍历每一次结束的时候都在列表中添加新的，与‘ ’不同的转义符比如\n。最后''.join()转换成字符串，return。 在解码时，预先声明一个空列表List和空字符串Str，当遍历读取到‘\t’的时候，就在字符串中加入空格Str = ''.join([Str, ' '])，同理，读取到&rsquo;\n&rsquo;的时候就将Str添加到List中，并且将Str置空进行下一次的循环。 复杂度 时间复杂度: 添加时间复杂度, 示例： $O(n)$
+空间复杂度: 添加空间复杂度, 示例： $O(n)$
+Code class Codec: def encode(self, strs: list[str]) -&gt; str: &#34;&#34;&#34;Encodes a list of strings to a single string. &#34;&#34;&#34; List = [] for i in strs: for j in i: if j == &#39; &#39;: List.append(&#39;\t&#39;) else: List.append(j) List.append(&#39;\n&#39;) List = &#39;&#39;.join(List) return List def decode(self, s: str) -&gt; list[str]: &#34;&#34;&#34;Decodes a single string to a list of strings.
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/350%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86/" class="link black dim">
+        350.两个数组的交集
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      350. 两个数组的交集 II 简单 883 company 亚马逊 company 字节跳动 company Facebook 给你两个整数数组 nums1 和 nums2 ，请你以数组形式返回两数组的交集。返回结果中每个元素出现的次数，应与元素在两个数组中都出现的次数一致（如果出现次数不一致，则考虑取较小值）。可以不考虑输出结果的顺序。 示例 1： 输入：nums1 = [1,2,2,1], nums2 = [2,2] 输出：[2,2] 示例 2: 输入：nums1 = [4,9,5], nums2 = [9,4,9,8,4] 输出：[4,9] 提示： 1 &lt;= nums1.length, nums2.length &lt;= 1000 0 &lt;= nums1[i], nums2[i] &lt;= 1000 进阶： 如果给定的数组已经排好序呢？你将如何优化你的算法？ 如果 nums1 的大小比 nums2 小，哪种方法更优？ 如果 nums2 的元素存储在磁盘上，内存是有限的，并且你不能一次加载所有的元素到内存中，你该怎么办？ class Solution: def containsNearbyDuplicate(self, nums: List[int], k: int) -&gt; bool: hash_1 = {} hash_2 = {} for index, i in enumerate(nums): if i not in hash_1: hash_1[i] = 1 hash_2[i] = [index] else: hash_1[i] += 1 hash_2[i].
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/6275%E4%BD%BF%E6%95%B0%E7%BB%84%E4%B8%AD%E6%89%80%E6%9C%89%E5%85%83%E7%B4%A0%E7%9B%B8%E7%AD%89%E7%9A%84%E6%9C%80%E5%B0%8F%E6%93%8D%E4%BD%9C%E6%95%B0/" class="link black dim">
+        6275. 使数组中所有元素相等的最小操作数 II
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      6275. 使数组中所有元素相等的最小操作数 II
+思想: 周赛第二题！！！
+·首先使用列表推导式计算每个元素之间的差异。 ·然后，初始化一个计数器以跟踪所需的操作数。 ·接下来遍历差异，并检查每个差异是否可以被整除。 ·如果不是，则返回 -1，因为数组不能与给定的操作相等。 ·如果它是可整除的，它将差值的绝对值除以添加到计数器中。 ·最后，它返回所需的操作数。
+比如：[3,0,-6,3]就是每个正数除以3的和，测试了很多遍，是因为最后一种特殊情况（当两个列表项等的情况）没有考虑到。
+代码： class Solution: def minOperations(self, nums1: List[int], nums2: List[int], k: int) -&gt; int: if k &lt;= 0: if nums1 != nums2: return -1 else: return 0 diff = [nums1[i] - nums2[i] for i in range(len(nums1))] if sum(diff) != 0: return -1 if sum(diff) % k != 0: return -1 operations = 0 for index, d in enumerate(diff): if d % k !
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/6293%E7%BB%9F%E8%AE%A1%E5%A5%BD%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%95%B0/" class="link black dim">
+        6293. 统计好子数组的数目
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      一看这道题就是双指针，不过对与双指针实在不熟悉，在搭框架的时候就浪费了大部分的时间。
+这道题是周赛的第三题，前两题都很快秒杀了，但是因为睡过头了，打开电脑的时候只剩半小时了。
+一直在debug，今下午看看0x3f的题解吧。他滑动窗口算法和双指针的讲解有一套。
+from collections import Counter from itertools import count from typing import List class Solution: def countGood(self, nums: List[int], k: int) -&gt; int: start = 0 tail = 0 flag = 0 if len(set(nums)) == 1: if k &gt; len(nums) * (len(nums)-1) // 2: return 0 while start &lt; len(nums) - 1: x = Counter(nums[start:tail]) if len(x) &gt;= k: flag2 = 0 for j in x: if x[j] &gt;= k: flag2 += 1 if flag2 &gt;= k: flag += 1 else: for i in x: if x[i] * (x[i] - 1) // 2 &gt;= k: flag += 1 if tail !
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/6300%E6%9C%80%E5%B0%8F%E5%85%AC%E5%85%B1%E5%80%BC/" class="link black dim">
+        6300. 最小公共值
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+       6300. 最小公共值
+思想： 本来是打算用元组一个个遍历找，但是超时了。 于是用intersection函数在O(1)的时间复杂度下解决
+代码： class Solution: def getCommon(self, nums1: List[int], nums2: List[int]) -&gt; int: common = set(nums1).intersection(nums2) if common: return min(common) return -1 
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/6338%E7%8C%B4%E5%AD%90%E7%A2%B0%E6%92%9E%E7%9A%84%E6%96%B9%E6%B3%95%E6%95%B0/" class="link black dim">
+        6338. 猴子碰撞的方法数 周赛
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+       6338. 猴子碰撞的方法数
+思想： 纯数学问题，就是$2^n - 2$。但是n最多有$10^9$那么大，直接返回会超时。 所以用了快速幂算法，
+使用快速幂算法来降低计算 2^n 的时间复杂度。 在这里，我们用变量 x 来存储 2^n，并在每次循环中将 x 平方。当 n 为奇数时，我们将结果乘以 x。这样可以在每次循环中计算出2^n。 在返回结果之前，我们需要用(res-2)%mod 去除边界情况
+代码： class Solution: def monkeyMove(self, n: int) -&gt; int: mod = 10**9 + 7 res = 1 x = 2 while n &gt; 0: if n % 2 == 1: res = (res * x) % mod x = (x * x) % mod n = n // 2 return (res-2) % mod 
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/704%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" class="link black dim">
+        704. 二分查找
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      https://leetcode.cn/leetbook/read/learning-algorithms-with-leetcode/xsshgi/ 不难，只是递归做个笔记
+class Solution: def search(self, nums: List[int], target: int) -&gt; int: def recursion(nums, left, right, target): if left &gt; right: # 递归结束 return -1 mid = left + (right - left) // 2 if nums[mid] == target: return mid elif nums[mid] &lt; target: left = mid + 1 else: right = mid - 1 return recursion(nums, left, right, target) left = 0 right = len(nums) - 1 return recursion(nums, left, right, target) https://leetcode.
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/brief_alternate-%E4%BD%9C%E4%B8%9A%E5%B8%AE%E5%BF%99/" class="link black dim">
+        brief_alternate 作业帮忙
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      题目 brief_alternate.pdf superstore_transaction.csv
+思想： 自学pandas进行数据处理，比之前import csv好用多了。
+其中的知识点需要记住的是：
+df[&ldquo;列名&rdquo;] 可以直接将第一行判定为列的名字，并且返回一个只包含列名的列表。 idxmax()返回包含最大值的index,max()饭回最大值 .loc 函数是 pandas 中的一个重要函数，用于选择和定位数据框中的数据。它允许您选择某些行和列，并将其以 DataFrame 或 Series 的形式返回。 通过使用行标签和列标签作为索引，您可以在数据框中执行如下操作： .选择单行数据 .选择多行数据 .选择单列数据 .选择多列数据 语法： df.loc[row_indexer, column_indexer] 其中，row_indexer 是要选择的行的标签，column_indexer 是要选择的列的标签。 unique()返回不重复的value的number计数。 代码如下： superstore
+# Import pandas library as pd import pandas as pd # Read CSV file named &#39;superstore_transaction.csv&#39; and store it in a dataframe named &#39;df&#39; df = pd.read_csv(&#34;superstore_transaction.csv&#34;) # Remove &#34;$&#34; and &#34;,&#34; from the values in the &#39;Profit&#39; column and convert it to integer df[&#34;Profit&#34;] = df[&#34;Profit&#34;].
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/go/" class="link black dim">
+        GO语言# GO语言可爱捏
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      
+package main import &#34;fmt&#34; func main() { fmt.Println(&#34;Hello world&#34;) arr := []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9} fmt.Println(a(arr)) } package main func a(x []int) []int { for i := 0; i &lt; len(x); i++ { if i%2 == 0 { x[i] = 1 } } return x } 
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+    </section>
+    <ul class="pagination pagination-default">
+      <li class="page-item">
+        <a href="/posts/" aria-label="First" class="page-link" role="button"><span aria-hidden="true">&laquo;&laquo;</span></a>
+      </li>
+      <li class="page-item">
+        <a href="/posts/page/2/" aria-label="Previous" class="page-link" role="button"><span aria-hidden="true">&laquo;</span></a>
+      </li>
+      <li class="page-item">
+        <a href="/posts/" aria-label="Page 1" class="page-link" role="button">1</a>
+      </li>
+      <li class="page-item">
+        <a href="/posts/page/2/" aria-label="Page 2" class="page-link" role="button">2</a>
+      </li>
+      <li class="page-item active">
+        <a aria-current="page" aria-label="Page 3" class="page-link" role="button">3</a>
+      </li>
+      <li class="page-item">
+        <a href="/posts/page/4/" aria-label="Page 4" class="page-link" role="button">4</a>
+      </li>
+      <li class="page-item">
+        <a href="/posts/page/4/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
+      </li>
+      <li class="page-item">
+        <a href="/posts/page/4/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+      </li>
+    </ul></article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://longsizhuo123.github.io/" >
+    &copy;  My New Hugo Site 2023 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>1801-1803 力扣新手初见！ | My New Hugo Site</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="就是每天写一道题，然后写下能让自己看懂的题解吧! 新的一年已经过了5天了，就一次性写完这5天的吧。
+首先是1801.1802.1803，这三天的每日一题其实是去年的一场高质量的周赛，连简单标签的也是普通的难度。
+解法的话就是进行一个三角形的堆叠，当达到边界后停止增加（如果继续增加的话会导致超时） 。
+当两边边界都达到后，直接在最上层平铺所有剩余砖块即可。
+1802. 有界数组中指定下标处的最大值 中等 182 company 亚马逊 company Facebook 给你三个正整数 n、index 和 maxSum 。你需要构造一个同时满足下述所有条件的数组 nums（下标 从 0 开始 计数）： nums.length == n nums[i] 是 正整数 ，其中 0 &lt;= i &lt; n abs(nums[i] - nums[i&#43;1]) &lt;= 1 ，其中 0 &lt;= i &lt; n-1 nums 中所有元素之和不超过 maxSum nums[index] 的值被 最大化 返回你所构造的数组中的 nums[index] 。 注意：abs(x) 等于 x 的前提是 x &gt;= 0 ；否则，abs(x) 等于 -x 。 示例 1： 输入：n = 4, index = 2, maxSum = 6 输出：2 解释：数组 [1,1,2,1] 和 [1,2,2,1] 满足所有条件。不存在其他在指定下标处具有更大值的有效数组。 示例 2： 输入：n = 6, index = 1, maxSum = 10 输出：3 提示： 1 &lt;= n &lt;= maxSum &lt;= 109 0 &lt;= index &lt; n class Solution: def maxValue(self, n: int, index: int, maxSum: int) -&gt; int: diff = maxSum - n left = index right = index res = 1 dl = 0 dr = 0 while diff &gt; 0: # 当还有剩余砖块时 left -= 1 right &#43;= 1 if left &gt;= 0: dl = dl &#43; 1 # 尚未到达左边界 if right &lt; n: dr = dr &#43; 1 # 尚未到达右边界 if left &lt; 0 and right &gt;= n: # 当到达左边界和右边界时 及时退出 # res&#43;=diff%n==0?">
+    <meta name="generator" content="Hugo 0.110.0">
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="1801-1803 力扣新手初见！" />
+<meta property="og:description" content="就是每天写一道题，然后写下能让自己看懂的题解吧! 新的一年已经过了5天了，就一次性写完这5天的吧。
+首先是1801.1802.1803，这三天的每日一题其实是去年的一场高质量的周赛，连简单标签的也是普通的难度。
+解法的话就是进行一个三角形的堆叠，当达到边界后停止增加（如果继续增加的话会导致超时） 。
+当两边边界都达到后，直接在最上层平铺所有剩余砖块即可。
+1802. 有界数组中指定下标处的最大值 中等 182 company 亚马逊 company Facebook 给你三个正整数 n、index 和 maxSum 。你需要构造一个同时满足下述所有条件的数组 nums（下标 从 0 开始 计数）： nums.length == n nums[i] 是 正整数 ，其中 0 &lt;= i &lt; n abs(nums[i] - nums[i&#43;1]) &lt;= 1 ，其中 0 &lt;= i &lt; n-1 nums 中所有元素之和不超过 maxSum nums[index] 的值被 最大化 返回你所构造的数组中的 nums[index] 。 注意：abs(x) 等于 x 的前提是 x &gt;= 0 ；否则，abs(x) 等于 -x 。 示例 1： 输入：n = 4, index = 2, maxSum = 6 输出：2 解释：数组 [1,1,2,1] 和 [1,2,2,1] 满足所有条件。不存在其他在指定下标处具有更大值的有效数组。 示例 2： 输入：n = 6, index = 1, maxSum = 10 输出：3 提示： 1 &lt;= n &lt;= maxSum &lt;= 109 0 &lt;= index &lt; n class Solution: def maxValue(self, n: int, index: int, maxSum: int) -&gt; int: diff = maxSum - n left = index right = index res = 1 dl = 0 dr = 0 while diff &gt; 0: # 当还有剩余砖块时 left -= 1 right &#43;= 1 if left &gt;= 0: dl = dl &#43; 1 # 尚未到达左边界 if right &lt; n: dr = dr &#43; 1 # 尚未到达右边界 if left &lt; 0 and right &gt;= n: # 当到达左边界和右边界时 及时退出 # res&#43;=diff%n==0?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://longsizhuo123.github.io/posts/1802/" /><meta property="article:section" content="posts" />
+
+
+<meta itemprop="name" content="1801-1803 力扣新手初见！">
+<meta itemprop="description" content="就是每天写一道题，然后写下能让自己看懂的题解吧! 新的一年已经过了5天了，就一次性写完这5天的吧。
+首先是1801.1802.1803，这三天的每日一题其实是去年的一场高质量的周赛，连简单标签的也是普通的难度。
+解法的话就是进行一个三角形的堆叠，当达到边界后停止增加（如果继续增加的话会导致超时） 。
+当两边边界都达到后，直接在最上层平铺所有剩余砖块即可。
+1802. 有界数组中指定下标处的最大值 中等 182 company 亚马逊 company Facebook 给你三个正整数 n、index 和 maxSum 。你需要构造一个同时满足下述所有条件的数组 nums（下标 从 0 开始 计数）： nums.length == n nums[i] 是 正整数 ，其中 0 &lt;= i &lt; n abs(nums[i] - nums[i&#43;1]) &lt;= 1 ，其中 0 &lt;= i &lt; n-1 nums 中所有元素之和不超过 maxSum nums[index] 的值被 最大化 返回你所构造的数组中的 nums[index] 。 注意：abs(x) 等于 x 的前提是 x &gt;= 0 ；否则，abs(x) 等于 -x 。 示例 1： 输入：n = 4, index = 2, maxSum = 6 输出：2 解释：数组 [1,1,2,1] 和 [1,2,2,1] 满足所有条件。不存在其他在指定下标处具有更大值的有效数组。 示例 2： 输入：n = 6, index = 1, maxSum = 10 输出：3 提示： 1 &lt;= n &lt;= maxSum &lt;= 109 0 &lt;= index &lt; n class Solution: def maxValue(self, n: int, index: int, maxSum: int) -&gt; int: diff = maxSum - n left = index right = index res = 1 dl = 0 dr = 0 while diff &gt; 0: # 当还有剩余砖块时 left -= 1 right &#43;= 1 if left &gt;= 0: dl = dl &#43; 1 # 尚未到达左边界 if right &lt; n: dr = dr &#43; 1 # 尚未到达右边界 if left &lt; 0 and right &gt;= n: # 当到达左边界和右边界时 及时退出 # res&#43;=diff%n==0?">
+
+<meta itemprop="wordCount" content="224">
+<meta itemprop="keywords" content="[Python],[已解决 题解]," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="1801-1803 力扣新手初见！"/>
+<meta name="twitter:description" content="就是每天写一道题，然后写下能让自己看懂的题解吧! 新的一年已经过了5天了，就一次性写完这5天的吧。
+首先是1801.1802.1803，这三天的每日一题其实是去年的一场高质量的周赛，连简单标签的也是普通的难度。
+解法的话就是进行一个三角形的堆叠，当达到边界后停止增加（如果继续增加的话会导致超时） 。
+当两边边界都达到后，直接在最上层平铺所有剩余砖块即可。
+1802. 有界数组中指定下标处的最大值 中等 182 company 亚马逊 company Facebook 给你三个正整数 n、index 和 maxSum 。你需要构造一个同时满足下述所有条件的数组 nums（下标 从 0 开始 计数）： nums.length == n nums[i] 是 正整数 ，其中 0 &lt;= i &lt; n abs(nums[i] - nums[i&#43;1]) &lt;= 1 ，其中 0 &lt;= i &lt; n-1 nums 中所有元素之和不超过 maxSum nums[index] 的值被 最大化 返回你所构造的数组中的 nums[index] 。 注意：abs(x) 等于 x 的前提是 x &gt;= 0 ；否则，abs(x) 等于 -x 。 示例 1： 输入：n = 4, index = 2, maxSum = 6 输出：2 解释：数组 [1,1,2,1] 和 [1,2,2,1] 满足所有条件。不存在其他在指定下标处具有更大值的有效数组。 示例 2： 输入：n = 6, index = 1, maxSum = 10 输出：3 提示： 1 &lt;= n &lt;= maxSum &lt;= 109 0 &lt;= index &lt; n class Solution: def maxValue(self, n: int, index: int, maxSum: int) -&gt; int: diff = maxSum - n left = index right = index res = 1 dl = 0 dr = 0 while diff &gt; 0: # 当还有剩余砖块时 left -= 1 right &#43;= 1 if left &gt;= 0: dl = dl &#43; 1 # 尚未到达左边界 if right &lt; n: dr = dr &#43; 1 # 尚未到达右边界 if left &lt; 0 and right &gt;= n: # 当到达左边界和右边界时 及时退出 # res&#43;=diff%n==0?"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        My New Hugo Site
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+</div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">1801-1803 力扣新手初见！</h1>
+      
+      
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>就是每天写一道题，然后写下能让自己看懂的题解吧!
+新的一年已经过了5天了，就一次性写完这5天的吧。</p>
+<p>首先是1801.1802.1803，这三天的每日一题其实是去年的一场高质量的周赛，连简单标签的也是普通的难度。</p>
+<p>解法的话就是进行一个三角形的堆叠，当达到边界后停止增加（如果继续增加的话会导致超时） 。</p>
+<p>当两边边界都达到后，直接在最上层平铺所有剩余砖块即可。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ae81ff">1802.</span> 有界数组中指定下标处的最大值
+</span></span><span style="display:flex;"><span>      中等
+</span></span><span style="display:flex;"><span>      <span style="color:#ae81ff">182</span>
+</span></span><span style="display:flex;"><span>      company
+</span></span><span style="display:flex;"><span>      亚马逊
+</span></span><span style="display:flex;"><span>      company
+</span></span><span style="display:flex;"><span>      Facebook
+</span></span><span style="display:flex;"><span>      给你三个正整数 n<span style="color:#960050;background-color:#1e0010">、</span>index 和 maxSum <span style="color:#960050;background-color:#1e0010">。</span>你需要构造一个同时满足下述所有条件的数组 nums<span style="color:#960050;background-color:#1e0010">（</span>下标 从 <span style="color:#ae81ff">0</span> 开始 计数<span style="color:#960050;background-color:#1e0010">）：</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>nums<span style="color:#f92672">.</span>length <span style="color:#f92672">==</span> n
+</span></span><span style="display:flex;"><span>nums[i] 是 正整数 <span style="color:#960050;background-color:#1e0010">，</span>其中 <span style="color:#ae81ff">0</span> <span style="color:#f92672">&lt;=</span> i <span style="color:#f92672">&lt;</span> n
+</span></span><span style="display:flex;"><span>abs(nums[i] <span style="color:#f92672">-</span> nums[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]) <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span> <span style="color:#960050;background-color:#1e0010">，</span>其中 <span style="color:#ae81ff">0</span> <span style="color:#f92672">&lt;=</span> i <span style="color:#f92672">&lt;</span> n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>nums 中所有元素之和不超过 maxSum
+</span></span><span style="display:flex;"><span>nums[index] 的值被 最大化
+</span></span><span style="display:flex;"><span>返回你所构造的数组中的 nums[index] <span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>注意<span style="color:#960050;background-color:#1e0010">：</span>abs(x) 等于 x 的前提是 x <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#960050;background-color:#1e0010">；</span>否则<span style="color:#960050;background-color:#1e0010">，</span>abs(x) 等于 <span style="color:#f92672">-</span>x <span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>示例 <span style="color:#ae81ff">1</span><span style="color:#960050;background-color:#1e0010">：</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>输入<span style="color:#960050;background-color:#1e0010">：</span>n <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>, index <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>,  maxSum <span style="color:#f92672">=</span> <span style="color:#ae81ff">6</span>
+</span></span><span style="display:flex;"><span>输出<span style="color:#960050;background-color:#1e0010">：</span><span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>解释<span style="color:#960050;background-color:#1e0010">：</span>数组 [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>] 和 [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>] 满足所有条件<span style="color:#960050;background-color:#1e0010">。</span>不存在其他在指定下标处具有更大值的有效数组<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span>示例 <span style="color:#ae81ff">2</span><span style="color:#960050;background-color:#1e0010">：</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>输入<span style="color:#960050;background-color:#1e0010">：</span>n <span style="color:#f92672">=</span> <span style="color:#ae81ff">6</span>, index <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>,  maxSum <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>输出<span style="color:#960050;background-color:#1e0010">：</span><span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>提示<span style="color:#960050;background-color:#1e0010">：</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;=</span> n <span style="color:#f92672">&lt;=</span> maxSum <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">109</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">0</span> <span style="color:#f92672">&lt;=</span> index <span style="color:#f92672">&lt;</span> n
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python3" data-lang="python3"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">maxValue</span>(self, n: int, index: int, maxSum: int) <span style="color:#f92672">-&gt;</span> int:
+</span></span><span style="display:flex;"><span>        diff <span style="color:#f92672">=</span> maxSum <span style="color:#f92672">-</span> n
+</span></span><span style="display:flex;"><span>        left <span style="color:#f92672">=</span> index
+</span></span><span style="display:flex;"><span>        right <span style="color:#f92672">=</span> index
+</span></span><span style="display:flex;"><span>        res <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        dl <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        dr <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> diff <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:  <span style="color:#75715e"># 当还有剩余砖块时</span>
+</span></span><span style="display:flex;"><span>            left <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>            right <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> left <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>                dl <span style="color:#f92672">=</span> dl <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>  <span style="color:#75715e"># 尚未到达左边界</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> right <span style="color:#f92672">&lt;</span> n:
+</span></span><span style="display:flex;"><span>                dr <span style="color:#f92672">=</span> dr <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>  <span style="color:#75715e"># 尚未到达右边界</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> left <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">and</span> right <span style="color:#f92672">&gt;=</span> n:  <span style="color:#75715e"># 当到达左边界和右边界时 及时退出</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># res+=diff%n==0?diff/n:diff/n+1 #把剩余的砖块均分了，直接退出</span>
+</span></span><span style="display:flex;"><span>                res <span style="color:#f92672">+=</span> diff <span style="color:#f92672">//</span> n <span style="color:#66d9ef">if</span> diff <span style="color:#f92672">%</span> n <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">else</span> diff <span style="color:#f92672">//</span> n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> res
+</span></span><span style="display:flex;"><span>            res <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>  <span style="color:#75715e"># 层数更新</span>
+</span></span><span style="display:flex;"><span>            diff <span style="color:#f92672">-=</span> (dl <span style="color:#f92672">+</span> dr <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)  <span style="color:#75715e"># 使顶层堆成严格正三角形所需的砖块数(左边所需+右边所需+index处1个)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> res
+</span></span></code></pre></div><ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Related</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/posts/2309%E5%85%BC%E5%85%B7%E5%A4%A7%E5%B0%8F%E5%86%99%E7%9A%84%E6%9C%80%E5%A5%BD%E8%8B%B1%E6%96%87%E5%AD%97%E6%AF%8D/">2309. 兼具大小写的最好英文字母 每日一题</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/6338%E7%8C%B4%E5%AD%90%E7%A2%B0%E6%92%9E%E7%9A%84%E6%96%B9%E6%B3%95%E6%95%B0/">6338. 猴子碰撞的方法数 周赛</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/1669%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E9%93%BE%E8%A1%A8/">1669. 合并两个链表 每日一题</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/1664%E7%94%9F%E6%88%90%E5%B9%B3%E8%A1%A1%E6%95%B0%E7%BB%84%E7%9A%84%E6%96%B9%E6%A1%88%E6%95%B0/">1664. 生成平衡数组的方案数 每日一题</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/1814/">1814. 统计一个数组中好对子的数目 每日一题</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/1824%E6%9C%80%E5%B0%91%E4%BE%A7%E8%B7%B3%E6%AC%A1%E6%95%B0/">1825. 求出 MK 平均值</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/1825%E6%B1%82%E5%87%BA-mk-%E5%B9%B3%E5%9D%87%E5%80%BC/">1825. 求出 MK 平均值</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/217%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0-desktop-o7485ro/">217. 存在重复元素 C&#43;&#43;/Python3</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/217%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0/">217. 存在重复元素 C&#43;&#43;/Python3</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/350%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86/">350.两个数组的交集</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/offer43/">剑指 Offer 43. 1～n 整数中 1 出现的次数</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/1551%E4%BD%BF%E6%95%B0%E7%BB%84%E4%B8%AD%E6%89%80%E6%9C%89%E5%85%83%E7%B4%A0%E7%9B%B8%E7%AD%89%E7%9A%84%E6%9C%80%E5%B0%8F%E6%93%8D%E4%BD%9C%E6%95%B0/">1551. 使数组中所有元素相等的最小操作数</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/1663%E5%85%B7%E6%9C%89%E7%BB%99%E5%AE%9A%E6%95%B0%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%8F%E5%AD%97%E7%AC%A6%E4%B8%B2/">1663. 具有给定数值的最小字符串 每日一题</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/1813/">1813. 句子相似性 III</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/1817%E6%9F%A5%E6%89%BE%E7%94%A8%E6%88%B7%E6%B4%BB%E8%B7%83%E5%88%86%E9%92%9F%E6%95%B0/">1817. 查找用户活跃分钟数 每日一题</a>
+        </li>
+	    
+    </ul>
+</div>
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://longsizhuo123.github.io/" >
+    &copy;  My New Hugo Site 2023 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>
