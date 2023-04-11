@@ -1,4 +1,4 @@
-const ap = new APlayer({
+const ap1 = new APlayer({
 	// 这里命名ap, 与全局音乐播放器ap名称一样 所以在/music页面只出现一个播放器 ; 如果需要同时出现 请命名ap1
     container: document.getElementById('aplayer2'),
 	// mini: false,
