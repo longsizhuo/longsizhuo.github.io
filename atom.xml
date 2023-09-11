@@ -6,7 +6,7 @@
   <link href="https://longsizhuo123.github.io/atom.xml" rel="self"/>
   
   <link href="https://longsizhuo123.github.io/"/>
-  <updated>2023-07-27T08:03:55.611Z</updated>
+  <updated>2023-09-11T15:42:20.127Z</updated>
   <id>https://longsizhuo123.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>630.课程表III</title>
+    <link href="https://longsizhuo123.github.io/post/e14241e.html"/>
+    <id>https://longsizhuo123.github.io/post/e14241e.html</id>
+    <published>2023-09-11T16:25:00.000Z</published>
+    <updated>2023-09-11T15:42:20.127Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p><img src="img_3.png" alt="img_3.png"></p><p><a href="https://leetcode.cn/problems/course-schedule-iii/">题目链接</a></p><h1 id="思想："><a href="#思想：" class="headerlink" title="思想："></a>思想：</h1><p>思路来自于宫水三叶的贪心 + 优先队列，</p><ol><li>首先，我们按课程的结束时间对它们进行排序。这样做的目的是尝试每个课程，看看它能否适应我们的时间表。</li><li>因为Python的heapq默认是一个最小堆，所以当我们加入一个课程时，我们使用其持续时间的负数，从而使得堆顶部始终是持续时间最长的课程。</li><li>当遍历每个课程时，尝试把它加入到我们的日程中。但是，如果我们发现加入该课程后总时间超过了该课程的结束时间，那么我们需要从我们的日程中去掉一个课程，最好去掉那个持续时间最长的课程，因为这将释放出最多的时间，这也是为什么使用一个最大堆。<br><code>sum += heapq.heappop(q)</code></li><li>Java中的<code>Arrays.sort(courses, (a,b)-&gt;a[1]-b[1]); </code>等同于Python中的<code>courses.sort(key=lambda x: x[1])</code></li></ol><p>以下引用宫水三叶解法原文，关于为什么使用greedy：</p><pre><code>题目是要我们构造出一种可行的排列，排列中每个课程的实际结束时间满足「最晚完成时间」要求，求可行排序的最大长度（每个课程对答案的贡献都是 1）。这容易引导我们往「泛化背包」方面进行思考：简单来说，对于某个物品（课程）而言，在不同条件下成本不同，在时间轴 `[1,courses[i][1]−courses[i][0]]` 上该物品可被选，成本为其持续时间，在比该范围大的数轴上无法被选，成本为正无穷。因此某一段特定的时间轴上，问题可抽象成有条件限制的组合优化问题。由于数据范围为 10^4，泛化背包做法需要记录的维度大于一维，不予考虑。再然后容易想到「二分」，显然在以最大选择数量 ans 为分割点的数组上具有「二段性」：1. 使用数量小于等于 ans 的课程能够构造出合法排序（考虑在最长合法序列上做减法即可）；2. 使用数量大于 ans 的课程无法构造出合法排列。此时二分范围为 `[0,n]`，问题转化为：如何在 `O(n)` 检查是否可构造出某个长度 len 的合法排列（实现 `check` 方法）。常规的线性扫描做法无法确定是否存在某个长度的合法排列，因此二分不予考虑。我们需要运用「贪心」思维考虑可能的方案。</code></pre><h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> heapq</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">scheduleCourse</span>(<span class="params">self, courses: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        courses.sort(key=<span class="keyword">lambda</span> x: x[<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">        <span class="comment"># This will be a max-heap based on course duration</span></span><br><span class="line">        q = []</span><br><span class="line">        <span class="built_in">sum</span> = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> courses:</span><br><span class="line">            d, e = c</span><br><span class="line">            <span class="built_in">sum</span> += d</span><br><span class="line">            heapq.heappush(q, -d)</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">sum</span> &gt; e:</span><br><span class="line">                <span class="built_in">sum</span> += heapq.heappop(q)</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">len</span>(q)</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;题目：&quot;&gt;&lt;a href=&quot;#题目：&quot; class=&quot;headerlink&quot; title=&quot;题目：&quot;&gt;&lt;/a&gt;题目：&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;img_3.png&quot; alt=&quot;img_3.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://leet</summary>
+      
+    
+    
+    
+    
+    <category term="Python" scheme="https://longsizhuo123.github.io/tags/Python/"/>
+    
+    <category term="题解" scheme="https://longsizhuo123.github.io/tags/%E9%A2%98%E8%A7%A3/"/>
+    
+    <category term="贪心" scheme="https://longsizhuo123.github.io/tags/%E8%B4%AA%E5%BF%83/"/>
+    
+    <category term="优先队列" scheme="https://longsizhuo123.github.io/tags/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/"/>
+    
+  </entry>
   
   <entry>
     <title>GO语言# GO语言可爱捏</title>
@@ -518,30 +547,6 @@
     
     
     <category term="math" scheme="https://longsizhuo123.github.io/tags/math/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>剑指 Offer II 021. 删除链表的倒数第 n 个结点</title>
-    <link href="https://longsizhuo123.github.io/post/3ed2f01c.html"/>
-    <id>https://longsizhuo123.github.io/post/3ed2f01c.html</id>
-    <published>2023-03-12T13:49:00.000Z</published>
-    <updated>2023-07-27T08:03:55.618Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p><img src="../assets/img/2023-03-13%20(2).png" alt="2023-03-13 (2).png"><br><a href="https://leetcode.cn/problems/SLwz0R/description/">剑指 Offer II 021. 删除链表的倒数第 n 个结点.md</a></p><h1 id="思想："><a href="#思想：" class="headerlink" title="思想："></a>思想：</h1><p>双指针（滑动窗口算法）。<br>在这个方法中，我们首先创建了一个虚拟头结点 dummy，并将其指向原来的头结点 head。<br>然后我们使用两个指针 fast 和 slow，将 fast 指针向前移动 n 步。<br>接下来，我们同时移动 fast 和 slow 指针，直到 fast 指针到达链表的末尾。<br>此时，slow 指针指向倒数第 n+1 个节点，我们将其 next 指针指向 slow.next.next，从而删除倒数第 n 个节点。</p><p>最后，我们返回虚拟头结点的 next 指针，它指向删除倒数第 n 个节点后的链表的头结点。</p><p>一开始完全按照C的链表做的</p><h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight python"><figcaption><span>滑动窗口算法</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">removeNthFromEnd</span>(<span class="params">self, head: <span class="type">Optional</span>[ListNode], n: <span class="built_in">int</span></span>) -&gt; <span class="type">Optional</span>[ListNode]:</span><br><span class="line">        <span class="comment"># 创建一个虚拟头结点</span></span><br><span class="line">        dummy = ListNode(<span class="number">0</span>)</span><br><span class="line">        <span class="comment"># 将虚拟头结点的 next 指向原来的头结点</span></span><br><span class="line">        dummy.<span class="built_in">next</span> = head</span><br><span class="line">        <span class="comment"># 定义快慢指针，并将快指针向前移动 n 步</span></span><br><span class="line">        fast = slow = dummy</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            fast = fast.<span class="built_in">next</span></span><br><span class="line">        <span class="comment"># 同时移动快慢指针，直到快指针到达链表末尾</span></span><br><span class="line">        <span class="keyword">while</span> fast <span class="keyword">and</span> fast.<span class="built_in">next</span>:</span><br><span class="line">            fast = fast.<span class="built_in">next</span></span><br><span class="line">            slow = slow.<span class="built_in">next</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 将慢指针的 next 指针指向慢指针的下一个节点的下一个节点，从而删除倒数第 n 个节点</span></span><br><span class="line">        slow.<span class="built_in">next</span> = slow.<span class="built_in">next</span>.<span class="built_in">next</span></span><br><span class="line">        <span class="keyword">return</span> dummy.<span class="built_in">next</span></span><br></pre></td></tr></table></figure><figure class="highlight python"><figcaption><span>纯链表</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">removeNthFromEnd</span>(<span class="params">self, head: <span class="type">Optional</span>[ListNode], n: <span class="built_in">int</span></span>) -&gt; <span class="type">Optional</span>[ListNode]:</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 计算长度</span></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">get_list_length</span>(<span class="params">head</span>):</span><br><span class="line">            <span class="comment"># 如果链表为空，长度为0</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> head:</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">            <span class="comment"># 遍历链表，并计数</span></span><br><span class="line">            length = <span class="number">0</span></span><br><span class="line">            current = head</span><br><span class="line">            <span class="keyword">while</span> current:</span><br><span class="line">                length += <span class="number">1</span></span><br><span class="line">                current = current.<span class="built_in">next</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> length</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 找到删除的节点</span></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">delete</span>(<span class="params">node, count</span>):</span><br><span class="line">            <span class="keyword">if</span> count == n + <span class="number">1</span> <span class="keyword">or</span> n == length:</span><br><span class="line">                node.<span class="built_in">next</span> = node.<span class="built_in">next</span>.<span class="built_in">next</span></span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            <span class="keyword">if</span> node.<span class="built_in">next</span>:</span><br><span class="line">                delete(node.<span class="built_in">next</span>, count - <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        length = get_list_length(head)</span><br><span class="line">        delete(head, length)</span><br><span class="line">        <span class="keyword">return</span> head</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">list_to_linked_list</span>(<span class="params">lst</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> lst:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 头结点</span></span><br><span class="line">    head = ListNode(lst[<span class="number">0</span>])</span><br><span class="line">    current = head</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 遍历列表中的元素，将其转换为链表节点</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(lst)):</span><br><span class="line">        current.<span class="built_in">next</span> = ListNode(lst[i])</span><br><span class="line">        current = current.<span class="built_in">next</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> head</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;题目：&quot;&gt;&lt;a href=&quot;#题目：&quot; class=&quot;headerlink&quot; title=&quot;题目：&quot;&gt;&lt;/a&gt;题目：&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;../assets/img/2023-03-13%20(2).png&quot; alt=&quot;2023-03-13 (2).</summary>
-      
-    
-    
-    
-    
-    <category term="Python" scheme="https://longsizhuo123.github.io/tags/Python/"/>
-    
-    <category term="题解" scheme="https://longsizhuo123.github.io/tags/%E9%A2%98%E8%A7%A3/"/>
     
   </entry>
   
