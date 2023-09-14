@@ -6,7 +6,7 @@
   <link href="https://longsizhuo123.github.io/atom.xml" rel="self"/>
   
   <link href="https://longsizhuo123.github.io/"/>
-  <updated>2023-09-11T15:45:19.495Z</updated>
+  <updated>2023-09-14T14:26:40.620Z</updated>
   <id>https://longsizhuo123.github.io/</id>
   
   <author>
@@ -15,6 +15,103 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>1222.可以攻击国王的皇后</title>
+    <link href="https://longsizhuo123.github.io/post/a6577367.html"/>
+    <id>https://longsizhuo123.github.io/post/a6577367.html</id>
+    <published>2023-09-14T13:12:00.000Z</published>
+    <updated>2023-09-14T14:26:40.620Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p><img src="../assets/img/%E6%88%AA%E5%B1%8F2023-09-15%20%E4%B8%8A%E5%8D%8812.10.07.png" alt="截屏2023-09-15 上午12.10.07.png"><br><a href="https://leetcode-cn.com/problems/queens-that-can-attack-the-king/">题目链接</a></p><h1 id="思想："><a href="#思想：" class="headerlink" title="思想："></a>思想：</h1><p>直接模拟，分别判断横向，纵向，对角线上的皇后是否存在，如果存在，就记录下来，最后返回。</p><p>答案的方法和我的类似，但是更加简洁，从国王往外走，记录碰到的第一个皇后。</p><h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight python"><figcaption><span>我流</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">queensAttacktheKing</span>(<span class="params">self, queens: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]], king: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]:</span><br><span class="line">        x = king[<span class="number">0</span>]</span><br><span class="line">        y = king[<span class="number">1</span>]</span><br><span class="line">        x_left_diff = <span class="number">64</span></span><br><span class="line">        x_right_diff = <span class="number">64</span></span><br><span class="line">        left_high_diff = <span class="number">64</span></span><br><span class="line">        left_low_diff = <span class="number">64</span></span><br><span class="line">        right_high_diff = <span class="number">64</span></span><br><span class="line">        right_low_diff = <span class="number">64</span></span><br><span class="line">        y_left_diff = <span class="number">64</span></span><br><span class="line">        y_right_diff = <span class="number">64</span></span><br><span class="line">        res = [[]] * <span class="number">8</span></span><br><span class="line">        <span class="built_in">print</span>(res)</span><br><span class="line">        <span class="keyword">for</span> i, j <span class="keyword">in</span> queens:</span><br><span class="line">            <span class="comment"># 横向</span></span><br><span class="line">            <span class="keyword">if</span> i == x:</span><br><span class="line">                <span class="keyword">if</span> j &lt; y <span class="keyword">and</span> <span class="built_in">abs</span>(j - y) &lt; x_left_diff:</span><br><span class="line">                    res[<span class="number">0</span>] = [i, j]</span><br><span class="line">                    x_left_diff = <span class="built_in">abs</span>(j - y)</span><br><span class="line">                <span class="keyword">elif</span> j &gt; y <span class="keyword">and</span> <span class="built_in">abs</span>(j - y) &lt; x_right_diff:</span><br><span class="line">                    res[<span class="number">1</span>] = [i, j]</span><br><span class="line">                    x_right_diff = <span class="built_in">abs</span>(j - y)</span><br><span class="line">            <span class="comment"># 纵向</span></span><br><span class="line">            <span class="keyword">elif</span> j == y:</span><br><span class="line">                <span class="keyword">if</span> i &lt; x <span class="keyword">and</span> <span class="built_in">abs</span>(i - x) &lt; y_left_diff:</span><br><span class="line">                    res[<span class="number">6</span>] = [i, j]</span><br><span class="line">                    y_left_diff = <span class="built_in">abs</span>(i - x)</span><br><span class="line">                <span class="keyword">elif</span> i &gt; x <span class="keyword">and</span> <span class="built_in">abs</span>(i - x) &lt; y_right_diff:</span><br><span class="line">                    res[<span class="number">7</span>] = [i, j]</span><br><span class="line">                    y_right_diff = <span class="built_in">abs</span>(i - x)</span><br><span class="line">            <span class="comment"># 对角线上</span></span><br><span class="line">            <span class="keyword">elif</span> <span class="built_in">abs</span>(i - x) == <span class="built_in">abs</span>(j - y):</span><br><span class="line">                <span class="keyword">if</span> i &lt; x <span class="keyword">and</span> j &lt; y <span class="keyword">and</span> <span class="built_in">abs</span>(i - x) &lt; left_high_diff:</span><br><span class="line">                    res[<span class="number">2</span>] = [i, j]</span><br><span class="line">                    left_high_diff = <span class="built_in">abs</span>(i - x)</span><br><span class="line">                <span class="keyword">elif</span> i &lt; x <span class="keyword">and</span> j &gt; y <span class="keyword">and</span> <span class="built_in">abs</span>(i - x) &lt; left_low_diff:</span><br><span class="line">                    res[<span class="number">3</span>] = [i, j]</span><br><span class="line">                    left_low_diff = <span class="built_in">abs</span>(i - x)</span><br><span class="line">                <span class="keyword">elif</span> i &gt; x <span class="keyword">and</span> j &lt; y <span class="keyword">and</span> <span class="built_in">abs</span>(i - x) &lt; right_high_diff:</span><br><span class="line">                    res[<span class="number">4</span>] = [i, j]</span><br><span class="line">                    right_high_diff = <span class="built_in">abs</span>(i - x)</span><br><span class="line">                <span class="keyword">elif</span> i &gt; x <span class="keyword">and</span> j &gt; y <span class="keyword">and</span> <span class="built_in">abs</span>(i - x) &lt; right_low_diff:</span><br><span class="line">                    res[<span class="number">5</span>] = [i, j]</span><br><span class="line">                    right_low_diff = <span class="built_in">abs</span>(i - x)</span><br><span class="line">        <span class="keyword">return</span> [i <span class="keyword">for</span> i <span class="keyword">in</span> res <span class="keyword">if</span> i != []]</span><br></pre></td></tr></table></figure><figure class="highlight python"><figcaption><span>答案</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">queensAttacktheKing</span>(<span class="params">self, queens: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]], king: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]:</span><br><span class="line">        s = <span class="built_in">set</span>(<span class="built_in">map</span>(<span class="built_in">tuple</span>, queens))</span><br><span class="line">        ans = []</span><br><span class="line">        <span class="keyword">for</span> dx, dy <span class="keyword">in</span> (<span class="number">1</span>, <span class="number">0</span>), (<span class="number">1</span>, <span class="number">1</span>), (<span class="number">0</span>, <span class="number">1</span>), (-<span class="number">1</span>, <span class="number">1</span>), (-<span class="number">1</span>, <span class="number">0</span>), (-<span class="number">1</span>, -<span class="number">1</span>), (<span class="number">0</span>, -<span class="number">1</span>), (<span class="number">1</span>, -<span class="number">1</span>):</span><br><span class="line">            x, y = king[<span class="number">0</span>] + dx, king[<span class="number">1</span>] + dy</span><br><span class="line">            <span class="keyword">while</span> <span class="number">0</span> &lt;= x &lt; <span class="number">8</span> <span class="keyword">and</span> <span class="number">0</span> &lt;= y &lt; <span class="number">8</span>:</span><br><span class="line">                <span class="keyword">if</span> (x, y) <span class="keyword">in</span> s:</span><br><span class="line">                    ans.append([x, y])</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">                x += dx</span><br><span class="line">                y += dy</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;题目：&quot;&gt;&lt;a href=&quot;#题目：&quot; class=&quot;headerlink&quot; title=&quot;题目：&quot;&gt;&lt;/a&gt;题目：&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;../assets/img/%E6%88%AA%E5%B1%8F2023-09-15%20%E4%B8%8A%E</summary>
+      
+    
+    
+    
+    
+    <category term="Python" scheme="https://longsizhuo123.github.io/tags/Python/"/>
+    
+    <category term="题解" scheme="https://longsizhuo123.github.io/tags/%E9%A2%98%E8%A7%A3/"/>
+    
+    <category term="数组" scheme="https://longsizhuo123.github.io/tags/%E6%95%B0%E7%BB%84/"/>
+    
+    <category term="矩阵" scheme="https://longsizhuo123.github.io/tags/%E7%9F%A9%E9%98%B5/"/>
+    
+    <category term="模拟" scheme="https://longsizhuo123.github.io/tags/%E6%A8%A1%E6%8B%9F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2596.检查骑士巡逻方案</title>
+    <link href="https://longsizhuo123.github.io/post/29546b92.html"/>
+    <id>https://longsizhuo123.github.io/post/29546b92.html</id>
+    <published>2023-09-13T07:12:00.000Z</published>
+    <updated>2023-09-13T07:56:56.102Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p><img src="../assets/img/%E6%88%AA%E5%B1%8F2023-09-13%20%E4%B8%8B%E5%8D%885.14.07.png" alt="截屏2023-09-13 下午5.14.07.png"><br><a href="https://leetcode.cn/problems/check-knight-tour-configuration/description/?envType=daily-question&envId=2023-09-13">题目链接</a></p><h1 id="思想："><a href="#思想：" class="headerlink" title="思想："></a>思想：</h1><p>第一眼以为是 N皇后 问题，然后读了半天没读懂题，所以去看了一眼答案（）。<br>原来<code>grid[row][col] 表示单元格 (row, col) 是骑士访问的第 grid[row][col] 个单元格。</code>的意思是<code>pos[grid[i][j]] = (i, j)</code><br>然后这下就懂了，设置个初始值（2，1），然后从（0，0）开始遍历每个点与<code>last</code>的值的差值是否是2，1或者1，2，如果不是，就返回False。</p><pre><code>在答案中，ylb用的是pairwise的方法计算前后两个元素for (x1, y1), (x2, y2) in pairwise(pos): dx, dy = abs(x1 - x2), abs(y1 - y2)</code></pre><h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">checkValidGrid</span>(<span class="params">self, grid: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        <span class="keyword">if</span> grid[<span class="number">0</span>][<span class="number">0</span>]:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        n = <span class="built_in">len</span>(grid)</span><br><span class="line">        pos = [(<span class="number">0</span>, <span class="number">0</span>)] * (n * n)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">                pos[grid[i][j]] = (i, j)</span><br><span class="line">        last = -<span class="number">2</span>, <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i, j <span class="keyword">in</span> pos:</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">abs</span>(i - last[<span class="number">0</span>]) == <span class="number">2</span> <span class="keyword">and</span> <span class="built_in">abs</span>(j - last[<span class="number">1</span>]) == <span class="number">1</span>) <span class="keyword">or</span> \</span><br><span class="line">                    (<span class="built_in">abs</span>(i - last[<span class="number">0</span>]) == <span class="number">1</span> <span class="keyword">and</span> <span class="built_in">abs</span>(j - last[<span class="number">1</span>]) == <span class="number">2</span>):</span><br><span class="line">                <span class="keyword">pass</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="built_in">print</span>(i, j)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            last = (i, j)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;题目：&quot;&gt;&lt;a href=&quot;#题目：&quot; class=&quot;headerlink&quot; title=&quot;题目：&quot;&gt;&lt;/a&gt;题目：&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;../assets/img/%E6%88%AA%E5%B1%8F2023-09-13%20%E4%B8%8B%E</summary>
+      
+    
+    
+    
+    
+    <category term="Python" scheme="https://longsizhuo123.github.io/tags/Python/"/>
+    
+    <category term="题解" scheme="https://longsizhuo123.github.io/tags/%E9%A2%98%E8%A7%A3/"/>
+    
+    <category term="数组" scheme="https://longsizhuo123.github.io/tags/%E6%95%B0%E7%BB%84/"/>
+    
+    <category term="矩阵" scheme="https://longsizhuo123.github.io/tags/%E7%9F%A9%E9%98%B5/"/>
+    
+    <category term="模拟" scheme="https://longsizhuo123.github.io/tags/%E6%A8%A1%E6%8B%9F/"/>
+    
+    <category term="深度优先搜索" scheme="https://longsizhuo123.github.io/tags/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/"/>
+    
+    <category term="广度优先搜索" scheme="https://longsizhuo123.github.io/tags/%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>1462.课程表IV</title>
+    <link href="https://longsizhuo123.github.io/post/5f312ae.html"/>
+    <id>https://longsizhuo123.github.io/post/5f312ae.html</id>
+    <published>2023-09-12T09:57:00.000Z</published>
+    <updated>2023-09-12T13:03:25.296Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p><img src="../assets/img/img_2.png" alt="img_2.png"></p><p><a href="https://leetcode.cn/problems/course-schedule-iv/?envType=daily-question&envId=2023-09-12">[1460]课程表IV.md</a></p><h1 id="思想："><a href="#思想：" class="headerlink" title="思想："></a>思想：</h1><p>一开始的想法是构建有向图，然后在有向图中找到query的两个点是否有父子关系。<br>但看了ylb的答案后，发现先计算出可达性更快。<br>首先遍历prerequirements，将所有的可达性记录下来。<br>然后三重循环，连接所有的可达性。</p><pre><code>i-&gt;j-&gt;k，如果i-&gt;k，那么i-&gt;k就是可达的。</code></pre><h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">checkIfPrerequisite</span>(<span class="params">self, n: <span class="built_in">int</span>, prerequisites: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]], queries: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="type">List</span>[</span><br><span class="line">        <span class="built_in">bool</span>]:</span><br><span class="line">        f = [[<span class="literal">False</span>] * n <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n)]</span><br><span class="line">        <span class="keyword">for</span> a, b <span class="keyword">in</span> prerequisites:</span><br><span class="line">            f[a][b] = <span class="literal">True</span></span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">                <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">                    f[i][j] = f[i][j] <span class="keyword">or</span> (f[i][k] <span class="keyword">and</span> f[k][j])</span><br><span class="line">        <span class="keyword">return</span> [f[a][b] <span class="keyword">for</span> a, b <span class="keyword">in</span> queries]</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;题目：&quot;&gt;&lt;a href=&quot;#题目：&quot; class=&quot;headerlink&quot; title=&quot;题目：&quot;&gt;&lt;/a&gt;题目：&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;../assets/img/img_2.png&quot; alt=&quot;img_2.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href</summary>
+      
+    
+    
+    
+    
+    <category term="Python" scheme="https://longsizhuo123.github.io/tags/Python/"/>
+    
+    <category term="题解" scheme="https://longsizhuo123.github.io/tags/%E9%A2%98%E8%A7%A3/"/>
+    
+    <category term="深度优先搜索" scheme="https://longsizhuo123.github.io/tags/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/"/>
+    
+    <category term="广度优先搜索" scheme="https://longsizhuo123.github.io/tags/%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/"/>
+    
+    <category term="图" scheme="https://longsizhuo123.github.io/tags/%E5%9B%BE/"/>
+    
+    <category term="拓扑排序" scheme="https://longsizhuo123.github.io/tags/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>630.课程表III</title>
@@ -477,76 +574,6 @@
     <category term="Python" scheme="https://longsizhuo123.github.io/tags/Python/"/>
     
     <category term="题解" scheme="https://longsizhuo123.github.io/tags/%E9%A2%98%E8%A7%A3/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>6323. 将钱分给最多的儿童</title>
-    <link href="https://longsizhuo123.github.io/post/b9130c0e.html"/>
-    <id>https://longsizhuo123.github.io/post/b9130c0e.html</id>
-    <published>2023-03-19T05:51:00.000Z</published>
-    <updated>2023-07-27T08:03:55.610Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p><a href="https://leetcode.cn/problems/distribute-money-to-maximum-children/">6323. 将钱分给最多的儿童.md</a><br>给你一个整数 money ，表示你总共有的钱数（单位为美元）和另一个整数 children ，表示你要将钱分配给多少个儿童。</p><p>你需要按照如下规则分配：</p><p>所有的钱都必须被分配。<br>每个儿童至少获得 1 美元。<br>没有人获得 4 美元。<br>请你按照上述规则分配金钱，并返回 最多 有多少个儿童获得 恰好 8 美元。如果没有任何分配方案，返回 -1 。</p><p>示例 1：</p><p>输入：money = 20, children = 3<br>输出：1<br>解释：<br>最多获得 8 美元的儿童数为 1 。一种分配方案为：</p><ul><li>给第一个儿童分配 8 美元。</li><li>给第二个儿童分配 9 美元。</li><li>给第三个儿童分配 3 美元。<br>没有分配方案能让获得 8 美元的儿童数超过 1 。<h1 id="思想："><a href="#思想：" class="headerlink" title="思想："></a>思想：</h1>一开始就发现了这个是数学题，奈何写了半天不知道怎么处理最后剩下的钱。<br>于是写了一个列表，一个孩子一个孩子地给钱。<br>数学：<br>如果剩余 0 人，且 money&gt;0，那么必须分给一个已经分到 8 美元的人，<br>ans 减一。<br>如果剩余 1 人，且 money=3，为避免分配 4 美元，<br>那么必须分给一个已经分到 8 美元的人，ans 减一。<br>其它情况全部给一个人，如果这个人分配到 4 美元，<br>他再给另一个人 1 美元，这样 ans 不变。<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight python"><figcaption><span>列表</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">distMoney</span>(<span class="params">self, money: <span class="built_in">int</span>, children: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        money -= children</span><br><span class="line">        children_list = [<span class="number">1</span>] * children</span><br><span class="line">        <span class="keyword">if</span> money &lt; <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">        counts = <span class="built_in">min</span>(money // <span class="number">7</span>, children)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(counts):</span><br><span class="line">            children_list[i] = <span class="number">8</span></span><br><span class="line">        children_list[-<span class="number">1</span>] += money - counts * <span class="number">7</span></span><br><span class="line">        counts = children_list.count(<span class="number">8</span>)</span><br><span class="line">        <span class="keyword">if</span> children_list[-<span class="number">1</span>] == <span class="number">4</span>:</span><br><span class="line">            <span class="keyword">if</span> children_list[-<span class="number">2</span>] != <span class="number">8</span>:</span><br><span class="line">                <span class="keyword">pass</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                counts -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> counts</span><br></pre></td></tr></table></figure><figure class="highlight python"><figcaption><span>数学</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">distMoney</span>(<span class="params">self, money: <span class="built_in">int</span>, children: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        money -= children  <span class="comment"># 每人至少 1 美元</span></span><br><span class="line">        <span class="keyword">if</span> money &lt; <span class="number">0</span>: <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">        ans = <span class="built_in">min</span>(money // <span class="number">7</span>, children)  <span class="comment"># 初步分配，让尽量多的人分到 8 美元</span></span><br><span class="line">        money -= ans * <span class="number">7</span></span><br><span class="line">        children -= ans</span><br><span class="line">        <span class="comment"># children == 0 and money：必须找一个前面分了 8 美元的人，分配完剩余的钱</span></span><br><span class="line">        <span class="comment"># children == 1 and money == 3：不能有人恰好分到 4 美元</span></span><br><span class="line">        <span class="keyword">if</span> children == <span class="number">0</span> <span class="keyword">and</span> money <span class="keyword">or</span> \</span><br><span class="line">           children == <span class="number">1</span> <span class="keyword">and</span> money == <span class="number">3</span>:</span><br><span class="line">            ans -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure></li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;题目：&quot;&gt;&lt;a href=&quot;#题目：&quot; class=&quot;headerlink&quot; title=&quot;题目：&quot;&gt;&lt;/a&gt;题目：&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://leetcode.cn/problems/distribute-money-to-maximum-</summary>
-      
-    
-    
-    
-    
-    <category term="Python" scheme="https://longsizhuo123.github.io/tags/Python/"/>
-    
-    <category term="题解" scheme="https://longsizhuo123.github.io/tags/%E9%A2%98%E8%A7%A3/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2341. 数组能形成多少数对  每日一题</title>
-    <link href="https://longsizhuo123.github.io/post/f953c753.html"/>
-    <id>https://longsizhuo123.github.io/post/f953c753.html</id>
-    <published>2023-03-12T13:49:00.000Z</published>
-    <updated>2023-07-27T08:03:55.609Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p><img src="../assets/img/2023-02-16.png" alt="2023-02-16.png"><br><a href="https://leetcode.cn/problems/maximum-number-of-pairs-in-array/description/">2341. 数组能形成多少数对.md</a></p><h1 id="思想："><a href="#思想：" class="headerlink" title="思想："></a>思想：</h1><h2 id="我流："><a href="#我流：" class="headerlink" title="我流："></a>我流：</h2><p>不知道是不是看到“简单”两个字，这道题有主动思考最优解。居然这一次比ylb大佬的哈希表方法还快。<br>把列表排序后，两个两个看是否相等就行。</p><h2 id="哈希表思想："><a href="#哈希表思想：" class="headerlink" title="哈希表思想："></a>哈希表思想：</h2><p>Counter计数后，<code>a+=v//2</code>,<code>b+=v%2</code>对于每个数字 x，<br>如果 x 出现的次数 v 大于 1，则可以从数组中选出两个 x 形成一个数对，我们将v 除以 2 向下取整，<br>即可得到当前数字 x 可以形成的数对数目，然后我们累加这个数目到变量 s 中。</p><h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight python"><figcaption><span>普通计数</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numberOfPairs</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        nums.sort()</span><br><span class="line">        ans = [<span class="number">0</span>, <span class="built_in">len</span>(nums)]</span><br><span class="line">        <span class="keyword">for</span> index <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(nums)):</span><br><span class="line">            <span class="keyword">if</span> nums[index - <span class="number">1</span>] == nums[index]:</span><br><span class="line">                ans[<span class="number">0</span>] += <span class="number">1</span></span><br><span class="line">                ans[<span class="number">1</span>] -= <span class="number">2</span></span><br><span class="line">                nums[index - <span class="number">1</span>] = nums[index] = -<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure><figure class="highlight python"><figcaption><span>哈希表</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numberOfPairs</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        x = Counter(nums)</span><br><span class="line">        a = <span class="number">0</span></span><br><span class="line">        b = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> k,v <span class="keyword">in</span> x.items():</span><br><span class="line">            a+=v//<span class="number">2</span></span><br><span class="line">            b+=v%<span class="number">2</span></span><br><span class="line">        <span class="keyword">return</span> [a,b]</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;题目：&quot;&gt;&lt;a href=&quot;#题目：&quot; class=&quot;headerlink&quot; title=&quot;题目：&quot;&gt;&lt;/a&gt;题目：&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;../assets/img/2023-02-16.png&quot; alt=&quot;2023-02-16.png&quot;&gt;&lt;br&gt;&lt;</summary>
-      
-    
-    
-    
-    
-    <category term="Python" scheme="https://longsizhuo123.github.io/tags/Python/"/>
-    
-    <category term="题解" scheme="https://longsizhuo123.github.io/tags/%E9%A2%98%E8%A7%A3/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>math</title>
-    <link href="https://longsizhuo123.github.io/post/a927044d.html"/>
-    <id>https://longsizhuo123.github.io/post/a927044d.html</id>
-    <published>2023-03-12T13:49:00.000Z</published>
-    <updated>2023-07-27T08:03:55.618Z</updated>
-    
-    <content type="html"><![CDATA[<p>如 $\lim_{x \to 0} \frac{\sin x}{x}$ 渲染的是</p><p>$$<br>\begin{eqnarray}<br> \lim_{x \to 0} \frac{\sin x + x^2 + x^3}{x} &amp; = &amp; \lim_{x \to 0} \frac{\sin x }{x} + \lim_{x \to 0} \frac{x^2 }{x} + \lim_{x \to 0}\frac{x^3}{x}<br>\\ &amp; = &amp; \lim_{x \to 0}\frac{\sin x}{x}<br>\\ &amp; = &amp; 1<br>\end{eqnarray}<br>$$</p><span id="more"></span><p>斐波那契数列$A_n=A_{n-1}+A_{n-2}$,前后两项的比值逐渐收敛到黄金分割比例<br>$$\lim_{n\to \infty}\frac{A_{n-1}}{A_n}=\frac{\sqrt{5}-1}{2}.$$</p><p>因式分解<br>$$\begin{split}(x−1)(x−3)&amp;=x^2−4x+3 \<br>&amp;=x^2−4x+4−1 \<br>&amp;=(x−2)^2−1<br>\end{split}<br>$$</p><p>狄利克雷函数</p><p>$$<br>D(x)=<br>\begin{cases}<br>1,&amp; x \in Q \<br>0,&amp; x \notin Q<br>\end{cases}<br>$$</p><p>高斯公式<br>$$<br>\iiint_{\Omega}\left(\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z}\right) d v=\iint_{\Sigma} P d y d z+Q d z d x+R d x d y<br>$$</p><h2 id="物理公式"><a href="#物理公式" class="headerlink" title="物理公式"></a>物理公式</h2><ul><li>牛顿第一定律: $\sum \vec{F}_{i}=\frac{\mathrm{d} \vec{v}}{\mathrm{d} t}=0$</li><li>牛顿第二定律: $\vec{F}=\frac{\mathrm{d} m}{\mathrm{d} t} \vec{v}+m \frac{\mathrm{d} \vec{v}}{\mathrm{d} t}=\frac{\mathrm{d} m}{\mathrm{d} t} \vec{v}+m \vec{a}=\frac{\mathrm{d} m}{\mathrm{d} t} \vec{v}+m \frac{\mathrm{d}^{2} \vec{r}}{\mathrm{d} t^{2}}$</li><li>牛顿第三定律: $\overrightarrow{F_{12}}=-\overrightarrow{F_{21}}$</li><li>质能守恒: $E=mc^2$</li></ul><h2 id="化学公式"><a href="#化学公式" class="headerlink" title="化学公式"></a>化学公式</h2><p>离子反应与沉淀: $\ce{SO4^2- + Ba^2+ -&gt; BaSO4 v}$</p><h2 id="生物公式"><a href="#生物公式" class="headerlink" title="生物公式"></a>生物公式</h2><p>光合作用<br>范德蒙行列式<br>$$D_{n-1}=\left|\begin{array}{cccc}<br>1 &amp; 1 &amp; \dots &amp; 1 \<br>x_{2} &amp; x_{3} &amp; \dots &amp; x_{n} \<br>\vdots &amp; \vdots &amp; &amp; \vdots \<br>x_{2}^{n-2} &amp; x_{3}^{n-2} &amp; \dots &amp; x_{n}^{n-2}<br>\end{array}\right|=\prod_{2 \leq j&lt;i \leq n}\left(x_{i}-x_{j}\right)$$</p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;如 $\lim_{x \to 0} \frac{\sin x}{x}$ 渲染的是&lt;/p&gt;
-&lt;p&gt;$$&lt;br&gt;\begin{eqnarray}&lt;br&gt; \lim_{x \to 0} \frac{\sin x + x^2 + x^3}{x} &amp;amp; = &amp;amp; \lim_{x \to 0} \frac{\sin x }{x} + \lim_{x \to 0} \frac{x^2 }{x} + \lim_{x \to 0}\frac{x^3}{x}&lt;br&gt;\\ &amp;amp; = &amp;amp; \lim_{x \to 0}\frac{\sin x}{x}&lt;br&gt;\\ &amp;amp; = &amp;amp; 1&lt;br&gt;\end{eqnarray}&lt;br&gt;$$&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="math" scheme="https://longsizhuo123.github.io/categories/math/"/>
-    
-    
-    <category term="math" scheme="https://longsizhuo123.github.io/tags/math/"/>
     
   </entry>
   

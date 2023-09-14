@@ -1,5 +1,5 @@
 
-## 我现在有77篇文章，
+## 我现在有80篇文章，
 ## 目录：
     
 - [1004.最大连续1的个数 III 最大连续1的个数 III](https://longsizhuo123.github.io/post/ed19b576.html)
@@ -79,6 +79,9 @@
 - [剑指 Offer II 021. 删除链表的倒数第 n 个结点](https://longsizhuo123.github.io/post/3ed2f01c.html)
 - [一些疑惑](https://longsizhuo123.github.io/post/941aeb72.html)
 - [630.课程表III](https://longsizhuo123.github.io/post/e14241e.html)
+- [1462.课程表IV](https://longsizhuo123.github.io/post/5f312ae.html)
+- [2596.检查骑士巡逻方案](https://longsizhuo123.github.io/post/29546b92.html)
+- [1222.可以攻击国王的皇后](https://longsizhuo123.github.io/post/a6577367.html)
 
 # longsizhuo123.github.io
 
