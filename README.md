@@ -1,5 +1,5 @@
 
-## 我现在有80篇文章，
+## 我现在有83篇文章，
 ## 目录：
     
 - [1004.最大连续1的个数 III 最大连续1的个数 III](https://longsizhuo123.github.io/post/ed19b576.html)
@@ -82,6 +82,9 @@
 - [1462.课程表IV](https://longsizhuo123.github.io/post/5f312ae.html)
 - [2596.检查骑士巡逻方案](https://longsizhuo123.github.io/post/29546b92.html)
 - [1222.可以攻击国王的皇后](https://longsizhuo123.github.io/post/a6577367.html)
+- [LCP 50.宝石补给](https://longsizhuo123.github.io/post/762ca698.html)
+- [213.打家劫舍 II](https://longsizhuo123.github.io/post/85beb0bf.html)
+- [213.打家劫舍 III](https://longsizhuo123.github.io/post/86590614.html)
 
 # longsizhuo123.github.io
 
