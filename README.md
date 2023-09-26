@@ -1,5 +1,5 @@
 
-## 我现在有83篇文章，
+## 我现在有87篇文章，
 ## 目录：
     
 - [1004.最大连续1的个数 III 最大连续1的个数 III](https://longsizhuo123.github.io/post/ed19b576.html)
@@ -85,6 +85,10 @@
 - [LCP 50.宝石补给](https://longsizhuo123.github.io/post/762ca698.html)
 - [213.打家劫舍 II](https://longsizhuo123.github.io/post/85beb0bf.html)
 - [213.打家劫舍 III](https://longsizhuo123.github.io/post/86590614.html)
+- [LCP 06.拿硬币](https://longsizhuo123.github.io/post/66079b7b.html)
+- [2591.将钱分给最多的儿童](https://longsizhuo123.github.io/post/6a9ab144.html)
+- [146.LRU 缓存](https://longsizhuo123.github.io/post/b9130c0e.html)
+- [2582.递枕头](https://longsizhuo123.github.io/post/82e09f92.html)
 
 # longsizhuo123.github.io
 
