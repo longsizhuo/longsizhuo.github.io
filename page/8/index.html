@@ -307,26 +307,26 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-1824最少侧跳次数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-2299强密码检验器II" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/6be57ef7.html">1825. 求出 MK 平均值</a>
+      <a class="article-title_code_ant" href="/post/7ded25bb.html">每日一题 2299. 强密码检验器 II</a>
     </h2>
   
 
         
 		
-		  <a href="/post/6be57ef7.html" class="archive-article-date">
-  	<time datetime="2023-01-18T04:42:00.000Z" itemprop="datePublished">
+		  <a href="/post/7ded25bb.html" class="archive-article-date">
+  	<time datetime="2023-01-19T13:42:00.000Z" itemprop="datePublished">
 	<!-- <i class="icon-calendar icon"></i> -->
 
 	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
 	&nbsp;
-	2023-01-18</time>
+	2023-01-20</time>
 	
 	<!-- busuanzi阅读量统计
 	
@@ -352,7 +352,7 @@ var _hmt = _hmt || [];
 	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
         <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
         <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">163字</span>
+        <span class="post-count">342字</span>
       </span>
     </span>
 
@@ -376,11 +376,16 @@ var _hmt = _hmt || [];
 	  <!-- 添加分类与标签 -->
 	  
 		  
-		  <p><img src="../assets/img/2023-01-22.png" alt="2023-01-22.png"></p>
-<h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-sideway-jumps/description/?orderBy=most_votes">1824最小侧跳次数</a></p>
-<h1 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h1><p>我不会</p>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-sideway-jumps/solutions/2071617/cong-0-dao-1-de-0-1-bfspythonjavacgo-by-1m8z4/?orderBy=most_votes">https://leetcode.cn/problems/minimum-sideway-jumps/solutions/2071617/cong-0-dao-1-de-0-1-bfspythonjavacgo-by-1m8z4/?orderBy=most_votes</a></p>
-<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minSideJumps</span>(<span class="params">self, obstacles: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        n = <span class="built_in">len</span>(obstacles)</span><br><span class="line">        dis = [[n] * <span class="number">3</span> <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n)]</span><br><span class="line">        dis[<span class="number">0</span>][<span class="number">1</span>] = <span class="number">0</span></span><br><span class="line">        q = deque([(<span class="number">0</span>, <span class="number">1</span>)])  <span class="comment"># 起点</span></span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            i, j = q.popleft()</span><br><span class="line">            d = dis[i][j]</span><br><span class="line">            <span class="keyword">if</span> i == n - <span class="number">1</span>: <span class="keyword">return</span> d  <span class="comment"># 到达终点</span></span><br><span class="line">            <span class="keyword">if</span> obstacles[i + <span class="number">1</span>] != j + <span class="number">1</span> <span class="keyword">and</span> d &lt; dis[i + <span class="number">1</span>][j]:  <span class="comment"># 向右</span></span><br><span class="line">                dis[i + <span class="number">1</span>][j] = d</span><br><span class="line">                q.appendleft((i + <span class="number">1</span>, j))  <span class="comment"># 加到队首</span></span><br><span class="line">            <span class="keyword">for</span> k <span class="keyword">in</span> (j + <span class="number">1</span>) % <span class="number">3</span>, (j + <span class="number">2</span>) % <span class="number">3</span>:  <span class="comment"># 枚举另外两条跑道（向上/向下）</span></span><br><span class="line">                <span class="keyword">if</span> obstacles[i] != k + <span class="number">1</span> <span class="keyword">and</span> d + <span class="number">1</span> &lt; dis[i][k]:</span><br><span class="line">                    dis[i][k] = d + <span class="number">1</span></span><br><span class="line">                    q.append((i, k))  <span class="comment"># 加到队尾</span></span><br></pre></td></tr></table></figure>
+		  <p><img src="../assets/img/2023-01-20.png" alt="2023-01-20.png"></p>
+<p>执行用时超过100%的用户，这道题本来什么可以讲的，但是有个<strong>位运算</strong>的知识点</p>
+<h1 id="我的代码："><a href="#我的代码：" class="headerlink" title="我的代码："></a>我的代码：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">strongPasswordCheckerII</span>(<span class="params">self, password: <span class="built_in">str</span></span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        flag1 = flag2 = flag3 = flag4 = <span class="number">1</span></span><br><span class="line">        ret = <span class="literal">None</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> password:</span><br><span class="line">            <span class="keyword">if</span> ret == i:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">if</span> i.isdigit():</span><br><span class="line">                flag1 = <span class="number">0</span></span><br><span class="line">            <span class="keyword">elif</span> i.isupper():</span><br><span class="line">                flag2 = <span class="number">0</span></span><br><span class="line">            <span class="keyword">elif</span> i.islower():</span><br><span class="line">                flag3 = <span class="number">0</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                flag4 = <span class="number">0</span></span><br><span class="line">            ret = i</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">sum</span>([flag1, flag2, flag3, flag4]) == <span class="number">0</span> <span class="keyword">and</span> <span class="built_in">len</span>(password) &gt;= <span class="number">8</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>
+<h1 id="位运算代码："><a href="#位运算代码：" class="headerlink" title="位运算代码："></a>位运算代码：</h1><p>方法一：模拟 + 位运算</p>
+<p>根据题目描述，我们可以模拟检查密码是否满足题目要求的过程。</p>
+<p>首先，我们检查密码的长度是否小于 8，如果是，则返回 false。</p>
+<p>接下来，我们用一个掩码 mask 来记录密码是否包含小写字母、大写字母、数字和特殊字符。我们遍历密码，每次遍历到一个字符，先判断它是否和前一个字符相同，如果是，则返回 false。然后，根据字符的类型更新掩码 mask。最后，我们检查掩码 mask 是否为 15，如果是，则返回 true，否则返回 false。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">strongPasswordCheckerII</span>(<span class="params">self, password: <span class="built_in">str</span></span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(password) &lt; <span class="number">8</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        mask = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i, c <span class="keyword">in</span> <span class="built_in">enumerate</span>(password):</span><br><span class="line">            <span class="keyword">if</span> i <span class="keyword">and</span> c == password[i - <span class="number">1</span>]:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">if</span> c.islower():</span><br><span class="line">                mask |= <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> c.isupper():</span><br><span class="line">                mask |= <span class="number">2</span></span><br><span class="line">            <span class="keyword">elif</span> c.isdigit():</span><br><span class="line">                mask |= <span class="number">4</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                mask |= <span class="number">8</span></span><br><span class="line">        <span class="keyword">return</span> mask == <span class="number">15</span></span><br></pre></td></tr></table></figure>
+
+<p>作者：ylb<br>链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/strong-password-checker-ii/solutions/2068878/by-lcbin-hk2a/">https://leetcode.cn/problems/strong-password-checker-ii/solutions/2068878/by-lcbin-hk2a/</a></p>
 
 				  
 	  
@@ -408,15 +413,11 @@ var _hmt = _hmt || [];
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">未解决</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">题解</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">困难</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">图论</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">位运算</a>
         		</li>
       		
 		</ul>
@@ -428,7 +429,7 @@ var _hmt = _hmt || [];
 	  <!-- 添加展开全文 -->
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/post/6be57ef7.html">展开全文 >></a>
+          <a class="article-more-a" href="/post/7ded25bb.html">展开全文 >></a>
         </p>
       
 	  
@@ -579,6 +580,165 @@ var _hmt = _hmt || [];
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多重集</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+	  
+	  <!-- 添加展开全文 -->
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/post/6be57ef7.html">展开全文 >></a>
+        </p>
+      
+	  
+	  <!-- 添加分享 -->
+      
+	  
+      <div class="clearfix"></div>
+	  
+    </div>
+  </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+  
+
+<!-- 文章页添加mathjax公式 -->
+  
+    <article id="post-1824最少侧跳次数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/6be57ef7.html">1825. 求出 MK 平均值</a>
+    </h2>
+  
+
+        
+		
+		  <a href="/post/6be57ef7.html" class="archive-article-date">
+  	<time datetime="2023-01-18T04:42:00.000Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2023-01-18</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+        
+		
+		
+		  <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">163字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">1min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+		
+      </header>
+    
+	
+    <div class="article-entry" itemprop="articleBody">
+	  <!-- 添加分类与标签 -->
+	  
+		  
+		  <p><img src="../assets/img/2023-01-22.png" alt="2023-01-22.png"></p>
+<h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-sideway-jumps/description/?orderBy=most_votes">1824最小侧跳次数</a></p>
+<h1 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h1><p>我不会</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-sideway-jumps/solutions/2071617/cong-0-dao-1-de-0-1-bfspythonjavacgo-by-1m8z4/?orderBy=most_votes">https://leetcode.cn/problems/minimum-sideway-jumps/solutions/2071617/cong-0-dao-1-de-0-1-bfspythonjavacgo-by-1m8z4/?orderBy=most_votes</a></p>
+<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minSideJumps</span>(<span class="params">self, obstacles: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        n = <span class="built_in">len</span>(obstacles)</span><br><span class="line">        dis = [[n] * <span class="number">3</span> <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n)]</span><br><span class="line">        dis[<span class="number">0</span>][<span class="number">1</span>] = <span class="number">0</span></span><br><span class="line">        q = deque([(<span class="number">0</span>, <span class="number">1</span>)])  <span class="comment"># 起点</span></span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            i, j = q.popleft()</span><br><span class="line">            d = dis[i][j]</span><br><span class="line">            <span class="keyword">if</span> i == n - <span class="number">1</span>: <span class="keyword">return</span> d  <span class="comment"># 到达终点</span></span><br><span class="line">            <span class="keyword">if</span> obstacles[i + <span class="number">1</span>] != j + <span class="number">1</span> <span class="keyword">and</span> d &lt; dis[i + <span class="number">1</span>][j]:  <span class="comment"># 向右</span></span><br><span class="line">                dis[i + <span class="number">1</span>][j] = d</span><br><span class="line">                q.appendleft((i + <span class="number">1</span>, j))  <span class="comment"># 加到队首</span></span><br><span class="line">            <span class="keyword">for</span> k <span class="keyword">in</span> (j + <span class="number">1</span>) % <span class="number">3</span>, (j + <span class="number">2</span>) % <span class="number">3</span>:  <span class="comment"># 枚举另外两条跑道（向上/向下）</span></span><br><span class="line">                <span class="keyword">if</span> obstacles[i] != k + <span class="number">1</span> <span class="keyword">and</span> d + <span class="number">1</span> &lt; dis[i][k]:</span><br><span class="line">                    dis[i][k] = d + <span class="number">1</span></span><br><span class="line">                    q.append((i, k))  <span class="comment"># 加到队尾</span></span><br></pre></td></tr></table></figure>
+
+				  
+	  
+      
+	  <!-- 添加打赏 -->
+	  
+	
+	  <!-- 添加版权声明 -->
+      
+	  
+	</div>
+	
+	<!-- 添加置顶 -->
+    <div class="article-info article-info-index">
+      
+	  
+	  <!-- 分类页 -->
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">未解决</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">困难</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">图论</a>
         		</li>
       		
 		</ul>
@@ -1737,158 +1897,6 @@ var _hmt = _hmt || [];
 
 <!-- 文章页添加mathjax公式 -->
   
-    <article id="post-1968" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/a1d26db4.html">Python取巧，随机算法O(nlogn)搞定捏</a>
-    </h2>
-  
-
-        
-		
-		  <a href="/post/a1d26db4.html" class="archive-article-date">
-  	<time datetime="2023-01-07T09:25:00.000Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2023-01-07</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-        
-		
-		
-		  <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">192字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">1min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-		
-      </header>
-    
-	
-    <div class="article-entry" itemprop="articleBody">
-	  <!-- 添加分类与标签 -->
-	  
-		  
-		  <p>思路历程：</p>
-<ol>
-<li>看了官方题解，和自己第一次的做法很相似，都是sorted后在新的列表里append。但是左思右想觉得不能证明正确性，因为是周赛不敢随意提交。</li>
-<li>在想第一种解法时发现，我如果不停for i in 整个数组，判断是否满足条件再交换位置时，万一进入死循环怎么办？如果某种特殊情况每一次都失败都需要交换位置的话和随机打乱有什么区别？</li>
-<li>看了其他大佬的解法，自己还是太年轻了<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">rearrangeArray</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">    i = <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; <span class="built_in">len</span>(nums)-<span class="number">1</span>:</span><br><span class="line">        <span class="keyword">if</span> nums[i] == (nums[i - <span class="number">1</span>] + nums[i + <span class="number">1</span>]) // <span class="number">2</span>:</span><br><span class="line">            random.shuffle(nums)</span><br><span class="line">            i = <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> nums</span><br></pre></td></tr></table></figure></li>
-</ol>
-
-				  
-	  
-      
-	  <!-- 添加打赏 -->
-	  
-	
-	  <!-- 添加版权声明 -->
-      
-	  
-	</div>
-	
-	<!-- 添加置顶 -->
-    <div class="article-info article-info-index">
-      
-	  
-	  <!-- 分类页 -->
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">已解决,题解</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-	  
-	  <!-- 添加展开全文 -->
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/post/a1d26db4.html">展开全文 >></a>
-        </p>
-      
-	  
-	  <!-- 添加分享 -->
-      
-	  
-      <div class="clearfix"></div>
-	  
-    </div>
-  </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-  
-
-<!-- 文章页添加mathjax公式 -->
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/7/">&lt;&lt; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/9/">下一页 &gt;&gt;</a>
@@ -1943,10 +1951,10 @@ window.MathJax = {
 	  <br>
 	  <div class="footer-center">
 	    <i class="fa fa-file-word-o" aria-hidden="true"></i>
-		<span> 87 篇</span>
+		<span> 88 篇</span>
 		<span class="post-meta-divider">|</span>
 		<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-		<span> <span class="post-count">32.4k</span></span>
+		<span> <span class="post-count">32.7k</span></span>
       </div>
 	  
 	  <!-- 添加不蒜子统计 -->
@@ -2162,11 +2170,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">前缀和</a>
+                <a href="javascript:void(0)" class="js-tag color4">字典树</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">字典树</a>
+                <a href="javascript:void(0)" class="js-tag color4">前缀和</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2182,11 +2190,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">动态规划</a>
+                <a href="javascript:void(0)" class="js-tag color3">链表</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">链表</a>
+                <a href="javascript:void(0)" class="js-tag color5">动态规划</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2210,11 +2218,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">图论</a>
+                <a href="javascript:void(0)" class="js-tag color4">多重集</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多重集</a>
+                <a href="javascript:void(0)" class="js-tag color3">图论</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2223,6 +2231,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">位运算</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2258,10 +2270,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">贪心</a>
               </li>
              
@@ -2271,34 +2279,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">周赛</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">中等</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">pandas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">math</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">前端</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">加密</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优先队列</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2318,7 +2298,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">树</a>
+                <a href="javascript:void(0)" class="js-tag color3">中等</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2327,6 +2307,34 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">双向链表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优先队列</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">前端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">加密</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">math</a>
               </li>
             
             <div class="clearfix"></div>

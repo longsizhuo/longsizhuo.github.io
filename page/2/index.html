@@ -307,6 +307,177 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-[2596]检查骑士巡视方案" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/29546b92.html">2596.检查骑士巡逻方案</a>
+    </h2>
+  
+
+        
+		
+		  <a href="/post/29546b92.html" class="archive-article-date">
+  	<time datetime="2023-09-13T07:12:00.000Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2023-09-13</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+        
+		
+		
+		  <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">245字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">1min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+		
+      </header>
+    
+	
+    <div class="article-entry" itemprop="articleBody">
+	  <!-- 添加分类与标签 -->
+	  
+		  
+		  <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p><img src="../assets/img/%E6%88%AA%E5%B1%8F2023-09-13%20%E4%B8%8B%E5%8D%885.14.07.png" alt="截屏2023-09-13 下午5.14.07.png"><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/check-knight-tour-configuration/description/?envType=daily-question&envId=2023-09-13">题目链接</a></p>
+<h1 id="思想："><a href="#思想：" class="headerlink" title="思想："></a>思想：</h1><p>第一眼以为是 N皇后 问题，然后读了半天没读懂题，所以去看了一眼答案（）。<br>原来<code>grid[row][col] 表示单元格 (row, col) 是骑士访问的第 grid[row][col] 个单元格。</code>的意思是<code>pos[grid[i][j]] = (i, j)</code><br>然后这下就懂了，设置个初始值（2，1），然后从（0，0）开始遍历每个点与<code>last</code>的值的差值是否是2，1或者1，2，如果不是，就返回False。</p>
+<pre><code>在答案中，ylb用的是pairwise的方法计算前后两个元素
+for (x1, y1), (x2, y2) in pairwise(pos): dx, dy = abs(x1 - x2), abs(y1 - y2)
+</code></pre>
+<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">checkValidGrid</span>(<span class="params">self, grid: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        <span class="keyword">if</span> grid[<span class="number">0</span>][<span class="number">0</span>]:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        n = <span class="built_in">len</span>(grid)</span><br><span class="line">        pos = [(<span class="number">0</span>, <span class="number">0</span>)] * (n * n)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">                pos[grid[i][j]] = (i, j)</span><br><span class="line">        last = -<span class="number">2</span>, <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i, j <span class="keyword">in</span> pos:</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">abs</span>(i - last[<span class="number">0</span>]) == <span class="number">2</span> <span class="keyword">and</span> <span class="built_in">abs</span>(j - last[<span class="number">1</span>]) == <span class="number">1</span>) <span class="keyword">or</span> \</span><br><span class="line">                    (<span class="built_in">abs</span>(i - last[<span class="number">0</span>]) == <span class="number">1</span> <span class="keyword">and</span> <span class="built_in">abs</span>(j - last[<span class="number">1</span>]) == <span class="number">2</span>):</span><br><span class="line">                <span class="keyword">pass</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="built_in">print</span>(i, j)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            last = (i, j)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+				  
+	  
+      
+	  <!-- 添加打赏 -->
+	  
+	
+	  <!-- 添加版权声明 -->
+      
+	  
+	</div>
+	
+	<!-- 添加置顶 -->
+    <div class="article-info article-info-index">
+      
+	  
+	  <!-- 分类页 -->
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">题解</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数组</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">矩阵</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">模拟</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">深度优先搜索</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">广度优先搜索</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+	  
+	  <!-- 添加展开全文 -->
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/post/29546b92.html">展开全文 >></a>
+        </p>
+      
+	  
+	  <!-- 添加分享 -->
+      
+	  
+      <div class="clearfix"></div>
+	  
+    </div>
+  </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+  
+
+<!-- 文章页添加mathjax公式 -->
+  
     <article id="post-[1462]课程表IV" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -652,6 +823,181 @@ var _hmt = _hmt || [];
 
 <!-- 文章页添加mathjax公式 -->
   
+    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/edc2b94.html">置顶文章</a>
+    </h2>
+  
+
+        
+		
+		  <a href="/post/edc2b94.html" class="archive-article-date">
+  	<time datetime="2023-07-27T08:03:55.611Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2023-07-27</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+        
+		
+		
+		  <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">412字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">2min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+		
+      </header>
+    
+	
+    <div class="article-entry" itemprop="articleBody">
+	  <!-- 添加分类与标签 -->
+	  
+		  
+		  <h1 id="longsizhuo123-github-io"><a href="#longsizhuo123-github-io" class="headerlink" title="longsizhuo123.github.io"></a>longsizhuo123.github.io</h1><p><img src="https://user-images.githubusercontent.com/114939201/214082770-35d1fb45-9891-4b73-ba89-18e33030640f.png" alt="pattern_stripes-1_1_2_0-0_125_1__cc2a35_4f372d_00a1b0_edc951_eb6941"></p>
+<p><em>“Maybe it could be a nice memory”</em></p>
+<p>Welcome to my personal blog repository on Github! My name is Sizhuo Long, and I am currently a student in Australia. This repository is home to my personal blog, which is built using the HEXO static site generator. </p>
+<p>On my blog, you’ll find a variety of content including my thoughts on technology, programming, and the latest developments in my field of study. I also share my experiences and lessons learned from the projects I’ve worked on. </p>
+<p>I hope that by sharing my knowledge and insights, I can help others who are interested in the same topics. I welcome any comments and feedback, and I am always open to collaboration. </p>
+<p><strong>Thank you for visiting my blog</strong>, I hope you will find something interesting here. And I would really appreciate it if you could pay more attention to my blog and <strong>follow me</strong>.</p>
+<h3 id="Why-you-should-follow-me"><a href="#Why-you-should-follow-me" class="headerlink" title="Why you should follow me"></a>Why you should follow me</h3><ul>
+<li>I’ll share my personal experiences and thoughts on technology and programming </li>
+<li>I’ll keep you updated on the latest developments in my field of study</li>
+<li>I’m open to collaboration and feedback.</li>
+</ul>
+<h3 id="How-to-contact-me"><a href="#How-to-contact-me" class="headerlink" title="How to contact me"></a>How to contact me</h3><ul>
+<li>Email: <a href="mailto:&#108;&#111;&#x6e;&#x67;&#115;&#105;&#122;&#104;&#x75;&#111;&#x40;&#x67;&#x6d;&#97;&#x69;&#x6c;&#46;&#99;&#111;&#109;">&#108;&#111;&#x6e;&#x67;&#115;&#105;&#122;&#104;&#x75;&#111;&#x40;&#x67;&#x6d;&#97;&#x69;&#x6c;&#46;&#99;&#111;&#109;</a></li>
+<li>LinkedIn: <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/longsizhuo/">Sizhuo Long</a></li>
+<li>XiaoHongShu(Small RedBook): <a target="_blank" rel="noopener" href="https://www.xiaohongshu.com/user/profile/5c0b8cc2000000000601e809">@sizhuo_long</a></li>
+</ul>
+<p>Thank you for reading, and I hope you enjoy my blog!</p>
+<p><img src="https://user-images.githubusercontent.com/114939201/214082782-ae84027e-0a15-4ed4-843b-00a29ea19480.png" alt="pattern_stripes-1_1_2_0-0_125_1__cc2a35_4f372d_00a1b0_edc951_eb6941"></p>
+<p><strong><a target="_blank" rel="noopener" href="https://longsizhuo.shinyapps.io/long/">面向单细胞RNA数据分析工具</a></strong><br>以前做的项目，还有很多错误，勿喷。<br><strong><a href="html/Sichuan_Traveler/index.html">蜀地旅行菌</a></strong><br>这是一个本科大二的时候的一个小作业，是小组作业。一开始因为链接不了<code>html</code>文件，阅读了很多很多官方文档或者CSDN文档<br>    。最后阅读了一篇文章，说是HEXO在当你<code>generate</code>的时候，就会把source中的文件append到public中去，后来试了很多次，发现直接以<br>public为源文件夹，调用目录即可。虽然这样就会导致无法在md文档中超链接到文件。    </p>
+<p>同时，也存在新的bug未解决：login.html无法和index.html相互跳转<br>Linkin:</p>
+<div class="badge-base LI-profile-badge" data-locale="zh_CN" data-size="medium" data-theme="dark" data-type="HORIZONTAL" data-vanity="longsizhuo" data-version="v1"><a class="badge-base__link LI-simple-link" target="_blank" rel="noopener" href="https://au.linkedin.com/in/longsizhuo?trk=profile-badge">Sizhuo Long</a></div>
+
+
+
+
+				  
+	  
+      
+	  <!-- 添加打赏 -->
+	  
+	
+	  <!-- 添加版权声明 -->
+      
+	  
+	</div>
+	
+	<!-- 添加置顶 -->
+    <div class="article-info article-info-index">
+      
+        <div class="article-pop-out tagcloud">
+          <i class="icon-tuding"></i>
+          <a class="article-tag-list-link color3">置顶</a>
+        </div>
+      
+	  
+	  <!-- 分类页 -->
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">未解决</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+	  
+	  <!-- 添加展开全文 -->
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/post/edc2b94.html">展开全文 >></a>
+        </p>
+      
+	  
+	  <!-- 添加分享 -->
+      
+	  
+      <div class="clearfix"></div>
+	  
+    </div>
+  </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+  
+
+<!-- 文章页添加mathjax公式 -->
+  
     <article id="post-go" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -771,181 +1117,6 @@ var _hmt = _hmt || [];
       
         <p class="article-more-link">
           <a class="article-more-a" href="/post/67fc8613.html">展开全文 >></a>
-        </p>
-      
-	  
-	  <!-- 添加分享 -->
-      
-	  
-      <div class="clearfix"></div>
-	  
-    </div>
-  </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-  
-
-<!-- 文章页添加mathjax公式 -->
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/edc2b94.html">置顶文章</a>
-    </h2>
-  
-
-        
-		
-		  <a href="/post/edc2b94.html" class="archive-article-date">
-  	<time datetime="2023-07-27T08:03:55.611Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2023-07-27</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-        
-		
-		
-		  <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">412字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">2min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-		
-      </header>
-    
-	
-    <div class="article-entry" itemprop="articleBody">
-	  <!-- 添加分类与标签 -->
-	  
-		  
-		  <h1 id="longsizhuo123-github-io"><a href="#longsizhuo123-github-io" class="headerlink" title="longsizhuo123.github.io"></a>longsizhuo123.github.io</h1><p><img src="https://user-images.githubusercontent.com/114939201/214082770-35d1fb45-9891-4b73-ba89-18e33030640f.png" alt="pattern_stripes-1_1_2_0-0_125_1__cc2a35_4f372d_00a1b0_edc951_eb6941"></p>
-<p><em>“Maybe it could be a nice memory”</em></p>
-<p>Welcome to my personal blog repository on Github! My name is Sizhuo Long, and I am currently a student in Australia. This repository is home to my personal blog, which is built using the HEXO static site generator. </p>
-<p>On my blog, you’ll find a variety of content including my thoughts on technology, programming, and the latest developments in my field of study. I also share my experiences and lessons learned from the projects I’ve worked on. </p>
-<p>I hope that by sharing my knowledge and insights, I can help others who are interested in the same topics. I welcome any comments and feedback, and I am always open to collaboration. </p>
-<p><strong>Thank you for visiting my blog</strong>, I hope you will find something interesting here. And I would really appreciate it if you could pay more attention to my blog and <strong>follow me</strong>.</p>
-<h3 id="Why-you-should-follow-me"><a href="#Why-you-should-follow-me" class="headerlink" title="Why you should follow me"></a>Why you should follow me</h3><ul>
-<li>I’ll share my personal experiences and thoughts on technology and programming </li>
-<li>I’ll keep you updated on the latest developments in my field of study</li>
-<li>I’m open to collaboration and feedback.</li>
-</ul>
-<h3 id="How-to-contact-me"><a href="#How-to-contact-me" class="headerlink" title="How to contact me"></a>How to contact me</h3><ul>
-<li>Email: <a href="mailto:&#x6c;&#x6f;&#x6e;&#x67;&#x73;&#105;&#x7a;&#104;&#x75;&#x6f;&#64;&#103;&#109;&#x61;&#105;&#x6c;&#46;&#99;&#x6f;&#109;">&#x6c;&#x6f;&#x6e;&#x67;&#x73;&#105;&#x7a;&#104;&#x75;&#x6f;&#64;&#103;&#109;&#x61;&#105;&#x6c;&#46;&#99;&#x6f;&#109;</a></li>
-<li>LinkedIn: <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/longsizhuo/">Sizhuo Long</a></li>
-<li>XiaoHongShu(Small RedBook): <a target="_blank" rel="noopener" href="https://www.xiaohongshu.com/user/profile/5c0b8cc2000000000601e809">@sizhuo_long</a></li>
-</ul>
-<p>Thank you for reading, and I hope you enjoy my blog!</p>
-<p><img src="https://user-images.githubusercontent.com/114939201/214082782-ae84027e-0a15-4ed4-843b-00a29ea19480.png" alt="pattern_stripes-1_1_2_0-0_125_1__cc2a35_4f372d_00a1b0_edc951_eb6941"></p>
-<p><strong><a target="_blank" rel="noopener" href="https://longsizhuo.shinyapps.io/long/">面向单细胞RNA数据分析工具</a></strong><br>以前做的项目，还有很多错误，勿喷。<br><strong><a href="html/Sichuan_Traveler/index.html">蜀地旅行菌</a></strong><br>这是一个本科大二的时候的一个小作业，是小组作业。一开始因为链接不了<code>html</code>文件，阅读了很多很多官方文档或者CSDN文档<br>    。最后阅读了一篇文章，说是HEXO在当你<code>generate</code>的时候，就会把source中的文件append到public中去，后来试了很多次，发现直接以<br>public为源文件夹，调用目录即可。虽然这样就会导致无法在md文档中超链接到文件。    </p>
-<p>同时，也存在新的bug未解决：login.html无法和index.html相互跳转<br>Linkin:</p>
-<div class="badge-base LI-profile-badge" data-locale="zh_CN" data-size="medium" data-theme="dark" data-type="HORIZONTAL" data-vanity="longsizhuo" data-version="v1"><a class="badge-base__link LI-simple-link" target="_blank" rel="noopener" href="https://au.linkedin.com/in/longsizhuo?trk=profile-badge">Sizhuo Long</a></div>
-
-
-
-
-				  
-	  
-      
-	  <!-- 添加打赏 -->
-	  
-	
-	  <!-- 添加版权声明 -->
-      
-	  
-	</div>
-	
-	<!-- 添加置顶 -->
-    <div class="article-info article-info-index">
-      
-        <div class="article-pop-out tagcloud">
-          <i class="icon-tuding"></i>
-          <a class="article-tag-list-link color3">置顶</a>
-        </div>
-      
-	  
-	  <!-- 分类页 -->
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">未解决</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-	  
-	  <!-- 添加展开全文 -->
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/post/edc2b94.html">展开全文 >></a>
         </p>
       
 	  
@@ -1803,263 +1974,6 @@ var _hmt = _hmt || [];
 
 <!-- 文章页添加mathjax公式 -->
   
-    <article id="post-538.把二叉搜索树转换为累加树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/32401b69.html">538.把二叉搜索树转换为累加树</a>
-    </h2>
-  
-
-        
-		
-		  <a href="/post/32401b69.html" class="archive-article-date">
-  	<time datetime="2023-06-04T08:50:00.000Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2023-06-04</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-        
-		
-		
-		  <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">1.4k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">5min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-		
-      </header>
-    
-	
-    <div class="article-entry" itemprop="articleBody">
-	  <!-- 添加分类与标签 -->
-	  
-		  
-		  <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>“””</p>
-<p>给出二叉<strong> 搜索 </strong>树的根节点，该树的节点值各不相同，请你将其转换为累加树（Greater Sum Tree），使每个节点 <code>node</code>&nbsp;的新值等于原树中大于或等于&nbsp;<code>node.val</code>&nbsp;的值之和。</p>
-
-<p>提醒一下，二叉搜索树满足下列约束条件：</p>
-
-<ul> 
- <li>节点的左子树仅包含键<strong> 小于 </strong>节点键的节点。</li> 
- <li>节点的右子树仅包含键<strong> 大于</strong> 节点键的节点。</li> 
- <li>左右子树也必须是二叉搜索树。</li> 
-</ul>
-
-<p><strong>注意：</strong>本题和 1038:&nbsp;<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-search-tree-to-greater-sum-tree/">https://leetcode-cn.com/problems/binary-search-tree-to-greater-sum-tree/</a> 相同</p>
-
-<p>&nbsp;</p>
-
-<p><strong>示例 1：</strong></p>
-
-<p><strong><img alt="" src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2019/05/03/tree.png" style="height: 364px; width: 534px;" /></strong></p>
-
-<pre><strong>输入：</strong>[4,1,6,0,2,5,7,null,null,null,3,null,null,null,8]
-<strong>输出：</strong>[30,36,21,36,35,26,15,null,null,null,33,null,null,null,8]
-</pre>
-
-<p><strong>示例 2：</strong></p>
-
-<pre><strong>输入：</strong>root = [0,null,1]
-<strong>输出：</strong>[1,null,1]
-</pre>
-
-<p><strong>示例 3：</strong></p>
-
-<pre><strong>输入：</strong>root = [1,0,2]
-<strong>输出：</strong>[3,3,2]
-</pre>
-
-<p><strong>示例 4：</strong></p>
-
-<pre><strong>输入：</strong>root = [3,2,4,1]
-<strong>输出：</strong>[7,9,4,10]
-</pre>
-
-<p>&nbsp;</p>
-
-<p><strong>提示：</strong></p>
-
-<ul> 
- <li>树中的节点数介于 <code>0</code>&nbsp;和 <code>10<sup>4</sup></code><sup>&nbsp;</sup>之间。</li> 
- <li>每个节点的值介于 <code>-10<sup>4</sup></code>&nbsp;和&nbsp;<code>10<sup>4</sup></code>&nbsp;之间。</li> 
- <li>树中的所有值 <strong>互不相同</strong> 。</li> 
- <li>给定的树为二叉搜索树。</li> 
-</ul>
-
-<div><div>Related Topics</div><div><li>树</li><li>深度优先搜索</li><li>二叉搜索树</li><li>二叉树</li></div></div><br><div><li>👍 904</li><li>👎 0</li></div>
-"""
-
-<h1 id="思想："><a href="#思想：" class="headerlink" title="思想："></a>思想：</h1><p>方法一：反序中序遍历<br>思路及算法</p>
-<p>本题中要求我们将每个节点的值修改为原来的节点值加上所有大于它的节点值之和。这样我们只需要反序中序遍历该二叉搜索树，记录过程中的节点值之和，并不断更新当前遍历到的节点的节点值，即可得到题目要求的累加树。</p>
-<p>方法二：Morris 遍历<br>思路及算法</p>
-<p>有一种巧妙的方法可以在线性时间内，只占用常数空间来实现中序遍历。这种方法由 J. H. Morris 在 1979 年的论文「Traversing Binary Trees Simply and Cheaply」中首次提出，因此被称为 Morris 遍历。</p>
-<p>我们以一个简单的二叉树为例进行说明。假设我们要进行中序遍历的 Morris 遍历。</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="code">    1</span></span><br><span class="line"><span class="code">   / \</span></span><br><span class="line"><span class="code">  2   3</span></span><br><span class="line"><span class="code"> / \</span></span><br><span class="line"><span class="code">4   5</span></span><br><span class="line"><span class="code"></span></span><br></pre></td></tr></table></figure>
-<ol>
-<li><p>初始化当前节点为根节点（current = 1）。</p>
-</li>
-<li><p>当前节点不为空时，执行以下步骤：</p>
-<ol>
-<li><p>当前节点的左子节点不为空。我们找到当前节点的前驱节点，也就是左子树中的最右节点。在这个例子中，前驱节点为节点5。</p>
-</li>
-<li><p>前驱节点的右子节点为空，将其右子节点指向当前节点（5 -&gt; 1）。</p>
-</li>
-<li><p>将当前节点移动到其左子节点（current = 2）。</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line"> \</span><br><span class="line">  2</span><br><span class="line"> / \</span><br><span class="line">4   5</span><br></pre></td></tr></table></figure></li>
-<li><p>当前节点的左子节点不为空。我们找到当前节点的前驱节点，也就是左子树中的最右节点。在这个例子中，前驱节点为节点4。</p>
-</li>
-<li><p>前驱节点的右子节点为空，将其右子节点指向当前节点（4 -&gt; 2）。</p>
-</li>
-<li><p>将当前节点移动到其左子节点（current = 4）。</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line"> \</span><br><span class="line">  2</span><br><span class="line">   \</span><br><span class="line"><span class="code">    4</span></span><br><span class="line"><span class="code">     \</span></span><br><span class="line"><span class="code">      5</span></span><br><span class="line"><span class="code">    </span></span><br></pre></td></tr></table></figure></li>
-<li><p>当前节点的左子节点为空。输出当前节点的值（4）。</p>
-</li>
-<li><p>将当前节点移动到其右子节点（current = 5）。</p>
-</li>
-<li><p>当前节点的左子节点为空。输出当前节点的值（5）。</p>
-</li>
-<li><p>将当前节点移动到其右子节点（current = 2）。</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line"> \</span><br><span class="line">  2</span><br><span class="line">   \</span><br><span class="line"><span class="code">    4</span></span><br></pre></td></tr></table></figure></li>
-<li><p>当前节点的左子节点为空。输出当前节点的值（2）。</p>
-</li>
-<li><p>将当前节点移动到其右子节点（current = 1）。</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line"> \</span><br><span class="line">  2</span><br></pre></td></tr></table></figure></li>
-<li><p>当前节点的左子节点为空。输出当前节点的值（1）。</p>
-</li>
-<li><p>将当前节点移动到其右子节点（current = 3）。</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line"> \</span><br><span class="line">  2</span><br></pre></td></tr></table></figure></li>
-<li><p>当前节点的左子节点为空。输出当前节点的值（3）。</p>
-</li>
-<li><p>将当前节点移动到其右子节点（current = null）。</p>
-</li>
-</ol>
-</li>
-<li><p>当前节点为空，遍历结束。</p>
-</li>
-<li><p>根据上述步骤，通过修改节点之间的指针关系，我们完成了对二叉树的中序遍历。</p>
-</li>
-</ol>
-<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight python"><figcaption><span>中序遍历</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">convertBST</span>(<span class="params">self, root: TreeNode</span>) -&gt; TreeNode:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">root: TreeNode</span>):</span><br><span class="line">            <span class="keyword">nonlocal</span> total</span><br><span class="line">            <span class="keyword">if</span> root:</span><br><span class="line">                dfs(root.right)</span><br><span class="line">                total += root.val</span><br><span class="line">                root.val = total</span><br><span class="line">                dfs(root.left)</span><br><span class="line">        </span><br><span class="line">        total = <span class="number">0</span></span><br><span class="line">        dfs(root)</span><br><span class="line">        <span class="keyword">return</span> root</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><figcaption><span>Morris遍历</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">convertBST</span>(<span class="params">self, root: TreeNode</span>) -&gt; TreeNode:</span><br><span class="line">        <span class="comment"># 获取给定节点的后继节点（中序遍历中的下一个节点）</span></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">getSuccessor</span>(<span class="params">node: TreeNode</span>) -&gt; TreeNode:</span><br><span class="line">            succ = node.right</span><br><span class="line">            <span class="keyword">while</span> succ.left <span class="keyword">and</span> succ.left != node:</span><br><span class="line">                succ = succ.left</span><br><span class="line">            <span class="keyword">return</span> succ</span><br><span class="line">        </span><br><span class="line">        total = <span class="number">0</span>  <span class="comment"># 记录累加的节点值之和</span></span><br><span class="line">        node = root  <span class="comment"># 当前节点初始化为根节点</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> node:</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> node.right:  <span class="comment"># 如果当前节点的右子节点为空</span></span><br><span class="line">                total += node.val  <span class="comment"># 将当前节点的值加到累加值中</span></span><br><span class="line">                node.val = total  <span class="comment"># 更新当前节点的值为累加值</span></span><br><span class="line">                node = node.left  <span class="comment"># 将当前节点移动到其左子节点</span></span><br><span class="line">            <span class="keyword">else</span>:  <span class="comment"># 如果当前节点的右子节点不为空</span></span><br><span class="line">                succ = getSuccessor(node)  <span class="comment"># 获取当前节点的后继节点</span></span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> succ.left:  <span class="comment"># 如果后继节点的左子节点为空</span></span><br><span class="line">                    succ.left = node  <span class="comment"># 将后继节点的左子节点指向当前节点，建立线索</span></span><br><span class="line">                    node = node.right  <span class="comment"># 将当前节点移动到其右子节点</span></span><br><span class="line">                <span class="keyword">else</span>:  <span class="comment"># 如果后继节点的左子节点不为空</span></span><br><span class="line">                    succ.left = <span class="literal">None</span>  <span class="comment"># 将后继节点的左子节点置为空，移除线索</span></span><br><span class="line">                    total += node.val  <span class="comment"># 将当前节点的值加到累加值中</span></span><br><span class="line">                    node.val = total  <span class="comment"># 更新当前节点的值为累加值</span></span><br><span class="line">                    node = node.left  <span class="comment"># 将当前节点移动到其左子节点</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> root  <span class="comment"># 返回根节点</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">convertBST</span>(<span class="params">self, root: TreeNode</span>) -&gt; TreeNode:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">convert</span>(<span class="params">node: TreeNode, total: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> node:</span><br><span class="line">                <span class="keyword">return</span> total</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 递归遍历右子树</span></span><br><span class="line">            total = convert(node.right, total)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 更新节点值为累加值</span></span><br><span class="line">            total += node.val</span><br><span class="line">            node.val = total</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 递归遍历左子树</span></span><br><span class="line">            total = convert(node.left, total)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> total</span><br><span class="line"></span><br><span class="line">        convert(root, <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> root</span><br></pre></td></tr></table></figure>
-				  
-	  
-      
-	  <!-- 添加打赏 -->
-	  
-	
-	  <!-- 添加版权声明 -->
-      
-	  
-	</div>
-	
-	<!-- 添加置顶 -->
-    <div class="article-info article-info-index">
-      
-	  
-	  <!-- 分类页 -->
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">题解</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">二叉树</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-	  
-	  <!-- 添加展开全文 -->
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/post/32401b69.html">展开全文 >></a>
-        </p>
-      
-	  
-	  <!-- 添加分享 -->
-      
-	  
-      <div class="clearfix"></div>
-	  
-    </div>
-  </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-  
-
-<!-- 文章页添加mathjax公式 -->
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&lt;&lt; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/3/">下一页 &gt;&gt;</a>
@@ -2114,10 +2028,10 @@ window.MathJax = {
 	  <br>
 	  <div class="footer-center">
 	    <i class="fa fa-file-word-o" aria-hidden="true"></i>
-		<span> 87 篇</span>
+		<span> 88 篇</span>
 		<span class="post-meta-divider">|</span>
 		<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-		<span> <span class="post-count">32.4k</span></span>
+		<span> <span class="post-count">32.7k</span></span>
       </div>
 	  
 	  <!-- 添加不蒜子统计 -->
@@ -2333,11 +2247,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">前缀和</a>
+                <a href="javascript:void(0)" class="js-tag color4">字典树</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">字典树</a>
+                <a href="javascript:void(0)" class="js-tag color4">前缀和</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2353,11 +2267,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">动态规划</a>
+                <a href="javascript:void(0)" class="js-tag color3">链表</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">链表</a>
+                <a href="javascript:void(0)" class="js-tag color5">动态规划</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2381,11 +2295,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">图论</a>
+                <a href="javascript:void(0)" class="js-tag color4">多重集</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多重集</a>
+                <a href="javascript:void(0)" class="js-tag color3">图论</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2394,6 +2308,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">位运算</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2429,10 +2347,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">贪心</a>
               </li>
              
@@ -2442,34 +2356,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">周赛</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">中等</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">pandas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">math</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">前端</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">加密</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">优先队列</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2489,7 +2375,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">树</a>
+                <a href="javascript:void(0)" class="js-tag color3">中等</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2498,6 +2384,34 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">双向链表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">优先队列</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">前端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">加密</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">math</a>
               </li>
             
             <div class="clearfix"></div>
