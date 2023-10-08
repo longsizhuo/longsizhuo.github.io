@@ -6,7 +6,7 @@
   <link href="https://longsizhuo123.github.io/atom.xml" rel="self"/>
   
   <link href="https://longsizhuo123.github.io/"/>
-  <updated>2023-09-27T06:16:07.272Z</updated>
+  <updated>2023-10-08T12:36:26.372Z</updated>
   <id>https://longsizhuo123.github.io/</id>
   
   <author>
@@ -15,6 +15,123 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Inline expansion</title>
+    <link href="https://longsizhuo123.github.io/post/2660e935.html"/>
+    <id>https://longsizhuo123.github.io/post/2660e935.html</id>
+    <published>2023-10-08T10:23:00.000Z</published>
+    <updated>2023-10-08T12:36:26.372Z</updated>
+    
+    <content type="html"><![CDATA[<p>9021大家已经在卷运行时间了，这刚好就是$算法$发展的本质。</p><p><img src="../assets/img/%E6%88%AA%E5%B1%8F2023-10-08%20%E4%B8%8B%E5%8D%8811.35.38.png" alt="截屏2023-10-08 下午11.35.38.png"></p><p>“有一堆函数的代码和没有函数调用的代码，哪个运行的更快？”</p><p>我们先说结论：没有函数调用的代码运行的更快。但是<em><strong>可读性</strong></em>更差，而且<em><strong>运行速度的差距并不大</strong></em>。</p><p>我们可以提出来以下问题：</p><ol><li>为什么函数的频发调用会导致性能的下降？</li><li>怎么解决这种性能的下降？</li><li>什么是内联扩展？</li></ol><h1 id="为什么函数的频发调用会导致性能的下降？"><a href="#为什么函数的频发调用会导致性能的下降？" class="headerlink" title="为什么函数的频发调用会导致性能的下降？"></a>为什么函数的频发调用会导致性能的下降？</h1><p>函数调用通常涉及将参数压入堆栈、跳转到函数代码、执行函数代码、将返回值放入适当的位置、然后跳回到调用函数的地方。</p><h1 id="怎么解决这种性能的下降？"><a href="#怎么解决这种性能的下降？" class="headerlink" title="怎么解决这种性能的下降？"></a>怎么解决这种性能的下降？</h1><p>尾递归优化、死代码消除、常量传播和常量折叠、内联拓展等。这一章主要说内联拓展。</p><h1 id="什么是内联扩展"><a href="#什么是内联扩展" class="headerlink" title="什么是内联扩展"></a>什么是内联扩展</h1><p>维基百科：</p><pre><code>Inline expansion is used to eliminate the time overhead (excess time) when a function is called. It is typically used for functions that execute frequently. It also has a space benefit for very small functions, and is an enabling transformation for other optimizations.内联扩展用于消除调用函数时的时间开销(超额时间)。它通常用于频繁执行的函数。对于非常小的函数来说，它还具有空间优势，并且是一种支持其他优化的转换。</code></pre><p>频繁地调用函数可能会导致一些额外的开销，这种开销是由于函数调用时的堆栈操作、参数传递和返回值处理等因素引起的。</p><p>为了避免这种开销，编译器会尝试将函数调用处的代码替换为函数体，这个过程称为内联扩展（inline expansion）。</p><p>ref:<br><a href="https://www.jstage.jst.go.jp/article/sptj1978/44/3/44_3_206/_pdf">https://www.jstage.jst.go.jp/article/sptj1978/44/3/44_3_206/_pdf</a></p><p><a href="https://www.semanticscholar.org/search?q=Inline%20expansion&amp;sort=relevance">https://www.semanticscholar.org/search?q=Inline%20expansion&amp;sort=relevance</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;9021大家已经在卷运行时间了，这刚好就是$算法$发展的本质。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../assets/img/%E6%88%AA%E5%B1%8F2023-10-08%20%E4%B8%8B%E5%8D%8811.35.38.png&quot; alt=&quot;截屏2023</summary>
+      
+    
+    
+    
+    
+    <category term="计算机组成原理" scheme="https://longsizhuo123.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>122.买卖股票的最佳时期II</title>
+    <link href="https://longsizhuo123.github.io/post/a75da5a.html"/>
+    <id>https://longsizhuo123.github.io/post/a75da5a.html</id>
+    <published>2023-10-02T13:23:00.000Z</published>
+    <updated>2023-10-02T12:18:06.688Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p><img src="../assets/img/%E6%88%AA%E5%B1%8F2023-10-02%20%E4%B8%8B%E5%8D%8811.16.25.png" alt="截屏2023-10-02 下午11.16.25.png"></p><p><a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/">122.买卖股票的最佳时期II.md</a></p><h1 id="思想："><a href="#思想：" class="headerlink" title="思想："></a>思想：</h1><p>看到题忘记了还可以直接后一天的价格减前一天的价格，想的是构建最小子问题。<br>然后发现好像有点复杂，又做过（2023.1.13），才发现好像只要一行就行。</p><h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxProfit</span>(<span class="params">self, prices: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sum</span>(<span class="built_in">max</span>(<span class="number">0</span>, prices[i] - prices[i - <span class="number">1</span>]) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(prices)))</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;题目：&quot;&gt;&lt;a href=&quot;#题目：&quot; class=&quot;headerlink&quot; title=&quot;题目：&quot;&gt;&lt;/a&gt;题目：&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;../assets/img/%E6%88%AA%E5%B1%8F2023-10-02%20%E4%B8%8B%E</summary>
+      
+    
+    
+    
+    
+    <category term="Python" scheme="https://longsizhuo123.github.io/tags/Python/"/>
+    
+    <category term="题解" scheme="https://longsizhuo123.github.io/tags/%E9%A2%98%E8%A7%A3/"/>
+    
+    <category term="动态规划" scheme="https://longsizhuo123.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+    
+    <category term="数组" scheme="https://longsizhuo123.github.io/tags/%E6%95%B0%E7%BB%84/"/>
+    
+    <category term="贪心" scheme="https://longsizhuo123.github.io/tags/%E8%B4%AA%E5%BF%83/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>121.买卖股票的最佳时期</title>
+    <link href="https://longsizhuo123.github.io/post/3a21fe32.html"/>
+    <id>https://longsizhuo123.github.io/post/3a21fe32.html</id>
+    <published>2023-10-01T08:23:00.000Z</published>
+    <updated>2023-10-01T07:28:49.082Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p><img src="../assets/img/%E6%88%AA%E5%B1%8F2023-10-01%20%E4%B8%8B%E5%8D%886.24.27.png" alt="截屏2023-10-01 下午6.24.27.png"></p><p><a href="https://leetcode-cn.com/problems/number-of-flowers-that-can-be-planted-in-garden/">2251.花期内花的数目.md</a></p><h1 id="思想："><a href="#思想：" class="headerlink" title="思想："></a>思想：</h1><p>动态规划，找到最小子问题<br>最小子问题：第i天的最大利润 = max(第i-1天的最大利润, 第i天的价格 - 前i-1天的最小价格)</p><h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxProfit</span>(<span class="params">self, prices: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="comment"># 最小子问题：第i天的最大利润 = max(第i-1天的最大利润, 第i天的价格 - 前i-1天的最小价格)</span></span><br><span class="line">        dp = [<span class="number">0</span>] * <span class="built_in">len</span>(prices)</span><br><span class="line">        min_price = prices[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(prices)):</span><br><span class="line">            dp[i] = <span class="built_in">max</span>(dp[i - <span class="number">1</span>], prices[i] - min_price)</span><br><span class="line">            min_price = <span class="built_in">min</span>(min_price, prices[i])</span><br><span class="line">        <span class="keyword">return</span> dp[-<span class="number">1</span>]</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;题目：&quot;&gt;&lt;a href=&quot;#题目：&quot; class=&quot;headerlink&quot; title=&quot;题目：&quot;&gt;&lt;/a&gt;题目：&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;../assets/img/%E6%88%AA%E5%B1%8F2023-10-01%20%E4%B8%8B%E</summary>
+      
+    
+    
+    
+    
+    <category term="Python" scheme="https://longsizhuo123.github.io/tags/Python/"/>
+    
+    <category term="题解" scheme="https://longsizhuo123.github.io/tags/%E9%A2%98%E8%A7%A3/"/>
+    
+    <category term="动态规划" scheme="https://longsizhuo123.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+    
+    <category term="数组" scheme="https://longsizhuo123.github.io/tags/%E6%95%B0%E7%BB%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2251.花期内花的数目</title>
+    <link href="https://longsizhuo123.github.io/post/3a21fe32.html"/>
+    <id>https://longsizhuo123.github.io/post/3a21fe32.html</id>
+    <published>2023-09-28T14:55:29.046Z</published>
+    <updated>2023-09-28T15:00:18.289Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p><img src="../assets/img/%E6%88%AA%E5%B1%8F2023-09-29%20%E4%B8%8A%E5%8D%8812.54.48.png" alt="截屏2023-09-29 上午12.54.48.png"></p><p><a href="https://leetcode-cn.com/problems/number-of-flowers-that-can-be-planted-in-garden/">2251.花期内花的数目.md</a></p><h1 id="思想："><a href="#思想：" class="headerlink" title="思想："></a>思想：</h1><p>看的题解，想法太复杂了。学了一个新的库，bisect，二分查找，可以用来查找插入位置。</p><p><code>bisect_right(a, x)</code>: 在有序列表a中查找x，返回x应该被插入的位置，这个位置位于a中所有相同元素的右侧。</p><p><code>bisect_left(a, x)</code>: 在有序列表a中查找x，返回x应该被插入的位置，这个位置位于a中所有相同元素的左侧。</p><p>我们可以使用bisect_right来找到所有在该人出现之前开花的花的数量，使用bisect_left来找到所有在该人出现之前凋零的花的数量。</p><h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">fullBloomFlowers</span>(<span class="params">self, flowers: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]], people: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        start, end = <span class="built_in">sorted</span>(a <span class="keyword">for</span> a, _ <span class="keyword">in</span> flowers), <span class="built_in">sorted</span>(b <span class="keyword">for</span> _, b <span class="keyword">in</span> flowers)</span><br><span class="line">        <span class="comment"># 计算该人之前有多少个开始-有多少个结束</span></span><br><span class="line">        <span class="keyword">return</span> [bisect_right(start, p) - bisect_left(end, p) <span class="keyword">for</span> p <span class="keyword">in</span> people]</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;题目：&quot;&gt;&lt;a href=&quot;#题目：&quot; class=&quot;headerlink&quot; title=&quot;题目：&quot;&gt;&lt;/a&gt;题目：&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;../assets/img/%E6%88%AA%E5%B1%8F2023-09-29%20%E4%B8%8A%E</summary>
+      
+    
+    
+    
+    
+    <category term="Python" scheme="https://longsizhuo123.github.io/tags/Python/"/>
+    
+    <category term="题解" scheme="https://longsizhuo123.github.io/tags/%E9%A2%98%E8%A7%A3/"/>
+    
+    <category term="前缀和" scheme="https://longsizhuo123.github.io/tags/%E5%89%8D%E7%BC%80%E5%92%8C/"/>
+    
+    <category term="哈希表" scheme="https://longsizhuo123.github.io/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/"/>
+    
+    <category term="数组" scheme="https://longsizhuo123.github.io/tags/%E6%95%B0%E7%BB%84/"/>
+    
+    <category term="排序" scheme="https://longsizhuo123.github.io/tags/%E6%8E%92%E5%BA%8F/"/>
+    
+    <category term="二分查找" scheme="https://longsizhuo123.github.io/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/"/>
+    
+    <category term="有序集合" scheme="https://longsizhuo123.github.io/tags/%E6%9C%89%E5%BA%8F%E9%9B%86%E5%90%88/"/>
+    
+  </entry>
   
   <entry>
     <title>1333.餐厅过滤器</title>
@@ -399,38 +516,6 @@
   </entry>
   
   <entry>
-    <title>置顶文章</title>
-    <link href="https://longsizhuo123.github.io/post/edc2b94.html"/>
-    <id>https://longsizhuo123.github.io/post/edc2b94.html</id>
-    <published>2023-07-27T08:03:55.611Z</published>
-    <updated>2023-07-27T08:03:55.611Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="longsizhuo123-github-io"><a href="#longsizhuo123-github-io" class="headerlink" title="longsizhuo123.github.io"></a>longsizhuo123.github.io</h1><p><img src="https://user-images.githubusercontent.com/114939201/214082770-35d1fb45-9891-4b73-ba89-18e33030640f.png" alt="pattern_stripes-1_1_2_0-0_125_1__cc2a35_4f372d_00a1b0_edc951_eb6941"></p><p><em>“Maybe it could be a nice memory”</em></p><p>Welcome to my personal blog repository on Github! My name is Sizhuo Long, and I am currently a student in Australia. This repository is home to my personal blog, which is built using the HEXO static site generator. </p><p>On my blog, you’ll find a variety of content including my thoughts on technology, programming, and the latest developments in my field of study. I also share my experiences and lessons learned from the projects I’ve worked on. </p><p>I hope that by sharing my knowledge and insights, I can help others who are interested in the same topics. I welcome any comments and feedback, and I am always open to collaboration. </p><p><strong>Thank you for visiting my blog</strong>, I hope you will find something interesting here. And I would really appreciate it if you could pay more attention to my blog and <strong>follow me</strong>.</p><h3 id="Why-you-should-follow-me"><a href="#Why-you-should-follow-me" class="headerlink" title="Why you should follow me"></a>Why you should follow me</h3><ul><li>I’ll share my personal experiences and thoughts on technology and programming </li><li>I’ll keep you updated on the latest developments in my field of study</li><li>I’m open to collaboration and feedback.</li></ul><h3 id="How-to-contact-me"><a href="#How-to-contact-me" class="headerlink" title="How to contact me"></a>How to contact me</h3><ul><li>Email: <a href="mailto:&#108;&#111;&#x6e;&#x67;&#115;&#105;&#122;&#104;&#x75;&#111;&#x40;&#x67;&#x6d;&#97;&#x69;&#x6c;&#46;&#99;&#111;&#109;">&#108;&#111;&#x6e;&#x67;&#115;&#105;&#122;&#104;&#x75;&#111;&#x40;&#x67;&#x6d;&#97;&#x69;&#x6c;&#46;&#99;&#111;&#109;</a></li><li>LinkedIn: <a href="https://www.linkedin.com/in/longsizhuo/">Sizhuo Long</a></li><li>XiaoHongShu(Small RedBook): <a href="https://www.xiaohongshu.com/user/profile/5c0b8cc2000000000601e809">@sizhuo_long</a></li></ul><p>Thank you for reading, and I hope you enjoy my blog!</p><p><img src="https://user-images.githubusercontent.com/114939201/214082782-ae84027e-0a15-4ed4-843b-00a29ea19480.png" alt="pattern_stripes-1_1_2_0-0_125_1__cc2a35_4f372d_00a1b0_edc951_eb6941"></p><p><strong><a href="https://longsizhuo.shinyapps.io/long/">面向单细胞RNA数据分析工具</a></strong><br>以前做的项目，还有很多错误，勿喷。<br><strong><a href="html/Sichuan_Traveler/index.html">蜀地旅行菌</a></strong><br>这是一个本科大二的时候的一个小作业，是小组作业。一开始因为链接不了<code>html</code>文件，阅读了很多很多官方文档或者CSDN文档<br>    。最后阅读了一篇文章，说是HEXO在当你<code>generate</code>的时候，就会把source中的文件append到public中去，后来试了很多次，发现直接以<br>public为源文件夹，调用目录即可。虽然这样就会导致无法在md文档中超链接到文件。    </p><p>同时，也存在新的bug未解决：login.html无法和index.html相互跳转<br>Linkin:</p><div class="badge-base LI-profile-badge" data-locale="zh_CN" data-size="medium" data-theme="dark" data-type="HORIZONTAL" data-vanity="longsizhuo" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://au.linkedin.com/in/longsizhuo?trk=profile-badge">Sizhuo Long</a></div>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;longsizhuo123-github-io&quot;&gt;&lt;a href=&quot;#longsizhuo123-github-io&quot; class=&quot;headerlink&quot; title=&quot;longsizhuo123.github.io&quot;&gt;&lt;/a&gt;longsizhuo123.git</summary>
-      
-    
-    
-    
-    <category term="前端" scheme="https://longsizhuo123.github.io/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-    <category term="HEXO" scheme="https://longsizhuo123.github.io/categories/%E5%89%8D%E7%AB%AF/HEXO/"/>
-    
-    <category term="未解决" scheme="https://longsizhuo123.github.io/categories/%E6%9C%AA%E8%A7%A3%E5%86%B3/"/>
-    
-    <category term="存在bug" scheme="https://longsizhuo123.github.io/categories/%E6%9C%AA%E8%A7%A3%E5%86%B3/%E5%AD%98%E5%9C%A8bug/"/>
-    
-    
-    <category term="未解决" scheme="https://longsizhuo123.github.io/tags/%E6%9C%AA%E8%A7%A3%E5%86%B3/"/>
-    
-    <category term="前端" scheme="https://longsizhuo123.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
-    
-  </entry>
-  
-  <entry>
     <title>GO语言# GO语言可爱捏</title>
     <link href="https://longsizhuo123.github.io/post/67fc8613.html"/>
     <id>https://longsizhuo123.github.io/post/67fc8613.html</id>
@@ -452,6 +537,38 @@
     <category term="Python" scheme="https://longsizhuo123.github.io/tags/Python/"/>
     
     <category term="题解" scheme="https://longsizhuo123.github.io/tags/%E9%A2%98%E8%A7%A3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>置顶文章</title>
+    <link href="https://longsizhuo123.github.io/post/edc2b94.html"/>
+    <id>https://longsizhuo123.github.io/post/edc2b94.html</id>
+    <published>2023-07-27T08:03:55.611Z</published>
+    <updated>2023-07-27T08:03:55.611Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="longsizhuo123-github-io"><a href="#longsizhuo123-github-io" class="headerlink" title="longsizhuo123.github.io"></a>longsizhuo123.github.io</h1><p><img src="https://user-images.githubusercontent.com/114939201/214082770-35d1fb45-9891-4b73-ba89-18e33030640f.png" alt="pattern_stripes-1_1_2_0-0_125_1__cc2a35_4f372d_00a1b0_edc951_eb6941"></p><p><em>“Maybe it could be a nice memory”</em></p><p>Welcome to my personal blog repository on Github! My name is Sizhuo Long, and I am currently a student in Australia. This repository is home to my personal blog, which is built using the HEXO static site generator. </p><p>On my blog, you’ll find a variety of content including my thoughts on technology, programming, and the latest developments in my field of study. I also share my experiences and lessons learned from the projects I’ve worked on. </p><p>I hope that by sharing my knowledge and insights, I can help others who are interested in the same topics. I welcome any comments and feedback, and I am always open to collaboration. </p><p><strong>Thank you for visiting my blog</strong>, I hope you will find something interesting here. And I would really appreciate it if you could pay more attention to my blog and <strong>follow me</strong>.</p><h3 id="Why-you-should-follow-me"><a href="#Why-you-should-follow-me" class="headerlink" title="Why you should follow me"></a>Why you should follow me</h3><ul><li>I’ll share my personal experiences and thoughts on technology and programming </li><li>I’ll keep you updated on the latest developments in my field of study</li><li>I’m open to collaboration and feedback.</li></ul><h3 id="How-to-contact-me"><a href="#How-to-contact-me" class="headerlink" title="How to contact me"></a>How to contact me</h3><ul><li>Email: <a href="mailto:&#x6c;&#111;&#110;&#103;&#115;&#x69;&#122;&#x68;&#x75;&#111;&#64;&#103;&#x6d;&#97;&#x69;&#108;&#x2e;&#x63;&#x6f;&#x6d;">&#x6c;&#111;&#110;&#103;&#115;&#x69;&#122;&#x68;&#x75;&#111;&#64;&#103;&#x6d;&#97;&#x69;&#108;&#x2e;&#x63;&#x6f;&#x6d;</a></li><li>LinkedIn: <a href="https://www.linkedin.com/in/longsizhuo/">Sizhuo Long</a></li><li>XiaoHongShu(Small RedBook): <a href="https://www.xiaohongshu.com/user/profile/5c0b8cc2000000000601e809">@sizhuo_long</a></li></ul><p>Thank you for reading, and I hope you enjoy my blog!</p><p><img src="https://user-images.githubusercontent.com/114939201/214082782-ae84027e-0a15-4ed4-843b-00a29ea19480.png" alt="pattern_stripes-1_1_2_0-0_125_1__cc2a35_4f372d_00a1b0_edc951_eb6941"></p><p><strong><a href="https://longsizhuo.shinyapps.io/long/">面向单细胞RNA数据分析工具</a></strong><br>以前做的项目，还有很多错误，勿喷。<br><strong><a href="html/Sichuan_Traveler/index.html">蜀地旅行菌</a></strong><br>这是一个本科大二的时候的一个小作业，是小组作业。一开始因为链接不了<code>html</code>文件，阅读了很多很多官方文档或者CSDN文档<br>    。最后阅读了一篇文章，说是HEXO在当你<code>generate</code>的时候，就会把source中的文件append到public中去，后来试了很多次，发现直接以<br>public为源文件夹，调用目录即可。虽然这样就会导致无法在md文档中超链接到文件。    </p><p>同时，也存在新的bug未解决：login.html无法和index.html相互跳转<br>Linkin:</p><div class="badge-base LI-profile-badge" data-locale="zh_CN" data-size="medium" data-theme="dark" data-type="HORIZONTAL" data-vanity="longsizhuo" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://au.linkedin.com/in/longsizhuo?trk=profile-badge">Sizhuo Long</a></div>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;longsizhuo123-github-io&quot;&gt;&lt;a href=&quot;#longsizhuo123-github-io&quot; class=&quot;headerlink&quot; title=&quot;longsizhuo123.github.io&quot;&gt;&lt;/a&gt;longsizhuo123.git</summary>
+      
+    
+    
+    
+    <category term="前端" scheme="https://longsizhuo123.github.io/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    <category term="HEXO" scheme="https://longsizhuo123.github.io/categories/%E5%89%8D%E7%AB%AF/HEXO/"/>
+    
+    <category term="未解决" scheme="https://longsizhuo123.github.io/categories/%E6%9C%AA%E8%A7%A3%E5%86%B3/"/>
+    
+    <category term="存在bug" scheme="https://longsizhuo123.github.io/categories/%E6%9C%AA%E8%A7%A3%E5%86%B3/%E5%AD%98%E5%9C%A8bug/"/>
+    
+    
+    <category term="未解决" scheme="https://longsizhuo123.github.io/tags/%E6%9C%AA%E8%A7%A3%E5%86%B3/"/>
+    
+    <category term="前端" scheme="https://longsizhuo123.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
     
   </entry>
   
@@ -486,126 +603,6 @@
     <category term="模拟" scheme="https://longsizhuo123.github.io/tags/%E6%A8%A1%E6%8B%9F/"/>
     
     <category term="堆（优先队列）" scheme="https://longsizhuo123.github.io/tags/%E5%A0%86%EF%BC%88%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97%EF%BC%89/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>445.两数相加II</title>
-    <link href="https://longsizhuo123.github.io/post/2c4cc46c.html"/>
-    <id>https://longsizhuo123.github.io/post/2c4cc46c.html</id>
-    <published>2023-07-02T17:40:00.000Z</published>
-    <updated>2023-07-27T08:03:55.609Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p><img src="../assets/img/2023-07-03%20(1).png" alt="2023-07-03 (1).png"><br><a href="https://leetcode.cn/problems/add-two-numbers-ii/">445.两数相加</a></p><h1 id="思想："><a href="#思想：" class="headerlink" title="思想："></a>思想：</h1><p>跟昨天的题一已，顺便找到了<br>    力扣要的是一个很奇怪的<code>precompiled.listnode.ListNode</code>，但是我的是<code>&#39;__main__.ListNode&#39;</code>。<br>原因是：重复定义了$ListNode$<br>不反转链表的方法可能就是昨天的那种，转化为数学做。<br>代码依旧是<a href="https://leetcode.cn/problems/add-two-numbers-ii/solution/fan-zhuan-lian-biao-liang-shu-xiang-jia-okw6q/">0x3f的</a><br>与昨天的题解法一样</p><h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseList</span>(<span class="params">self, head: <span class="type">Optional</span>[ListNode]</span>) -&gt; <span class="type">Optional</span>[ListNode]:</span><br><span class="line">        <span class="keyword">if</span> head <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">or</span> head.<span class="built_in">next</span> <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> head</span><br><span class="line">        new_head = self.reverseList(head.<span class="built_in">next</span>)</span><br><span class="line">        head.<span class="built_in">next</span>.<span class="built_in">next</span> = head  <span class="comment"># 把下一个节点指向自己</span></span><br><span class="line">        head.<span class="built_in">next</span> = <span class="literal">None</span>  <span class="comment"># 断开指向下一个节点的连接，保证最终链表的末尾节点的 next 是空节点</span></span><br><span class="line">        <span class="keyword">return</span> new_head</span><br><span class="line"></span><br><span class="line">    <span class="comment"># l1 和 l2 为当前遍历的节点，carry 为进位</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">addTwo</span>(<span class="params">self, l1: <span class="type">Optional</span>[ListNode], l2: <span class="type">Optional</span>[ListNode], carry=<span class="number">0</span></span>) -&gt; <span class="type">Optional</span>[ListNode]:</span><br><span class="line">        <span class="keyword">if</span> l1 <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">and</span> l2 <span class="keyword">is</span> <span class="literal">None</span>:  <span class="comment"># 递归边界：l1 和 l2 都是空节点</span></span><br><span class="line">            <span class="keyword">return</span> ListNode(carry) <span class="keyword">if</span> carry <span class="keyword">else</span> <span class="literal">None</span>  <span class="comment"># 如果进位了，就额外创建一个节点</span></span><br><span class="line">        <span class="keyword">if</span> l1 <span class="keyword">is</span> <span class="literal">None</span>:  <span class="comment"># 如果 l1 是空的，那么此时 l2 一定不是空节点</span></span><br><span class="line">            l1, l2 = l2, l1  <span class="comment"># 交换 l1 与 l2，保证 l1 非空，从而简化代码</span></span><br><span class="line">        carry += l1.val + (l2.val <span class="keyword">if</span> l2 <span class="keyword">else</span> <span class="number">0</span>)  <span class="comment"># 节点值和进位加在一起</span></span><br><span class="line">        l1.val = carry % <span class="number">10</span>  <span class="comment"># 每个节点保存一个数位</span></span><br><span class="line">        l1.<span class="built_in">next</span> = self.addTwo(l1.<span class="built_in">next</span>, l2.<span class="built_in">next</span> <span class="keyword">if</span> l2 <span class="keyword">else</span> <span class="literal">None</span>, carry // <span class="number">10</span>)  <span class="comment"># 进位</span></span><br><span class="line">        <span class="keyword">return</span> l1</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">addTwoNumbers</span>(<span class="params">self, l1: <span class="type">Optional</span>[ListNode], l2: <span class="type">Optional</span>[ListNode]</span>) -&gt; <span class="type">Optional</span>[ListNode]:</span><br><span class="line">        l1 = self.reverseList(l1)</span><br><span class="line">        l2 = self.reverseList(l2)  <span class="comment"># l1 和 l2 反转后，就变成【2. 两数相加】了</span></span><br><span class="line">        l3 = self.addTwo(l1, l2)</span><br><span class="line">        <span class="keyword">return</span> self.reverseList(l3)</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;题目：&quot;&gt;&lt;a href=&quot;#题目：&quot; class=&quot;headerlink&quot; title=&quot;题目：&quot;&gt;&lt;/a&gt;题目：&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;../assets/img/2023-07-03%20(1).png&quot; alt=&quot;2023-07-03 (1).</summary>
-      
-    
-    
-    
-    
-    <category term="Python" scheme="https://longsizhuo123.github.io/tags/Python/"/>
-    
-    <category term="题解" scheme="https://longsizhuo123.github.io/tags/%E9%A2%98%E8%A7%A3/"/>
-    
-    <category term="数学" scheme="https://longsizhuo123.github.io/tags/%E6%95%B0%E5%AD%A6/"/>
-    
-    <category term="链表" scheme="https://longsizhuo123.github.io/tags/%E9%93%BE%E8%A1%A8/"/>
-    
-    <category term="递归" scheme="https://longsizhuo123.github.io/tags/%E9%80%92%E5%BD%92/"/>
-    
-    <category term="栈" scheme="https://longsizhuo123.github.io/tags/%E6%A0%88/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2 .两数相加</title>
-    <link href="https://longsizhuo123.github.io/post/fa9db6b8.html"/>
-    <id>https://longsizhuo123.github.io/post/fa9db6b8.html</id>
-    <published>2023-07-02T13:19:00.000Z</published>
-    <updated>2023-07-27T08:03:55.611Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p><img src="../assets/img/2023-07-03.png" alt="2023-07-03.png"><br><a href="https://leetcode.cn/problems/add-two-numbers/">[2].两数相加.md</a></p><h1 id="思想："><a href="#思想：" class="headerlink" title="思想："></a>思想：</h1><p>我本来写的是最蠢的方法，把两个链表转换成数字，然后相加，再转换成链表。但是很奇怪的是我在本地运行的时候是对的，但是提交的时候就不对了，<br>力扣要的是一个很奇怪的<code>precompiled.listnode.ListNode</code>，但是我的是<code>&#39;__main__.ListNode&#39;</code>。<br>所以只能看<a href="https://leetcode.cn/problems/add-two-numbers/solution/dong-hua-jian-ji-xie-fa-cong-di-gui-dao-oe0di/">0x3f</a>的答案。</p><pre><code>每次把两个节点值`l1.val`，`l2.val`与进位值`carry`相加，除以 10 的余数即为当前节点需要保存的数位，除以10的商即为新的进位值</code></pre><p>代码实现时，有一个简化代码的小技巧：如果递归中发现<code>l2</code>的长度比<code>l1</code>更长，那么可以交换<code>l1</code>和 <code>l2</code>，保证 <code>l1</code>不是空节点，从而简化代码逻辑。</p><h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="comment"># l1 和 l2 为当前遍历的节点，carry 为进位</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">addTwoNumbers</span>(<span class="params">self, l1: <span class="type">Optional</span>[ListNode], l2: <span class="type">Optional</span>[ListNode], carry=<span class="number">0</span></span>) -&gt; <span class="type">Optional</span>[ListNode]:</span><br><span class="line">        <span class="keyword">if</span> l1 <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">and</span> l2 <span class="keyword">is</span> <span class="literal">None</span>:  <span class="comment"># 递归边界：l1 和 l2 都是空节点</span></span><br><span class="line">            <span class="keyword">return</span> ListNode(carry) <span class="keyword">if</span> carry <span class="keyword">else</span> <span class="literal">None</span>  <span class="comment"># 如果进位了，就额外创建一个节点</span></span><br><span class="line">        <span class="keyword">if</span> l1 <span class="keyword">is</span> <span class="literal">None</span>:  <span class="comment"># 如果 l1 是空的，那么此时 l2 一定不是空节点</span></span><br><span class="line">            l1, l2 = l2, l1  <span class="comment"># 交换 l1 与 l2，保证 l1 非空，从而简化代码</span></span><br><span class="line">        carry += l1.val + (l2.val <span class="keyword">if</span> l2 <span class="keyword">else</span> <span class="number">0</span>)  <span class="comment"># 节点值和进位加在一起</span></span><br><span class="line">        l1.val = carry % <span class="number">10</span>  <span class="comment"># 每个节点保存一个数位</span></span><br><span class="line">        l1.<span class="built_in">next</span> = self.addTwoNumbers(l1.<span class="built_in">next</span>, l2.<span class="built_in">next</span> <span class="keyword">if</span> l2 <span class="keyword">else</span> <span class="literal">None</span>, carry // <span class="number">10</span>)  <span class="comment"># 进位</span></span><br><span class="line">        <span class="keyword">return</span> l1</span><br></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">addTwoNumbers</span>(<span class="params">self, l1: <span class="type">Optional</span>[ListNode], l2: <span class="type">Optional</span>[ListNode], carry = <span class="number">0</span></span>) -&gt; <span class="type">Optional</span>[ListNode]:</span><br><span class="line">        l1_list = []</span><br><span class="line">        l2_list=[]</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">recursion_list</span>(<span class="params">node:ListNode, listt</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> node:</span><br><span class="line">                <span class="keyword">return</span> listt</span><br><span class="line">            listt.append(node.val)</span><br><span class="line">            <span class="keyword">return</span> recursion_list(node.<span class="built_in">next</span>, listt)</span><br><span class="line">        l1_list = recursion_list(l1, l1_list)</span><br><span class="line">        l2_list = recursion_list(l2, l2_list)</span><br><span class="line">        l1_list = <span class="string">&#x27;&#x27;</span>.join(<span class="built_in">map</span>(<span class="built_in">str</span>, l1_list))</span><br><span class="line">        l2_list = <span class="string">&#x27;&#x27;</span>.join(<span class="built_in">map</span>(<span class="built_in">str</span>, l2_list))</span><br><span class="line">        l3 = <span class="built_in">str</span>(<span class="built_in">int</span>(l1_list)+<span class="built_in">int</span>(l2_list))</span><br><span class="line">        <span class="built_in">print</span>(l3)</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">recursion_linkArray</span>(<span class="params">num</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> num:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">            head = ListNode(<span class="number">0</span>)</span><br><span class="line">            current = head</span><br><span class="line">            <span class="keyword">for</span> c <span class="keyword">in</span> num:</span><br><span class="line">                current.<span class="built_in">next</span> = ListNode(<span class="built_in">int</span>(c))</span><br><span class="line">                current = current.<span class="built_in">next</span></span><br><span class="line">            <span class="keyword">return</span> head.<span class="built_in">next</span></span><br><span class="line">        head = recursion_linkArray(l3[::-<span class="number">1</span>])</span><br><span class="line">        <span class="built_in">print</span>(recursion_list(head, []))</span><br><span class="line">        <span class="built_in">print</span>(<span class="built_in">type</span>(l1), <span class="built_in">type</span>(head))</span><br><span class="line">        <span class="keyword">return</span> head</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;题目：&quot;&gt;&lt;a href=&quot;#题目：&quot; class=&quot;headerlink&quot; title=&quot;题目：&quot;&gt;&lt;/a&gt;题目：&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;../assets/img/2023-07-03.png&quot; alt=&quot;2023-07-03.png&quot;&gt;&lt;br&gt;&lt;</summary>
-      
-    
-    
-    
-    
-    <category term="Python" scheme="https://longsizhuo123.github.io/tags/Python/"/>
-    
-    <category term="题解" scheme="https://longsizhuo123.github.io/tags/%E9%A2%98%E8%A7%A3/"/>
-    
-    <category term="数学" scheme="https://longsizhuo123.github.io/tags/%E6%95%B0%E5%AD%A6/"/>
-    
-    <category term="链表" scheme="https://longsizhuo123.github.io/tags/%E9%93%BE%E8%A1%A8/"/>
-    
-    <category term="递归" scheme="https://longsizhuo123.github.io/tags/%E9%80%92%E5%BD%92/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2490回环句</title>
-    <link href="https://longsizhuo123.github.io/post/5c07686c.html"/>
-    <id>https://longsizhuo123.github.io/post/5c07686c.html</id>
-    <published>2023-06-30T15:57:00.000Z</published>
-    <updated>2023-07-27T08:03:55.610Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p><img src="../assets/img/2023-07-01.png" alt="2023-07-01.png"><br><a href="https://leetcode.cn/problems/circular-sentence/">[2490]回环句.md</a></p><h1 id="思想："><a href="#思想：" class="headerlink" title="思想："></a>思想：</h1><p>分割每个单词，然后拼接到一起（<code>123</code>拼接成<code>123123</code>），再直接判断每个单词对应的下一个单词是否满足首尾相同即可。</p><h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">isCircularSentence</span>(<span class="params">self, sentence: <span class="built_in">str</span></span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        sentence = sentence.split(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">        length = <span class="built_in">len</span>(sentence)</span><br><span class="line">        sentence += sentence</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, length):</span><br><span class="line">            <span class="keyword">if</span> sentence[i][-<span class="number">1</span>] != sentence[i+<span class="number">1</span>][<span class="number">0</span>]:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;题目：&quot;&gt;&lt;a href=&quot;#题目：&quot; class=&quot;headerlink&quot; title=&quot;题目：&quot;&gt;&lt;/a&gt;题目：&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;../assets/img/2023-07-01.png&quot; alt=&quot;2023-07-01.png&quot;&gt;&lt;br&gt;&lt;</summary>
-      
-    
-    
-    
-    
-    <category term="Python" scheme="https://longsizhuo123.github.io/tags/Python/"/>
-    
-    <category term="题解" scheme="https://longsizhuo123.github.io/tags/%E9%A2%98%E8%A7%A3/"/>
-    
-    <category term="字符串" scheme="https://longsizhuo123.github.io/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>1253.重构 2 行二进制矩阵</title>
-    <link href="https://longsizhuo123.github.io/post/5c98e66b.html"/>
-    <id>https://longsizhuo123.github.io/post/5c98e66b.html</id>
-    <published>2023-06-29T16:25:00.000Z</published>
-    <updated>2023-07-27T08:03:55.610Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p><a href="https://leetcode.cn/problems/reconstruct-a-2-row-binary-matrix/">[1253]重构 2 行二进制矩阵.md</a><br><img src="../assets/img/2023-06-30.png" alt="重构 2 行二进制矩阵"></p><h1 id="思想："><a href="#思想：" class="headerlink" title="思想："></a>思想：</h1><p>一开始又读错题了，以为是将<code>colsum</code>分成<code>upper</code> 和 <code>lower</code>两个数组，<br>结果是将将<code>colsum[i]</code>分成<code>upper[i]</code> 和 <code>lower[i]</code>两个数。<br>并且<code>upper[i]</code>和<code>lower[i]</code>的和等于<code>colsum[i]</code>。<br>在每一次的循环里，获取<code>colsum</code>的值，然后判断0，1，2仨种情况，0直接不管，2的话平均分配。<br>1的话，直接给当前最小的那个数组。（这里我用的<code>upper</code>和<code>lower</code>本身的参数来记录剩余数字）。<br>在最开始的时候判断<code>if sum(colsum) != upper + lower</code>， 最后判断<code>if upper + lower != 0</code>。</p><p>At first, I misunderstood the question again, thinking that it was about dividing <code>colsum</code> into two arrays, <code>upper</code> and <code>lower</code>. However, it turned out that it was about dividing <code>colsum[i]</code> into two numbers, <code>upper[i]</code> and <code>lower[i]</code>. Additionally, the sum of <code>upper[i]</code> and <code>lower[i]</code> should be equal to <code>colsum[i]</code>.<br>In each iteration, the value of <code>colsum</code> is obtained, and then three scenarios, 0, 1, and 2, are considered. If it’s 0, it is ignored. If it’s 2, the values are evenly distributed. If it’s 1, it is assigned to the array with the current minimum value (using the remaining numbers in upper and lower than parameters).<br>At the beginning, it is checked whether <code>if sum(colsum) != upper + lower</code>, and finally, it is checked whether <code>if upper + lower != 0</code>.</p><h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reconstructMatrix</span>(<span class="params">self, upper: <span class="built_in">int</span>, lower: <span class="built_in">int</span>, colsum: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]:</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">sum</span>(colsum) != upper + lower:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        upper_list = [<span class="number">0</span>] * <span class="built_in">len</span>(colsum)</span><br><span class="line">        lower_list = [<span class="number">0</span>] * <span class="built_in">len</span>(colsum)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(colsum)):</span><br><span class="line">            <span class="keyword">if</span> colsum[i] == <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            <span class="keyword">if</span> colsum[i] == <span class="number">2</span>:</span><br><span class="line">                upper_list[i] = <span class="number">1</span></span><br><span class="line">                lower_list[i] = <span class="number">1</span></span><br><span class="line">                upper -= <span class="number">1</span></span><br><span class="line">                lower -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">if</span> upper &gt;= lower:</span><br><span class="line">                    upper_list[i] = <span class="number">1</span></span><br><span class="line">                    upper -= <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    lower_list[i] = <span class="number">1</span></span><br><span class="line">                    lower -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> upper != <span class="number">0</span> <span class="keyword">or</span> lower != <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        <span class="keyword">return</span> [upper_list, lower_list]</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;题目：&quot;&gt;&lt;a href=&quot;#题目：&quot; class=&quot;headerlink&quot; title=&quot;题目：&quot;&gt;&lt;/a&gt;题目：&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://leetcode.cn/problems/reconstruct-a-2-row-binary-m</summary>
-      
-    
-    
-    
-    
-    <category term="Python" scheme="https://longsizhuo123.github.io/tags/Python/"/>
-    
-    <category term="题解" scheme="https://longsizhuo123.github.io/tags/%E9%A2%98%E8%A7%A3/"/>
-    
-    <category term="数组" scheme="https://longsizhuo123.github.io/tags/%E6%95%B0%E7%BB%84/"/>
-    
-    <category term="矩阵" scheme="https://longsizhuo123.github.io/tags/%E7%9F%A9%E9%98%B5/"/>
-    
-    <category term="贪心" scheme="https://longsizhuo123.github.io/tags/%E8%B4%AA%E5%BF%83/"/>
-    
-    <category term="中等" scheme="https://longsizhuo123.github.io/tags/%E4%B8%AD%E7%AD%89/"/>
     
   </entry>
   
