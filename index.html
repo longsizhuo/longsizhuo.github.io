@@ -307,6 +307,483 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-2998. 使 X 和 Y 相等的最少操作次数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/5ee4164.html">2998. 使 X 和 Y 相等的最少操作次数</a>
+    </h2>
+  
+
+        
+		
+		  <a href="/post/5ee4164.html" class="archive-article-date">
+  	<time datetime="2024-01-06T13:39:00.000Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2024-01-06</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+        
+		
+		
+		  <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">250字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">1min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+		
+      </header>
+    
+	
+    <div class="article-entry" itemprop="articleBody">
+	  <!-- 添加分类与标签 -->
+	  
+		  
+		  <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p><img src="../assets/img/%E6%88%AA%E5%B1%8F2024-01-10%20%E4%B8%8B%E5%8D%885.12.21.png" alt="截屏2024-01-10 下午5.12.21.png"></p>
+<h1 id="思想："><a href="#思想：" class="headerlink" title="思想："></a>思想：</h1><p>我们首先将初始值 x 和操作次数 0 放入队列中。然后，我们不断地从队列中取出当前的值和操作次数，检查是否已经达到了目标值 y。<br>如果没有，我们将对这个值执行可能的操作，并将新值和操作次数加入队列中，直到找到最短路径。</p>
+<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minimumOperationsToMakeEqual</span>(<span class="params">self, x: <span class="built_in">int</span>, y: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="comment"># 使用队列来进行广度优先搜索</span></span><br><span class="line">        queue = deque([(x, <span class="number">0</span>)])  <span class="comment"># (当前值, 操作次数)</span></span><br><span class="line">        visited = <span class="built_in">set</span>()  <span class="comment"># 用于记录已经访问过的值，避免重复处理</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> queue:</span><br><span class="line">            current, steps = queue.popleft()</span><br><span class="line">            <span class="keyword">if</span> current == y:</span><br><span class="line">                <span class="keyword">return</span> steps</span><br><span class="line">            visited.add(current)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 对四种操作进行探索</span></span><br><span class="line">            <span class="keyword">if</span> current % <span class="number">11</span> == <span class="number">0</span> <span class="keyword">and</span> current // <span class="number">11</span> <span class="keyword">not</span> <span class="keyword">in</span> visited:</span><br><span class="line">                queue.append((current // <span class="number">11</span>, steps + <span class="number">1</span>))</span><br><span class="line">            <span class="keyword">if</span> current % <span class="number">5</span> == <span class="number">0</span> <span class="keyword">and</span> current // <span class="number">5</span> <span class="keyword">not</span> <span class="keyword">in</span> visited:</span><br><span class="line">                queue.append((current // <span class="number">5</span>, steps + <span class="number">1</span>))</span><br><span class="line">            <span class="keyword">if</span> current - <span class="number">1</span> <span class="keyword">not</span> <span class="keyword">in</span> visited:</span><br><span class="line">                queue.append((current - <span class="number">1</span>, steps + <span class="number">1</span>))</span><br><span class="line">            <span class="keyword">if</span> current + <span class="number">1</span> <span class="keyword">not</span> <span class="keyword">in</span> visited:</span><br><span class="line">                queue.append((current + <span class="number">1</span>, steps + <span class="number">1</span>))</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>  <span class="comment"># 如果无法使 x 和 y 相等，则返回 -1</span></span><br></pre></td></tr></table></figure>
+				  
+	  
+      
+	  <!-- 添加打赏 -->
+	  
+	
+	  <!-- 添加版权声明 -->
+      
+	  
+	</div>
+	
+	<!-- 添加置顶 -->
+    <div class="article-info article-info-index">
+      
+	  
+	  <!-- 分类页 -->
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">动态规划</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">广度优先搜索</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">记忆化搜索</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+	  
+	  <!-- 添加展开全文 -->
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/post/5ee4164.html">展开全文 >></a>
+        </p>
+      
+	  
+	  <!-- 添加分享 -->
+      
+	  
+      <div class="clearfix"></div>
+	  
+    </div>
+  </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+  
+
+<!-- 文章页添加mathjax公式 -->
+  
+    <article id="post-2997. 使数组异或和等于 K 的最少操作次数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/3109a910.html">2997. 使数组异或和等于 K 的最少操作次数</a>
+    </h2>
+  
+
+        
+		
+		  <a href="/post/3109a910.html" class="archive-article-date">
+  	<time datetime="2024-01-06T12:39:00.000Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2024-01-06</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+        
+		
+		
+		  <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">329字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">1min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+		
+      </header>
+    
+	
+    <div class="article-entry" itemprop="articleBody">
+	  <!-- 添加分类与标签 -->
+	  
+		  
+		  <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p><img src="../assets/img/%E6%88%AA%E5%B1%8F2024-01-10%20%E4%B8%8B%E5%8D%884.17.31.png" alt="截屏2024-01-10 下午4.17.31.png"></p>
+<h1 id="思想："><a href="#思想：" class="headerlink" title="思想："></a>思想：</h1><ol>
+<li>首先位运算有三个特性：<ol>
+<li>任何数和0进行异或运算，结果仍然是原数，即 a XOR 0 = a。</li>
+<li>任何数和自身进行异或运算，结果是0，即 a XOR a = 0。</li>
+<li>异或运算满足交换律和结合律。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">a = 0b1001</span><br><span class="line">b = 0b0110</span><br><span class="line">bin(a ^ b)</span><br><span class="line"></span><br><span class="line">&#x27;0b1111&#x27;</span><br><span class="line"></span><br><span class="line">首先，我们需要计算数组 nums 中所有元素的异或和，记为 xor_sum。我们的目标是通过翻转某些位来使 xor_sum 等于 k。</span><br><span class="line"></span><br><span class="line">接着，我们可以考虑 xor_sum XOR k 的结果。由于异或运算的特性，任何位上的不同会导致结果中该位为1。这意味着，我们需要改变 xor_sum 和 k 在二进制表示中所有不同的位。</span><br><span class="line"></span><br><span class="line">如果 xor_sum = 1010，k = 0011，那么 xor_sum XOR k = 1001。我们需要改变第一位和第四位来让 xor_sum 变成 k。</span><br><span class="line"></span><br><span class="line">也就是说 `nums的异或合`与 `k`的异或的值, 其中1的数目就是需要转换的数目。可以看0x3f的解法</span><br></pre></td></tr></table></figure>
+<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight python"><figcaption><span>我流</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minOperations</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], k: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        xor_sum = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">            xor_sum ^= num</span><br><span class="line"></span><br><span class="line">        xor_diff = xor_sum ^ k</span><br><span class="line">        operations = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 计算需要变更的位数</span></span><br><span class="line">        <span class="keyword">while</span> xor_diff:</span><br><span class="line">            operations += xor_diff &amp; <span class="number">1</span></span><br><span class="line">            xor_diff &gt;&gt;= <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> operations</span><br></pre></td></tr></table></figure>
+<figure class="highlight golang"><figcaption><span>0x3f</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">minOperations</span><span class="params">(nums []<span class="type">int</span>, k <span class="type">int</span>)</span></span> <span class="type">int</span> &#123;</span><br><span class="line">	<span class="keyword">for</span> _, x := <span class="keyword">range</span> nums &#123;</span><br><span class="line">		k ^= x</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> bits.OnesCount(<span class="type">uint</span>(k))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ol>
+
+				  
+	  
+      
+	  <!-- 添加打赏 -->
+	  
+	
+	  <!-- 添加版权声明 -->
+      
+	  
+	</div>
+	
+	<!-- 添加置顶 -->
+    <div class="article-info article-info-index">
+      
+	  
+	  <!-- 分类页 -->
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">已解决</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">位运算</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+	  
+	  <!-- 添加展开全文 -->
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/post/3109a910.html">展开全文 >></a>
+        </p>
+      
+	  
+	  <!-- 添加分享 -->
+      
+	  
+      <div class="clearfix"></div>
+	  
+    </div>
+  </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+  
+
+<!-- 文章页添加mathjax公式 -->
+  
+    <article id="post-[2562]找出数组的串联值" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/b625a0e1.html">2562.找出数组的串联值</a>
+    </h2>
+  
+
+        
+		
+		  <a href="/post/b625a0e1.html" class="archive-article-date">
+  	<time datetime="2023-10-12T11:54:08.361Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2023-10-12</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+        
+		
+		
+		  <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">124字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">1min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+		
+      </header>
+    
+	
+    <div class="article-entry" itemprop="articleBody">
+	  <!-- 添加分类与标签 -->
+	  
+		  
+		  <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p><img src="../assets/img/%E6%88%AA%E5%B1%8F2023-10-12%20%E4%B8%8B%E5%8D%8811.08.18.png" alt="截屏2023-10-12 下午11.08.18.png"><br><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/find-the-concatenation-of-an-array/">2562.找出数组的串联值.md</a></p>
+<h1 id="思想："><a href="#思想：" class="headerlink" title="思想："></a>思想：</h1><p>这道题和quiz4很相似，都是双指针。<br>这道题做的时候犯了个错，计算右指针的时候是计算的负索引的<code>right = -left + 1</code>，很难计算和正索引的关系，因此换成了<code>right = len(nums) - 1 - left</code>。</p>
+<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">findTheArrayConcVal</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        sums = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> left <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)):</span><br><span class="line">            right = <span class="built_in">len</span>(nums) - <span class="number">1</span> - left</span><br><span class="line">            <span class="keyword">if</span> left == right:</span><br><span class="line">                sums += nums[left]</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">elif</span> left &lt; right:</span><br><span class="line">                sums += <span class="built_in">int</span>(<span class="built_in">str</span>(nums[left]) + <span class="built_in">str</span>(nums[right]))</span><br><span class="line">        <span class="keyword">return</span> sums</span><br></pre></td></tr></table></figure>
+				  
+	  
+      
+	  <!-- 添加打赏 -->
+	  
+	
+	  <!-- 添加版权声明 -->
+      
+	  
+	</div>
+	
+	<!-- 添加置顶 -->
+    <div class="article-info article-info-index">
+      
+	  
+	  <!-- 分类页 -->
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">题解</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">双指针</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数组</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">模拟</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+	  
+	  <!-- 添加展开全文 -->
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/post/b625a0e1.html">展开全文 >></a>
+        </p>
+      
+	  
+	  <!-- 添加分享 -->
+      
+	  
+      <div class="clearfix"></div>
+	  
+    </div>
+  </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+  
+
+<!-- 文章页添加mathjax公式 -->
+  
     <article id="post-inline" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -806,7 +1283,7 @@ var _hmt = _hmt || [];
 
 	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
 	&nbsp;
-	2023-09-29</time>
+	2023-09-28</time>
 	
 	<!-- busuanzi阅读量统计
 	
@@ -1142,7 +1619,7 @@ var _hmt = _hmt || [];
 
 	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
 	&nbsp;
-	2023-09-27</time>
+	2023-09-26</time>
 	
 	<!-- busuanzi阅读量统计
 	
@@ -1300,7 +1777,7 @@ var _hmt = _hmt || [];
 
 	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
 	&nbsp;
-	2023-09-25</time>
+	2023-09-24</time>
 	
 	<!-- busuanzi阅读量统计
 	
@@ -1449,474 +1926,6 @@ var _hmt = _hmt || [];
 
 <!-- 文章页添加mathjax公式 -->
   
-    <article id="post-6323. 将钱分给最多的儿童" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/b9130c0e.html">6323. 将钱分给最多的儿童</a>
-    </h2>
-  
-
-        
-		
-		  <a href="/post/b9130c0e.html" class="archive-article-date">
-  	<time datetime="2023-09-22T13:00:00.000Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2023-09-22</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-        
-		
-		
-		  <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">604字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">2min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-		
-      </header>
-    
-	
-    <div class="article-entry" itemprop="articleBody">
-	  <!-- 添加分类与标签 -->
-	  
-		  
-		  <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p>第一次遇见：’2023/3/19-16:51’<br><img src="../assets/img/%E6%88%AA%E5%B1%8F2023-09-22%20%E4%B8%8B%E5%8D%8811.42.18.png" alt="截屏2023-09-22 下午11.42.18.png"><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/distribute-money-to-maximum-children/">6323. 将钱分给最多的儿童.md</a></p>
-<h1 id="思想："><a href="#思想：" class="headerlink" title="思想："></a>思想：</h1><p>“————–”</p>
-<p>这道题是上半年3月份的时候的周赛题目，题目链接：6323</p>
-<p>“————–”</p>
-<p>一开始就发现了这个是数学题，奈何写了半天不知道怎么处理最后剩下的钱。<br>于是写了一个列表，一个孩子一个孩子地给钱。<br>数学：<br>如果剩余 0 人，且 money&gt;0，那么必须分给一个已经分到 8 美元的人，<br>ans 减一。<br>如果剩余 1 人，且 money=3，为避免分配 4 美元，<br>那么必须分给一个已经分到 8 美元的人，ans 减一。<br>其它情况全部给一个人，如果这个人分配到 4 美元，<br>他再给另一个人 1 美元，这样 ans 不变。</p>
-<p>以下为ylb大佬的解释：（2023-9-22更新）<br>如果 money&lt;children，那么一定存在儿童没有分到钱，返回 −1。</p>
-<p>如果 money&gt;8×children，那么有 children−1 个儿童获得了 8 美元，剩下的一个儿童获得了 money−8×(children−1) 美元，返回 children−1。</p>
-<p>如果 money=8×children−4，那么有 children−2 个儿童获得了 8 美元，剩下的两个儿童分摊剩下的 12 美元（只要不是 4, 8 美元就行），返回 children−2。</p>
-<p>如果，我们假设有 x 个儿童获得了 8 美元，那么剩下的钱为 money−8×x，只要保证大于等于剩下的儿童数 children−x，就可以满足题意。因此，我们只需要求出 x 的最大值，即为答案。</p>
-<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight python"><figcaption><span>列表</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">distMoney</span>(<span class="params">self, money: <span class="built_in">int</span>, children: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        money -= children</span><br><span class="line">        children_list = [<span class="number">1</span>] * children</span><br><span class="line">        <span class="keyword">if</span> money &lt; <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">        counts = <span class="built_in">min</span>(money // <span class="number">7</span>, children)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(counts):</span><br><span class="line">            children_list[i] = <span class="number">8</span></span><br><span class="line">        children_list[-<span class="number">1</span>] += money - counts * <span class="number">7</span></span><br><span class="line">        counts = children_list.count(<span class="number">8</span>)</span><br><span class="line">        <span class="keyword">if</span> children_list[-<span class="number">1</span>] == <span class="number">4</span>:</span><br><span class="line">            <span class="keyword">if</span> children_list[-<span class="number">2</span>] != <span class="number">8</span>:</span><br><span class="line">                <span class="keyword">pass</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                counts -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> counts</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><figcaption><span>数学</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">distMoney</span>(<span class="params">self, money: <span class="built_in">int</span>, children: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        money -= children  <span class="comment"># 每人至少 1 美元</span></span><br><span class="line">        <span class="keyword">if</span> money &lt; <span class="number">0</span>: <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">        ans = <span class="built_in">min</span>(money // <span class="number">7</span>, children)  <span class="comment"># 初步分配，让尽量多的人分到 8 美元</span></span><br><span class="line">        money -= ans * <span class="number">7</span></span><br><span class="line">        children -= ans</span><br><span class="line">        <span class="comment"># children == 0 and money：必须找一个前面分了 8 美元的人，分配完剩余的钱</span></span><br><span class="line">        <span class="comment"># children == 1 and money == 3：不能有人恰好分到 4 美元</span></span><br><span class="line">        <span class="keyword">if</span> children == <span class="number">0</span> <span class="keyword">and</span> money <span class="keyword">or</span> \</span><br><span class="line">           children == <span class="number">1</span> <span class="keyword">and</span> money == <span class="number">3</span>:</span><br><span class="line">            ans -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><figcaption><span>ylb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">distMoney</span>(<span class="params">self, money: <span class="built_in">int</span>, children: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">if</span> money &lt; children:</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> money &gt; <span class="number">8</span> * children:</span><br><span class="line">            <span class="keyword">return</span> children - <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> money == <span class="number">8</span> * children - <span class="number">4</span>:</span><br><span class="line">            <span class="keyword">return</span> children - <span class="number">2</span></span><br><span class="line">        <span class="keyword">return</span> (money-children) // <span class="number">7</span></span><br></pre></td></tr></table></figure>
-				  
-	  
-      
-	  <!-- 添加打赏 -->
-	  
-	
-	  <!-- 添加版权声明 -->
-      
-	  
-	</div>
-	
-	<!-- 添加置顶 -->
-    <div class="article-info article-info-index">
-      
-	  
-	  <!-- 分类页 -->
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">题解</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-	  
-	  <!-- 添加展开全文 -->
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/post/b9130c0e.html">展开全文 >></a>
-        </p>
-      
-	  
-	  <!-- 添加分享 -->
-      
-	  
-      <div class="clearfix"></div>
-	  
-    </div>
-  </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-  
-
-<!-- 文章页添加mathjax公式 -->
-  
-    <article id="post-[2591]将钱分给最多的儿童" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/6a9ab144.html">2591.将钱分给最多的儿童</a>
-    </h2>
-  
-
-        
-		
-		  <a href="/post/6a9ab144.html" class="archive-article-date">
-  	<time datetime="2023-09-22T13:00:00.000Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2023-09-22</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-        
-		
-		
-		  <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">8字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">1min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-		
-      </header>
-    
-	
-    <div class="article-entry" itemprop="articleBody">
-	  <!-- 添加分类与标签 -->
-	  
-		  
-		  <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p><img src="../assets/img/%E6%88%AA%E5%B1%8F2023-09-22%20%E4%B8%8B%E5%8D%8811.42.18.png" alt="截屏2023-09-22 下午11.42.18.png"><br><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/divide-money-to-k-people/">题目链接</a></p>
-<h1 id="思想："><a href="#思想：" class="headerlink" title="思想："></a>思想：</h1>
-				  
-	  
-      
-	  <!-- 添加打赏 -->
-	  
-	
-	  <!-- 添加版权声明 -->
-      
-	  
-	</div>
-	
-	<!-- 添加置顶 -->
-    <div class="article-info article-info-index">
-      
-	  
-	  <!-- 分类页 -->
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">题解</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数学</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">贪心</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-	  
-	  <!-- 添加展开全文 -->
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/post/6a9ab144.html">展开全文 >></a>
-        </p>
-      
-	  
-	  <!-- 添加分享 -->
-      
-	  
-      <div class="clearfix"></div>
-	  
-    </div>
-  </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-  
-
-<!-- 文章页添加mathjax公式 -->
-  
-    <article id="post-[LCP 06]拿硬币" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/66079b7b.html">LCP 06.拿硬币</a>
-    </h2>
-  
-
-        
-		
-		  <a href="/post/66079b7b.html" class="archive-article-date">
-  	<time datetime="2023-09-20T14:00:00.000Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2023-09-21</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-        
-		
-		
-		  <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">92字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">1min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-		
-      </header>
-    
-	
-    <div class="article-entry" itemprop="articleBody">
-	  <!-- 添加分类与标签 -->
-	  
-		  
-		  <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><p><img src="../assets/img/%E6%88%AA%E5%B1%8F2023-09-21%20%E4%B8%8A%E5%8D%8812.12.09.png" alt="截屏2023-09-21 上午12.12.09.png"><br><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/na-ying-bi/">题目链接</a></p>
-<h1 id="思想："><a href="#思想：" class="headerlink" title="思想："></a>思想：</h1><p>既然4需要两次，3也需要两次，那么说明这道题无非就是“尽量2个2个取，取不完的就计数+1”<br>虽然感觉还能在运行时间上再优化，但是我更喜欢写一行</p>
-<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minCount</span>(<span class="params">self, coins: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sum</span>(i // <span class="number">2</span> + i % <span class="number">2</span> <span class="keyword">for</span> i <span class="keyword">in</span> coins)</span><br></pre></td></tr></table></figure>
-				  
-	  
-      
-	  <!-- 添加打赏 -->
-	  
-	
-	  <!-- 添加版权声明 -->
-      
-	  
-	</div>
-	
-	<!-- 添加置顶 -->
-    <div class="article-info article-info-index">
-      
-	  
-	  <!-- 分类页 -->
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">题解</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数学</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数组</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-	  
-	  <!-- 添加展开全文 -->
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/post/66079b7b.html">展开全文 >></a>
-        </p>
-      
-	  
-	  <!-- 添加分享 -->
-      
-	  
-      <div class="clearfix"></div>
-	  
-    </div>
-  </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-  
-
-<!-- 文章页添加mathjax公式 -->
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/">下一页 &gt;&gt;</a>
@@ -1971,10 +1980,10 @@ window.MathJax = {
 	  <br>
 	  <div class="footer-center">
 	    <i class="fa fa-file-word-o" aria-hidden="true"></i>
-		<span> 92 篇</span>
+		<span> 95 篇</span>
 		<span class="post-meta-divider">|</span>
 		<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-		<span> <span class="post-count">33.7k</span></span>
+		<span> <span class="post-count">34.4k</span></span>
       </div>
 	  
 	  <!-- 添加不蒜子统计 -->
@@ -2019,7 +2028,7 @@ window.MathJax = {
       <div class="footer-center">
 	    <i class="fa fa-copyright" aria-hidden="true"></i> 
 		<!-- &copy; -->
-        2022-2023 long long
+        2022-2024 long long
 		 
 		  <span class="post-meta-divider">|</span>
 		  <a style="color:#1A1A1A" target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">新南威尔士龙龙号</a>
@@ -2367,6 +2376,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">math</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">记忆化搜索</a>
               </li>
             
             <div class="clearfix"></div>

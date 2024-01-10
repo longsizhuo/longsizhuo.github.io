@@ -307,6 +307,478 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-2303计算应缴税款总额" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/11597f8b.html">2303. 计算应缴税款总额</a>
+    </h2>
+  
+
+        
+		
+		  <a href="/post/11597f8b.html" class="archive-article-date">
+  	<time datetime="2023-01-23T08:22:00.000Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2023-01-23</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+        
+		
+		
+		  <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">288字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">1min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+		
+      </header>
+    
+	
+    <div class="article-entry" itemprop="articleBody">
+	  <!-- 添加分类与标签 -->
+	  
+		  
+		  <p><img src="../assets/img/2023-01-23%20(2).png" alt="2023-01-23 (2).png"><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/calculate-amount-paid-in-taxes/description/?orderBy=most_relevant">2303. 计算应缴税款总额</a></p>
+<h1 id="思想："><a href="#思想：" class="headerlink" title="思想："></a>思想：</h1><p>坐了很久，感觉难得不像是“简单”。没做出来，看的题解。判断的情况特别多，所以写了很多判断，越写越觉得不对劲。</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/calculate-amount-paid-in-taxes/solutions/2072838/ji-suan-ying-jiao-shui-kuan-zong-e-by-le-jv5s/?orderBy=most_relevant">来看看官方题解</a></p>
+<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight python"><figcaption><span>错误代码</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">List</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">calculateTax</span>(<span class="params">self, brackets: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]], income: <span class="built_in">int</span></span>) -&gt; <span class="built_in">float</span>:</span><br><span class="line">        <span class="keyword">if</span> income == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        tax: <span class="built_in">float</span> = <span class="number">0</span></span><br><span class="line">        index: <span class="built_in">int</span> = <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> income &lt; brackets[<span class="number">0</span>][<span class="number">0</span>]:</span><br><span class="line">            <span class="keyword">return</span> income * brackets[<span class="number">0</span>][<span class="number">1</span>] / <span class="number">100</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            tax += brackets[<span class="number">0</span>][<span class="number">0</span>] * brackets[<span class="number">0</span>][<span class="number">1</span>] / <span class="number">100</span></span><br><span class="line">        <span class="keyword">while</span> index &lt; <span class="built_in">len</span>(brackets):</span><br><span class="line">            <span class="comment"># 判断是不是在最后一位了</span></span><br><span class="line">            <span class="keyword">if</span> index == <span class="built_in">len</span>(brackets) - <span class="number">1</span>:</span><br><span class="line">                <span class="comment"># 比brackets最后一个还大</span></span><br><span class="line">                <span class="keyword">if</span> income - brackets[index][<span class="number">0</span>] &lt; <span class="number">0</span>:</span><br><span class="line">                    tax += (income - brackets[index - <span class="number">1</span>][<span class="number">0</span>]) * brackets[index][<span class="number">1</span>] / <span class="number">100</span></span><br><span class="line">                    <span class="keyword">return</span> tax</span><br><span class="line">            <span class="keyword">if</span> income &gt;= brackets[index][<span class="number">0</span>]:</span><br><span class="line">                tax += (brackets[index][<span class="number">0</span>]- brackets[index-<span class="number">1</span>][<span class="number">0</span>]) * brackets[index][<span class="number">1</span>] / <span class="number">100</span></span><br><span class="line">            <span class="keyword">if</span> income &lt; brackets[index-<span class="number">1</span>][<span class="number">0</span>]:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            index += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> tax</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(Solution.calculateTax(Solution(), brackets = [[<span class="number">1</span>,<span class="number">0</span>],[<span class="number">4</span>,<span class="number">25</span>],[<span class="number">5</span>,<span class="number">50</span>]], income = <span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/calculate-amount-paid-in-taxes/solutions/2072838/ji-suan-ying-jiao-shui-kuan-zong-e-by-le-jv5s/?orderBy=most_relevant">来看看官方题解</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">calculateTax</span>(<span class="params">self, brackets: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]], income: <span class="built_in">int</span></span>) -&gt; <span class="built_in">float</span>:</span><br><span class="line">        totalTax = lower = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> upper, percent <span class="keyword">in</span> brackets:</span><br><span class="line">            tax = (<span class="built_in">min</span>(income, upper) - lower) * percent</span><br><span class="line">            totalTax += tax</span><br><span class="line">            <span class="keyword">if</span> income &lt;= upper:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            lower = upper</span><br><span class="line">        <span class="keyword">return</span> totalTax / <span class="number">100</span></span><br></pre></td></tr></table></figure>
+<p>@<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/calculate-amount-paid-in-taxes/solutions/2073583/by-lcbin-94u4/?orderBy=most_relevant">ylb</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">calculateTax</span>(<span class="params">self, brackets: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]], income: <span class="built_in">int</span></span>) -&gt; <span class="built_in">float</span>:</span><br><span class="line">        ans = prev = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> upper, percent <span class="keyword">in</span> brackets:</span><br><span class="line">            ans += <span class="built_in">max</span>(<span class="number">0</span>, <span class="built_in">min</span>(income, upper) - prev) * percent</span><br><span class="line">            prev = upper</span><br><span class="line">        <span class="keyword">return</span> ans / <span class="number">100</span></span><br></pre></td></tr></table></figure>
+				  
+	  
+      
+	  <!-- 添加打赏 -->
+	  
+	
+	  <!-- 添加版权声明 -->
+      
+	  
+	</div>
+	
+	<!-- 添加置顶 -->
+    <div class="article-info article-info-index">
+      
+	  
+	  <!-- 分类页 -->
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数学</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">未解决</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+	  
+	  <!-- 添加展开全文 -->
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/post/11597f8b.html">展开全文 >></a>
+        </p>
+      
+	  
+	  <!-- 添加分享 -->
+      
+	  
+      <div class="clearfix"></div>
+	  
+    </div>
+  </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+  
+
+<!-- 文章页添加mathjax公式 -->
+  
+    <article id="post-1551使数组中所有元素相等的最小操作数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/b2a927d5.html">1551. 使数组中所有元素相等的最小操作数</a>
+    </h2>
+  
+
+        
+		
+		  <a href="/post/b2a927d5.html" class="archive-article-date">
+  	<time datetime="2023-01-21T17:43:00.000Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2023-01-22</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+        
+		
+		
+		  <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">647字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">2min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+		
+      </header>
+    
+	
+    <div class="article-entry" itemprop="articleBody">
+	  <!-- 添加分类与标签 -->
+	  
+		  
+		  <p><img src="../assets/img/2023-01-22%20(3).png" alt="2023-01-22 (3).png"></p>
+<h1 id="思想："><a href="#思想：" class="headerlink" title="思想："></a>思想：</h1><p>是做完周赛的第二题：<a href="6275%CA%B9%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%D4%AA%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%C8%B5%EF%BF%BD%EF%BF%BD%EF%BF%BD%D0%A1%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD.md">6275使数组中所有元素相等的最小操作数II.md</a><br>后心血来潮做的第一版。和第二版完全不一样，本来想练习贪心算法的。但是做着做着就发现了存在数学规律。<br>引用一下[yong]大佬的话：<br>因为是等差数列,很可能找到一个数学公式,用<code>O(1)</code>的时间复杂度解决. 先举几个简单的例子找找规律</p>
+<ol>
+<li>n=3 最小操作数是 2</li>
+<li>n=4 最小操作数是 1 + 3</li>
+<li>n=5 最小操作数是 2 + 4</li>
+<li>n=6 最小操作数是 1 + 3 + 5</li>
+<li>n=7 最小操作数是 2 + 4 + 6<br>当n是偶数的时候,最小操作数是<code>1 + 3 + 5 + ... + n-1 = n*n/4 </code><br>当n是奇数的时候,最小操作数是<code>2 + 4 + ... + n-1 = (n*n - 1) / 4</code></li>
+</ol>
+<p>拿到这道题,感觉有点绕,仔细分析发现 <code>arr[i] = (2 * i) + 1 (0 &lt;= i &lt; n)</code>是典型的等差数列<code>(1,3,5,7,9...)</code>.<br>根据等差数列的求和公式,很容易求出数组arr的元素总和是<code>n^2</code>. 题设中说每次操作选出两个下标x y使<code>arr[x]</code>减一<code>arr[y]</code>加一.<br>换句话说,无论怎样选择x y,无论操作多少次,数组的总和不会变. 题设又保证数组中所有元素最终可以全部相等.<br>那我们假设最终所有元素等于a那么<code>n*a == n^2</code>,所以a == n,也就是说最终数组元素都是n.其实n是数组的平均值.<br>知道最终元素都是n后,通过从数组起始和末尾下标开始向中间遍历,就可以到达操作数最小.<br>假设左边的下标是<code>i ((2 * i) + 1 &lt; n)</code>那么相应右边的下标是<code>n - i.</code><br>相应两个元素值与n的差都是<code>n - 1 + 2 * i</code>.所以我们只要计算数组中值小于n的元素与n的差的总和,就得到最小操作数了.</p>
+<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight java"><figcaption><span>java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> <span class="type">int</span> <span class="title function_">minOperations</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">     <span class="keyword">return</span> n * n / <span class="number">4</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 时空复杂度都是 O(1)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><figcaption><span>java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> <span class="type">int</span> <span class="title function_">minOperations</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">operation</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; n ; i += <span class="number">2</span>) &#123;</span><br><span class="line">        operation += (n - i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> operation;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 时间复杂度是O(n) 空间复杂度是O(1)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><figcaption><span>python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minOperations</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        operate = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n, <span class="number">2</span>):</span><br><span class="line">            operate += (n - i)</span><br><span class="line">        <span class="keyword">return</span> operate</span><br></pre></td></tr></table></figure>
+<figure class="highlight erlang"><figcaption><span>erlang</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">-spec</span> min_operations<span class="params">(N :: integer())</span> -&gt; integer<span class="params">()</span>.</span><br><span class="line"><span class="function"><span class="title">min_operations</span><span class="params">(N)</span> -&gt;</span></span><br><span class="line">N * N <span class="keyword">div</span> <span class="number">4</span>.</span><br></pre></td></tr></table></figure>
+<figure class="highlight dart"><figcaption><span>dart</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">  <span class="built_in">int</span> minOperations(<span class="built_in">int</span> n) &#123;</span><br><span class="line">    <span class="keyword">return</span> n * n ~/ <span class="number">4</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight elixir"><figcaption><span>elixir</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">defmodule</span> <span class="title">Solution</span></span> <span class="keyword">do</span></span><br><span class="line">  <span class="variable">@spec</span> min_operations(n :: integer) :: integer</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">min_operations</span></span>(n) <span class="keyword">do</span></span><br><span class="line">        div(n * n , <span class="number">4</span>)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+
+				  
+	  
+      
+	  <!-- 添加打赏 -->
+	  
+	
+	  <!-- 添加版权声明 -->
+      
+	  
+	</div>
+	
+	<!-- 添加置顶 -->
+    <div class="article-info article-info-index">
+      
+	  
+	  <!-- 分类页 -->
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">题解</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数学</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+	  
+	  <!-- 添加展开全文 -->
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/post/b2a927d5.html">展开全文 >></a>
+        </p>
+      
+	  
+	  <!-- 添加分享 -->
+      
+	  
+      <div class="clearfix"></div>
+	  
+    </div>
+  </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+  
+
+<!-- 文章页添加mathjax公式 -->
+  
+    <article id="post-6300最小公共值" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/fefe18d8.html">6300. 最小公共值</a>
+    </h2>
+  
+
+        
+		
+		  <a href="/post/fefe18d8.html" class="archive-article-date">
+  	<time datetime="2023-01-21T17:20:00.000Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2023-01-22</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+        
+		
+		
+		  <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">71字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">1min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+		
+      </header>
+    
+	
+    <div class="article-entry" itemprop="articleBody">
+	  <!-- 添加分类与标签 -->
+	  
+		  
+		  <p><img src="../assets/img/2023-01-22%20(2).png" alt="2023-01-22 (2).png"><br><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/biweekly-contest-96/problems/minimum-common-value/">6300. 最小公共值</a></p>
+<h1 id="思想："><a href="#思想：" class="headerlink" title="思想："></a>思想：</h1><p>本来是打算用元组一个个遍历找，但是超时了。<br>于是用intersection函数在<code>O(1)</code>的时间复杂度下解决</p>
+<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">getCommon</span>(<span class="params">self, nums1: <span class="type">List</span>[<span class="built_in">int</span>], nums2: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        common = <span class="built_in">set</span>(nums1).intersection(nums2)</span><br><span class="line">        <span class="keyword">if</span> common:</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">min</span>(common)</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span></span><br></pre></td></tr></table></figure>
+				  
+	  
+      
+	  <!-- 添加打赏 -->
+	  
+	
+	  <!-- 添加版权声明 -->
+      
+	  
+	</div>
+	
+	<!-- 添加置顶 -->
+    <div class="article-info article-info-index">
+      
+	  
+	  <!-- 分类页 -->
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">题解</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+	  
+	  <!-- 添加展开全文 -->
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/post/fefe18d8.html">展开全文 >></a>
+        </p>
+      
+	  
+	  <!-- 添加分享 -->
+      
+	  
+      <div class="clearfix"></div>
+	  
+    </div>
+  </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+  
+
+<!-- 文章页添加mathjax公式 -->
+  
     <article id="post-6275使数组中所有元素相等的最小操作数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -482,7 +954,7 @@ var _hmt = _hmt || [];
 
 	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
 	&nbsp;
-	2023-01-21</time>
+	2023-01-20</time>
 	
 	<!-- busuanzi阅读量统计
 	
@@ -787,7 +1259,7 @@ var _hmt = _hmt || [];
 
 	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
 	&nbsp;
-	2023-01-20</time>
+	2023-01-19</time>
 	
 	<!-- busuanzi阅读量统计
 	
@@ -952,7 +1424,7 @@ var _hmt = _hmt || [];
 
 	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
 	&nbsp;
-	2023-01-20</time>
+	2023-01-19</time>
 	
 	<!-- busuanzi阅读量统计
 	
@@ -1414,506 +1886,6 @@ var _hmt = _hmt || [];
 
 <!-- 文章页添加mathjax公式 -->
   
-    <article id="post-350两个数组的交集" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/616577aa.html">350.两个数组的交集</a>
-    </h2>
-  
-
-        
-		
-		  <a href="/post/616577aa.html" class="archive-article-date">
-  	<time datetime="2023-01-17T17:39:00.000Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2023-01-18</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-        
-		
-		
-		  <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">429字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">2min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-		
-      </header>
-    
-	
-    <div class="article-entry" itemprop="articleBody">
-	  <!-- 添加分类与标签 -->
-	  
-		  
-		  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">350. 两个数组的交集 II</span><br><span class="line">简单</span><br><span class="line">883</span><br><span class="line">company</span><br><span class="line">亚马逊</span><br><span class="line">company</span><br><span class="line">字节跳动</span><br><span class="line">company</span><br><span class="line">Facebook</span><br><span class="line">给你两个整数数组 nums1 和 nums2 ，请你以数组形式返回两数组的交集。返回结果中每个元素出现的次数，应与元素在两个数组中都出现的次数一致（如果出现次数不一致，则考虑取较小值）。可以不考虑输出结果的顺序。</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">示例 1：</span><br><span class="line"></span><br><span class="line">输入：nums1 = [1,2,2,1], nums2 = [2,2]</span><br><span class="line">输出：[2,2]</span><br><span class="line">示例 2:</span><br><span class="line"></span><br><span class="line">输入：nums1 = [4,9,5], nums2 = [9,4,9,8,4]</span><br><span class="line">输出：[4,9]</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">提示：</span><br><span class="line"></span><br><span class="line">1 &lt;= nums1.length, nums2.length &lt;= 1000</span><br><span class="line">0 &lt;= nums1[i], nums2[i] &lt;= 1000</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">进阶：</span><br><span class="line"></span><br><span class="line">如果给定的数组已经排好序呢？你将如何优化你的算法？</span><br><span class="line">如果 nums1 的大小比 nums2 小，哪种方法更优？</span><br><span class="line">如果 nums2 的元素存储在磁盘上，内存是有限的，并且你不能一次加载所有的元素到内存中，你该怎么办？</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p><img src="../assets/img/350_fig1.gif" alt="350_fig1.gif"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">containsNearbyDuplicate</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], k: <span class="built_in">int</span></span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        hash_1 = &#123;&#125;</span><br><span class="line">        hash_2 = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> index, i <span class="keyword">in</span> <span class="built_in">enumerate</span>(nums):</span><br><span class="line">            <span class="keyword">if</span> i <span class="keyword">not</span> <span class="keyword">in</span> hash_1:</span><br><span class="line">                hash_1[i] = <span class="number">1</span></span><br><span class="line">                hash_2[i] = [index]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                hash_1[i] += <span class="number">1</span></span><br><span class="line">                hash_2[i].append(index)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> hash_1:</span><br><span class="line">            <span class="keyword">if</span> hash_1[i] &gt;= <span class="number">2</span>:</span><br><span class="line">                <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(hash_2[i])):</span><br><span class="line">                    <span class="keyword">for</span> m <span class="keyword">in</span> <span class="built_in">range</span>(j + <span class="number">1</span>, <span class="built_in">len</span>(hash_2[i])):</span><br><span class="line">                        <span class="keyword">if</span> <span class="built_in">abs</span>(hash_2[i][j] - hash_2[i][m]) &lt;= k:</span><br><span class="line">                            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 整理题意：是否存在长度不超过的 k+1k + 1k+1 窗口，窗口内有相同元素。</span><br><span class="line">class Solution:</span><br><span class="line">    def containsNearbyDuplicate(self, nums: List[int], k: int) -&gt; bool:</span><br><span class="line">        n = len(nums)</span><br><span class="line">        s = set()</span><br><span class="line">        for i in range(n):</span><br><span class="line">            if i &gt; k:</span><br><span class="line">                s.remove(nums[i - k - 1])</span><br><span class="line">            if nums[i] in s:</span><br><span class="line">                return True</span><br><span class="line">            s.add(nums[i])</span><br><span class="line">        return False</span><br></pre></td></tr></table></figure>
-<p>&amp;&amp;进行操作</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">intersect</span>(<span class="params">self, nums1: <span class="type">List</span>[<span class="built_in">int</span>], nums2: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        num1 = collections.Counter(nums1)</span><br><span class="line">        num2 = collections.Counter(nums2)</span><br><span class="line">        num = num1 &amp; num2</span><br><span class="line">        <span class="keyword">return</span> num.elements()</span><br></pre></td></tr></table></figure>
-				  
-	  
-      
-	  <!-- 添加打赏 -->
-	  
-	
-	  <!-- 添加版权声明 -->
-      
-	  
-	</div>
-	
-	<!-- 添加置顶 -->
-    <div class="article-info article-info-index">
-      
-	  
-	  <!-- 分类页 -->
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">哈希表</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">双指针</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">已解决</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-	  
-	  <!-- 添加展开全文 -->
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/post/616577aa.html">展开全文 >></a>
-        </p>
-      
-	  
-	  <!-- 添加分享 -->
-      
-	  
-      <div class="clearfix"></div>
-	  
-    </div>
-  </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-  
-
-<!-- 文章页添加mathjax公式 -->
-  
-    <article id="post-1814" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/ceb1e67f.html">1814. 统计一个数组中好对子的数目 每日一题</a>
-    </h2>
-  
-
-        
-		
-		  <a href="/post/ceb1e67f.html" class="archive-article-date">
-  	<time datetime="2023-01-17T14:05:00.000Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2023-01-18</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-        
-		
-		
-		  <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">486字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">2min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-		
-      </header>
-    
-	
-    <div class="article-entry" itemprop="articleBody">
-	  <!-- 添加分类与标签 -->
-	  
-		  
-		  <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">1814. 统计一个数组中好对子的数目</span><br><span class="line">中等</span><br><span class="line">86</span><br><span class="line">company</span><br><span class="line">优步 Uber</span><br><span class="line">给你一个数组 nums ，数组中只包含非负整数。定义 rev(x) 的值为将整数 x 各个数字位反转得到的结果。比方说 rev(123) = 321 ， rev(120) = 21 。我们称满足下面条件的下标对 (i, j) 是 好的 ：</span><br><span class="line"></span><br><span class="line">0 &lt;= i &lt; j &lt; nums.length</span><br><span class="line">nums[i] + rev(nums[j]) == nums[j] + rev(nums[i])</span><br><span class="line">请你返回好下标对的数目。由于结果可能会很大，请将结果对 109 + 7 取余 后返回。</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">示例 1：</span><br><span class="line"></span><br><span class="line">输入：nums = [42,11,1,97]</span><br><span class="line">输出：2</span><br><span class="line">解释：两个坐标对为：</span><br><span class="line"> - (0,3)：42 + rev(97) = 42 + 79 = 121, 97 + rev(42) = 97 + 24 = 121 。</span><br><span class="line"> - (1,2)：11 + rev(1) = 11 + 1 = 12, 1 + rev(11) = 1 + 11 = 12 。</span><br><span class="line">示例 2：</span><br><span class="line"></span><br><span class="line">输入：nums = [13,10,35,24,76]</span><br><span class="line">输出：4</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">提示：</span><br><span class="line"></span><br><span class="line">1 &lt;= nums.length &lt;= 105</span><br><span class="line">0 &lt;= nums[i] &lt;= 109</span><br></pre></td></tr></table></figure>
-
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>这道题没想到是哈希表，还以为是双指针。<br>做了很久，没想到解法，就直接看题解了，也看的半懂。<br>总之就是，好对子其实就是 两个 <em>i - res(i)</em> 相同的数字!<br>    <strong>文字游戏</strong>的感觉：</p>
-<blockquote>
-<p>42 + rev(97) = 42 + 79 = 121, 97 + rev(42) = 97 + 24 = 121 。<br>不就是 42-res(42) == 97 - res(97) 吗？</p>
-</blockquote>
-<p>当*cnt[i-res(i)]*不存在时，会返回0.</p>
-<pre><code>ans += cnt[i-j]
-</code></pre>
-<p>因此在<em>cnt[i-j]<em>有2次值的时候才会返回到ans中<br>因为</em>cnt[i-j]=1</em>时，是不会经过ans赋值的</p>
-<pre><code>cnt[i-j] += 1
-</code></pre>
-<h1 id="解法："><a href="#解法：" class="headerlink" title="解法："></a>解法：</h1><p>·元素为numsW - rev(num[il)<br>·计算每个元素出现次数<br>·计算每个次数等差数列和<br>@<a target="_blank" rel="noopener" href="https://leetcode.cn/u/nsf/">懒人</a></p>
-<hr>
-<h1 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">countNicePairs</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">res</span>(<span class="params">num: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">int</span>(<span class="built_in">str</span>(num)[::-<span class="number">1</span>])</span><br><span class="line">        cnt = Counter()</span><br><span class="line">        ans = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> nums:</span><br><span class="line">            j = res(i)</span><br><span class="line">            <span class="comment"># 当cnt[i-res(i)]不存在时，会返回0.</span></span><br><span class="line">            ans += cnt[i-j]</span><br><span class="line">            <span class="comment"># 因此在cnt[i-j] 有2次值的时候才会返回到ans中</span></span><br><span class="line">            <span class="comment"># 因为cnt[]=1时，是不会经过ans赋值的</span></span><br><span class="line">            cnt[i-j] += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> ans % (<span class="number">10</span> ** <span class="number">9</span> + <span class="number">7</span>)</span><br></pre></td></tr></table></figure>
-				  
-	  
-      
-	  <!-- 添加打赏 -->
-	  
-	
-	  <!-- 添加版权声明 -->
-      
-	  
-	</div>
-	
-	<!-- 添加置顶 -->
-    <div class="article-info article-info-index">
-      
-	  
-	  <!-- 分类页 -->
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">哈希表</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">双指针</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">已解决</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-	  
-	  <!-- 添加展开全文 -->
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/post/ceb1e67f.html">展开全文 >></a>
-        </p>
-      
-	  
-	  <!-- 添加分享 -->
-      
-	  
-      <div class="clearfix"></div>
-	  
-    </div>
-  </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-  
-
-<!-- 文章页添加mathjax公式 -->
-  
-    <article id="post-intro" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/941aeb72.html">一些疑惑</a>
-    </h2>
-  
-
-        
-		
-		  <a href="/post/941aeb72.html" class="archive-article-date">
-  	<time datetime="2023-01-16T11:44:00.000Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2023-01-16</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-        
-		
-		
-		  <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">746字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">3min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-		
-      </header>
-    
-	
-    <div class="article-entry" itemprop="articleBody">
-	  <!-- 添加分类与标签 -->
-	  
-		  
-		  <h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><p><a href="#1%E8%83%8C%E6%99%AF">1.背景</a><br><a href="#2%E5%81%87%E6%9C%9F">2.假期</a><br><a href="#3%E7%BC%96%E7%A8%8B%E5%96%9C%E5%A5%BD">3.编程喜好</a></p>
-<hr>
-<h1 id="1-背景："><a href="#1-背景：" class="headerlink" title="1.背景："></a>1.背景：</h1><p>我们有7个方向，分别是<br>    1. <a target="_blank" rel="noopener" href="https://www.handbook.unsw.edu.au/postgraduate/specialisations/2023/COMPAS">Artificial Intelligence</a><br>    2. <a target="_blank" rel="noopener" href="https://www.handbook.unsw.edu.au/postgraduate/specialisations/2023/COMPBS">Bioinformatics</a><br>    3. <a target="_blank" rel="noopener" href="https://www.handbook.unsw.edu.au/postgraduate/specialisations/2023/COMPCS">Information Technology</a><br>    4. <a target="_blank" rel="noopener" href="https://www.handbook.unsw.edu.au/postgraduate/specialisations/2023/COMPDS">Database Systems</a><br>    5. <a target="_blank" rel="noopener" href="https://www.handbook.unsw.edu.au/postgraduate/specialisations/2023/COMPES">e-Commerce Systems</a><br>    6. <a target="_blank" rel="noopener" href="https://www.handbook.unsw.edu.au/postgraduate/specialisations/2023/COMPIS">Internet working</a><br>    7. <a target="_blank" rel="noopener" href="https://www.handbook.unsw.edu.au/postgraduate/specialisations/2023/COMPSS">Data Science and Engineering</a></p>
-<blockquote>
-<p>我下学期的选课的选课方向是<a target="_blank" rel="noopener" href="https://www.handbook.unsw.edu.au/postgraduate/specialisations/2023/COMPAS">Artificial Intelligence</a><br>并不是因为我喜欢AI方向，只是因为下学期有一门课叫9814，很好拿高分，而且是AI的必修课。</p>
-</blockquote>
-<h1 id="2-假期："><a href="#2-假期：" class="headerlink" title="2.假期："></a>2.假期：</h1><p>上学期选了一门课，教了<em>Python</em>，觉得<em>Python</em>是世界上最好的语言，所以就一直打算学习。这个假期的编程比赛和练习题全部都是用<em>Python</em>做的。</p>
-<p>但是在这个假期的实践中发现，<em>Python</em>的运用的地方十分地狭隘，在国内基本上只有人工智能的方向。<br>而我假期自学吴恩达的<a target="_blank" rel="noopener" href="https://www.coursera.org/learn/machine-learning">Machine Learning</a>的课程，觉得不是很感兴趣，如果说“不学这个就找不到工作”，<br>那我也能学。<br>只是同学也不断在说，人工智能方向找不到工作，基本就是对于模型炼丹，没什么技术含量。我想了想，觉得说得对。类似于ChatGPT和绘画模型这种商业化的AI也不是我能写的。</p>
-<hr>
-<p>如果是走后端呢？<br>那在我面前的有两条路可以走：<em>Java</em> 和 <em>C++<em>。<br>我打听了一下国内的行情，</em>Java</em>的需求仿佛更大，但也更接近于饱和。<br>那<em>Java</em>和<em>C++<em>在国外的需求又如何呢？</em>Python</em>在国外有需求吗？</p>
-<hr>
-<p>如果是前端呢？<br>感觉就没有只走前端就能成功的案例，基本上都是<strong>全栈呢</strong>。<br>这个博客实际上也是昨天搞出来的，入门很简单，但是感觉想要深入十分困难，网上的文档比较少。</p>
-<hr>
-<p>如果是数据分析呢？<br>感觉和人工智能差不多，但是路要广泛一点，而且好像也可以用<em>Python</em>？我不是很确定。</p>
-<hr>
-<h1 id="3-编程喜好："><a href="#3-编程喜好：" class="headerlink" title="3.编程喜好："></a>3.编程喜好：</h1><p>对于我的喜好而言的话，我现在只学了两门语言，C 和 Python（Java和C++和C#已经还给老师了）。<br>C的话就连一个链表都得自己敲出来，而我沉迷于Python的便捷。<br>比如同样的一道题，我拿<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/cracking-the-safe/description/">753. 破解保险箱</a>举例，它的Python的解法是：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">crackSafe</span>(<span class="params">self, n: <span class="built_in">int</span>, k: <span class="built_in">int</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        seen = <span class="built_in">set</span>()</span><br><span class="line">        ans = <span class="built_in">list</span>()</span><br><span class="line">        highest = <span class="number">10</span> ** (n - <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">node: <span class="built_in">int</span></span>):</span><br><span class="line">            <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(k):</span><br><span class="line">                nei = node * <span class="number">10</span> + x</span><br><span class="line">                <span class="keyword">if</span> nei <span class="keyword">not</span> <span class="keyword">in</span> seen:</span><br><span class="line">                    seen.add(nei)</span><br><span class="line">                    dfs(nei % highest)</span><br><span class="line">                    ans.append(<span class="built_in">str</span>(x))</span><br><span class="line"></span><br><span class="line">        dfs(<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;&quot;</span>.join(ans) + <span class="string">&quot;0&quot;</span> * (n - <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-
-<p>而C++却得写：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">private:</span><br><span class="line">    <span class="built_in">unordered_set</span>&lt;<span class="type">int</span>&gt; seen;</span><br><span class="line">    <span class="built_in">string</span> ans;</span><br><span class="line">    <span class="type">int</span> highest;</span><br><span class="line">    <span class="type">int</span> k;</span><br><span class="line"></span><br><span class="line">public:</span><br><span class="line">    <span class="type">void</span> <span class="title function_">dfs</span><span class="params">(<span class="type">int</span> node)</span> &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> x = <span class="number">0</span>; x &lt; k; ++x) &#123;</span><br><span class="line">            <span class="type">int</span> nei = node * <span class="number">10</span> + x;</span><br><span class="line">            <span class="keyword">if</span> (!seen.count(nei)) &#123;</span><br><span class="line">                seen.insert(nei);</span><br><span class="line">                dfs(nei % highest);</span><br><span class="line">                ans += (x + <span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">string</span> <span class="title function_">crackSafe</span><span class="params">(<span class="type">int</span> n, <span class="type">int</span> k)</span> &#123;</span><br><span class="line">        highest = <span class="built_in">pow</span>(<span class="number">10</span>, n - <span class="number">1</span>);</span><br><span class="line">        this-&gt;k = k;</span><br><span class="line">        dfs(<span class="number">0</span>);</span><br><span class="line">        ans += <span class="built_in">string</span>(n - <span class="number">1</span>, <span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>C就更长了。所以疑惑的就在于，觉得Python好，但是Python岗位少。</p>
-
-				  
-	  
-      
-	  <!-- 添加打赏 -->
-	  
-	
-	  <!-- 添加版权声明 -->
-      
-	  
-	</div>
-	
-	<!-- 添加置顶 -->
-    <div class="article-info article-info-index">
-      
-        <div class="article-pop-out tagcloud">
-          <i class="icon-tuding"></i>
-          <a class="article-tag-list-link color3">置顶</a>
-        </div>
-      
-	  
-	  <!-- 分类页 -->
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">加密</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-	  
-	  <!-- 添加展开全文 -->
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/post/941aeb72.html">展开全文 >></a>
-        </p>
-      
-	  
-	  <!-- 添加分享 -->
-      
-	  
-      <div class="clearfix"></div>
-	  
-    </div>
-  </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-  
-
-<!-- 文章页添加mathjax公式 -->
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/7/">&lt;&lt; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/9/">下一页 &gt;&gt;</a>
@@ -1968,10 +1940,10 @@ window.MathJax = {
 	  <br>
 	  <div class="footer-center">
 	    <i class="fa fa-file-word-o" aria-hidden="true"></i>
-		<span> 92 篇</span>
+		<span> 95 篇</span>
 		<span class="post-meta-divider">|</span>
 		<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-		<span> <span class="post-count">33.7k</span></span>
+		<span> <span class="post-count">34.4k</span></span>
       </div>
 	  
 	  <!-- 添加不蒜子统计 -->
@@ -2016,7 +1988,7 @@ window.MathJax = {
       <div class="footer-center">
 	    <i class="fa fa-copyright" aria-hidden="true"></i> 
 		<!-- &copy; -->
-        2022-2023 long long
+        2022-2024 long long
 		 
 		  <span class="post-meta-divider">|</span>
 		  <a style="color:#1A1A1A" target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">新南威尔士龙龙号</a>
@@ -2364,6 +2336,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">math</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">记忆化搜索</a>
               </li>
             
             <div class="clearfix"></div>

@@ -1,5 +1,5 @@
 
-## 我现在有92篇文章，
+## 我现在有95篇文章，
 ## 目录：
     
 - [1004.最大连续1的个数 III 最大连续1的个数 III](https://longsizhuo123.github.io/post/ed19b576.html)
@@ -94,6 +94,9 @@
 - [math](https://longsizhuo123.github.io/post/a927044d.html)
 - [剑指 Offer 68 - II. 二叉树的最近公共祖先](https://longsizhuo123.github.io/post/36f314aa.html)
 - [剑指 Offer II 021. 删除链表的倒数第 n 个结点](https://longsizhuo123.github.io/post/3ed2f01c.html)
+- [2562.找出数组的串联值](https://longsizhuo123.github.io/post/b625a0e1.html)
+- [2997. 使数组异或和等于 K 的最少操作次数](https://longsizhuo123.github.io/post/3109a910.html)
+- [2998. 使 X 和 Y 相等的最少操作次数](https://longsizhuo123.github.io/post/5ee4164.html)
 
 # longsizhuo123.github.io
 
@@ -125,7 +128,7 @@ Thank you for reading, and I hope you enjoy my blog!
 
 **[面向单细胞RNA数据分析工具](https://longsizhuo.shinyapps.io/long/)**
 以前做的项目，还有很多错误，勿喷。
-**[蜀地旅行菌](html/Sichuan_Traveler/index.html)**
+**[蜀地旅行菌](../html/home.html)**
 这是一个本科大二的时候的一个小作业，是小组作业。一开始因为链接不了`html`文件，阅读了很多很多官方文档或者CSDN文档
     。最后阅读了一篇文章，说是HEXO在当你`generate`的时候，就会把source中的文件append到public中去，后来试了很多次，发现直接以
 public为源文件夹，调用目录即可。虽然这样就会导致无法在md文档中超链接到文件。    
