@@ -10,16 +10,16 @@
   <title>2997. 使数组异或和等于 K 的最少操作次数 | 龙龙的网站</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta name="description" content="题目： 思想： 首先位运算有三个特性： 任何数和0进行异或运算，结果仍然是原数，即 a XOR 0 &#x3D; a。 任何数和自身进行异或运算，结果是0，即 a XOR a &#x3D; 0。 异或运算满足交换律和结合律。12345678910111213a &#x3D; 0b1001b &#x3D; 0b0110bin(a ^ b)&amp;#x27;0b1111&amp;#x27;首先，我们需要计算数组 nums 中所有元素的异或和，记为 xor">
+  <meta name="description" content="题目： 思想： 首先位运算有三个特性： 任何数和0进行异或运算，结果仍然是原数，即 a XOR 0 &#x3D; a。 任何数和自身进行异或运算，结果是0，即 a XOR a &#x3D; 0。 异或运算满足交换律和结合律。12345a &#x3D; 0b1001b &#x3D; 0b0110bin(a ^ b)&amp;#x27;0b1111&amp;#x27; 首先，我们需要计算数组 nums 中所有元素的异或和，记为 xor_sum。我们的目标是">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2997. 使数组异或和等于 K 的最少操作次数">
 <meta property="og:url" content="https://longsizhuo123.github.io/post/3109a910.html">
 <meta property="og:site_name" content="龙龙的网站">
-<meta property="og:description" content="题目： 思想： 首先位运算有三个特性： 任何数和0进行异或运算，结果仍然是原数，即 a XOR 0 &#x3D; a。 任何数和自身进行异或运算，结果是0，即 a XOR a &#x3D; 0。 异或运算满足交换律和结合律。12345678910111213a &#x3D; 0b1001b &#x3D; 0b0110bin(a ^ b)&amp;#x27;0b1111&amp;#x27;首先，我们需要计算数组 nums 中所有元素的异或和，记为 xor">
+<meta property="og:description" content="题目： 思想： 首先位运算有三个特性： 任何数和0进行异或运算，结果仍然是原数，即 a XOR 0 &#x3D; a。 任何数和自身进行异或运算，结果是0，即 a XOR a &#x3D; 0。 异或运算满足交换律和结合律。12345a &#x3D; 0b1001b &#x3D; 0b0110bin(a ^ b)&amp;#x27;0b1111&amp;#x27; 首先，我们需要计算数组 nums 中所有元素的异或和，记为 xor_sum。我们的目标是">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://longsizhuo123.github.io/assets/img/%E6%88%AA%E5%B1%8F2024-01-10%20%E4%B8%8B%E5%8D%884.17.31.png">
 <meta property="article:published_time" content="2024-01-06T12:39:00.000Z">
-<meta property="article:modified_time" content="2024-01-10T09:04:35.159Z">
+<meta property="article:modified_time" content="2024-01-10T13:50:21.488Z">
 <meta property="article:author" content="long long">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="已解决">
@@ -402,13 +402,16 @@ var _hmt = _hmt || [];
 <li>首先位运算有三个特性：<ol>
 <li>任何数和0进行异或运算，结果仍然是原数，即 a XOR 0 = a。</li>
 <li>任何数和自身进行异或运算，结果是0，即 a XOR a = 0。</li>
-<li>异或运算满足交换律和结合律。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">a = 0b1001</span><br><span class="line">b = 0b0110</span><br><span class="line">bin(a ^ b)</span><br><span class="line"></span><br><span class="line">&#x27;0b1111&#x27;</span><br><span class="line"></span><br><span class="line">首先，我们需要计算数组 nums 中所有元素的异或和，记为 xor_sum。我们的目标是通过翻转某些位来使 xor_sum 等于 k。</span><br><span class="line"></span><br><span class="line">接着，我们可以考虑 xor_sum XOR k 的结果。由于异或运算的特性，任何位上的不同会导致结果中该位为1。这意味着，我们需要改变 xor_sum 和 k 在二进制表示中所有不同的位。</span><br><span class="line"></span><br><span class="line">如果 xor_sum = 1010，k = 0011，那么 xor_sum XOR k = 1001。我们需要改变第一位和第四位来让 xor_sum 变成 k。</span><br><span class="line"></span><br><span class="line">也就是说 `nums的异或合`与 `k`的异或的值, 其中1的数目就是需要转换的数目。可以看0x3f的解法</span><br></pre></td></tr></table></figure>
-<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight python"><figcaption><span>我流</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minOperations</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], k: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        xor_sum = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">            xor_sum ^= num</span><br><span class="line"></span><br><span class="line">        xor_diff = xor_sum ^ k</span><br><span class="line">        operations = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 计算需要变更的位数</span></span><br><span class="line">        <span class="keyword">while</span> xor_diff:</span><br><span class="line">            operations += xor_diff &amp; <span class="number">1</span></span><br><span class="line">            xor_diff &gt;&gt;= <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> operations</span><br></pre></td></tr></table></figure>
-<figure class="highlight golang"><figcaption><span>0x3f</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">minOperations</span><span class="params">(nums []<span class="type">int</span>, k <span class="type">int</span>)</span></span> <span class="type">int</span> &#123;</span><br><span class="line">	<span class="keyword">for</span> _, x := <span class="keyword">range</span> nums &#123;</span><br><span class="line">		k ^= x</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> bits.OnesCount(<span class="type">uint</span>(k))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>异或运算满足交换律和结合律。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = 0b1001</span><br><span class="line">b = 0b0110</span><br><span class="line">bin(a ^ b)</span><br><span class="line"></span><br><span class="line">&#x27;0b1111&#x27;</span><br></pre></td></tr></table></figure>
+首先，我们需要计算数组 nums 中所有元素的异或和，记为 xor_sum。我们的目标是通过翻转某些位来使 xor_sum 等于 k。</li>
 </ol>
 </li>
 </ol>
-
+<p>接着，我们可以考虑 xor_sum XOR k 的结果。由于异或运算的特性，任何位上的不同会导致结果中该位为1。这意味着，我们需要改变 xor_sum 和 k 在二进制表示中所有不同的位。</p>
+<p>如果 xor_sum = 1010，k = 0011，那么 xor_sum XOR k = 1001。我们需要改变第一位和第四位来让 xor_sum 变成 k。</p>
+<p>也就是说 <code>nums的异或合</code>与 <code>k</code>的异或的值, 其中1的数目就是需要转换的数目。可以看0x3f的解法</p>
+<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight python"><figcaption><span>我流</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minOperations</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], k: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        xor_sum = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">            xor_sum ^= num</span><br><span class="line"></span><br><span class="line">        xor_diff = xor_sum ^ k</span><br><span class="line">        operations = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 计算需要变更的位数</span></span><br><span class="line">        <span class="keyword">while</span> xor_diff:</span><br><span class="line">            operations += xor_diff &amp; <span class="number">1</span></span><br><span class="line">            xor_diff &gt;&gt;= <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> operations</span><br></pre></td></tr></table></figure>
+<figure class="highlight golang"><figcaption><span>0x3f</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">minOperations</span><span class="params">(nums []<span class="type">int</span>, k <span class="type">int</span>)</span></span> <span class="type">int</span> &#123;</span><br><span class="line">	<span class="keyword">for</span> _, x := <span class="keyword">range</span> nums &#123;</span><br><span class="line">		k ^= x</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> bits.OnesCount(<span class="type">uint</span>(k))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 				  
 	  
       
@@ -649,10 +652,10 @@ var _hmt = _hmt || [];
 	  <br>
 	  <div class="footer-center">
 	    <i class="fa fa-file-word-o" aria-hidden="true"></i>
-		<span> 95 篇</span>
+		<span> 96 篇</span>
 		<span class="post-meta-divider">|</span>
 		<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-		<span> <span class="post-count">34.4k</span></span>
+		<span> <span class="post-count">34.5k</span></span>
       </div>
 	  
 	  <!-- 添加不蒜子统计 -->
@@ -1049,6 +1052,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">记忆化搜索</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">计数</a>
               </li>
             
             <div class="clearfix"></div>
