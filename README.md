@@ -1,5 +1,5 @@
 
-## 我现在有98篇文章，
+## 我现在有99篇文章，
 ## 目录：
     
 - [1004.最大连续1的个数 III 最大连续1的个数 III](https://longsizhuo123.github.io/post/ed19b576.html)
@@ -100,6 +100,7 @@
 - [2085. 统计出现过一次的公共字符串](https://longsizhuo123.github.io/post/bbe4bff6.html)
 - [14.最长公共前缀](https://longsizhuo123.github.io/post/54770e7.html)
 - [994.腐烂的橘子](https://longsizhuo123.github.io/post/56e64fdd.html)
+- [2028.找出缺失的数据](https://longsizhuo123.github.io/post/bc260a4b.html)
 
 # longsizhuo123.github.io
 
