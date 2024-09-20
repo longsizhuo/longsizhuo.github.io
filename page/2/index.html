@@ -292,6 +292,164 @@ var _hmt = _hmt || [];
         <div id="js-content" class="content-ll">
           
   
+    <article id="post-1233删除子文件夹_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/6610c769.html">1233Delete the subfolder folder One question daily</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/6610c769.html" class="archive-article-date">
+  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2024-01-01</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">587字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">3min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><img src="../assets/img/2023-02-09.png" alt="2023-02-09.png"><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-sub-folders-from-the-filesystem/description/">1233. Delete the subfolder folder</a></p>
+<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>脑子里的构思yesDictionary tree，But<code>Clanguage</code>的Dictionary tree，Whether it is<code>Python</code><br>still <code>golang</code>I won’t write。 So helpless can only look at the answer。<br>ylbThe big guy is right firstlistSort，Then traverse the list。</p>
+<p>1.ifiBefore<code>[len(ans[-1])]</code>Just happens<code>ans[-1]</code>The element is consistent，Explainiyes<br>ans[-1]Subfolder folder，Then skip。</p>
+<p>2.ifyes<code>[&quot;/a/b/c&quot;,&quot;/a/b/ca&quot;,&quot;/a/b/d&quot;]</code>This situation，Be alone1.的判断yes不够的，at this time<br><code>&quot;/a/b/ca&quot;</code>Before缀and<code>&quot;/a/b/c&quot;</code>yes一样的，但yescaandc实际上yes两个不同的文件夹，So add a judgment front end<br>yes否yes<code>/</code>，<code>&quot;/a/b/ca&quot;</code>and<code>&quot;/a/b/c/a&quot;</code>中后者才会被判定yes前面一个元素的子集。</p>
+<p>Dictionary tree没太看懂:<br>我们可以使用Dictionary tree存储数组 folder All folders in。<br>Dictionary tree的每个节点包含 children Field，Sub -nodes for storing the current nodes，as well as fid Field，<br>Used to store the folder corresponding to the current node in the array folder Bidding。</p>
+<p>For array folder Each folder in it f，We will first f according to / Divide into several skewers，<br>Then start from the root node，依次将子串加入Dictionary tree中。Next，我们从根节点开始搜索Dictionary tree，<br>if当前节点的 fid Field不为 -1，则说明当前节点对应的文件夹yes答案数组中的一个文件夹，<br>We add it to the array and return。otherwise，We search for all sub -nodes of the current node，Finally return to the array of answers。</p>
+<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><figcaption><span>python3</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">removeSubfolders</span>(<span class="params">self, folder: <span class="type">List</span>[<span class="built_in">str</span>]</span>) -&gt; <span class="type">List</span>[<span class="built_in">str</span>]:</span><br><span class="line">        folder.sort()</span><br><span class="line">        ans = [folder[<span class="number">0</span>]]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> folder[<span class="number">1</span>:]:</span><br><span class="line">            m, n = <span class="built_in">len</span>(ans[-<span class="number">1</span>]), <span class="built_in">len</span>(i)</span><br><span class="line">            <span class="comment"># if它的长度大于等于答案数组中最后一个文件夹的长度，并且它Before缀包含答案数组的最后一个文件夹再加上一个 /</span></span><br><span class="line">            <span class="keyword">if</span> m &gt;= n <span class="keyword">or</span> <span class="keyword">not</span> (ans[-<span class="number">1</span>] == i[:m] <span class="keyword">and</span> i[m] == <span class="string">&#x27;/&#x27;</span>):</span><br><span class="line">                ans.append(i)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line"><span class="comment"># Dictionary tree</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Trie</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        self.children = &#123;&#125;</span><br><span class="line">        self.fid = -<span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">insert</span>(<span class="params">self, i, f</span>):</span><br><span class="line">        node = self</span><br><span class="line">        ps = f.split(<span class="string">&#x27;/&#x27;</span>)</span><br><span class="line">        <span class="keyword">for</span> p <span class="keyword">in</span> ps[<span class="number">1</span>:]:</span><br><span class="line">            <span class="keyword">if</span> p <span class="keyword">not</span> <span class="keyword">in</span> node.children:</span><br><span class="line">                node.children[p] = Trie()</span><br><span class="line">            node = node.children[p]</span><br><span class="line">        node.fid = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">search</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">root</span>):</span><br><span class="line">            <span class="keyword">if</span> root.fid != -<span class="number">1</span>:</span><br><span class="line">                ans.append(root.fid)</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            <span class="keyword">for</span> child <span class="keyword">in</span> root.children.values():</span><br><span class="line">                dfs(child)</span><br><span class="line">        ans = []</span><br><span class="line">        dfs(self)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">removeSubfolders</span>(<span class="params">self, folder: <span class="type">List</span>[<span class="built_in">str</span>]</span>) -&gt; <span class="type">List</span>[<span class="built_in">str</span>]:</span><br><span class="line">        trie = Trie()</span><br><span class="line">        <span class="keyword">for</span> i, f <span class="keyword">in</span> <span class="built_in">enumerate</span>(folder):</span><br><span class="line">            trie.insert(i, f)</span><br><span class="line">        <span class="keyword">return</span> [folder[i] <span class="keyword">for</span> i <span class="keyword">in</span> trie.search()]</span><br></pre></td></tr></table></figure>
+<figure class="highlight golang"><figcaption><span>golang</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">removeSubfolders</span><span class="params">(folder []<span class="type">string</span>)</span></span> (ans []<span class="type">string</span>) &#123;</span><br><span class="line">	sort.Strings(folder)</span><br><span class="line">	ans = []<span class="type">string</span>&#123;folder[<span class="number">0</span>]&#125;</span><br><span class="line">	<span class="keyword">for</span> _, i := <span class="keyword">range</span> folder[<span class="number">1</span>:] &#123;</span><br><span class="line">		m, n := <span class="built_in">len</span>(ans[<span class="built_in">len</span>(ans)<span class="number">-1</span>]), <span class="built_in">len</span>(i)</span><br><span class="line">		<span class="keyword">if</span> m &gt;= n || !(ans[<span class="built_in">len</span>(ans)<span class="number">-1</span>] == i[:m] &amp;&amp; i[m] == <span class="string">&#x27;/&#x27;</span>)&#123;</span><br><span class="line">			ans = <span class="built_in">append</span>(ans, i)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+
+            <!-- 分类页 -->
+            
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Dictionary tree</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/6610c769.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
     <article id="post-1139. 最大的以 1 为边界的正方形_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -445,20 +603,20 @@ var _hmt = _hmt || [];
 
 <!-- 文章页添加mathjax公式 -->
   
-    <article id="post-1233删除子文件夹_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-1234. 替换子串得到平衡字符串_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
   
     <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/6610c769.html">1233Delete the subfolder folder One question daily</a>
+      <a class="article-title_code_ant" href="/post/56d97dcf.html">1234. Replace the sub -string to get a balanced string One question daily</a>
     </h2>
   
 
 
                 
-                    <a href="/post/6610c769.html" class="archive-article-date">
+                    <a href="/post/56d97dcf.html" class="archive-article-date">
   	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
 	<!-- <i class="icon-calendar icon"></i> -->
 
@@ -490,7 +648,7 @@ var _hmt = _hmt || [];
 	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
         <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
         <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">587字</span>
+        <span class="post-count">445字</span>
       </span>
     </span>
 
@@ -499,7 +657,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
 	    <i class="fa fa-pagelines" aria-hidden="true"></i>
         <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">3min</span>
+        <span class="post-count">2min</span>
       </span>
     </span>
 	
@@ -514,15 +672,14 @@ var _hmt = _hmt || [];
             <!-- 添加分类与标签 -->
             
                 
-                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><img src="../assets/img/2023-02-09.png" alt="2023-02-09.png"><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-sub-folders-from-the-filesystem/description/">1233. Delete the subfolder folder</a></p>
-<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>脑子里的构思yesDictionary tree，But<code>Clanguage</code>的Dictionary tree，Whether it is<code>Python</code><br>still <code>golang</code>I won’t write。 So helpless can only look at the answer。<br>ylbThe big guy is right firstlistSort，Then traverse the list。</p>
-<p>1.ifiBefore<code>[len(ans[-1])]</code>Just happens<code>ans[-1]</code>The element is consistent，Explainiyes<br>ans[-1]Subfolder folder，Then skip。</p>
-<p>2.ifyes<code>[&quot;/a/b/c&quot;,&quot;/a/b/ca&quot;,&quot;/a/b/d&quot;]</code>This situation，Be alone1.的判断yes不够的，at this time<br><code>&quot;/a/b/ca&quot;</code>Before缀and<code>&quot;/a/b/c&quot;</code>yes一样的，但yescaandc实际上yes两个不同的文件夹，So add a judgment front end<br>yes否yes<code>/</code>，<code>&quot;/a/b/ca&quot;</code>and<code>&quot;/a/b/c/a&quot;</code>中后者才会被判定yes前面一个元素的子集。</p>
-<p>Dictionary tree没太看懂:<br>我们可以使用Dictionary tree存储数组 folder All folders in。<br>Dictionary tree的每个节点包含 children Field，Sub -nodes for storing the current nodes，as well as fid Field，<br>Used to store the folder corresponding to the current node in the array folder Bidding。</p>
-<p>For array folder Each folder in it f，We will first f according to / Divide into several skewers，<br>Then start from the root node，依次将子串加入Dictionary tree中。Next，我们从根节点开始搜索Dictionary tree，<br>if当前节点的 fid Field不为 -1，则说明当前节点对应的文件夹yes答案数组中的一个文件夹，<br>We add it to the array and return。otherwise，We search for all sub -nodes of the current node，Finally return to the array of answers。</p>
-<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><figcaption><span>python3</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">removeSubfolders</span>(<span class="params">self, folder: <span class="type">List</span>[<span class="built_in">str</span>]</span>) -&gt; <span class="type">List</span>[<span class="built_in">str</span>]:</span><br><span class="line">        folder.sort()</span><br><span class="line">        ans = [folder[<span class="number">0</span>]]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> folder[<span class="number">1</span>:]:</span><br><span class="line">            m, n = <span class="built_in">len</span>(ans[-<span class="number">1</span>]), <span class="built_in">len</span>(i)</span><br><span class="line">            <span class="comment"># if它的长度大于等于答案数组中最后一个文件夹的长度，并且它Before缀包含答案数组的最后一个文件夹再加上一个 /</span></span><br><span class="line">            <span class="keyword">if</span> m &gt;= n <span class="keyword">or</span> <span class="keyword">not</span> (ans[-<span class="number">1</span>] == i[:m] <span class="keyword">and</span> i[m] == <span class="string">&#x27;/&#x27;</span>):</span><br><span class="line">                ans.append(i)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line"><span class="comment"># Dictionary tree</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Trie</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        self.children = &#123;&#125;</span><br><span class="line">        self.fid = -<span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">insert</span>(<span class="params">self, i, f</span>):</span><br><span class="line">        node = self</span><br><span class="line">        ps = f.split(<span class="string">&#x27;/&#x27;</span>)</span><br><span class="line">        <span class="keyword">for</span> p <span class="keyword">in</span> ps[<span class="number">1</span>:]:</span><br><span class="line">            <span class="keyword">if</span> p <span class="keyword">not</span> <span class="keyword">in</span> node.children:</span><br><span class="line">                node.children[p] = Trie()</span><br><span class="line">            node = node.children[p]</span><br><span class="line">        node.fid = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">search</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">root</span>):</span><br><span class="line">            <span class="keyword">if</span> root.fid != -<span class="number">1</span>:</span><br><span class="line">                ans.append(root.fid)</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            <span class="keyword">for</span> child <span class="keyword">in</span> root.children.values():</span><br><span class="line">                dfs(child)</span><br><span class="line">        ans = []</span><br><span class="line">        dfs(self)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">removeSubfolders</span>(<span class="params">self, folder: <span class="type">List</span>[<span class="built_in">str</span>]</span>) -&gt; <span class="type">List</span>[<span class="built_in">str</span>]:</span><br><span class="line">        trie = Trie()</span><br><span class="line">        <span class="keyword">for</span> i, f <span class="keyword">in</span> <span class="built_in">enumerate</span>(folder):</span><br><span class="line">            trie.insert(i, f)</span><br><span class="line">        <span class="keyword">return</span> [folder[i] <span class="keyword">for</span> i <span class="keyword">in</span> trie.search()]</span><br></pre></td></tr></table></figure>
-<figure class="highlight golang"><figcaption><span>golang</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">removeSubfolders</span><span class="params">(folder []<span class="type">string</span>)</span></span> (ans []<span class="type">string</span>) &#123;</span><br><span class="line">	sort.Strings(folder)</span><br><span class="line">	ans = []<span class="type">string</span>&#123;folder[<span class="number">0</span>]&#125;</span><br><span class="line">	<span class="keyword">for</span> _, i := <span class="keyword">range</span> folder[<span class="number">1</span>:] &#123;</span><br><span class="line">		m, n := <span class="built_in">len</span>(ans[<span class="built_in">len</span>(ans)<span class="number">-1</span>]), <span class="built_in">len</span>(i)</span><br><span class="line">		<span class="keyword">if</span> m &gt;= n || !(ans[<span class="built_in">len</span>(ans)<span class="number">-1</span>] == i[:m] &amp;&amp; i[m] == <span class="string">&#x27;/&#x27;</span>)&#123;</span><br><span class="line">			ans = <span class="built_in">append</span>(ans, i)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><img src="../assets/img/2023-02-13.png" alt="2023-02-13.png"><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/replace-the-substring-for-balanced-string/description/">1234. Replace the sub -string to get a balanced string.md</a></p>
+<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p><code>all()</code>:if bool(x) For all the values ​​in iterative objects x All for True，Then return True。 if可迭代对象为空，Then return True。</p>
+<p>Tongxiang dual pointer，The solution of the spiritual god of this question。<br>If in this string，These four characters happen just to appear n/4 Second-rate，Then it is one「Balanced string」。<br>if在待替换子串之外的任意字符的出现Second-rate数都<strong>Exceed</strong> $m=\dfrac{n}{4}$<br>，So no matter how you replace it，都无法make这个字符的出现Second-rate数等于m。<br>on the other hand，if在待替换子串之外的任意字符的出现Second-rate数都<strong>不Exceed</strong> m，</p>
+<blockquote>
+<p>So it can be replaced ，make s 为Balanced string，即每个字符的出现Second-rate数均为 m。<br>For this question，The left and right end points of the sub -string are left and right，enumerate right，<br>if子串外的任意字符的出现Second-rate数都不Exceedm，The explanation from left arrive<br>rightThis sub -string can be to replace the sub -string，Length right−left+1<br>Update the minimum value of the answer，Move to the right left，Sumid sub -string length。</p>
+</blockquote>
+<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">balancedString</span>(<span class="params">self, s: <span class="built_in">str</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        s_c = Counter(s)</span><br><span class="line">        n = <span class="built_in">len</span>(s)</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">all</span>(s_c[v] &lt;= n//<span class="number">4</span> <span class="keyword">for</span> v <span class="keyword">in</span> s_c):</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        ans, left = inf, <span class="number">0</span></span><br><span class="line">        <span class="comment"># enumerate右端点</span></span><br><span class="line">        <span class="keyword">for</span> i, j <span class="keyword">in</span> <span class="built_in">enumerate</span>(s):</span><br><span class="line">            s_c[j] -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">while</span> <span class="built_in">all</span>(s_c[v] &lt;= n // <span class="number">4</span> <span class="keyword">for</span> v <span class="keyword">in</span> s_c):</span><br><span class="line">                ans = <span class="built_in">min</span>(ans, i - left + <span class="number">1</span>)</span><br><span class="line">                s_c[s[left]] += <span class="number">1</span></span><br><span class="line">                left += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">balancedString</span><span class="params">(s <span class="type">string</span>)</span></span> <span class="type">int</span> &#123;</span><br><span class="line">	cnt, m := [<span class="string">&#x27;X&#x27;</span>]<span class="type">int</span>&#123;&#125;, <span class="built_in">len</span>(s)/<span class="number">4</span></span><br><span class="line">	<span class="keyword">for</span> _, c := <span class="keyword">range</span> s &#123;</span><br><span class="line">		cnt[c]++</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> cnt[<span class="string">&#x27;Q&#x27;</span>] == m &amp;&amp; cnt[<span class="string">&#x27;W&#x27;</span>] == m &amp;&amp; cnt[<span class="string">&#x27;E&#x27;</span>] == m &amp;&amp; cnt[<span class="string">&#x27;R&#x27;</span>] == m &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">	&#125;</span><br><span class="line">	ans, left := <span class="built_in">len</span>(s), <span class="number">0</span></span><br><span class="line">	<span class="keyword">for</span> right, c := <span class="keyword">range</span> s &#123;</span><br><span class="line">		cnt[c]--</span><br><span class="line">		<span class="keyword">for</span> cnt[<span class="string">&#x27;Q&#x27;</span>] &lt;= m &amp;&amp; cnt[<span class="string">&#x27;W&#x27;</span>] &lt;= m &amp;&amp; cnt[<span class="string">&#x27;E&#x27;</span>] &lt;= m &amp;&amp; cnt[<span class="string">&#x27;R&#x27;</span>] &lt;= m &#123;</span><br><span class="line">			ans = min(ans, right-left+<span class="number">1</span>)</span><br><span class="line">			cnt[s[left]]++</span><br><span class="line">			left++</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">min</span><span class="params">(a, b <span class="type">int</span>)</span></span> <span class="type">int</span> &#123; <span class="keyword">if</span> a &gt; b &#123; <span class="keyword">return</span> b &#125;; <span class="keyword">return</span> a &#125;</span><br></pre></td></tr></table></figure>
 
                 
             
@@ -552,9 +709,161 @@ var _hmt = _hmt || [];
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
         		</li>
+      		
+		</ul>
+	</div>
+
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/56d97dcf.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
+    <article id="post-142.环形链表II_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/e2c9cca9.html">142.Ring linkedII</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/e2c9cca9.html" class="archive-article-date">
+  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2024-01-01</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">738字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">3min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <p><img src="../assets/img/2023-07-01%20(1).png" alt="2023-07-01 (1).png"><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/linked-list-cycle-ii/">142.Ring listII.md</a></p>
+<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><h3 id="Problem-solving："><a href="#Problem-solving：" class="headerlink" title="Problem -solving："></a>Problem -solving：</h3><p>这类Linkedtopic一般都yes使用双pointer法解决的，For example, looking for distance tail K Node、Find a ring entrance、Find the entrance of the public tail, etc.。</p>
+<h3 id="Algorithm："><a href="#Algorithm：" class="headerlink" title="Algorithm："></a>Algorithm：</h3><ol>
+<li><p>Double pointer met for the first time： Set two pointers fast，slow 指向Linked头部 head，fast Walk per round 2 step，slow Walk per round 1 step；</p>
+<p> a. First result： fast pointer走过Linked末端，说明Linked无环，直接return null；</p>
+<p> .TIPS: If there is a ring，Two pointers will definitely meet。Because every time I go 1 wheel，fast and slow Pitch +1，fast The event will catch up slow；<br> b. Second result： whenfast == slowhour， Two pointers in the ring First encounter 。下面分析此hourfast and slowPassing step数关系 ：</p>
+<p> .设Linked共have a+b Node，in Linked头部到Linked入口 have a Node（不计Linked入口节点）， Linked环 have b Node（这里需要Notice，a and b yes未知数，例如图解上Linked a=4 , b=5）；Set two pointers分别走了 f，s step，则have：<br> a. fast 走的step数yesslowstep数的 2 Double，Right now f=2s；（Analyze： fast Walk per round 2 step）<br> b.fast Compare slowGo more n Length of a ring，Right now f=s+nb；（ Analyze： Double pointers have gone through a step，然后在环Inside绕圈直到重合，重合hour fast Compare slow Go 环的长度整数Double ）；<br> .The above two types are reduced：f=2nb，s=nb，Right nowfastandslow The pointer left separately 2n，n indivual Circumference of the ring （Notice： n yes未知数，不同Linked的情况不同）。</p>
+</li>
+</ol>
+                    
+                        <a class="article-more-a" href="/post/e2c9cca9.html#more">more >></a>
+                    
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+
+            <!-- 分类页 -->
+            
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Dictionary tree</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
         		</li>
       		
 		</ul>
@@ -565,7 +874,7 @@ var _hmt = _hmt || [];
             <!-- 添加展开全文 -->
             
                 <p class="article-more-link">
-                    <a class="article-more-a" href="/post/6610c769.html">show all >></a>
+                    <a class="article-more-a" href="/post/e2c9cca9.html">show all >></a>
                 </p>
             
 
@@ -914,20 +1223,20 @@ var _hmt = _hmt || [];
 
 <!-- 文章页添加mathjax公式 -->
   
-    <article id="post-1234. 替换子串得到平衡字符串_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-1590.使数组和能被P整除_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
   
     <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/56d97dcf.html">1234. Replace the sub -string to get a balanced string One question daily</a>
+      <a class="article-title_code_ant" href="/post/59825e1f.html">1590.Make the array and energyPDivide</a>
     </h2>
   
 
 
                 
-                    <a href="/post/56d97dcf.html" class="archive-article-date">
+                    <a href="/post/59825e1f.html" class="archive-article-date">
   	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
 	<!-- <i class="icon-calendar icon"></i> -->
 
@@ -959,160 +1268,7 @@ var _hmt = _hmt || [];
 	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
         <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
         <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">445字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">2min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-                
-            </header>
-        
-
-        <div class="article-entry" itemprop="articleBody">
-            <!-- 添加分类与标签 -->
-            
-                
-                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><img src="../assets/img/2023-02-13.png" alt="2023-02-13.png"><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/replace-the-substring-for-balanced-string/description/">1234. Replace the sub -string to get a balanced string.md</a></p>
-<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p><code>all()</code>:if bool(x) For all the values ​​in iterative objects x All for True，Then return True。 if可迭代对象为空，Then return True。</p>
-<p>Tongxiang dual pointer，The solution of the spiritual god of this question。<br>If in this string，These four characters happen just to appear n/4 Second-rate，Then it is one「Balanced string」。<br>if在待替换子串之外的任意字符的出现Second-rate数都<strong>Exceed</strong> $m=\dfrac{n}{4}$<br>，So no matter how you replace it，都无法make这个字符的出现Second-rate数等于m。<br>on the other hand，if在待替换子串之外的任意字符的出现Second-rate数都<strong>不Exceed</strong> m，</p>
-<blockquote>
-<p>So it can be replaced ，make s 为Balanced string，即每个字符的出现Second-rate数均为 m。<br>For this question，The left and right end points of the sub -string are left and right，enumerate right，<br>if子串外的任意字符的出现Second-rate数都不Exceedm，The explanation from left arrive<br>rightThis sub -string can be to replace the sub -string，Length right−left+1<br>Update the minimum value of the answer，Move to the right left，Sumid sub -string length。</p>
-</blockquote>
-<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">balancedString</span>(<span class="params">self, s: <span class="built_in">str</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        s_c = Counter(s)</span><br><span class="line">        n = <span class="built_in">len</span>(s)</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">all</span>(s_c[v] &lt;= n//<span class="number">4</span> <span class="keyword">for</span> v <span class="keyword">in</span> s_c):</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        ans, left = inf, <span class="number">0</span></span><br><span class="line">        <span class="comment"># enumerate右端点</span></span><br><span class="line">        <span class="keyword">for</span> i, j <span class="keyword">in</span> <span class="built_in">enumerate</span>(s):</span><br><span class="line">            s_c[j] -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">while</span> <span class="built_in">all</span>(s_c[v] &lt;= n // <span class="number">4</span> <span class="keyword">for</span> v <span class="keyword">in</span> s_c):</span><br><span class="line">                ans = <span class="built_in">min</span>(ans, i - left + <span class="number">1</span>)</span><br><span class="line">                s_c[s[left]] += <span class="number">1</span></span><br><span class="line">                left += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">balancedString</span><span class="params">(s <span class="type">string</span>)</span></span> <span class="type">int</span> &#123;</span><br><span class="line">	cnt, m := [<span class="string">&#x27;X&#x27;</span>]<span class="type">int</span>&#123;&#125;, <span class="built_in">len</span>(s)/<span class="number">4</span></span><br><span class="line">	<span class="keyword">for</span> _, c := <span class="keyword">range</span> s &#123;</span><br><span class="line">		cnt[c]++</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> cnt[<span class="string">&#x27;Q&#x27;</span>] == m &amp;&amp; cnt[<span class="string">&#x27;W&#x27;</span>] == m &amp;&amp; cnt[<span class="string">&#x27;E&#x27;</span>] == m &amp;&amp; cnt[<span class="string">&#x27;R&#x27;</span>] == m &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">	&#125;</span><br><span class="line">	ans, left := <span class="built_in">len</span>(s), <span class="number">0</span></span><br><span class="line">	<span class="keyword">for</span> right, c := <span class="keyword">range</span> s &#123;</span><br><span class="line">		cnt[c]--</span><br><span class="line">		<span class="keyword">for</span> cnt[<span class="string">&#x27;Q&#x27;</span>] &lt;= m &amp;&amp; cnt[<span class="string">&#x27;W&#x27;</span>] &lt;= m &amp;&amp; cnt[<span class="string">&#x27;E&#x27;</span>] &lt;= m &amp;&amp; cnt[<span class="string">&#x27;R&#x27;</span>] &lt;= m &#123;</span><br><span class="line">			ans = min(ans, right-left+<span class="number">1</span>)</span><br><span class="line">			cnt[s[left]]++</span><br><span class="line">			left++</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">min</span><span class="params">(a, b <span class="type">int</span>)</span></span> <span class="type">int</span> &#123; <span class="keyword">if</span> a &gt; b &#123; <span class="keyword">return</span> b &#125;; <span class="keyword">return</span> a &#125;</span><br></pre></td></tr></table></figure>
-
-                
-            
-
-            <!-- 添加打赏 -->
-            
-
-            <!-- 添加版权声明 -->
-            
-
-        </div>
-
-        <!-- 添加置顶 -->
-        <div class="article-info article-info-index">
-            
-
-            <!-- 分类页 -->
-            
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-            
-
-            <!-- 添加展开全文 -->
-            
-                <p class="article-more-link">
-                    <a class="article-more-a" href="/post/56d97dcf.html">show all >></a>
-                </p>
-            
-
-            <!-- 添加分享 -->
-            
-
-            <div class="clearfix"></div>
-
-        </div>
-    </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-    
-
-<!-- 文章页添加mathjax公式 -->
-  
-    <article id="post-142.环形链表II_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/e2c9cca9.html">142.Ring linkedII</a>
-    </h2>
-  
-
-
-                
-                    <a href="/post/e2c9cca9.html" class="archive-article-date">
-  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2024-01-01</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-                
-
-                
-                    <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">738字</span>
+        <span class="post-count">548字</span>
       </span>
     </span>
 
@@ -1136,18 +1292,22 @@ var _hmt = _hmt || [];
             <!-- 添加分类与标签 -->
             
                 
-                    <p><img src="../assets/img/2023-07-01%20(1).png" alt="2023-07-01 (1).png"><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/linked-list-cycle-ii/">142.Ring listII.md</a></p>
-<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><h3 id="Problem-solving："><a href="#Problem-solving：" class="headerlink" title="Problem -solving："></a>Problem -solving：</h3><p>这类Linkedtopic一般都yes使用双pointer法解决的，For example, looking for distance tail K Node、Find a ring entrance、Find the entrance of the public tail, etc.。</p>
-<h3 id="Algorithm："><a href="#Algorithm：" class="headerlink" title="Algorithm："></a>Algorithm：</h3><ol>
-<li><p>Double pointer met for the first time： Set two pointers fast，slow 指向Linked头部 head，fast Walk per round 2 step，slow Walk per round 1 step；</p>
-<p> a. First result： fast pointer走过Linked末端，说明Linked无环，直接return null；</p>
-<p> .TIPS: If there is a ring，Two pointers will definitely meet。Because every time I go 1 wheel，fast and slow Pitch +1，fast The event will catch up slow；<br> b. Second result： whenfast == slowhour， Two pointers in the ring First encounter 。下面分析此hourfast and slowPassing step数关系 ：</p>
-<p> .设Linked共have a+b Node，in Linked头部到Linked入口 have a Node（不计Linked入口节点）， Linked环 have b Node（这里需要Notice，a and b yes未知数，例如图解上Linked a=4 , b=5）；Set two pointers分别走了 f，s step，则have：<br> a. fast 走的step数yesslowstep数的 2 Double，Right now f=2s；（Analyze： fast Walk per round 2 step）<br> b.fast Compare slowGo more n Length of a ring，Right now f=s+nb；（ Analyze： Double pointers have gone through a step，然后在环Inside绕圈直到重合，重合hour fast Compare slow Go 环的长度整数Double ）；<br> .The above two types are reduced：f=2nb，s=nb，Right nowfastandslow The pointer left separately 2n，n indivual Circumference of the ring （Notice： n yes未知数，不同Linked的情况不同）。</p>
-</li>
-</ol>
-                    
-                        <a class="article-more-a" href="/post/e2c9cca9.html#more">more >></a>
-                    
+                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><a href="">1590.Make the array and energyPDivide.md</a></p>
+<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>‘≡’Together<br>For example nums=[11,2,5,7,8,9]，p=10，So [5,7] Remove，The remaining numbers add 30，Be able to p Divide。<br>All elements and $42mod10 = 2$<br>设All elements andx，RemoveElementsand为y，Makex-y Be able topDivide,satisfy</p>
+<p>y≡x(mod p)-&gt;x % p = y % p</p>
+<p>By prefix and，The problem converts：Find two numbers on the prefix and array <code>s[left]</code> and <code>s[right]</code>，satisfy right−left Minimum</p>
+<p>$$<br>s[right] - s[left] ≡ x (mod p)<br>-&gt;s[right] - x ≡ s[left] (mod p)<br>$$</p>
+<p><code>((s[right]-x)modp+p) mod p = s[left] mod p</code></p>
+<p>Traversal sss At the same time，Hash table last\textit{last}last Record s[i]mod p The last time the bidding appeared，if lastlast Contain<br>(s[i] mod p−x mod p+p) mod p，Let’s set its corresponding setting j，So [j,i) Is a符合topic要求的子数组。</p>
+<p>Enumerate i，Calculate the minimum value of the child array length that meets the requirements，Is the answer。if没有符合要求的子数组，Then return −1。</p>
+<p>Code implementation，You can initialize the answer to nums length n。if最后答案等于 n，It means that there are no sub -array that does not meet the requirements，因为topic不允许将整个数组都移除。</p>
+<blockquote>
+<p>lastIs amap，The key is an integer，Value is an integer。j, ok := last[(v-x+p)%p]This line code is inlastThe search key is(v-x+p)%pElements，And give its value to variablesj。if这个键不存在，SookThe value will befalse，otherwiseokThe value will betrue。<br>The return value of this grammar is two values，The first value is the value corresponding to the key，第二个值Is a布尔值，Indicates whether the key exists。<br>ifokThe value istrue，SoCode中的ifThe statement will be executed，It willansThe value update isi-jandansMinimum value。ifokThe value isfalse，SoifThe statement will be skipped，The program will continue to execute。</p>
+</blockquote>
+<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minSubarray</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], p: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        s = <span class="built_in">list</span>(accumulate(nums, initial=<span class="number">0</span>))</span><br><span class="line">        x = s[-<span class="number">1</span>] % p</span><br><span class="line">        <span class="keyword">if</span> x == <span class="number">0</span>: <span class="keyword">return</span> <span class="number">0</span>  <span class="comment"># Remove the air array（This line can not be）</span></span><br><span class="line"></span><br><span class="line">        ans = n = <span class="built_in">len</span>(nums)</span><br><span class="line">        last = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> i, v <span class="keyword">in</span> <span class="built_in">enumerate</span>(s):</span><br><span class="line">            last[v % p] = i</span><br><span class="line">            j = last.get((v - x) % p, -n)  <span class="comment"># if不存在，-n Be guaranteed i-j &gt;= n</span></span><br><span class="line">            ans = <span class="built_in">min</span>(ans, i - j)</span><br><span class="line">        <span class="keyword">return</span> ans <span class="keyword">if</span> ans &lt; n <span class="keyword">else</span> -<span class="number">1</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">minSubarray</span><span class="params">(nums []<span class="type">int</span>, p <span class="type">int</span>)</span></span> <span class="type">int</span> &#123;</span><br><span class="line">	n := <span class="built_in">len</span>(nums)</span><br><span class="line">	s := <span class="built_in">make</span>([]<span class="type">int</span>, n+<span class="number">1</span>)</span><br><span class="line">	<span class="keyword">for</span> i, v := <span class="keyword">range</span> nums &#123;</span><br><span class="line">		s[i+<span class="number">1</span>] = (s[i] + v) % p</span><br><span class="line">	&#125;</span><br><span class="line">	x := s[n]</span><br><span class="line">	<span class="keyword">if</span> x == <span class="number">0</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	ans := n</span><br><span class="line">	last := <span class="keyword">map</span>[<span class="type">int</span>]<span class="type">int</span>&#123;&#125;</span><br><span class="line">	<span class="keyword">for</span> i, v := <span class="keyword">range</span> s &#123;</span><br><span class="line">		last[v] = i</span><br><span class="line">		<span class="keyword">if</span> j, ok := last[(v-x+p)%p]; ok &#123;</span><br><span class="line">			ans = min(ans, i-j)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> ans &lt; n &#123;</span><br><span class="line">		<span class="keyword">return</span> ans</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">min</span><span class="params">(a, b <span class="type">int</span>)</span></span> <span class="type">int</span> &#123;</span><br><span class="line">	<span class="keyword">if</span> b &lt; a &#123;</span><br><span class="line">		<span class="keyword">return</span> b</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> a</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
                 
             
 
@@ -1185,7 +1345,7 @@ var _hmt = _hmt || [];
             <!-- 添加展开全文 -->
             
                 <p class="article-more-link">
-                    <a class="article-more-a" href="/post/e2c9cca9.html">show all >></a>
+                    <a class="article-more-a" href="/post/59825e1f.html">show all >></a>
                 </p>
             
 
@@ -1352,166 +1512,6 @@ var _hmt = _hmt || [];
             
                 <p class="article-more-link">
                     <a class="article-more-a" href="/post/b2a927d5.html">show all >></a>
-                </p>
-            
-
-            <!-- 添加分享 -->
-            
-
-            <div class="clearfix"></div>
-
-        </div>
-    </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-    
-
-<!-- 文章页添加mathjax公式 -->
-  
-    <article id="post-1590.使数组和能被P整除_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/59825e1f.html">1590.Make the array and energyPDivide</a>
-    </h2>
-  
-
-
-                
-                    <a href="/post/59825e1f.html" class="archive-article-date">
-  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2024-01-01</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-                
-
-                
-                    <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">548字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">3min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-                
-            </header>
-        
-
-        <div class="article-entry" itemprop="articleBody">
-            <!-- 添加分类与标签 -->
-            
-                
-                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><a href="">1590.Make the array and energyPDivide.md</a></p>
-<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>‘≡’Together<br>For example nums=[11,2,5,7,8,9]，p=10，So [5,7] Remove，The remaining numbers add 30，Be able to p Divide。<br>All elements and $42mod10 = 2$<br>设All elements andx，RemoveElementsand为y，Makex-y Be able topDivide,satisfy</p>
-<p>y≡x(mod p)-&gt;x % p = y % p</p>
-<p>By prefix and，The problem converts：Find two numbers on the prefix and array <code>s[left]</code> and <code>s[right]</code>，satisfy right−left Minimum</p>
-<p>$$<br>s[right] - s[left] ≡ x (mod p)<br>-&gt;s[right] - x ≡ s[left] (mod p)<br>$$</p>
-<p><code>((s[right]-x)modp+p) mod p = s[left] mod p</code></p>
-<p>Traversal sss At the same time，Hash table last\textit{last}last Record s[i]mod p The last time the bidding appeared，if lastlast Contain<br>(s[i] mod p−x mod p+p) mod p，Let’s set its corresponding setting j，So [j,i) Is a符合topic要求的子数组。</p>
-<p>Enumerate i，Calculate the minimum value of the child array length that meets the requirements，Is the answer。if没有符合要求的子数组，Then return −1。</p>
-<p>Code implementation，You can initialize the answer to nums length n。if最后答案等于 n，It means that there are no sub -array that does not meet the requirements，因为topic不允许将整个数组都移除。</p>
-<blockquote>
-<p>lastIs amap，The key is an integer，Value is an integer。j, ok := last[(v-x+p)%p]This line code is inlastThe search key is(v-x+p)%pElements，And give its value to variablesj。if这个键不存在，SookThe value will befalse，otherwiseokThe value will betrue。<br>The return value of this grammar is two values，The first value is the value corresponding to the key，第二个值Is a布尔值，Indicates whether the key exists。<br>ifokThe value istrue，SoCode中的ifThe statement will be executed，It willansThe value update isi-jandansMinimum value。ifokThe value isfalse，SoifThe statement will be skipped，The program will continue to execute。</p>
-</blockquote>
-<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minSubarray</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], p: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        s = <span class="built_in">list</span>(accumulate(nums, initial=<span class="number">0</span>))</span><br><span class="line">        x = s[-<span class="number">1</span>] % p</span><br><span class="line">        <span class="keyword">if</span> x == <span class="number">0</span>: <span class="keyword">return</span> <span class="number">0</span>  <span class="comment"># Remove the air array（This line can not be）</span></span><br><span class="line"></span><br><span class="line">        ans = n = <span class="built_in">len</span>(nums)</span><br><span class="line">        last = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> i, v <span class="keyword">in</span> <span class="built_in">enumerate</span>(s):</span><br><span class="line">            last[v % p] = i</span><br><span class="line">            j = last.get((v - x) % p, -n)  <span class="comment"># if不存在，-n Be guaranteed i-j &gt;= n</span></span><br><span class="line">            ans = <span class="built_in">min</span>(ans, i - j)</span><br><span class="line">        <span class="keyword">return</span> ans <span class="keyword">if</span> ans &lt; n <span class="keyword">else</span> -<span class="number">1</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">minSubarray</span><span class="params">(nums []<span class="type">int</span>, p <span class="type">int</span>)</span></span> <span class="type">int</span> &#123;</span><br><span class="line">	n := <span class="built_in">len</span>(nums)</span><br><span class="line">	s := <span class="built_in">make</span>([]<span class="type">int</span>, n+<span class="number">1</span>)</span><br><span class="line">	<span class="keyword">for</span> i, v := <span class="keyword">range</span> nums &#123;</span><br><span class="line">		s[i+<span class="number">1</span>] = (s[i] + v) % p</span><br><span class="line">	&#125;</span><br><span class="line">	x := s[n]</span><br><span class="line">	<span class="keyword">if</span> x == <span class="number">0</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	ans := n</span><br><span class="line">	last := <span class="keyword">map</span>[<span class="type">int</span>]<span class="type">int</span>&#123;&#125;</span><br><span class="line">	<span class="keyword">for</span> i, v := <span class="keyword">range</span> s &#123;</span><br><span class="line">		last[v] = i</span><br><span class="line">		<span class="keyword">if</span> j, ok := last[(v-x+p)%p]; ok &#123;</span><br><span class="line">			ans = min(ans, i-j)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> ans &lt; n &#123;</span><br><span class="line">		<span class="keyword">return</span> ans</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">min</span><span class="params">(a, b <span class="type">int</span>)</span></span> <span class="type">int</span> &#123;</span><br><span class="line">	<span class="keyword">if</span> b &lt; a &#123;</span><br><span class="line">		<span class="keyword">return</span> b</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> a</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-                
-            
-
-            <!-- 添加打赏 -->
-            
-
-            <!-- 添加版权声明 -->
-            
-
-        </div>
-
-        <!-- 添加置顶 -->
-        <div class="article-info article-info-index">
-            
-
-            <!-- 分类页 -->
-            
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-            
-
-            <!-- 添加展开全文 -->
-            
-                <p class="article-more-link">
-                    <a class="article-more-a" href="/post/59825e1f.html">show all >></a>
                 </p>
             
 
@@ -1908,7 +1908,7 @@ window.MathJax = {
 		<span> 104 篇</span>
 		<span class="post-meta-divider">|</span>
 		<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-		<span> <span class="post-count">31.1k</span></span>
+		<span> <span class="post-count">33.9k</span></span>
       </div>
 	  
 	  <!-- 添加不蒜子统计 -->

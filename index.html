@@ -295,12 +295,191 @@ var _hmt = _hmt || [];
     <article id="post-9021_TUT_2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
     <div class="article-inner">
         
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/becdc081.html">9021_TUT_2</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/becdc081.html" class="archive-article-date">
+  	<time datetime="2024-09-18T01:00:36.787Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2024-09-18</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">2.9k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">17min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
 
         <div class="article-entry" itemprop="articleBody">
             <!-- 添加分类与标签 -->
             
                 
-                    
+                    <h1 id="Exercise-1"><a href="#Exercise-1" class="headerlink" title="Exercise 1:"></a>Exercise 1:</h1><p>This exercise focuses on input validation and formatting floating-point numbers. The goal is to prompt the user to enter a floating-point number between -1 and 1 (exclusive). If the input is valid, the program rounds the number to two decimal places and prints it. Otherwise, it keeps prompting the user until a valid input is provided.<br>Key Points:</p>
+<ul>
+<li>The program uses a try-except block to catch invalid inputs (e.g., strings that cannot be converted to floats).</li>
+<li>The input() function is wrapped in an infinite while loop to continuously ask for input until the correct condition is met.</li>
+</ul>
+<p>In the updated version of Exercise 1, we use the formatting :.2f instead of round(). Here’s the key difference between the two:</p>
+<ul>
+<li><code>round()</code>: This is a Python built-in function that rounds a number to a specified number of decimal places. For example, round(1.236, 2) will return 1.24. However, the output of round() is still a float, but it does not guarantee a fixed number of decimal places when printed. For instance, round(1.0001, 2) would return 1.0 and only display one decimal place, not two.</li>
+<li><code>:.2f</code>: This is part of Python’s string formatting and ensures the number is displayed with exactly two decimal places, no matter what the number is. It also rounds the number appropriately. For instance, number = 1.0 formatted as f”{number:.2f}” will print 1.00. This makes :.2f particularly useful for consistent display of decimal places, which is important for formatting output for users.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        i = <span class="built_in">input</span>(<span class="string">&#x27;Enter a floating point number between -1 and 1 excluded: &#x27;</span>)</span><br><span class="line">        number = <span class="built_in">float</span>(i)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&#x27;.&#x27;</span> <span class="keyword">not</span> <span class="keyword">in</span> i:</span><br><span class="line">            <span class="keyword">raise</span> ValueError</span><br><span class="line">        <span class="keyword">if</span> -<span class="number">1</span> &lt; number &lt; <span class="number">1</span>:</span><br><span class="line">            <span class="comment"># not using round() here because it rounds to the nearest even number</span></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&#x27;\nUp to +/-0.005, you input <span class="subst">&#123;number:<span class="number">.2</span>f&#125;</span>&#x27;</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">raise</span> ValueError</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">except</span> ValueError:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;You got that wrong, try again!\n&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="Exercise-2"><a href="#Exercise-2" class="headerlink" title="Exercise 2:"></a>Exercise 2:</h1><p>This exercise involves processing a block of text and formatting it into sentences. Each sentence should have its first word capitalized, and the remaining words should be in lowercase. The task is to handle spaces and punctuation properly.</p>
+<p>Key Points:</p>
+<ul>
+<li>A regular expression (re.sub) is used to replace multiple spaces with a single space.</li>
+<li>Another regular expression (re.split) is used to split the text into sentences while preserving punctuation marks.</li>
+<li>After splitting, the sentences are processed: the first word is capitalized, and all other words are made lowercase.</li>
+<li>Finally, the processed sentences are recombined into a single formatted text.</li>
+</ul>
+<h3 id="Why-use-re-in-Exercise-2-and-what-is-re"><a href="#Why-use-re-in-Exercise-2-and-what-is-re" class="headerlink" title="Why use re in Exercise 2, and what is re?"></a>Why use re in Exercise 2, and what is re?</h3><p>In Exercise 2, we use re (Python’s regular expression module) to process and format the text input. Let’s break down why re is used and what it is:</p>
+<h3 id="What-is-re"><a href="#What-is-re" class="headerlink" title="What is re?"></a>What is re?</h3><p>re stands for regular expressions, which are powerful tools for matching patterns in strings. The re module in Python allows you to work with regular expressions to search, split, and manipulate text based on specific patterns. Regular expressions are highly flexible and efficient for handling complex string operations.</p>
+<h3 id="Why-use-re-in-Exercise-2"><a href="#Why-use-re-in-Exercise-2" class="headerlink" title="Why use re in Exercise 2?"></a>Why use re in Exercise 2?</h3><p>In this exercise, we need to handle several complex text manipulations:</p>
+<ol>
+<li>Replace multiple spaces with a single space: Sentences in the text may have irregular spaces between words, so we need to normalize these spaces. Instead of writing loops or conditions to handle each case, we use re.sub() with a pattern r’\s+’ to easily match all occurrences of one or more spaces and replace them with a single space.</li>
+<li>Split sentences while preserving punctuation: We need to split the text into individual sentences, where each sentence is followed by punctuation (e.g., ‘.’, ‘!’, or ‘?’). The function re.split(r’([.!?])’, text) allows us to split the text based on punctuation while keeping the punctuation marks, which is crucial for proper sentence reconstruction.</li>
+</ol>
+<p>Regular expressions allow us to:</p>
+<ul>
+<li>Efficiently match patterns like spaces or punctuation.</li>
+<li>Perform complex text transformations with minimal code.</li>
+<li>Handle edge cases that would otherwise require more manual handling.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Assume that the argument text is a string that denotes a text,</span></span><br><span class="line"><span class="comment"># defined as one or more sentences, two successive</span></span><br><span class="line"><span class="comment"># sentences being separated by at least one space,</span></span><br><span class="line"><span class="comment"># the first sentence being possibly preceded with spaces,</span></span><br><span class="line"><span class="comment"># the last sentence being possibly followed by spaces,</span></span><br><span class="line"><span class="comment"># a sentence being defined as at least two words,</span></span><br><span class="line"><span class="comment"># two successive words in a sentence being separated by</span></span><br><span class="line"><span class="comment"># at least one space, a word being defined as a sequence</span></span><br><span class="line"><span class="comment"># of (uppercase or lowercase) letters,</span></span><br><span class="line"><span class="comment"># - possibly followed by a comma for a word that is</span></span><br><span class="line"><span class="comment">#   not the last one in its sentence,</span></span><br><span class="line"><span class="comment"># - definitely followed by a full stop, an exclamation mark</span></span><br><span class="line"><span class="comment">#   or a question mark for a word that is the last one</span></span><br><span class="line"><span class="comment">#   in its sentence.</span></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f2</span>(<span class="params">text</span>):</span><br><span class="line">    <span class="comment"># Use regular expression to replace multiple spaces with a single space</span></span><br><span class="line">    text = re.sub(<span class="string">r&#x27;\s+&#x27;</span>, <span class="string">&#x27; &#x27;</span>, text.strip())</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Correct way to split sentences while preserving delimiters</span></span><br><span class="line">    sentences = re.split(<span class="string">r&#x27;([.!?])&#x27;</span>, text)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Process sentences and punctuation separately</span></span><br><span class="line">    new_text = []</span><br><span class="line">    i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; <span class="built_in">len</span>(sentences)-<span class="number">1</span>:</span><br><span class="line">        sentence = sentences[i].strip()</span><br><span class="line">        <span class="keyword">if</span> sentence:</span><br><span class="line">            sentence =<span class="string">&#x27; &#x27;</span>.join(sentence.capitalize().split())</span><br><span class="line">            <span class="comment"># Rebuild the sentence and add back the punctuation</span></span><br><span class="line">            new_text.append(sentence +sentences[i +<span class="number">1</span>])</span><br><span class="line">        i += <span class="number">2</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27; &#x27;</span>.join(new_text)</span><br></pre></td></tr></table></figure>
+
+<h1 id="Exercise-3"><a href="#Exercise-3" class="headerlink" title="Exercise 3:"></a>Exercise 3:</h1><p>This exercise works with lists of integers and aims to repeatedly remove the first and last elements of the list as long as they are equal. The list is treated as a double-ended queue (deque) for efficient removal of elements from both ends.</p>
+<p>Key Points:</p>
+<ul>
+<li>The deque data structure is used because it provides O(1) operations for popping elements from both ends, which is more efficient than using lists.</li>
+<li>The program checks if the first and last elements of the deque are equal and removes them until this condition is no longer met.</li>
+<li>The deque is converted back to a list before being returned.</li>
+</ul>
+<h3 id="Why-is-deque-more-efficient-than-list-in-Exercise-3"><a href="#Why-is-deque-more-efficient-than-list-in-Exercise-3" class="headerlink" title="Why is deque more efficient than list in Exercise 3?"></a>Why is <code>deque</code> more efficient than <code>list</code> in Exercise 3?</h3><p>In Exercise 3, we are frequently removing elements from both the front (left) and the back (right) of the list. This is where using a deque (double-ended queue) from Python’s collections module becomes more efficient compared to using a standard list.</p>
+<p>Here’s why:</p>
+<ul>
+<li><p>List Behavior: When you use a standard list and call list.pop(0) to remove the first (leftmost) element, it requires shifting all the remaining elements one position to the left. This shift operation takes linear time—O(n), where n is the number of elements in the list. This means that for every removal from the front, the larger the list, the slower the operation becomes.</p>
+<ul>
+<li>Removing from the right side of a list using list.pop() is an O(1) operation (constant time) because no elements need to be shifted, making it efficient only when working from the end of the list.</li>
+</ul>
+</li>
+<li><p>Deque Behavior: A deque (double-ended queue) is specifically designed to support efficient append and pop operations from both ends. In a deque, both popleft() and pop() operations take constant time—O(1)—because the deque is implemented as a doubly linked list. This means no elements need to be shifted when popping from the left or right.</p>
+<ul>
+<li>In Exercise 3, where we need to frequently remove elements from both ends of the list, using a deque ensures that both the removal from the left (popleft()) and the right (pop()) are performed in constant time. This makes the entire process much more efficient, especially for large lists where repeated operations would slow down if we used a standard list.</li>
+</ul>
+</li>
+</ul>
+<h3 id="What-is-a-deque"><a href="#What-is-a-deque" class="headerlink" title="What is a deque?"></a>What is a <code>deque</code>?</h3><p>A deque (short for “double-ended queue”) is a data structure that allows for fast appending and popping of elements from both ends. It is part of the collections module in Python and is optimized for scenarios where you need to efficiently add or remove elements from both ends of the sequence.</p>
+<h3 id="Key-Features-of-deque"><a href="#Key-Features-of-deque" class="headerlink" title="Key Features of deque:"></a>Key Features of <code>deque</code>:</h3><ul>
+<li><code>O(1)</code> time complexity for operations on both ends (append, pop, appendleft, popleft).</li>
+<li>It is implemented as a <strong>doubly linked list</strong>, meaning each element contains a reference to both the previous and next elements, allowing efficient traversal in both directions.</li>
+<li><code>deque</code> is ideal for scenarios where you need frequent and efficient insertions and removals from both the front and back of a sequence, unlike a standard list where such operations are costly at the front.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Assume that the argument L is a list of integers.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># For as long as the list has at least two elements</span></span><br><span class="line"><span class="comment"># and the first and last elements of the list are equal,</span></span><br><span class="line"><span class="comment"># pop out those elements.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># def f3(L):</span></span><br><span class="line"><span class="comment"># # Remove the list as long as it has at least two elements and the first and last elements are equal</span></span><br><span class="line"><span class="comment">#     while len(L) &gt; 1 and L[0] == L[-1]:</span></span><br><span class="line"><span class="comment">#         L.pop(0) # Remove the first element</span></span><br><span class="line"><span class="comment">#         L.pop(-1) # Remove the last element</span></span><br><span class="line"><span class="comment">#     return L</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f3</span>(<span class="params">L</span>):</span><br><span class="line">    L = deque(L)  <span class="comment"># Convert the list to a deque for efficient popping from both ends</span></span><br><span class="line">    <span class="comment"># Continue removing elements while there are at least two elements and the first and last are equal</span></span><br><span class="line">    <span class="keyword">while</span> <span class="built_in">len</span>(L) &gt; <span class="number">1</span> <span class="keyword">and</span> L[<span class="number">0</span>] == L[-<span class="number">1</span>]:</span><br><span class="line">        L.popleft()  <span class="comment"># Efficiently remove the first element (O(1) operation)</span></span><br><span class="line">        L.pop()      <span class="comment"># Efficiently remove the last element (O(1) operation)</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">list</span>(L)   <span class="comment"># Convert the deque back to a list and return it</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Exercise-4"><a href="#Exercise-4" class="headerlink" title="Exercise 4:"></a>Exercise 4:</h1><p>This exercise deals with lists of integers that are in increasing order. The goal is to remove any element whose value is equal to its index in the list. The program iterates over the list and removes such elements, ensuring the index is correctly adjusted after each removal.</p>
+<p>Key Points:</p>
+<ul>
+<li>The program uses a while loop and checks if the element at index i is equal to i. If true, it removes the element and does not increment i, so that the next element at the same position is checked.</li>
+<li>The remove() function is used to delete the element, which is appropriate for this task.</li>
+<li>Care is taken to ensure that index adjustments are handled correctly.</li>
+</ul>
+<p>The reason we use remove() instead of pop(0) or popleft() in a deque is that we need to specifically remove the value that matches the number we reached. pop() and popleft() remove elements by position, without considering the value, which isn’t suitable for our case.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Assume that the argument L is a list of integers</span></span><br><span class="line"><span class="comment"># that forms an increasing sequence.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># For as long as some member of the list is equal to its index</span></span><br><span class="line"><span class="comment"># in the list, pop out the leftmost such member of the list.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f4</span>(<span class="params">L</span>):</span><br><span class="line">    i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; <span class="built_in">len</span>(L):</span><br><span class="line">        <span class="keyword">if</span> L[i] == i:</span><br><span class="line">            L.remove(L[i])  <span class="comment"># Using remove() here since popleft() removes from the left only</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            i += <span class="number">1</span>  <span class="comment"># Only increment i if no element was removed</span></span><br><span class="line">    <span class="keyword">return</span> L</span><br></pre></td></tr></table></figure>
+
+<h1 id="Exercise-5"><a href="#Exercise-5" class="headerlink" title="Exercise 5:"></a>Exercise 5:</h1><p>This exercise works with a circular list of integers. The task is to identify elements that are both larger than one of their adjacent elements and smaller than the other. The result is returned as a dictionary where each key is such an element, and its value is a pair of the adjacent elements (one smaller and one larger).</p>
+<p>Key Points:</p>
+<ul>
+<li>The list is treated as circular, meaning the first element is considered adjacent to the last element.</li>
+<li>The program iterates through the list, compares each element with its neighbors, and stores those that meet the criteria.</li>
+<li>For each valid element, the adjacent smaller and larger elements are stored in a dictionary.</li>
+</ul>
+<p>To solve this problem, we need to create a dictionary D where each key is an element in the list L that satisfies a certain condition, and the value is a tuple of two elements. The first element of this tuple is the adjacent element that is smaller than the current key, and the second element is the adjacent element that is larger than the current key.</p>
+<p>Steps:</p>
+<ol>
+<li>Loop structure: Check each element.</li>
+<li>Processing of adjacent elements: Since the list is cyclic, the previous element of the first element is the last element, and the next element of the last element is the first element.</li>
+<li>Condition check: Find the adjacent elements that are smaller and larger than the current element, and add them to the result dictionary.</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Assume that the argument L is a list of at least 3 distinct integers.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Returns a dictionary D whose keys are those of the members e of L,</span></span><br><span class="line"><span class="comment"># if any, that are</span></span><br><span class="line"><span class="comment"># - smaller than the element right before or right after, and</span></span><br><span class="line"><span class="comment"># - larger than the element right before or right after.</span></span><br><span class="line"><span class="comment"># It is considered that</span></span><br><span class="line"><span class="comment"># - the first member of L is right after the last member of L, and</span></span><br><span class="line"><span class="comment"># - the last member of L is right before the first member of L</span></span><br><span class="line"><span class="comment"># (as if making a ring out of the list).</span></span><br><span class="line"><span class="comment"># For a key e in D, the associated value is the pair whose</span></span><br><span class="line"><span class="comment"># first element is the member of L that is right before or right after</span></span><br><span class="line"><span class="comment"># e and smaller than e, and whose second element is the member of L</span></span><br><span class="line"><span class="comment"># that is right before or right after e and greater than e.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f5</span>(<span class="params">L</span>):</span><br><span class="line">    D = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(L)):</span><br><span class="line">        m = L[i - <span class="number">1</span>]</span><br><span class="line">        n = L[(i + <span class="number">1</span>) % <span class="built_in">len</span>(L)]</span><br><span class="line">        <span class="keyword">if</span> n &lt; m:</span><br><span class="line">            m, n = n, m</span><br><span class="line">        <span class="keyword">if</span> m &lt; L[i] &lt; n:</span><br><span class="line">            D[L[i]] = m, n</span><br><span class="line">    <span class="keyword">return</span> D</span><br></pre></td></tr></table></figure>
+
+<h1 id="Exercise-6"><a href="#Exercise-6" class="headerlink" title="Exercise 6:"></a>Exercise 6:</h1><p>This exercise deals with factorizing an integer n into the form 2^k * m, where m is an odd number. If n is negative, the program adds a negative sign to the output. If n is zero, it prints a special message.</p>
+<p>Key Points:</p>
+<ul>
+<li>The program uses a loop to divide n by 2 until n is no longer divisible by 2, counting the number of divisions (k).</li>
+<li>The absolute value of n is used to ensure correct handling of negative numbers, and a sign is added to the final result if the original number was negative.</li>
+<li>The program handles the special case where n = 0 by printing a unique message.</li>
+</ul>
+<p>More Details:</p>
+<ol>
+<li>You need to express the given integer n as n = 2^k * m.<ul>
+<li>k represents the number of times n can be divided by 2. In other words, it is the power of 2 in the factorization of n.</li>
+<li>m is the remaining odd part after dividing out all factors of 2.</li>
+</ul>
+</li>
+<li>If n is negative, the output should include a negative sign.</li>
+<li>Special case: If n = 0, a specific message should be printed.</li>
+<li>The result is printed directly, not returned.</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Assume that the argument n is an integer.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># The output is printed out, not returned.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># You might find the abs() function useful.</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f6</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;0 = 2^k * 0 for all integers k!&quot;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        k = <span class="number">0</span></span><br><span class="line">        ori = n</span><br><span class="line">        <span class="keyword">if</span> n &lt; <span class="number">0</span>:</span><br><span class="line">            sign = <span class="string">&#x27;-&#x27;</span></span><br><span class="line">            n = -n</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            sign = <span class="string">&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">while</span> n % <span class="number">2</span> == <span class="number">0</span>:</span><br><span class="line">            n //= <span class="number">2</span></span><br><span class="line">            k += <span class="number">1</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;ori&#125;</span> = <span class="subst">&#123;sign&#125;</span>2^<span class="subst">&#123;k&#125;</span> * <span class="subst">&#123;n&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>FOR VERY VERY VERY VERY VERY BIG NUMBER:</strong></p>
+<p>When dealing with very large integers, the method of continuously dividing the number by 2 to factor out powers of 2 (2^k) can become inefficient. This is because each division can be costly in terms of computational time, especially for very large numbers with millions or billions of digits. Each division involves recalculating the entire integer, which is slow for large integers.<br>Using Bit Manipulation:</p>
+<p>A much more efficient approach is to use <strong>bit manipulation</strong> to determine how many times a number can be divided by 2 (i.e., how many factors of 2 it has). This method avoids division altogether and instead directly analyzes the binary representation of the number to count the number of trailing zeros, which correspond to the powers of 2 in the factorization.</p>
+<h3 id="Why"><a href="#Why" class="headerlink" title="Why?"></a>Why?</h3><ol>
+<li><p>Bitwise operations are much faster than arithmetic operations like division, especially for large integers. Counting the trailing zeros in a number’s binary representation can be done in constant time.</p>
+</li>
+<li><p>Extracting the lowest set bit of a number allows us to quickly find how many times a number can be divided by 2 without having to repeatedly divide the number. This provides the power of 2 (k) directly.</p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f6</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;0 = 2^k * 0 for all integers k!&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Handle negative sign</span></span><br><span class="line">    sign = <span class="string">&#x27;-&#x27;</span> <span class="keyword">if</span> n &lt; <span class="number">0</span> <span class="keyword">else</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line">    n = <span class="built_in">abs</span>(n)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Using bit manipulation to count how many trailing zeros (powers of 2)</span></span><br><span class="line">    k = (n &amp; -n).bit_length() - <span class="number">1</span>  <span class="comment"># Count trailing zeros by isolating the lowest set bit</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Remove 2^k factor from n</span></span><br><span class="line">    m = n &gt;&gt; k  <span class="comment"># Equivalent to n // 2^k, shifting right by k bits</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Print the result</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;sign&#125;</span><span class="subst">&#123;n&#125;</span> = <span class="subst">&#123;sign&#125;</span>2^<span class="subst">&#123;k&#125;</span> * <span class="subst">&#123;m&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
                 
             
 
@@ -318,12 +497,27 @@ var _hmt = _hmt || [];
 
             <!-- 分类页 -->
             
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Tutorial</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
             
 
             <!-- 添加展开全文 -->
             
                 <p class="article-more-link">
-                    <a class="article-more-a" href="/post/0.html">show all >></a>
+                    <a class="article-more-a" href="/post/becdc081.html">show all >></a>
                 </p>
             
 
@@ -442,7 +636,7 @@ var _hmt = _hmt || [];
 <li>I’m open to collaboration and feedback.</li>
 </ul>
 <h3 id="How-to-contact-me"><a href="#How-to-contact-me" class="headerlink" title="How to contact me"></a>How to contact me</h3><ul>
-<li>Email: <a href="mailto:&#108;&#x6f;&#110;&#x67;&#115;&#105;&#x7a;&#x68;&#117;&#x6f;&#64;&#x67;&#109;&#x61;&#105;&#108;&#46;&#99;&#x6f;&#x6d;">&#108;&#x6f;&#110;&#x67;&#115;&#105;&#x7a;&#x68;&#117;&#x6f;&#64;&#x67;&#109;&#x61;&#105;&#108;&#46;&#99;&#x6f;&#x6d;</a></li>
+<li>Email: <a href="mailto:&#108;&#111;&#110;&#103;&#115;&#x69;&#x7a;&#104;&#117;&#111;&#64;&#103;&#109;&#x61;&#x69;&#x6c;&#x2e;&#x63;&#111;&#109;">&#108;&#111;&#110;&#103;&#115;&#x69;&#x7a;&#104;&#117;&#111;&#64;&#103;&#109;&#x61;&#x69;&#x6c;&#x2e;&#x63;&#111;&#109;</a></li>
 <li>LinkedIn: <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/longsizhuo/">Sizhuo Long</a></li>
 <li>XiaoHongShu(Small RedBook): <a target="_blank" rel="noopener" href="https://www.xiaohongshu.com/user/profile/5c0b8cc2000000000601e809">@sizhuo_long</a></li>
 </ul>
@@ -1943,7 +2137,7 @@ window.MathJax = {
 		<span> 104 篇</span>
 		<span class="post-meta-divider">|</span>
 		<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-		<span> <span class="post-count">31.1k</span></span>
+		<span> <span class="post-count">33.9k</span></span>
       </div>
 	  
 	  <!-- 添加不蒜子统计 -->
