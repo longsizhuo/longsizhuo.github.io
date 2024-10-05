@@ -337,7 +337,7 @@ var _hmt = _hmt || [];
 	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
         <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
         <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">2k字</span>
+        <span class="post-count">2.2k字</span>
       </span>
     </span>
 
@@ -346,7 +346,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
 	    <i class="fa fa-pagelines" aria-hidden="true"></i>
         <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">12min</span>
+        <span class="post-count">13min</span>
       </span>
     </span>
 	
@@ -362,8 +362,15 @@ var _hmt = _hmt || [];
             
                 
                     <h1 id="Exercise-1"><a href="#Exercise-1" class="headerlink" title="Exercise 1"></a>Exercise 1</h1><h3 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description:"></a>Problem Description:</h3><p>You are given two integers, <code>m</code> and <code>n</code>, where:</p>
-<p><code>m</code> represents the number of repeated units (patterns).<br><code>n</code> represents the number of elements (underscores) within each unit.<br>The goal is to generate a string where:</p>
-<p>Each unit contains <code>n</code> underscores (_), separated by <code>|</code>.<br>These units are then concatenated together, separated by <code>*</code>.</p>
+<ul>
+<li><code>m</code> represents the number of repeated units (patterns).</li>
+<li><code>n</code> represents the number of elements (underscores) within each unit.</li>
+</ul>
+<p>The goal is to generate a string where:</p>
+<ul>
+<li>Each unit contains <code>n</code> underscores (_), separated by <code>|</code>.</li>
+<li>These units are then concatenated together, separated by <code>*</code>.</li>
+</ul>
 <h3 id="My-Solution"><a href="#My-Solution" class="headerlink" title="My Solution:"></a>My Solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">generate_struct</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;|&#x27;</span>.join(n * [<span class="string">&#x27;_&#x27;</span>])</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f1</span>(<span class="params">m, n</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27; * &#x27;</span>.join(m * [generate_struct(n)])</span><br></pre></td></tr></table></figure>
 
 <h4 id="My-Thought-Process"><a href="#My-Thought-Process" class="headerlink" title="My Thought Process:"></a>My Thought Process:</h4><p>I think of each unit as a separate structure. So, I decompose the problem by breaking down the smallest unit, which is the structure made of underscores joined by <code>|</code>.<br>After constructing each unit, I use <code>join()</code> to combine them together using <code>*</code>.</p>
@@ -430,9 +437,6 @@ var _hmt = _hmt || [];
 <p>It skips the bases where the digits in n are not valid, and it uses a set comprehension to extract the unique digits from n_as_string. The maximum digit is then used to determine the minimum base to start iterating from.</p>
 <h1 id="Exercise-4"><a href="#Exercise-4" class="headerlink" title="Exercise 4"></a>Exercise 4</h1><h3 id="Problem-Description-3"><a href="#Problem-Description-3" class="headerlink" title="Problem Description:"></a>Problem Description:</h3><p>The task is to create a function <code>f4(n, base)</code> that returns a dictionary D, where:</p>
 <p>Keys are integers from <code>0</code> to <code>n</code>.<br>Values are tuples that represent the base <code>base</code> representation of each key, converted from base 10.</p>
-<p>For example, if <code>n = 5</code> and <code>base = 2</code>, the dictionary D should be:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    0: (&#x27;0&#x27;, &#x27;0&#x27;),</span><br><span class="line">    1: (&#x27;0&#x27;, &#x27;1&#x27;),</span><br><span class="line">    2: (&#x27;1&#x27;, &#x27;0&#x27;),</span><br><span class="line">    3: (&#x27;1&#x27;, &#x27;1&#x27;),</span><br><span class="line">    4: (&#x27;1&#x27;, &#x27;0&#x27;, &#x27;0&#x27;),</span><br><span class="line">    5: (&#x27;1&#x27;, &#x27;0&#x27;, &#x27;1&#x27;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h3 id="My-Solution-3"><a href="#My-Solution-3" class="headerlink" title="My Solution:"></a>My Solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">convert_to_base</span>(<span class="params">n, base</span>):</span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;0&#x27;</span></span><br><span class="line">    digits = []</span><br><span class="line">    <span class="keyword">while</span> n:</span><br><span class="line">        digits.append(<span class="built_in">str</span>(n % base))</span><br><span class="line">        n //= base</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>.join(digits[::-<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f4</span>(<span class="params">n: <span class="built_in">int</span>, base: <span class="built_in">int</span></span>):</span><br><span class="line">    D = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, n + <span class="number">1</span>):</span><br><span class="line">        D[i] = <span class="built_in">tuple</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, convert_to_base(i, base)))</span><br><span class="line">    <span class="keyword">return</span> D</span><br></pre></td></tr></table></figure>
 
 <h4 id="My-Thought-Process-3"><a href="#My-Thought-Process-3" class="headerlink" title="My Thought Process:"></a>My Thought Process:</h4><ol>
@@ -444,14 +448,28 @@ var _hmt = _hmt || [];
 <li>After collecting all digits, we reverse the list and return it as a string.</li>
 </ul>
 </li>
-<li><p>Main Function <code>f4(n, base)</code>:</p>
+<li><p>Main Function <code>f4(n, base)</code>:<br>We initialize an empty dictionary <code>D</code>.<br>For each number <code>i</code> from <code>0</code> to <code>n</code>, we convert <code>i</code> to the given base using <code>convert_to_base()</code>.<br>The converted base digits are then mapped to integers and stored in a tuple as the value for each key <code>i</code> in the dictionary.</p>
 </li>
 </ol>
-<p>We initialize an empty dictionary <code>D</code>.<br>For each number <code>i</code> from <code>0</code> to <code>n</code>, we convert <code>i</code> to the given base using <code>convert_to_base()</code>.<br>The converted base digits are then mapped to integers and stored in a tuple as the value for each key <code>i</code> in the dictionary.</p>
+<h3 id="Explanation-of-Why-map-is-not-Pythonic"><a href="#Explanation-of-Why-map-is-not-Pythonic" class="headerlink" title="Explanation of Why map() is not Pythonic:"></a>Explanation of Why <code>map()</code> is not Pythonic:</h3><p>In the function f4, the use of <code>map(int, convert_to_base(i, base))</code> applies the <code>int</code> function<br>to each element of the result from <code>convert_to_base</code>, effectively converting each character to an integer.</p>
+<p>However, it’s worth noting that the <code>map()</code> function, which originates from functional programming,<br>has largely been superseded by more Pythonic constructs such as list comprehensions.</p>
+<p>These comprehensions are generally considered superior for several reasons:</p>
+<ul>
+<li>They are more elegant and concise.</li>
+<li>They tend to be shorter in terms of syntax, making the code easier to read.</li>
+<li>They are easier to understand for most people, especially those who are more familiar with Python’s<br>standard syntax rather than functional programming constructs.</li>
+<li>In many cases, they are also more efficient in terms of performance.</li>
+</ul>
+<p>For example, instead of using <code>map(int, ...)</code>, the same functionality could be achieved with a<br>list comprehension, like so:</p>
+<p>D[i] = tuple([int(digit) for digit in convert_to_base(i, base)])</p>
+<p>This list comprehension achieves the same result but follows a more modern Pythonic style.</p>
 <h3 id="Standard-Solution-3"><a href="#Standard-Solution-3" class="headerlink" title="Standard Solution:"></a>Standard Solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f4</span>(<span class="params">n, base</span>):</span><br><span class="line">    D = &#123;<span class="number">0</span>: (<span class="number">0</span>,)&#125;</span><br><span class="line">    <span class="keyword">for</span> m <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n + <span class="number">1</span>):</span><br><span class="line">        digits = []</span><br><span class="line">        p = m</span><br><span class="line">        <span class="keyword">while</span> p:</span><br><span class="line">            digits.append(p % base)</span><br><span class="line">            p //= base</span><br><span class="line">        D[m] = <span class="built_in">tuple</span>(<span class="built_in">reversed</span>(digits))</span><br><span class="line">    <span class="keyword">return</span> D</span><br></pre></td></tr></table></figure>
 
 <p>Both solutions are valid and achieve the same result. My approach uses a helper function for base conversion, which adds modularity,<br>whereas the standard solution is more concise and directly integrates the conversion logic into the main function.</p>
-<h1 id="Exercise-5"><a href="#Exercise-5" class="headerlink" title="Exercise 5"></a>Exercise 5</h1><h3 id="Problem-Description-4"><a href="#Problem-Description-4" class="headerlink" title="Problem Description:"></a>Problem Description:</h3><p>The approach we are using in this exercise is designed to expose the limitations of floating-point arithmetic in computers. Let’s break down why this approach leads to precision inaccuracies and why other methods might not reveal these issues as clearly.</p>
+<h1 id="Exercise-5"><a href="#Exercise-5" class="headerlink" title="Exercise 5"></a>Exercise 5</h1><p>At the first, try to run this:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="number">0.1</span> + <span class="number">0.2</span>)</span><br></pre></td></tr></table></figure>
+<p>What happened? The result is not 0.3, but 0.30000000000000004. Why?</p>
+<h3 id="Problem-Description-4"><a href="#Problem-Description-4" class="headerlink" title="Problem Description:"></a>Problem Description:</h3><p>The approach we are using in this exercise is designed to expose the limitations of floating-point arithmetic in computers. Let’s break down why this approach leads to precision inaccuracies and why other methods might not reveal these issues as clearly.</p>
 <p>This problem can seem complex, and it’s designed to highlight the subtleties of floating-point arithmetic. Let’s walk through the logic using the test cases to figure out what the function does.</p>
 <h3 id="Key-Concepts"><a href="#Key-Concepts" class="headerlink" title="Key Concepts:"></a>Key Concepts:</h3><ul>
 <li><strong>Floating-point numbers</strong>: Computers store floating-point numbers using a binary format, which often introduces precision errors.</li>
@@ -485,7 +503,19 @@ var _hmt = _hmt || [];
 </li>
 <li><p>Key Structure:<br>The key is a list of elements from each sublist, indexed by the positions specified in fields. We use <code>x[i - 1]</code> because fields is <code>1-based</code>, and list indexing in Python is <code>0-based</code>.</p>
 </li>
+<li><p>What is Lambda Function?</p>
+</li>
 </ol>
+<p>For example:</p>
+<p>We have:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f = <span class="keyword">lambda</span> x: x * x</span><br></pre></td></tr></table></figure>
+
+<p>This is equivalent to:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> x * x</span><br></pre></td></tr></table></figure>
+
+<p>And lambda function in a sorted function is used to define a custom sorting key.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">L = [(<span class="number">1</span>,<span class="number">2</span>), (<span class="number">3</span>,<span class="number">1</span>), (<span class="number">5</span>,<span class="number">0</span>)]</span><br><span class="line"></span><br><span class="line">SortedL = <span class="built_in">sorted</span>(L, key=<span class="keyword">lambda</span> x: x[<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(SortedL)</span><br></pre></td></tr></table></figure>
+<p>The result is: <code>[(5, 0), (3, 1), (1, 2)]</code>, it sorts the list based on the second element of each tuple.</p>
 <h3 id="Standard-Solution-4"><a href="#Standard-Solution-4" class="headerlink" title="Standard Solution:"></a>Standard Solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f6</span>(<span class="params">L, fields</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">sorted</span>(L, key=<span class="keyword">lambda</span> x: <span class="built_in">tuple</span>(x[i - <span class="number">1</span>] <span class="keyword">for</span> i <span class="keyword">in</span> fields))</span><br></pre></td></tr></table></figure>
 
 <p><strong>Why Use a Tuple?</strong>:</p>
@@ -1452,7 +1482,7 @@ var _hmt = _hmt || [];
 <li>I’m open to collaboration and feedback.</li>
 </ul>
 <h3 id="How-to-contact-me"><a href="#How-to-contact-me" class="headerlink" title="How to contact me"></a>How to contact me</h3><ul>
-<li>Email: <a href="mailto:&#108;&#x6f;&#x6e;&#x67;&#115;&#x69;&#122;&#x68;&#x75;&#111;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#x63;&#111;&#x6d;">&#108;&#x6f;&#x6e;&#x67;&#115;&#x69;&#122;&#x68;&#x75;&#111;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#x63;&#111;&#x6d;</a></li>
+<li>Email: <a href="mailto:&#108;&#111;&#x6e;&#x67;&#115;&#105;&#x7a;&#104;&#117;&#x6f;&#x40;&#x67;&#x6d;&#x61;&#x69;&#108;&#x2e;&#99;&#111;&#109;">&#108;&#111;&#x6e;&#x67;&#115;&#105;&#x7a;&#104;&#117;&#x6f;&#x40;&#x67;&#x6d;&#x61;&#x69;&#108;&#x2e;&#99;&#111;&#109;</a></li>
 <li>LinkedIn: <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/longsizhuo/">Sizhuo Long</a></li>
 <li>XiaoHongShu(Small RedBook): <a target="_blank" rel="noopener" href="https://www.xiaohongshu.com/user/profile/5c0b8cc2000000000601e809">@sizhuo_long</a></li>
 </ul>
@@ -2309,10 +2339,10 @@ window.MathJax = {
 	  <br>
 	  <div class="footer-center">
 	    <i class="fa fa-file-word-o" aria-hidden="true"></i>
-		<span> 108 篇</span>
+		<span> 109 篇</span>
 		<span class="post-meta-divider">|</span>
 		<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-		<span> <span class="post-count">38.3k</span></span>
+		<span> <span class="post-count">40.9k</span></span>
       </div>
 	  
 	  <!-- 添加不蒜子统计 -->
