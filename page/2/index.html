@@ -292,6 +292,215 @@ var _hmt = _hmt || [];
         <div id="js-content" class="content-ll">
           
   
+    <article id="post-994.腐烂的橘子_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/56e64fdd.html">994.Rotten orange</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/56e64fdd.html" class="archive-article-date">
+  	<time datetime="2024-05-13T14:00:00.000Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2024-05-14</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">739字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">4min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p>“””</p>
+<p>Given&nbsp;<code>m x n</code>&nbsp;grid
+ <meta charset="UTF-8" />&nbsp;<code>grid</code>&nbsp;middle，Each cell can have one of the following three values：</p>
+
+<ul> 
+ <li>value&nbsp;<code>0</code>&nbsp;Represents the empty unit；</li> 
+ <li>value&nbsp;<code>1</code>&nbsp;Represents fresh oranges；</li> 
+ <li>value&nbsp;<code>2</code>&nbsp;代表Rotten orange。</li> 
+</ul>
+
+<p>every minute，Rotten orange&nbsp;<strong>around&nbsp;4 Adjacent in this direction</strong> Fresh oranges will rot。</p>
+
+<p>return <em>直到单元格middle没有新鲜橘子为止所必须经过的最小分钟数。If it is impossible，return&nbsp;<code>-1</code></em>&nbsp;。</p>
+
+<p>&nbsp;</p>
+
+<p><strong>Exemplary example 1：</strong></p>
+
+<p><strong><img alt="" src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2019/02/16/oranges.png" style="height: 137px; width: 650px;" /></strong></p>
+
+<pre>
+<strong>enter：</strong>grid = [[2,1,1],[1,1,0],[0,1,1]]
+<strong>Output：</strong>4
+</pre>
+
+<p><strong>Exemplary example 2：</strong></p>
+
+<pre>
+<strong>enter：</strong>grid = [[2,1,1],[0,1,1],[1,0,1]]
+<strong>Output：</strong>-1
+<strong>explain：</strong>Orange in the lower left corner（First 2 OK， First 0 List）Never rot，Because rotten will only happen in 4 In the direction。
+</pre>
+
+<p><strong>Exemplary example 3：</strong></p>
+
+<pre>
+<strong>enter：</strong>grid = [[0,2]]
+<strong>Output：</strong>0
+<strong>explain：</strong>because 0 There is no fresh orange in minutes，So the answer is 0 。
+</pre>
+
+<p>&nbsp;</p>
+
+<p><strong>hint：</strong></p>
+
+<ul> 
+ <li><code>m == grid.length</code></li> 
+ <li><code>n == grid[i].length</code></li> 
+ <li><code>1 &lt;= m, n &lt;= 10</code></li> 
+ <li><code>grid[i][j]</code> Only for&nbsp;<code>0</code>、<code>1</code>&nbsp;or&nbsp;<code>2</code></li> 
+</ul>
+
+<div><div>Related Topics</div><div><li>Priority search</li><li>Array</li><li>matrix</li></div></div><br><div><li>👍 872</li><li>👎 0</li></div>
+"""
+
+<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>这个问题可以用Priority search（BFS）To solve。We need to track the spread of rotten oranges，Record time，And check if there is a fresh orange that cannot be rotten。The initial idea of ​​the original idea：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">orangesRotting</span>(<span class="params">self, grid: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        bad_orange = []</span><br><span class="line">        <span class="comment"># 找到所有初始Rotten orange</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(grid)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(grid[<span class="number">0</span>])):</span><br><span class="line">                <span class="keyword">if</span> grid[i][j] == <span class="number">2</span>:</span><br><span class="line">                    <span class="comment"># 存入初始队List</span></span><br><span class="line">                    bad_orange.append((i, j))</span><br></pre></td></tr></table></figure>
+<p>Similar to multi -threaded，每个线程存入一个初始队List，初始队List通过BFSGradual diffusion</p>
+<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">orangesRotting</span>(<span class="params">self, grid: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        bad_orange = deque()</span><br><span class="line">        fresh_oranges = <span class="number">0</span></span><br><span class="line">        rows, cols = <span class="built_in">len</span>(grid), <span class="built_in">len</span>(grid[<span class="number">0</span>])</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 找到所有初始Rotten orange，And calculate the number of fresh oranges</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(rows):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(cols):</span><br><span class="line">                <span class="keyword">if</span> grid[i][j] == <span class="number">2</span>:</span><br><span class="line">                    bad_orange.append((i, j))</span><br><span class="line">                <span class="keyword">elif</span> grid[i][j] == <span class="number">1</span>:</span><br><span class="line">                    fresh_oranges += <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 方向Array：up down left right</span></span><br><span class="line">        directions = [(<span class="number">0</span>, <span class="number">1</span>), (<span class="number">1</span>, <span class="number">0</span>), (<span class="number">0</span>, -<span class="number">1</span>), (-<span class="number">1</span>, <span class="number">0</span>)]</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># If there is no fresh orange，直接return 0</span></span><br><span class="line">        <span class="keyword">if</span> fresh_oranges == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># BFS</span></span><br><span class="line">        minutes = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> bad_orange:</span><br><span class="line">            minutes += <span class="number">1</span></span><br><span class="line">            <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(bad_orange)):</span><br><span class="line">                x, y = bad_orange.popleft()</span><br><span class="line">                <span class="keyword">for</span> dx, dy <span class="keyword">in</span> directions:</span><br><span class="line">                    nx, ny = x + dx, y + dy</span><br><span class="line">                    <span class="keyword">if</span> <span class="number">0</span> &lt;= nx &lt; rows <span class="keyword">and</span> <span class="number">0</span> &lt;= ny &lt; cols <span class="keyword">and</span> grid[nx][ny] == <span class="number">1</span>:</span><br><span class="line">                        grid[nx][ny] = <span class="number">2</span></span><br><span class="line">                        fresh_oranges -= <span class="number">1</span></span><br><span class="line">                        bad_orange.append((nx, ny))</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># If there are fresh oranges，return -1</span></span><br><span class="line">        <span class="keyword">return</span> minutes - <span class="number">1</span> <span class="keyword">if</span> fresh_oranges == <span class="number">0</span> <span class="keyword">else</span> -<span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;sync&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">orangesRotting</span><span class="params">(grid [][]<span class="type">int</span>)</span></span> <span class="type">int</span> &#123;</span><br><span class="line">	rows, cols := <span class="built_in">len</span>(grid), <span class="built_in">len</span>(grid[<span class="number">0</span>])</span><br><span class="line">	badOranges := <span class="built_in">make</span>([][<span class="number">2</span>]<span class="type">int</span>, <span class="number">0</span>)</span><br><span class="line">	freshOranges := <span class="number">0</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// 找到所有初始Rotten orange，And calculate the number of fresh oranges</span></span><br><span class="line">	<span class="keyword">for</span> r := <span class="number">0</span>; r &lt; rows; r++ &#123;</span><br><span class="line">		<span class="keyword">for</span> c := <span class="number">0</span>; c &lt; cols; c++ &#123;</span><br><span class="line">			<span class="keyword">if</span> grid[r][c] == <span class="number">2</span> &#123;</span><br><span class="line">				badOranges = <span class="built_in">append</span>(badOranges, [<span class="number">2</span>]<span class="type">int</span>&#123;r, c&#125;)</span><br><span class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> grid[r][c] == <span class="number">1</span> &#123;</span><br><span class="line">				freshOranges += <span class="number">1</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// If there is no fresh orange，直接return 0</span></span><br><span class="line">	<span class="keyword">if</span> freshOranges == <span class="number">0</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	directions := [][<span class="number">2</span>]<span class="type">int</span>&#123;&#123;<span class="number">0</span>, <span class="number">1</span>&#125;, &#123;<span class="number">1</span>, <span class="number">0</span>&#125;, &#123;<span class="number">0</span>, <span class="number">-1</span>&#125;, &#123;<span class="number">-1</span>, <span class="number">0</span>&#125;&#125;</span><br><span class="line">	minutes := <span class="number">0</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> wg sync.WaitGroup</span><br><span class="line"></span><br><span class="line">	<span class="comment">// BFS</span></span><br><span class="line">	<span class="keyword">for</span> <span class="built_in">len</span>(badOranges) &gt; <span class="number">0</span> &#123;</span><br><span class="line">		minutes++</span><br><span class="line">		nextBadOranges := <span class="built_in">make</span>([][<span class="number">2</span>]<span class="type">int</span>, <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">for</span> _, orange := <span class="keyword">range</span> badOranges &#123;</span><br><span class="line">			x, y := orange[<span class="number">0</span>], orange[<span class="number">1</span>]</span><br><span class="line">			wg.Add(<span class="number">1</span>)</span><br><span class="line">			<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">(x, y <span class="type">int</span>)</span></span> &#123;</span><br><span class="line">				<span class="keyword">defer</span> wg.Done()</span><br><span class="line">				<span class="keyword">for</span> _, d := <span class="keyword">range</span> directions &#123;</span><br><span class="line">					nx, ny := x+d[<span class="number">0</span>], y+d[<span class="number">1</span>]</span><br><span class="line">					<span class="keyword">if</span> nx &gt;= <span class="number">0</span> &amp;&amp; nx &lt; rows &amp;&amp; ny &gt;= <span class="number">0</span> &amp;&amp; ny &lt; cols &amp;&amp; grid[nx][ny] == <span class="number">1</span> &#123;</span><br><span class="line">						grid[nx][ny] = <span class="number">2</span></span><br><span class="line">						nextBadOranges = <span class="built_in">append</span>(nextBadOranges, [<span class="number">2</span>]<span class="type">int</span>&#123;nx, ny&#125;)</span><br><span class="line">						freshOranges--</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;(x, y)</span><br><span class="line">		&#125;</span><br><span class="line">		wg.Wait()</span><br><span class="line">		badOranges = nextBadOranges</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// If there are fresh oranges，return -1</span></span><br><span class="line">	<span class="keyword">if</span> freshOranges &gt; <span class="number">0</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> minutes - <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+
+            <!-- 分类页 -->
+            
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">BFS</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Bilateral queue</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/56e64fdd.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
     <article id="post-9021_TUT_4" class="article article-type-post  article-index" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -1845,167 +2054,6 @@ var _hmt = _hmt || [];
 
 <!-- 文章页添加mathjax公式 -->
   
-    <article id="post-1250. 检查「好数组」_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/435a9a0d.html">1250. examine「Good array」 One question daily</a>
-    </h2>
-  
-
-
-                
-                    <a href="/post/435a9a0d.html" class="archive-article-date">
-  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2024-01-01</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-                
-
-                
-                    <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">221字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">1min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-                
-            </header>
-        
-
-        <div class="article-entry" itemprop="articleBody">
-            <!-- 添加分类与标签 -->
-            
-                
-                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><img src="../assets/img/2023-02-15%20(1).png" alt="2023-02-15 (1).png"><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/check-if-it-is-a-good-array/description/">1250. examine「Good array」.md</a></p>
-<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><ol>
-<li><p>@PT, PT_ZhenSolution of classmates，Next is his solution：<br> If there is no big convention,，Then there must be one time。<br>If two numbers can be made up directly1if，Then other numbers can also be added and subtracted by addition and subtraction1get1.The major convention in a set depends on the largest number of the smallest between the two in this set</p>
-<blockquote>
-<p>[10000, 3, 4], 10000 + 9999 * (3 - 4) = 1</p>
-</blockquote>
-</li>
-<li><p>@ylb, Pei Shu theorem:We can first consider choosing two numbers，If the selected number is aaa and bbb，So根据topic的要求，We need to be satisfied a×x+b×y=1a \times x + b \times y = 1a×x+b×y=1，in xxx and yyy Any integer。</p>
-</li>
-</ol>
-<p>根据Pei Shu theorem，Can be known，if a and b Mutual quality，Then there must be solution。In fact，Pei Shu theorem也可以推广到多个数的情况，即if a1,a2,⋯,ai<br>Mutual quality，So a1×x1+a2×x2+⋯+ai×xi=1There must be solution，in x1,x2,⋯,xi Any integer。</p>
-<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><figcaption><span>PT_zhen</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">isGoodArray</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span> <span class="keyword">if</span> math.gcd(*nums) == <span class="number">1</span> <span class="keyword">else</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><figcaption><span>ylb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">isGoodArray</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        <span class="keyword">return</span> reduce(gcd, nums) == <span class="number">1</span></span><br></pre></td></tr></table></figure>
-                
-            
-
-            <!-- 添加打赏 -->
-            
-
-            <!-- 添加版权声明 -->
-            
-
-        </div>
-
-        <!-- 添加置顶 -->
-        <div class="article-info article-info-index">
-            
-
-            <!-- 分类页 -->
-            
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">math</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-            
-
-            <!-- 添加展开全文 -->
-            
-                <p class="article-more-link">
-                    <a class="article-more-a" href="/post/435a9a0d.html">show all >></a>
-                </p>
-            
-
-            <!-- 添加分享 -->
-            
-
-            <div class="clearfix"></div>
-
-        </div>
-    </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-    
-
-<!-- 文章页添加mathjax公式 -->
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&lt;&lt; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/3/">下一页 &gt;&gt;</a>
@@ -2060,7 +2108,7 @@ window.MathJax = {
 	  <br>
 	  <div class="footer-center">
 	    <i class="fa fa-file-word-o" aria-hidden="true"></i>
-		<span> 109 篇</span>
+		<span> 110 篇</span>
 		<span class="post-meta-divider">|</span>
 		<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 		<span> <span class="post-count">40.9k</span></span>
