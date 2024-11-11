@@ -292,20 +292,20 @@ var _hmt = _hmt || [];
         <div id="js-content" class="content-ll">
           
   
-    <article id="post-[213]打家劫舍 II_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-[146]LRU 缓存_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
   
     <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/85beb0bf.html">213.Hiccup II</a>
+      <a class="article-title_code_ant" href="/post/b9130c0e.html">146.LRU cache</a>
     </h2>
   
 
 
                 
-                    <a href="/post/85beb0bf.html" class="archive-article-date">
+                    <a href="/post/b9130c0e.html" class="archive-article-date">
   	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
 	<!-- <i class="icon-calendar icon"></i> -->
 
@@ -337,7 +337,7 @@ var _hmt = _hmt || [];
 	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
         <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
         <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">258字</span>
+        <span class="post-count">447字</span>
       </span>
     </span>
 
@@ -346,7 +346,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
 	    <i class="fa fa-pagelines" aria-hidden="true"></i>
         <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">1min</span>
+        <span class="post-count">2min</span>
       </span>
     </span>
 	
@@ -361,9 +361,13 @@ var _hmt = _hmt || [];
             <!-- 添加分类与标签 -->
             
                 
-                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><img src="../assets/img/%E6%88%AA%E5%B1%8F2023-09-18%20%E4%B8%8A%E5%8D%882.31.30.png" alt="screenshot2023-09-18 morning2.31.30.png"><br><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/house-robber-ii/">topic链接</a></p>
-<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>这一次终于懂一点Dynamic planning了，The first is the youngest problem，I first thought it was to consider where to start，Start from the first or the second one（这刚好是和Hiccup1Difference）。<br>但实际上最小子问题还是和Hiccup1Same：Whether to rob the current house。<br>First we set one<code>dp</code>Array，<code>dp[i]</code>Indicate robbery to the first<code>i</code>The maximum return when a house。<br>Then we rob the current house after we rob the current house <code>dp[i] = dp[i-2] + nums[i]</code>，(Because the house can not be robbed before the current house is robbed)，Do not rob the current house <code>dp[i] = dp[i-1]</code>。<br>So we can get the state transfer equation：<code>dp[i] = max(dp[i-2] + nums[i], dp[i-1])</code>。<br>Last classification discussion and robbery, the first or the second start。</p>
-<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">rob</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">rob1</span>(<span class="params">nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(nums) == <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">return</span> nums[<span class="number">0</span>]</span><br><span class="line">            ans = <span class="number">0</span></span><br><span class="line">            dp = [<span class="number">0</span>] * <span class="built_in">len</span>(nums)</span><br><span class="line">            <span class="comment"># def: dp[i]Express the robberyiHome</span></span><br><span class="line">            <span class="comment"># theft FirstiHouse，The income isdp[i-2]+nums[i], 不theftFirstiHouse，The income isdp[i-1]</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)):</span><br><span class="line">                dp[i] = <span class="built_in">max</span>(dp[i - <span class="number">2</span>] + nums[i], dp[i - <span class="number">1</span>])</span><br><span class="line">                ans = <span class="built_in">max</span>(ans, dp[i])</span><br><span class="line">            <span class="keyword">return</span> ans</span><br><span class="line">        <span class="comment"># 打劫First一家，或者First二家开始</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">max</span>(rob1(nums[:-<span class="number">1</span>]), rob1(nums[<span class="number">1</span>:])) <span class="keyword">if</span> <span class="built_in">len</span>(nums) != <span class="number">1</span> <span class="keyword">else</span> nums[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p>I met for the first time：’2023/3/14-15:21’<br><img src="../assets/img/%E6%88%AA%E5%B1%8F2023-09-25%20%E4%B8%8A%E5%8D%881.14.08.png" alt="screenshot2023-09-25 morning1.14.08.png"></p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/lru-cache/">146.LRU cache.md</a></p>
+<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>Simple simulation，Use the dictionary to make it，好像完全没用到双向Linked和LRU的Thought。。。I’m guilty，I can remember the air conditioner made in half a year ago。<br>answer就看Code的注释应该就能看懂，I will reply if I don’t understand。</p>
+<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">LRUCache</span>:</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, capacity: <span class="built_in">int</span></span>):</span><br><span class="line">        self.capacity = capacity</span><br><span class="line">        self.cache = collections.OrderedDict()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get</span>(<span class="params">self, key: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="comment"># ifkeyIn the dictionary，returnvalue</span></span><br><span class="line">        <span class="keyword">if</span> key <span class="keyword">in</span> self.cache:</span><br><span class="line">            self.cache.move_to_end(key)</span><br><span class="line">            <span class="keyword">return</span> self.cache[key]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># ifkey不In the dictionary，return-1</span></span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">put</span>(<span class="params">self, key: <span class="built_in">int</span>, value: <span class="built_in">int</span></span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">if</span> key <span class="keyword">in</span> self.cache:</span><br><span class="line">            <span class="comment"># ifkeyIn the dictionary，renewvalue</span></span><br><span class="line">            self.cache.move_to_end(key)</span><br><span class="line">            self.cache[key] = value</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(self.cache) == self.capacity:</span><br><span class="line">                <span class="comment"># ifkey不In the dictionary，The dictionary is full，Delete the least recently used elements</span></span><br><span class="line">                self.cache.popitem(last=<span class="literal">False</span>)</span><br><span class="line">            <span class="comment"># ifkey不In the dictionary，Dictionary is not full，Add element</span></span><br><span class="line">            <span class="comment"># self.cache.move_to_end(key)</span></span><br><span class="line">            self.cache[key] = value</span><br></pre></td></tr></table></figure>
+
+<h1 id="Second-solution"><a href="#Second-solution" class="headerlink" title="Second solution"></a>Second solution</h1><p><img src="../assets/img/%E6%88%AA%E5%B1%8F2023-09-25%20%E4%B8%8A%E5%8D%881.25.22.png" alt="screenshot2023-09-25 morning1.25.22.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Node</span>:</span><br><span class="line">    <span class="comment"># Improve the speed of access attributes，And save memory</span></span><br><span class="line">    __slots__ = <span class="string">&#x27;prev&#x27;</span>, <span class="string">&#x27;next&#x27;</span>, <span class="string">&#x27;key&#x27;</span>, <span class="string">&#x27;value&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, key=<span class="number">0</span>, value=<span class="number">0</span></span>):</span><br><span class="line">        self.key = key</span><br><span class="line">        self.value = value</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LRUCache</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, capacity: <span class="built_in">int</span></span>):</span><br><span class="line">        self.capacity = capacity</span><br><span class="line">        self.dummy = Node()  <span class="comment"># Sentry node</span></span><br><span class="line">        self.dummy.prev = self.dummy</span><br><span class="line">        self.dummy.<span class="built_in">next</span> = self.dummy</span><br><span class="line">        self.key_to_node = <span class="built_in">dict</span>()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_node</span>(<span class="params">self, key: <span class="built_in">int</span></span>) -&gt; <span class="type">Optional</span>[Node]:</span><br><span class="line">        <span class="keyword">if</span> key <span class="keyword">not</span> <span class="keyword">in</span> self.key_to_node:  <span class="comment"># No this book</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        node = self.key_to_node[key]  <span class="comment"># Have this book</span></span><br><span class="line">        self.remove(node)  <span class="comment"># Draw this book</span></span><br><span class="line">        self.push_front(node)  <span class="comment"># Put on the top</span></span><br><span class="line">        <span class="keyword">return</span> node</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get</span>(<span class="params">self, key: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        node = self.get_node(key)</span><br><span class="line">        <span class="keyword">return</span> node.value <span class="keyword">if</span> node <span class="keyword">else</span> -<span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">put</span>(<span class="params">self, key: <span class="built_in">int</span>, value: <span class="built_in">int</span></span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        node = self.get_node(key)</span><br><span class="line">        <span class="keyword">if</span> node:  <span class="comment"># Have this book</span></span><br><span class="line">            node.value = value  <span class="comment"># renew value</span></span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        self.key_to_node[key] = node = Node(key, value)  <span class="comment"># new book</span></span><br><span class="line">        self.push_front(node)  <span class="comment"># Put on the top</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(self.key_to_node) &gt; self.capacity:  <span class="comment"># There are too many books</span></span><br><span class="line">            back_node = self.dummy.prev</span><br><span class="line">            <span class="keyword">del</span> self.key_to_node[back_node.key]</span><br><span class="line">            self.remove(back_node)  <span class="comment"># Remove the last book</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Delete a node（Draw a book）</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">remove</span>(<span class="params">self, x: Node</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        x.prev.<span class="built_in">next</span> = x.<span class="built_in">next</span></span><br><span class="line">        x.<span class="built_in">next</span>.prev = x.prev</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 在Linked头添加一个节点（把一本书Put on the top）</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">push_front</span>(<span class="params">self, x: Node</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        x.prev = self.dummy</span><br><span class="line">        x.<span class="built_in">next</span> = self.dummy.<span class="built_in">next</span></span><br><span class="line">        x.prev.<span class="built_in">next</span> = x</span><br><span class="line">        x.<span class="built_in">next</span>.prev = x</span><br></pre></td></tr></table></figure>
                 
             
 
@@ -394,11 +398,19 @@ var _hmt = _hmt || [];
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Dynamic planning</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Hash table</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Linked</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">design</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">双向Linked</a>
         		</li>
       		
 		</ul>
@@ -409,7 +421,171 @@ var _hmt = _hmt || [];
             <!-- 添加展开全文 -->
             
                 <p class="article-more-link">
-                    <a class="article-more-a" href="/post/85beb0bf.html">show all >></a>
+                    <a class="article-more-a" href="/post/b9130c0e.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
+    <article id="post-[1253]重构 2 行二进制矩阵_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/5c98e66b.html">1253.Reconstruct 2 Line binary matrix</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/5c98e66b.html" class="archive-article-date">
+  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2024-01-01</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">315字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">1min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/reconstruct-a-2-row-binary-matrix/">[1253]Reconstruct 2 Line binary matrix.md</a><br><img src="../assets/img/2023-06-30.png" alt="Reconstruct 2 Line binary matrix"></p>
+<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>At first I read the wrong question again，Thought it was<code>colsum</code>Divide<code>upper</code> and <code>lower</code>两个Array，<br>The result is<code>colsum[i]</code>Divide<code>upper[i]</code> and <code>lower[i]</code>Two numbers。<br>and<code>upper[i]</code>and<code>lower[i]</code>的and等于<code>colsum[i]</code>。<br>In each cycle，Obtain<code>colsum</code>Value，Then judge0，1，2仨 仨，0Ignore，2If you allocate it on average。<br>1if，直接给当前最小的那个Array。（I use here<code>upper</code>and<code>lower</code>The parameters of itself to record the remaining numbers）。<br>Determine at the beginning<code>if sum(colsum) != upper + lower</code>， Final judgment<code>if upper + lower != 0</code>。</p>
+<p>At first, I misunderstood the question again, thinking that it was about dividing <code>colsum</code> into two arrays, <code>upper</code> and <code>lower</code>. However, it turned out that it was about dividing <code>colsum[i]</code> into two numbers, <code>upper[i]</code> and <code>lower[i]</code>. Additionally, the sum of <code>upper[i]</code> and <code>lower[i]</code> should be equal to <code>colsum[i]</code>.<br>In each iteration, the value of <code>colsum</code> is obtained, and then three scenarios, 0, 1, and 2, are considered. If it’s 0, it is ignored. If it’s 2, the values are evenly distributed. If it’s 1, it is assigned to the array with the current minimum value (using the remaining numbers in upper and lower than parameters).<br>At the beginning, it is checked whether <code>if sum(colsum) != upper + lower</code>, and finally, it is checked whether <code>if upper + lower != 0</code>.</p>
+<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reconstructMatrix</span>(<span class="params">self, upper: <span class="built_in">int</span>, lower: <span class="built_in">int</span>, colsum: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]:</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">sum</span>(colsum) != upper + lower:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        upper_list = [<span class="number">0</span>] * <span class="built_in">len</span>(colsum)</span><br><span class="line">        lower_list = [<span class="number">0</span>] * <span class="built_in">len</span>(colsum)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(colsum)):</span><br><span class="line">            <span class="keyword">if</span> colsum[i] == <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            <span class="keyword">if</span> colsum[i] == <span class="number">2</span>:</span><br><span class="line">                upper_list[i] = <span class="number">1</span></span><br><span class="line">                lower_list[i] = <span class="number">1</span></span><br><span class="line">                upper -= <span class="number">1</span></span><br><span class="line">                lower -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">if</span> upper &gt;= lower:</span><br><span class="line">                    upper_list[i] = <span class="number">1</span></span><br><span class="line">                    upper -= <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    lower_list[i] = <span class="number">1</span></span><br><span class="line">                    lower -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> upper != <span class="number">0</span> <span class="keyword">or</span> lower != <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> []</span><br><span class="line">        <span class="keyword">return</span> [upper_list, lower_list]</span><br></pre></td></tr></table></figure>
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+
+            <!-- 分类页 -->
+            
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">matrix</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">greedy</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">medium</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/5c98e66b.html">show all >></a>
                 </p>
             
 
@@ -736,6 +912,165 @@ var _hmt = _hmt || [];
             
                 <p class="article-more-link">
                     <a class="article-more-a" href="/post/5c07686c.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
+    <article id="post-[2562]找出数组的串联值_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/b625a0e1.html">2562.Find the series of the array</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/b625a0e1.html" class="archive-article-date">
+  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2024-01-01</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">100字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">1min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><img src="../assets/img/%E6%88%AA%E5%B1%8F2023-10-12%20%E4%B8%8B%E5%8D%8811.08.18.png" alt="screenshot2023-10-12 afternoon11.08.18.png"><br><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/find-the-concatenation-of-an-array/">2562.Find the series of the array.md</a></p>
+<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>This question andquiz4very similar，都是Double pointer。<br>I made a mistake when I did this question，When calculating the right pointer, the negative index is calculated<code>right = -left + 1</code>，It is difficult to calculate the relationship between positive indexes，So replaced<code>right = len(nums) - 1 - left</code>。</p>
+<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">findTheArrayConcVal</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        sums = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> left <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)):</span><br><span class="line">            right = <span class="built_in">len</span>(nums) - <span class="number">1</span> - left</span><br><span class="line">            <span class="keyword">if</span> left == right:</span><br><span class="line">                sums += nums[left]</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">elif</span> left &lt; right:</span><br><span class="line">                sums += <span class="built_in">int</span>(<span class="built_in">str</span>(nums[left]) + <span class="built_in">str</span>(nums[right]))</span><br><span class="line">        <span class="keyword">return</span> sums</span><br></pre></td></tr></table></figure>
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+
+            <!-- 分类页 -->
+            
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Double pointer</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">simulation</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/b625a0e1.html">show all >></a>
                 </p>
             
 
@@ -1254,165 +1589,6 @@ for (x1, y1), (x2, y2) in pairwise(pos): dx, dy = abs(x1 - x2), abs(y1 - y2)
 
 <!-- 文章页添加mathjax公式 -->
   
-    <article id="post-[2562]找出数组的串联值_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/b625a0e1.html">2562.Find the series of the array</a>
-    </h2>
-  
-
-
-                
-                    <a href="/post/b625a0e1.html" class="archive-article-date">
-  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2024-01-01</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-                
-
-                
-                    <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">100字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">1min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-                
-            </header>
-        
-
-        <div class="article-entry" itemprop="articleBody">
-            <!-- 添加分类与标签 -->
-            
-                
-                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><img src="../assets/img/%E6%88%AA%E5%B1%8F2023-10-12%20%E4%B8%8B%E5%8D%8811.08.18.png" alt="screenshot2023-10-12 afternoon11.08.18.png"><br><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/find-the-concatenation-of-an-array/">2562.Find the series of the array.md</a></p>
-<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>This question andquiz4very similar，都是Double pointer。<br>I made a mistake when I did this question，When calculating the right pointer, the negative index is calculated<code>right = -left + 1</code>，It is difficult to calculate the relationship between positive indexes，So replaced<code>right = len(nums) - 1 - left</code>。</p>
-<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">findTheArrayConcVal</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        sums = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> left <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)):</span><br><span class="line">            right = <span class="built_in">len</span>(nums) - <span class="number">1</span> - left</span><br><span class="line">            <span class="keyword">if</span> left == right:</span><br><span class="line">                sums += nums[left]</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">elif</span> left &lt; right:</span><br><span class="line">                sums += <span class="built_in">int</span>(<span class="built_in">str</span>(nums[left]) + <span class="built_in">str</span>(nums[right]))</span><br><span class="line">        <span class="keyword">return</span> sums</span><br></pre></td></tr></table></figure>
-                
-            
-
-            <!-- 添加打赏 -->
-            
-
-            <!-- 添加版权声明 -->
-            
-
-        </div>
-
-        <!-- 添加置顶 -->
-        <div class="article-info article-info-index">
-            
-
-            <!-- 分类页 -->
-            
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Double pointer</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">simulation</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-            
-
-            <!-- 添加展开全文 -->
-            
-                <p class="article-more-link">
-                    <a class="article-more-a" href="/post/b625a0e1.html">show all >></a>
-                </p>
-            
-
-            <!-- 添加分享 -->
-            
-
-            <div class="clearfix"></div>
-
-        </div>
-    </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-    
-
-<!-- 文章页添加mathjax公式 -->
-  
     <article id="post-[2].两数相加_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -1739,183 +1915,6 @@ for (x1, y1), (x2, y2) in pairwise(pos): dx, dy = abs(x1 - x2), abs(y1 - y2)
 
 <!-- 文章页添加mathjax公式 -->
   
-    <article id="post-[630]课程表 III_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/e14241e.html">630.Class ScheduleIII</a>
-    </h2>
-  
-
-
-                
-                    <a href="/post/e14241e.html" class="archive-article-date">
-  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2024-01-01</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-                
-
-                
-                    <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">580字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">2min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-                
-            </header>
-        
-
-        <div class="article-entry" itemprop="articleBody">
-            <!-- 添加分类与标签 -->
-            
-                
-                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><img src="../assets/img/img_1.png" alt="img_1.png"></p>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/course-schedule-iii/">topic链接</a></p>
-<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>思路来自于宫水三叶ofgreedy + Priority queue，</p>
-<ol>
-<li>first，We sort them according to the end of the course。The purpose of doing this is to try every course，See if it can adapt to our timetable。</li>
-<li>becausePythonofheapqThe default is a minimum pile，So when we join a course，我们使用其持续时间of负数，从而使得堆顶部始终是持续时间最长ofcourse。</li>
-<li>When you traverse each course，尝试把它加入到我们of日程中。but，如果我们发现加入该course后总时间超过了该courseof结束时间，那么我们需要从我们of日程中去掉一个course，最好去掉那个持续时间最长ofcourse，because这将释放出最多of时间，This is why use a maximum pile。<br><code>sum += heapq.heappop(q)</code></li>
-<li>Java中of<code>Arrays.sort(courses, (a,b)-&gt;a[1]-b[1]); </code>Equivalent toPython中of<code>courses.sort(key=lambda x: x[1])</code></li>
-</ol>
-<p>The original text is quoted below，About why you usegreedy：</p>
-<pre><code>topic是要我们构造出一种可行of排列，排列中每个courseof实际结束时间满足「The latest time」Require，
-求可行排序of最大长度（每个course对答案of贡献都是 1）。
-This is easy to guide us「Generalized backpack」Think：simply put，For a certain item（course）For，Different costs under different conditions，
-At the timeline `[1,courses[i][1]−courses[i][0]]` The item can be selected，The cost is its duration，
-在比该范围大of数轴上无法被选，Cost is infinite。因此某一段特定of时间轴上，问题可抽象成有条件限制of组合优化问题。
-Because the data range is 10^4，Generalized backpack做法需要记录of维度大于一维，Not be considered。
-It&#39;s easy to think of「Two points」，Obviously the maximum selection quantity ans 为分割点of数组上具有「Secondary」：
-1. The quantity is less than equal to ans ofcourse能够构造出合法排序（Consider making subtraction on the longest legal sequence）；
-2. Use the quantity greater than ans ofcourse无法构造出合法排列。
-此时Two points范围为 `[0,n]`，The problem converts to：
-How to `O(n)` Check whether it can construct a length len of合法排列（accomplish `check` method）。
-常规of线性扫描做法无法确定是否存在某个长度of合法排列，因此Two pointsNot be considered。
-We need to use「greedy」思维考虑可能of方案。
-</code></pre>
-<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> heapq</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">scheduleCourse</span>(<span class="params">self, courses: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        courses.sort(key=<span class="keyword">lambda</span> x: x[<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">        <span class="comment"># This will be a max-heap based on course duration</span></span><br><span class="line">        q = []</span><br><span class="line">        <span class="built_in">sum</span> = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> courses:</span><br><span class="line">            d, e = c</span><br><span class="line">            <span class="built_in">sum</span> += d</span><br><span class="line">            heapq.heappush(q, -d)</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">sum</span> &gt; e:</span><br><span class="line">                <span class="built_in">sum</span> += heapq.heappop(q)</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">len</span>(q)</span><br></pre></td></tr></table></figure>
-                
-            
-
-            <!-- 添加打赏 -->
-            
-
-            <!-- 添加版权声明 -->
-            
-
-        </div>
-
-        <!-- 添加置顶 -->
-        <div class="article-info article-info-index">
-            
-
-            <!-- 分类页 -->
-            
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">greedy</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Priority queue</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-            
-
-            <!-- 添加展开全文 -->
-            
-                <p class="article-more-link">
-                    <a class="article-more-a" href="/post/e14241e.html">show all >></a>
-                </p>
-            
-
-            <!-- 添加分享 -->
-            
-
-            <div class="clearfix"></div>
-
-        </div>
-    </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-    
-
-<!-- 文章页添加mathjax公式 -->
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/9/">&lt;&lt; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/11/">下一页 &gt;&gt;</a>
@@ -1970,10 +1969,10 @@ window.MathJax = {
 	  <br>
 	  <div class="footer-center">
 	    <i class="fa fa-file-word-o" aria-hidden="true"></i>
-		<span> 111 篇</span>
+		<span> 112 篇</span>
 		<span class="post-meta-divider">|</span>
 		<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-		<span> <span class="post-count">47.3k</span></span>
+		<span> <span class="post-count">50.9k</span></span>
       </div>
 	  
 	  <!-- 添加不蒜子统计 -->
