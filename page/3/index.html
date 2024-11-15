@@ -292,20 +292,20 @@ var _hmt = _hmt || [];
         <div id="js-content" class="content-ll">
           
   
-    <article id="post-142.环形链表II_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-1237. 找出给定方程的正整数解_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
   
     <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/e2c9cca9.html">142.Ring linkedII</a>
+      <a class="article-title_code_ant" href="/post/14b94db7.html">1237. Find out the positive combination of the given square  One question daily</a>
     </h2>
   
 
 
                 
-                    <a href="/post/e2c9cca9.html" class="archive-article-date">
+                    <a href="/post/14b94db7.html" class="archive-article-date">
   	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
 	<!-- <i class="icon-calendar icon"></i> -->
 
@@ -337,7 +337,7 @@ var _hmt = _hmt || [];
 	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
         <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
         <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">738字</span>
+        <span class="post-count">167字</span>
       </span>
     </span>
 
@@ -346,7 +346,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
 	    <i class="fa fa-pagelines" aria-hidden="true"></i>
         <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">3min</span>
+        <span class="post-count">1min</span>
       </span>
     </span>
 	
@@ -361,18 +361,12 @@ var _hmt = _hmt || [];
             <!-- 添加分类与标签 -->
             
                 
-                    <p><img src="../assets/img/2023-07-01%20(1).png" alt="2023-07-01 (1).png"><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/linked-list-cycle-ii/">142.Ring listII.md</a></p>
-<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><h3 id="Problem-solving："><a href="#Problem-solving：" class="headerlink" title="Problem -solving："></a>Problem -solving：</h3><p>这类Linkedtopic一般都yes使用双pointer法解决的，For example, looking for distance tail K Node、Find a ring entrance、Find the entrance of the public tail, etc.。</p>
-<h3 id="Algorithm："><a href="#Algorithm：" class="headerlink" title="Algorithm："></a>Algorithm：</h3><ol>
-<li><p>Double pointer met for the first time： Set two pointers fast，slow 指向Linked头部 head，fast Walk per round 2 step，slow Walk per round 1 step；</p>
-<p> a. First result： fast pointer走过Linked末端，说明Linked无环，直接return null；</p>
-<p> .TIPS: If there is a ring，Two pointers will definitely meet。Because every time I go 1 wheel，fast and slow Pitch +1，fast The event will catch up slow；<br> b. Second result： whenfast == slowhour， Two pointers in the ring First encounter 。下面分析此hourfast and slowPassing step数关系 ：</p>
-<p> .设Linked共have a+b Node，in Linked头部到Linked入口 have a Node（不计Linked入口节点）， Linked环 have b Node（这里需要Notice，a and b yes未知数，例如图解上Linked a=4 , b=5）；Set two pointers分别走了 f，s step，则have：<br> a. fast 走的step数yesslowstep数的 2 Double，Right now f=2s；（Analyze： fast Walk per round 2 step）<br> b.fast Compare slowGo more n Length of a ring，Right now f=s+nb；（ Analyze： Double pointers have gone through a step，然后在环Inside绕圈直到重合，重合hour fast Compare slow Go 环的长度整数Double ）；<br> .The above two types are reduced：f=2nb，s=nb，Right nowfastandslow The pointer left separately 2n，n indivual Circumference of the ring （Notice： n yes未知数，不同Linked的情况不同）。</p>
-</li>
-</ol>
-                    
-                        <a class="article-more-a" href="/post/e2c9cca9.html#more">more >></a>
-                    
+                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><img src="../assets/img/2023-02-18%20(1).png" alt="2023-02-18 (1).png"><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-positive-integer-solution-for-a-given-equation/description/">1237. Find out the positive combination of the given square.md</a></p>
+<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>Want to be complicated，It turned out to be intended to recover，Then constantly find out the solution。Then Ling Shen tells us：In fact, this question is a double pointer，One on the far left is on the right。<br>Monoly increase function，XCan only increase，YCan only reduce，So iff(x,y)&lt;z，ExplainXIt’s time to increase，vice versa。</p>
+<p>Because you need to continue to find after equal，So continue f(x,y)&lt;zTalent operation，After modificationf(x+1,y)&gt;f(x,y)=z，Depending on the circumstances 2，Can y minus one。</p>
+<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">findSolution</span>(<span class="params">self, customfunction: <span class="string">&#x27;CustomFunction&#x27;</span>, z: <span class="built_in">int</span></span>) -&gt; <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]:</span><br><span class="line">        ans = []</span><br><span class="line">        x, y = <span class="number">1</span>, <span class="number">1000</span></span><br><span class="line">        <span class="keyword">while</span> x &lt;= <span class="number">1000</span> <span class="keyword">and</span> y:</span><br><span class="line">            res = customfunction.f(x, y)</span><br><span class="line">            <span class="keyword">if</span> res &lt; z:</span><br><span class="line">                x += <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> res &gt; z:</span><br><span class="line">                y -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                ans.append([x, y])</span><br><span class="line">                x += <span class="number">1</span></span><br><span class="line">                y -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><figcaption><span>IF</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
                 
             
 
@@ -410,7 +404,7 @@ var _hmt = _hmt || [];
             <!-- 添加展开全文 -->
             
                 <p class="article-more-link">
-                    <a class="article-more-a" href="/post/e2c9cca9.html">show all >></a>
+                    <a class="article-more-a" href="/post/14b94db7.html">show all >></a>
                 </p>
             
 
@@ -609,172 +603,6 @@ var _hmt = _hmt || [];
 
 <!-- 文章页添加mathjax公式 -->
   
-    <article id="post-1551使数组中所有元素相等的最小操作数_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/b2a927d5.html">1551. Make all the minimum operations of all elements in the array</a>
-    </h2>
-  
-
-
-                
-                    <a href="/post/b2a927d5.html" class="archive-article-date">
-  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2024-01-01</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-                
-
-                
-                    <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">516字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">3min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-                
-            </header>
-        
-
-        <div class="article-entry" itemprop="articleBody">
-            <!-- 添加分类与标签 -->
-            
-                
-                    <p><img src="../assets/img/2023-01-22%20(3).png" alt="2023-01-22 (3).png"></p>
-<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>It is the second question of the weekly match：<a href="6275%CA%B9%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%D4%AA%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%C8%B5%EF%BF%BD%EF%BF%BD%EF%BF%BD%D0%A1%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD.md">6275Make all the minimum operations of all elements in the arrayII.md</a><br>The first edition of the heart of the heart。It’s completely different from the second edition，Originally wanted to practice the greedy algorithm。但是做着做着就发现了存在math规律。<br>Quote[yong]Big guy’s words：<br>Because it is the difference between the difference,很可能找到一个math公式,use<code>O(1)</code>Time complexity solution. Get a few simple examples first to find the rules</p>
-<ol>
-<li>n=3 The minimum operation is 2</li>
-<li>n=4 The minimum operation is 1 + 3</li>
-<li>n=5 The minimum operation is 2 + 4</li>
-<li>n=6 The minimum operation is 1 + 3 + 5</li>
-<li>n=7 The minimum operation is 2 + 4 + 6<br>whennWhen the number is,The minimum operation is<code>1 + 3 + 5 + ... + n-1 = n*n/4 </code><br>whennWhen it is a strange number,The minimum operation is<code>2 + 4 + ... + n-1 = (n*n - 1) / 4</code></li>
-</ol>
-<p>Get this question,Feel a bit around,Careful analysis discovery <code>arr[i] = (2 * i) + 1 (0 &lt;= i &lt; n)</code>Is a typical equal number list<code>(1,3,5,7,9...)</code>.<br>According to the formula of the equal number column,It’s easy to find a grouparrThe total element is<code>n^2</code>. In the question design, two bids are selected for each operationx ymake<code>arr[x]</code>minus one<code>arr[y]</code>plus one.<br>in other words,No matter how you choosex y,No matter how many times the operation,The sum of the array will not change. The design and guarantee that all elements in the array can ultimately be equal equal.<br>Then we assume that the final element is equal toaSo<code>n*a == n^2</code>,soa == n,That is to say, the final array elements are alln.actuallynIs the average value of the array.<br>Know the end element is allnback,Start traversing in the middle by starting from the start and end of the array,You can reach the smallest number of operations.<br>Suppose the bidding on the left is<code>i ((2 * i) + 1 &lt; n)</code>So相应右边的下标是<code>n - i.</code><br>The corresponding two elemental values ​​andnThe difference is<code>n - 1 + 2 * i</code>.so我们只要计算数组中值小于nElements andnSummary of difference,Get the minimum operation number.</p>
-<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight java"><figcaption><span>java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> <span class="type">int</span> <span class="title function_">minOperations</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">     <span class="keyword">return</span> n * n / <span class="number">4</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Time and space complexity is all O(1)</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><figcaption><span>java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> <span class="type">int</span> <span class="title function_">minOperations</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">operation</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; n ; i += <span class="number">2</span>) &#123;</span><br><span class="line">        operation += (n - i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> operation;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Time complexity isO(n) Space complexity isO(1)</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><figcaption><span>python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minOperations</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        operate = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n, <span class="number">2</span>):</span><br><span class="line">            operate += (n - i)</span><br><span class="line">        <span class="keyword">return</span> operate</span><br></pre></td></tr></table></figure>
-<figure class="highlight erlang"><figcaption><span>erlang</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">-spec</span> min_operations<span class="params">(N :: integer())</span> -&gt; integer<span class="params">()</span>.</span><br><span class="line"><span class="function"><span class="title">min_operations</span><span class="params">(N)</span> -&gt;</span></span><br><span class="line">N * N <span class="keyword">div</span> <span class="number">4</span>.</span><br></pre></td></tr></table></figure>
-<figure class="highlight dart"><figcaption><span>dart</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">  <span class="built_in">int</span> minOperations(<span class="built_in">int</span> n) &#123;</span><br><span class="line">    <span class="keyword">return</span> n * n ~/ <span class="number">4</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight elixir"><figcaption><span>elixir</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">defmodule</span> <span class="title">Solution</span></span> <span class="keyword">do</span></span><br><span class="line">  <span class="variable">@spec</span> min_operations(n :: integer) :: integer</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">min_operations</span></span>(n) <span class="keyword">do</span></span><br><span class="line">        div(n * n , <span class="number">4</span>)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
-
-                
-            
-
-            <!-- 添加打赏 -->
-            
-
-            <!-- 添加版权声明 -->
-            
-
-        </div>
-
-        <!-- 添加置顶 -->
-        <div class="article-info article-info-index">
-            
-
-            <!-- 分类页 -->
-            
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">math</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-            
-
-            <!-- 添加展开全文 -->
-            
-                <p class="article-more-link">
-                    <a class="article-more-a" href="/post/b2a927d5.html">show all >></a>
-                </p>
-            
-
-            <!-- 添加分享 -->
-            
-
-            <div class="clearfix"></div>
-
-        </div>
-    </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-    
-
-<!-- 文章页添加mathjax公式 -->
-  
     <article id="post-1590.使数组和能被P整除_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -935,6 +763,162 @@ var _hmt = _hmt || [];
 
 <!-- 文章页添加mathjax公式 -->
   
+    <article id="post-142.环形链表II_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/e2c9cca9.html">142.Ring linkedII</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/e2c9cca9.html" class="archive-article-date">
+  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2024-01-01</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">738字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">3min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <p><img src="../assets/img/2023-07-01%20(1).png" alt="2023-07-01 (1).png"><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/linked-list-cycle-ii/">142.Ring listII.md</a></p>
+<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><h3 id="Problem-solving："><a href="#Problem-solving：" class="headerlink" title="Problem -solving："></a>Problem -solving：</h3><p>这类Linkedtopic一般都yes使用双pointer法解决的，For example, looking for distance tail K Node、Find a ring entrance、Find the entrance of the public tail, etc.。</p>
+<h3 id="Algorithm："><a href="#Algorithm：" class="headerlink" title="Algorithm："></a>Algorithm：</h3><ol>
+<li><p>Double pointer met for the first time： Set two pointers fast，slow 指向Linked头部 head，fast Walk per round 2 step，slow Walk per round 1 step；</p>
+<p> a. First result： fast pointer走过Linked末端，说明Linked无环，直接return null；</p>
+<p> .TIPS: If there is a ring，Two pointers will definitely meet。Because every time I go 1 wheel，fast and slow Pitch +1，fast The event will catch up slow；<br> b. Second result： whenfast == slowhour， Two pointers in the ring First encounter 。下面分析此hourfast and slowPassing step数关系 ：</p>
+<p> .设Linked共have a+b Node，in Linked头部到Linked入口 have a Node（不计Linked入口节点）， Linked环 have b Node（这里需要Notice，a and b yes未知数，例如图解上Linked a=4 , b=5）；Set two pointers分别走了 f，s step，则have：<br> a. fast 走的step数yesslowstep数的 2 Double，Right now f=2s；（Analyze： fast Walk per round 2 step）<br> b.fast Compare slowGo more n Length of a ring，Right now f=s+nb；（ Analyze： Double pointers have gone through a step，然后在环Inside绕圈直到重合，重合hour fast Compare slow Go 环的长度整数Double ）；<br> .The above two types are reduced：f=2nb，s=nb，Right nowfastandslow The pointer left separately 2n，n indivual Circumference of the ring （Notice： n yes未知数，不同Linked的情况不同）。</p>
+</li>
+</ol>
+                    
+                        <a class="article-more-a" href="/post/e2c9cca9.html#more">more >></a>
+                    
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+
+            <!-- 分类页 -->
+            
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/e2c9cca9.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
     <article id="post-1604. 警告一小时内使用相同员工卡大于等于三次的人_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -1050,156 +1034,6 @@ var _hmt = _hmt || [];
             
                 <p class="article-more-link">
                     <a class="article-more-a" href="/post/bb7bcf54.html">show all >></a>
-                </p>
-            
-
-            <!-- 添加分享 -->
-            
-
-            <div class="clearfix"></div>
-
-        </div>
-    </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-    
-
-<!-- 文章页添加mathjax公式 -->
-  
-    <article id="post-1653. 使字符串平衡的最少删除次数_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/cac21f27.html">1653. The minimum number of times to balance the string balance</a>
-    </h2>
-  
-
-
-                
-                    <a href="/post/cac21f27.html" class="archive-article-date">
-  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2024-01-01</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-                
-
-                
-                    <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">227字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">1min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-                
-            </header>
-        
-
-        <div class="article-entry" itemprop="articleBody">
-            <!-- 添加分类与标签 -->
-            
-                
-                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><img src="../assets/img/2023-03-07.png" alt="2023-03-07.png"><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-deletions-to-make-string-balanced/description/">1653. The minimum number of times to balance the string balance.md</a></p>
-<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p><img src="https://pic.leetcode.cn/1678016319-qezsdt-1653-2-cut3.png" alt="img_1.png"><br>ask：Why if-else Write (c - ‘a’) * 2 - 1 It will be much faster？</p>
-<p>answer：CPU I encounter a branch（Condition jump instruction）Which branch of the code will be predicted when the code is executed，If the prediction is correct，<br>CPU It will continue to execute the program in accordance with the predicted path。But if the prediction fails，CPU You need to roll back the previous instructions and load the correct instructions，To ensure the correctness of the program execution。</p>
-<p>For the data of this question，character ‘a’ and ‘b’ It can be considered to appear random，In this case, the branch prediction will be available 50% Probability failure。<br>失败导致的回滚and加载操作需要消耗额外的 CPU cycle，If the branch can be removed at a smaller price，The situation of this question can inevitably bring efficiency improvement。</p>
-<p>Notice：This optimization method often reduces readability，It’s best not to use in business code。</p>
-<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minimumDeletions</span>(<span class="params">self, s: <span class="built_in">str</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        ans = delete = s.count(<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> s:</span><br><span class="line">            delete -= <span class="number">1</span> <span class="keyword">if</span> c == <span class="string">&#x27;a&#x27;</span> <span class="keyword">else</span> -<span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> delete &lt; ans:  <span class="comment"># Manually min It will be much faster</span></span><br><span class="line">                ans = delete</span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-                
-            
-
-            <!-- 添加打赏 -->
-            
-
-            <!-- 添加版权声明 -->
-            
-
-        </div>
-
-        <!-- 添加置顶 -->
-        <div class="article-info article-info-index">
-            
-
-            <!-- 分类页 -->
-            
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-            
-
-            <!-- 添加展开全文 -->
-            
-                <p class="article-more-link">
-                    <a class="article-more-a" href="/post/cac21f27.html">show all >></a>
                 </p>
             
 
@@ -1724,20 +1558,20 @@ var _hmt = _hmt || [];
 
 <!-- 文章页添加mathjax公式 -->
   
-    <article id="post-1798你能构造出连续值的最大数目_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-1551使数组中所有元素相等的最小操作数_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
   
     <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/3667cd44.html">1798You can construct the maximum number of continuity One question daily</a>
+      <a class="article-title_code_ant" href="/post/b2a927d5.html">1551. Make all the minimum operations of all elements in the array</a>
     </h2>
   
 
 
                 
-                    <a href="/post/3667cd44.html" class="archive-article-date">
+                    <a href="/post/b2a927d5.html" class="archive-article-date">
   	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
 	<!-- <i class="icon-calendar icon"></i> -->
 
@@ -1769,7 +1603,7 @@ var _hmt = _hmt || [];
 	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
         <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
         <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">187字</span>
+        <span class="post-count">516字</span>
       </span>
     </span>
 
@@ -1778,7 +1612,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
 	    <i class="fa fa-pagelines" aria-hidden="true"></i>
         <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">1min</span>
+        <span class="post-count">3min</span>
       </span>
     </span>
 	
@@ -1793,15 +1627,23 @@ var _hmt = _hmt || [];
             <!-- 添加分类与标签 -->
             
                 
-                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><img src="../assets/img/2023-02-05.png" alt="2023-02-05.png"><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-number-of-consecutive-values-you-can-make/description/?orderBy=most_votes">1798. You can construct the maximum number of continuity</a></p>
-<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p><img src="../assets/img/4A052176419779588F1300C93180C44A.png" alt="4A052176419779588F1300C93180C44A.png"><br><img src="../assets/img/img.png" alt="img.png"><br><code>nums = [1,4,10,3,1]</code>1 ~ 10 All can be constructed，so11 ~ 20As well。<br>Traversal <code>nums = [1,1,3,4,10]</code>， if i&lt;= <em>Earlier+1</em></p>
-<blockquote>
-<p>$i_0(1) &lt;= 0+1; i_1(1) &lt;= 1+1; i_2(3) &lt;= 2+1; i_3(4) &lt;= 5+1; i_4(10) &lt;= 9+1$</p>
-</blockquote>
-<p>, ExplainiThe previous numbers can be constructed。<code>if i &gt; m + 1</code>It means that it cannot be constructed。</p>
-<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">getMaximumConsecutive</span>(<span class="params">self, coins: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        m = <span class="number">0</span>  <span class="comment"># At the beginning, it can only be constructed 0</span></span><br><span class="line">        coins.sort()</span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> coins:</span><br><span class="line">            <span class="keyword">if</span> c &gt; m + <span class="number">1</span>:  <span class="comment"># coins Sort，There is no comparison c Smaller</span></span><br><span class="line">                <span class="keyword">break</span>  <span class="comment"># Unable to construct m+1，Continue to loop is meaningless</span></span><br><span class="line">            m += c  <span class="comment"># Can be constructed [0,m+c] All integer</span></span><br><span class="line">        <span class="keyword">return</span> m + <span class="number">1</span>  <span class="comment"># [0,m] China m+1 An integer</span></span><br></pre></td></tr></table></figure>
+                    <p><img src="../assets/img/2023-01-22%20(3).png" alt="2023-01-22 (3).png"></p>
+<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>It is the second question of the weekly match：<a href="6275%CA%B9%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%D4%AA%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%C8%B5%EF%BF%BD%EF%BF%BD%EF%BF%BD%D0%A1%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD.md">6275Make all the minimum operations of all elements in the arrayII.md</a><br>The first edition of the heart of the heart。It’s completely different from the second edition，Originally wanted to practice the greedy algorithm。但是做着做着就发现了存在math规律。<br>Quote[yong]Big guy’s words：<br>Because it is the difference between the difference,很可能找到一个math公式,use<code>O(1)</code>Time complexity solution. Get a few simple examples first to find the rules</p>
+<ol>
+<li>n=3 The minimum operation is 2</li>
+<li>n=4 The minimum operation is 1 + 3</li>
+<li>n=5 The minimum operation is 2 + 4</li>
+<li>n=6 The minimum operation is 1 + 3 + 5</li>
+<li>n=7 The minimum operation is 2 + 4 + 6<br>whennWhen the number is,The minimum operation is<code>1 + 3 + 5 + ... + n-1 = n*n/4 </code><br>whennWhen it is a strange number,The minimum operation is<code>2 + 4 + ... + n-1 = (n*n - 1) / 4</code></li>
+</ol>
+<p>Get this question,Feel a bit around,Careful analysis discovery <code>arr[i] = (2 * i) + 1 (0 &lt;= i &lt; n)</code>Is a typical equal number list<code>(1,3,5,7,9...)</code>.<br>According to the formula of the equal number column,It’s easy to find a grouparrThe total element is<code>n^2</code>. In the question design, two bids are selected for each operationx ymake<code>arr[x]</code>minus one<code>arr[y]</code>plus one.<br>in other words,No matter how you choosex y,No matter how many times the operation,The sum of the array will not change. The design and guarantee that all elements in the array can ultimately be equal equal.<br>Then we assume that the final element is equal toaSo<code>n*a == n^2</code>,soa == n,That is to say, the final array elements are alln.actuallynIs the average value of the array.<br>Know the end element is allnback,Start traversing in the middle by starting from the start and end of the array,You can reach the smallest number of operations.<br>Suppose the bidding on the left is<code>i ((2 * i) + 1 &lt; n)</code>So相应右边的下标是<code>n - i.</code><br>The corresponding two elemental values ​​andnThe difference is<code>n - 1 + 2 * i</code>.so我们只要计算数组中值小于nElements andnSummary of difference,Get the minimum operation number.</p>
+<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight java"><figcaption><span>java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> <span class="type">int</span> <span class="title function_">minOperations</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">     <span class="keyword">return</span> n * n / <span class="number">4</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Time and space complexity is all O(1)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><figcaption><span>java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> <span class="type">int</span> <span class="title function_">minOperations</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">operation</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; n ; i += <span class="number">2</span>) &#123;</span><br><span class="line">        operation += (n - i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> operation;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Time complexity isO(n) Space complexity isO(1)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><figcaption><span>python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minOperations</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        operate = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n, <span class="number">2</span>):</span><br><span class="line">            operate += (n - i)</span><br><span class="line">        <span class="keyword">return</span> operate</span><br></pre></td></tr></table></figure>
+<figure class="highlight erlang"><figcaption><span>erlang</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">-spec</span> min_operations<span class="params">(N :: integer())</span> -&gt; integer<span class="params">()</span>.</span><br><span class="line"><span class="function"><span class="title">min_operations</span><span class="params">(N)</span> -&gt;</span></span><br><span class="line">N * N <span class="keyword">div</span> <span class="number">4</span>.</span><br></pre></td></tr></table></figure>
+<figure class="highlight dart"><figcaption><span>dart</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">  <span class="built_in">int</span> minOperations(<span class="built_in">int</span> n) &#123;</span><br><span class="line">    <span class="keyword">return</span> n * n ~/ <span class="number">4</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight elixir"><figcaption><span>elixir</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">defmodule</span> <span class="title">Solution</span></span> <span class="keyword">do</span></span><br><span class="line">  <span class="variable">@spec</span> min_operations(n :: integer) :: integer</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">min_operations</span></span>(n) <span class="keyword">do</span></span><br><span class="line">        div(n * n , <span class="number">4</span>)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">getMaximumConsecutive</span><span class="params">(coins []<span class="type">int</span>)</span></span> <span class="type">int</span> &#123;</span><br><span class="line">	<span class="comment">// Initialize a containing0Array</span></span><br><span class="line">	m := <span class="number">0</span></span><br><span class="line">	sort.Ints(coins)</span><br><span class="line">	<span class="keyword">for</span> _, c := <span class="keyword">range</span> coins &#123;</span><br><span class="line">		<span class="keyword">if</span> c &gt; m+<span class="number">1</span> &#123;</span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line">		&#125;</span><br><span class="line">		m += c</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> m + <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
                 
             
@@ -1833,7 +1675,7 @@ var _hmt = _hmt || [];
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">golang</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">math</a>
         		</li>
       		
 		</ul>
@@ -1844,7 +1686,157 @@ var _hmt = _hmt || [];
             <!-- 添加展开全文 -->
             
                 <p class="article-more-link">
-                    <a class="article-more-a" href="/post/3667cd44.html">show all >></a>
+                    <a class="article-more-a" href="/post/b2a927d5.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
+    <article id="post-1653. 使字符串平衡的最少删除次数_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/cac21f27.html">1653. The minimum number of times to balance the string balance</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/cac21f27.html" class="archive-article-date">
+  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2024-01-01</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">227字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">1min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><img src="../assets/img/2023-03-07.png" alt="2023-03-07.png"><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-deletions-to-make-string-balanced/description/">1653. The minimum number of times to balance the string balance.md</a></p>
+<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p><img src="https://pic.leetcode.cn/1678016319-qezsdt-1653-2-cut3.png" alt="img_1.png"><br>ask：Why if-else Write (c - ‘a’) * 2 - 1 It will be much faster？</p>
+<p>answer：CPU I encounter a branch（Condition jump instruction）Which branch of the code will be predicted when the code is executed，If the prediction is correct，<br>CPU It will continue to execute the program in accordance with the predicted path。But if the prediction fails，CPU You need to roll back the previous instructions and load the correct instructions，To ensure the correctness of the program execution。</p>
+<p>For the data of this question，character ‘a’ and ‘b’ It can be considered to appear random，In this case, the branch prediction will be available 50% Probability failure。<br>失败导致的回滚and加载操作需要消耗额外的 CPU cycle，If the branch can be removed at a smaller price，The situation of this question can inevitably bring efficiency improvement。</p>
+<p>Notice：This optimization method often reduces readability，It’s best not to use in business code。</p>
+<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minimumDeletions</span>(<span class="params">self, s: <span class="built_in">str</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        ans = delete = s.count(<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> s:</span><br><span class="line">            delete -= <span class="number">1</span> <span class="keyword">if</span> c == <span class="string">&#x27;a&#x27;</span> <span class="keyword">else</span> -<span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> delete &lt; ans:  <span class="comment"># Manually min It will be much faster</span></span><br><span class="line">                ans = delete</span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+
+            <!-- 分类页 -->
+            
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/cac21f27.html">show all >></a>
                 </p>
             
 
@@ -1884,7 +1876,7 @@ var _hmt = _hmt || [];
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&lt;&lt; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/4/">下一页 &gt;&gt;</a>
+      <a class="extend prev" rel="prev" href="/page/2/">&lt;&lt; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/4/">下一页 &gt;&gt;</a>
     </nav>
   
 
@@ -1936,10 +1928,10 @@ window.MathJax = {
 	  <br>
 	  <div class="footer-center">
 	    <i class="fa fa-file-word-o" aria-hidden="true"></i>
-		<span> 110 篇</span>
+		<span> 111 篇</span>
 		<span class="post-meta-divider">|</span>
 		<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-		<span> <span class="post-count">43.4k</span></span>
+		<span> <span class="post-count">46k</span></span>
       </div>
 	  
 	  <!-- 添加不蒜子统计 -->
