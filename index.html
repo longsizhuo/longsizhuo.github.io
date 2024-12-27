@@ -292,6 +292,177 @@ var _hmt = _hmt || [];
         <div id="js-content" class="content-ll">
           
   
+    <article id="post-3159. Find Occurrences of an Element in an Array" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/aec413e2.html">3159. Find Occurrences of an Element in an Array</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/aec413e2.html" class="archive-article-date">
+  	<time datetime="2024-12-27T05:01:14.663Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2024-12-27</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">620字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">3min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <h1 id="QUESTION："><a href="#QUESTION：" class="headerlink" title="QUESTION："></a>QUESTION：</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-occurrences-of-an-element-in-an-array/description/?envType=daily-question&envId=2024-12-27">3159. Find Occurrences of an Element in an Array.md</a><br>You are given an integer array nums, an integer array queries, and an integer x.</p>
+<p>For each queries[i], you need to find the index of the queries[i]th occurrence of x in the nums array. If there are fewer than queries[i] occurrences of x, the answer should be -1 for that query.</p>
+<p>Return an integer array answer containing the answers to all queries.</p>
+<p>Example 1:</p>
+<p>Input: nums = [1,3,1,7], queries = [1,3,2,4], x = 1</p>
+<p>Output: [0,-1,2,-1]</p>
+<p>Explanation:</p>
+<p>For the 1st query, the first occurrence of 1 is at index 0.<br>For the 2nd query, there are only two occurrences of 1 in nums, so the answer is -1.<br>For the 3rd query, the second occurrence of 1 is at index 2.<br>For the 4th query, there are only two occurrences of 1 in nums, so the answer is -1.<br>Example 2:</p>
+<p>Input: nums = [1,2,3], queries = [10], x = 5</p>
+<p>Output: [-1]</p>
+<p>Explanation:</p>
+<p>For the 1st query, 5 doesn’t exist in nums, so the answer is -1.</p>
+<p>Constraints:</p>
+<p>1 &lt;= nums.length, queries.length &lt;= 105<br>1 &lt;= queries[i] &lt;= 105<br>1 &lt;= nums[i], x &lt;= 104</p>
+<h1 id="My-Think："><a href="#My-Think：" class="headerlink" title="My Think："></a>My Think：</h1><p>I haven’t written a solution for a long time. Now that I’m on vacation, I’m starting over. This question requires us to find “all x’s indices” from the given nums, and then return the index address of the queries-th x.<br>So we can use the list generation formula <code>indices = [i for i, value in enumerate(nums) if value == x]</code> to return a list containing all x’s indices,<br>and then query them one by one.<br>First mistake: I didn’t consider the case where indices is empty, so <code>indices[q-1] out of range</code>.<br>Second mistake: I forgot that the for loop in Golang needs two parameters to receive the value passed by range.</p>
+<p>很久没有写题解了,现在放假了于是重新开始了. 这一道题要求我们从给定的nums中找到”所有x的索引”, 然后返回第queries个x的索引地址即可.<br>于是我们可以用列表生成式<code>indices = [i for i, value in enumerate(nums) if value == x]</code>来返回一个包含所有x索引的列表,<br>然后依次在其中查询即可.<br>第一次错误: 没有考虑indices为空的情况, 于是<code>indices[q-1] out of range</code>.<br>第二次错误: 忘记了Golang里的for循环需要两个参数接收range传来的value.</p>
+<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">occurrencesOfElement</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], queries: <span class="type">List</span>[<span class="built_in">int</span>], x: <span class="built_in">int</span></span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        <span class="comment"># Find the indices of all elements equal to x</span></span><br><span class="line">        indices = [i <span class="keyword">for</span> i, value <span class="keyword">in</span> <span class="built_in">enumerate</span>(nums) <span class="keyword">if</span> value == x]</span><br><span class="line">        <span class="comment"># print(indices)</span></span><br><span class="line">        n = <span class="built_in">len</span>(indices)</span><br><span class="line">        ans = []</span><br><span class="line">        <span class="keyword">for</span> q <span class="keyword">in</span> queries:</span><br><span class="line">            <span class="keyword">if</span> indices <span class="keyword">and</span> q-<span class="number">1</span> &lt; n:</span><br><span class="line">                ans.append(indices[q-<span class="number">1</span>])</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                ans.append(-<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">occurrencesOfElement</span><span class="params">(nums []<span class="type">int</span>, queries []<span class="type">int</span>, x <span class="type">int</span>)</span></span> []<span class="type">int</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> indices []<span class="type">int</span></span><br><span class="line">    <span class="keyword">for</span> i, value := <span class="keyword">range</span> nums &#123;</span><br><span class="line">        <span class="keyword">if</span> value == x &#123;</span><br><span class="line">            indices = <span class="built_in">append</span>(indices, i)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> ans []<span class="type">int</span></span><br><span class="line">    n := <span class="built_in">len</span>(indices)</span><br><span class="line">    <span class="keyword">for</span> _, q := <span class="keyword">range</span> queries &#123; <span class="comment">// &quot;_, q&quot;</span></span><br><span class="line">        <span class="keyword">if</span> n &gt; <span class="number">0</span> &amp;&amp; q<span class="number">-1</span> &lt; n &#123; </span><br><span class="line">            ans = <span class="built_in">append</span>(ans, indices[q<span class="number">-1</span>])</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            ans = <span class="built_in">append</span>(ans, <span class="number">-1</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+
+            <!-- 分类页 -->
+            
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Answer</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Hash Table</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/aec413e2.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
     <article id="post-9021_TUT_6" class="article article-type-post  article-index" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -620,7 +791,7 @@ var _hmt = _hmt || [];
             <!-- 添加分类与标签 -->
             
                 
-                    <p>My solution didn’t think about the hidden test cases seriously, please refer to the standard solution.</p>
+                    <p><strong>My solution didn’t think about the hidden test cases seriously, please refer to the standard solution.</strong></p>
 <h1 id="Exercise-1"><a href="#Exercise-1" class="headerlink" title="Exercise 1"></a>Exercise 1</h1><p>The <code>doctest</code> module in Python is a tool for testing code by comparing the output of code snippets written in a program’s docstrings to expected results. It allows developers to write simple test cases as part of their documentation and automatically validate that code behaves as documented.</p>
 <p>This exercise requires interpreting a pattern where each argument in <code>vertical_bars()</code> represents the number of <code>asterisks (*)</code> to print in a specific “column” position across multiple lines. Here’s a breakdown of the observed pattern and how to implement it:</p>
 <ol>
@@ -756,11 +927,11 @@ var _hmt = _hmt || [];
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">9021</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Answer</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Answer</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">9021</a>
         		</li>
       		
 		</ul>
@@ -1092,11 +1263,11 @@ var _hmt = _hmt || [];
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">9021</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Answer</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Answer</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">9021</a>
         		</li>
       		
 		</ul>
@@ -1331,15 +1502,15 @@ var _hmt = _hmt || [];
         		</li>
       		 
         		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Answer</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Tutorial</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">9021</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Answer</a>
         		</li>
       		
 		</ul>
@@ -2586,304 +2757,6 @@ var _hmt = _hmt || [];
 
 <!-- 文章页添加mathjax公式 -->
   
-    <article id="post-9021_TUT_4" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/9ba69f5d.html">9021_TUT_4</a>
-    </h2>
-  
-
-
-                
-                    <a href="/post/9ba69f5d.html" class="archive-article-date">
-  	<time datetime="2024-09-30T14:00:00.000Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2024-10-01</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-                
-
-                
-                    <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">2.4k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">14min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-                
-            </header>
-        
-
-        <div class="article-entry" itemprop="articleBody">
-            <!-- 添加分类与标签 -->
-            
-                
-                    <h1 id="Exercise-1"><a href="#Exercise-1" class="headerlink" title="Exercise 1"></a>Exercise 1</h1><h3 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>At first, I thought this exercise was about dividing by a modulus, where the modulus would always be incremented by one. But then I realized that in some cases, there’s no “2” in the division sequence. For example, for <code>12</code>, the answer is <code>12 6 3 1\n</code>. This indicates that the number is always being divided by <code>2</code>.</p>
-<p>When we look at the examples of these answers, we can see that the format aligns each number to the right, based on the width of the largest number.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">%</span><span class="language-bash">%run_and_test python3 -c <span class="string">&quot;from exercise_4_1 import f1; f1(13)&quot;</span></span></span><br><span class="line"></span><br><span class="line">&#x27;&#x27;&#x27;</span><br><span class="line"> 13  6  3  1\n</span><br><span class="line"> 12  6  3  1\n</span><br><span class="line"> 11  5  2  1\n</span><br><span class="line"> 10  5  2  1\n</span><br><span class="line">  9  4  2  1\n</span><br><span class="line">  8  4  2  1\n</span><br><span class="line">  7  3  1\n</span><br><span class="line">  6  3  1\n</span><br><span class="line">  5  2  1\n</span><br><span class="line">  4  2  1\n</span><br><span class="line">  3  1\n</span><br><span class="line">  2  1\n</span><br><span class="line">  1\n</span><br><span class="line">&#x27;&#x27;&#x27;</span><br></pre></td></tr></table></figure>
-
-<p>So we have the following solution:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Assume that the argument n is an integer at least equal to 1.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Each integer is printed out in a field of size equal to</span></span><br><span class="line"><span class="comment"># the number of digits in n plus 1.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># The output is printed out, not returned.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f1</span>(<span class="params">n</span>):</span><br><span class="line">    w = <span class="built_in">len</span>(<span class="built_in">str</span>(n)) + <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n, <span class="number">0</span>, -<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">while</span> i:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&#x27;<span class="subst">&#123;i:&#123;w&#125;</span>&#125;&#x27;</span>, end=<span class="string">&quot;&quot;</span>)</span><br><span class="line">            i = i // <span class="number">2</span></span><br><span class="line">        <span class="built_in">print</span>()</span><br><span class="line">    <span class="keyword">return</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="Complexity-Analysis"><a href="#Complexity-Analysis" class="headerlink" title="Complexity Analysis"></a>Complexity Analysis</h3><p>The time complexity of this algorithm is <code>O(n log n)</code>, where <code>n</code> is the input number. This is because we are dividing the number by <code>2</code> until we reach <code>1</code>. The space complexity is <code>O(1)</code> because we are not using any additional data structures.</p>
-<h1 id="Exercise-2"><a href="#Exercise-2" class="headerlink" title="Exercise 2"></a>Exercise 2</h1><h3 id="Problem-Description-1"><a href="#Problem-Description-1" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>This exercise asks us to repeatedly remove the maximum number from the set until only one element remains. The line print(“A list of sets:”, all(isinstance(x, set) for x in S)) checks if the return value of f2 is a list of sets.</p>
-<h3 id="In-my-solution"><a href="#In-my-solution" class="headerlink" title="In my solution:"></a>In my solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f2</span>(<span class="params">S: <span class="built_in">set</span>[<span class="built_in">int</span>]</span>):</span><br><span class="line">    ans = []</span><br><span class="line">    s_list = <span class="built_in">list</span>(S)  <span class="comment"># Convert the set to a list</span></span><br><span class="line">    s_list.sort()  <span class="comment"># Sort the list</span></span><br><span class="line">    <span class="keyword">while</span> <span class="built_in">len</span>(s_list) &gt; <span class="number">0</span>:</span><br><span class="line">        ans.append(<span class="built_in">set</span>(s_list))  <span class="comment"># Append the current set</span></span><br><span class="line">        s_list.pop()  <span class="comment"># Pop the last (largest) element</span></span><br><span class="line">    <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
-
-<p>I convert the set to a list because tuples don’t have a sort() method. So I convert it, sort it, and then pop the largest element (which is at the end of the list) while the length is greater than 1.</p>
-<h3 id="The-standard-solution-is"><a href="#The-standard-solution-is" class="headerlink" title="The standard solution is:"></a>The standard solution is:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f2</span>(<span class="params">S</span>):</span><br><span class="line">    U = [<span class="built_in">set</span>(S)]</span><br><span class="line">    <span class="keyword">while</span> <span class="built_in">len</span>(S) &gt; <span class="number">1</span>:</span><br><span class="line">        S.remove(<span class="built_in">max</span>(S))  <span class="comment"># Remove the maximum element</span></span><br><span class="line">        U.append(<span class="built_in">set</span>(S))  <span class="comment"># Append the current set</span></span><br><span class="line">    <span class="keyword">return</span> U</span><br></pre></td></tr></table></figure>
-
-<p>The standard solution is simpler; it uses max() to find and remove the largest element, then appends the result to the list.</p>
-<p>Standard solution is better because it is more concise and uses less memory.</p>
-<h1 id="Exercise-3"><a href="#Exercise-3" class="headerlink" title="Exercise 3"></a>Exercise 3</h1><h3 id="Problem-Description-2"><a href="#Problem-Description-2" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>As per the description of Exercise 4, we need to remove elements that are equal to the mean value of their neighboring elements (i.e., the element is the average of the one just before and the one just after it).<br>Please pay attention to the special challenge: use only one loop without any break or continue statements, and only one if statement (with no elif nor else statements).</p>
-<h3 id="In-my-solution-1"><a href="#In-my-solution-1" class="headerlink" title="In my solution:"></a>In my solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Assume that the argument L is an increasing list of integers.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Keep removing any member of the list</span></span><br><span class="line"><span class="comment"># that is neither the first one nor the last one</span></span><br><span class="line"><span class="comment"># and that is the average of the one just before and the one just after.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Special challenge: use only one loop without any break or continue statements,</span></span><br><span class="line"><span class="comment"># and only one if statement (with no elif nor else statements).</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f3</span>(<span class="params">L</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(L) - <span class="number">2</span>):</span><br><span class="line">        <span class="keyword">if</span> L[i] + L[i + <span class="number">2</span>] == <span class="number">2</span> * L[i + <span class="number">1</span>]:  <span class="comment"># Check if the middle element is the average</span></span><br><span class="line">            L.pop(i + <span class="number">1</span>)  <span class="comment"># Remove the element if it satisfies the condition</span></span><br><span class="line">            <span class="keyword">return</span> f3(L)  <span class="comment"># Recurse to check the rest of the list</span></span><br><span class="line">    <span class="keyword">return</span> L</span><br></pre></td></tr></table></figure>
-
-<p><strong>Explanation</strong>:</p>
-<ul>
-<li><p>The function iterates through the list, checking if any element (except the first and last) is the average of its neighbors.</p>
-</li>
-<li><p>If an element meets this condition, it’s removed using <code>pop()</code>, and the function calls itself recursively to continue checking the remaining list.</p>
-</li>
-<li><p>This approach ensures that all elements satisfying the condition are removed.</p>
-</li>
-<li><p>The main reason for using <strong>recursion</strong> in the original code is to avoid <code>i</code> going beyond the scope of the list, because the length of the list changes each time an element is deleted, so in the original for loop, the index may exceed the length of the list. Recursion avoids this situation by re-calling the function and re-traversing the list from the beginning.</p>
-</li>
-</ul>
-<p>When we use <code>for i in sth.</code> in Python, <code>i</code> is essentially a “view” or a “shallow copy” of the elements in <code>sth.</code>. Modifying <code>i</code> directly will not change <code>sth.</code> itself. Additionally, we cannot modify the value of <code>i</code>, because in each iteration of the loop, <code>i</code> is reset to the next element in the sequence.<br>This means that if we use a for loop directly in this context, and we remove an element from the list during the loop, the list will get shorter. As a result, <code>i</code> could end up being out of range in subsequent iterations of the loop.</p>
-<h3 id="The-standard-solution-is-1"><a href="#The-standard-solution-is-1" class="headerlink" title="The standard solution is:"></a>The standard solution is:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f3</span>(<span class="params">L</span>):</span><br><span class="line">    i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> (i := i + <span class="number">1</span>) &lt; <span class="built_in">len</span>(L) - <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">if</span> L[i - <span class="number">1</span>] + L[i + <span class="number">1</span>] == L[i] * <span class="number">2</span>:</span><br><span class="line">            L.pop(i)</span><br><span class="line">            i -= <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> L</span><br></pre></td></tr></table></figure>
-
-
-<p><strong>Explanation</strong>:</p>
-<p>The while loop version of the code does avoid recursion, and manually manages the value of i to ensure that the index does not exceed the range after the list is deleted. This reduces the complexity of the recursive call while achieving the same effect.</p>
-<p><strong>Key points</strong>:</p>
-<ul>
-<li>The function uses only one loop and one if statement as required by the challenge.</li>
-<li>Recursion is used to continue processing after each removal.</li>
-</ul>
-<h1 id="Exercise-4"><a href="#Exercise-4" class="headerlink" title="Exercise 4"></a>Exercise 4</h1><h3 id="Problem-Description-3"><a href="#Problem-Description-3" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>You are given an integer <code>n</code>, and the goal is to express <code>n</code> as a sum (or difference) of powers of <code>2</code>. This should be done by leveraging the binary representation of <code>n</code>.<br>Specifically, you need to:</p>
-<ol>
-<li>Convert n to its binary form.</li>
-<li>Identify which positions in the binary form have a 1.</li>
-<li>Use these positions to generate the corresponding powers of 2.</li>
-<li>If n is positive, add the powers of 2 together. If n is negative, subtract the powers of 2.<br>The output should be in the form of an equation, displaying the original number as the sum (or difference) of powers of 2.</li>
-</ol>
-<h4 id="Example-1"><a href="#Example-1" class="headerlink" title="Example 1:"></a>Example 1:</h4><p>For <code>n = 13</code>:</p>
-<p>The binary representation of 13 is 1101.<br>This corresponds to <code>2^3</code> + <code>2^2</code> + <code>2^0</code>, because the 3rd, 2nd, and 0th positions in the binary number are <code>1</code>.</p>
-<p>Output: <code>13 = 2^3 + 2^2 + 2^0</code></p>
-<h3 id="Explanation"><a href="#Explanation" class="headerlink" title="Explanation:"></a>Explanation:</h3><p>The function f4(n) converts an integer n into a sum of powers of 2 based on its binary representation. Let’s go through the code:</p>
-<ol>
-<li><p>Handling the case when n is zero:</p>
- <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> n:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;0 = 0&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span></span><br></pre></td></tr></table></figure>
-<p> This part checks <code>if n is zero</code> using if not n. If <code>n</code> is zero, the function prints <code>0 = 0</code> and returns immediately, since zero doesn’t need further decomposition into powers of <code>2</code>.</p>
-</li>
-<li><p>Converting the number to binary:</p>
- <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">binary_n = <span class="string">f&#x27;<span class="subst">&#123;n:b&#125;</span>&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>The <code>f&#39;&#123;n:b&#125;&#39;</code> converts the integer <code>n</code> to its binary form as a string (without the <code>0b</code> prefix). For example, if <code>n = 13</code>, <code>binary_n</code> will be <code>1101</code>.</p>
-</li>
-<li><p>Finding the positions of 1s in the binary representation:</p>
- <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powers = (i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(binary_n)) <span class="keyword">if</span> binary_n[i] == <span class="string">&#x27;1&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p> This list comprehension creates a list of indices where the binary digit is <code>1</code>. For <code>1101</code>, the <code>positions</code> list will be <code>[0, 2, 3]</code>.</p>
-<ul>
-<li>This is a generator expression that finds the positions (indices) in the binary string where there is a <code>1</code>.</li>
-<li><code>range(len(binary_n))</code> iterates over each character in the binary string, and the condition <code>binary_n[i] == &#39;1&#39;</code>filters out the positions where there is a <code>1</code>.</li>
-<li>For example, if <code>n = 13</code> and <code>binary_n = &#39;1101&#39;</code>, the positions of 1s would be <code>(0, 2, 3)</code>, because the first, third, and fourth bits from the right are <code>1</code>.</li>
-</ul>
-</li>
-<li><p>print(operator.join(f’2^{len(binary_n) - i - 1}’ for i in powers))</p>
- <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(operator.join(<span class="string">f&#x27;2^<span class="subst">&#123;<span class="built_in">len</span>(binary_n) - i - <span class="number">1</span>&#125;</span>&#x27;</span> <span class="keyword">for</span> i <span class="keyword">in</span> powers))</span><br></pre></td></tr></table></figure>
-<ul>
-<li>This is the key part of the function that prints the powers of 2 based on the positions of 1s in the binary representation.<ul>
-<li><code>f&#39;2^&#123;len(binary_n) - i - 1&#125;&#39;</code> creates strings like<code> 2^3</code>, <code>2^2</code>, <code>2^0</code> by converting each position i into the corresponding exponent for 2. The exponent is calculated as len(binary_n) - i - 1, where i is the position of the 1 in the binary string.</li>
-<li><code>operator.join(...)</code> joins all these terms together with either<code>&#39; + &#39;</code>or<code>&#39; - &#39;</code>depending on the value of <code>n</code>.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<h1 id="Exercise-5"><a href="#Exercise-5" class="headerlink" title="Exercise 5"></a>Exercise 5</h1><p>To solve next problems, lets first understand the <code>zip</code> function in Python. </p>
-<ol>
-<li>Let’s try:</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">L1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">L2 = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(L1, L2)))</span><br></pre></td></tr></table></figure>
-
-<p>Output:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[(1, 4), (2, 5), (3, 6)]</span><br></pre></td></tr></table></figure>
-
-<p>And <code>zip</code> in dictionary:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">L1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">L2 = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">dict</span>(<span class="built_in">zip</span>(L1, L2)))</span><br></pre></td></tr></table></figure>
-
-<p>Output:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[(1, 4), (2, 5), (3, 6)]</span><br><span class="line">&#123;1: 4, 2: 5, 3: 6&#125;</span><br></pre></td></tr></table></figure>
-
-<p>The finally we try using <code>zip</code> with <code>*</code>, which is used to unpack the elements of a list or tuple:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">L = [[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>], [<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">zip</span>(L):</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">zip</span>(*L):</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br></pre></td></tr></table></figure>
-
-<p>Output:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">([1, 2, 3],)</span><br><span class="line">([4, 5, 6],)</span><br><span class="line">([7, 8, 9],)</span><br><span class="line">(1, 4, 7)</span><br><span class="line">(2, 5, 8)</span><br><span class="line">(3, 6, 9)</span><br></pre></td></tr></table></figure>
-
-
-
-
-<h3 id="Problem-Description-4"><a href="#Problem-Description-4" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>In this problem, we can identify the pattern by observing the example: start from the first and last elements of a list and progressively make pairs towards the center of the list.</p>
-<p>My initial thought was to use a two-pointer approach: one pointer starts at the beginning of the list, and the other starts at the end, and they move towards each other. However, I missed the specific requirement in the problem: “Return an expression built only from list, reversed, and zip.”</p>
-<h3 id="Wrong-Solution"><a href="#Wrong-Solution" class="headerlink" title="Wrong Solution:"></a>Wrong Solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f5</span>(<span class="params">*L</span>):</span><br><span class="line">    ans = []</span><br><span class="line">    left = <span class="number">0</span></span><br><span class="line">    right = <span class="built_in">len</span>(L) - <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> left &lt; <span class="built_in">len</span>(L):</span><br><span class="line">        ans.append(((L[left], L[right]), (L[right], L[left])))</span><br><span class="line">        left += <span class="number">1</span></span><br><span class="line">        right -= <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
-
-<h3 id="Correct-Solution"><a href="#Correct-Solution" class="headerlink" title="Correct Solution:"></a>Correct Solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f5</span>(<span class="params">*L</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">list</span>(<span class="built_in">zip</span>(<span class="built_in">zip</span>(L, <span class="built_in">reversed</span>(L)), <span class="built_in">reversed</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(L, <span class="built_in">reversed</span>(L))))))</span><br></pre></td></tr></table></figure>
-
-
-<p>The idea behind the correct solution is as follows:</p>
-<ol>
-<li><p><code>zip(L, reversed(L))</code> creates pairs of elements where the first comes from <code>L</code> and the second comes from <code>reversed(L)</code> (i.e., <code>L</code> reversed).<br>Example: If <code>L = (1, 2, 3)</code>, then <code>reversed(L)</code> is <code>(3, 2, 1)</code>. So, <code>zip(L, reversed(L))</code> results in <code>[(1, 3), (2, 2), (3, 1)]</code>.</p>
-</li>
-<li><p><code>reversed(list(zip(L, reversed(L))))</code>: Here, we convert the result of <code>zip(L, reversed(L))</code> into a list and then reverse the entire list.<br>Example: If <code>zip(L, reversed(L))</code> produced <code>[(1, 3), (2, 2), (3, 1)]</code>, then <code>reversed(list(zip(L, reversed(L))))</code> will return <code>[(3, 1), (2, 2), (1, 3)]</code>.</p>
-</li>
-<li><p><code>zip(zip(L, reversed(L)), reversed(list(zip(L, reversed(L)))))</code>: This part pairs the result of <code>zip(L, reversed(L))</code> with its reversed version. It takes corresponding elements from both sequences and forms pairs.<br>Example: If <code>zip(L, reversed(L))</code> is <code>[(1, 3), (2, 2), (3, 1)]</code> and its reverse is <code>[(3, 1), (2, 2), (1, 3)]</code>, then <code>zip(zip(L, reversed(L)), reversed(list(zip(L, reversed(L)))))</code> produces pairs of tuples like:</p>
-<ul>
-<li><code>((1, 3), (3, 1))</code></li>
-<li><code>((2, 2), (2, 2))</code></li>
-<li><code>((3, 1), (1, 3))</code></li>
-</ul>
-</li>
-</ol>
-<p>Finally, this expression is wrapped in <code>list()</code> to convert the zip object into a list of tuples.</p>
-<h1 id="Exercise-6"><a href="#Exercise-6" class="headerlink" title="Exercise 6"></a>Exercise 6</h1><h3 id="Problem-Description-5"><a href="#Problem-Description-5" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>Exercise 6 is similar to Exercise 5, requiring us to use <code>zip</code>, <code>*</code>, and <code>list</code> to solve the problem. We are given a variable number of arguments <code>*L</code>, and the goal is to output them in the form of <code>[(...), (...)]</code>. This task is simpler than the previous one, as the pairing only needs to reverse and mirror the elements.</p>
-<p>At first, I attempted the following approach:</p>
-<h3 id="Wrong-Solution-1"><a href="#Wrong-Solution-1" class="headerlink" title="Wrong Solution:"></a>Wrong Solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f6</span>(<span class="params">*L</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">list</span>(<span class="built_in">zip</span>(<span class="built_in">zip</span>(L, <span class="built_in">reversed</span>(L)), <span class="built_in">zip</span>(<span class="built_in">reversed</span>(L), L)))</span><br></pre></td></tr></table></figure>
-
-<p>I tried using <code>zip</code> to pair elements in forward and reverse order:</p>
-<p><code>zip(L, reversed(L))</code> pairs the elements of <code>L</code> with the reversed version of <code>L</code>, while <code>zip(reversed(L), L)</code> pairs them in the reverse order.</p>
-<p>However, the output of this solution was:</p>
-<p><code>[((0, 1), (1, 0)), ((1, 0), (0, 1))]</code></p>
-<p>This did not meet the requirements, as the pairs <code>(0, 1)</code> and <code>(1, 0)</code> were grouped separately. The correct format should have <code>0, 1, 1, 0</code> in the same tuple.</p>
-<h3 id="Correct-Solution-1"><a href="#Correct-Solution-1" class="headerlink" title="Correct Solution:"></a>Correct Solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f6</span>(<span class="params">*L</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">list</span>(<span class="built_in">zip</span>(*<span class="built_in">zip</span>(L, <span class="built_in">reversed</span>(L)), *<span class="built_in">zip</span>(<span class="built_in">reversed</span>(L), L)))</span><br></pre></td></tr></table></figure>
-
-<h3 id="Explanation-of-the-Fix"><a href="#Explanation-of-the-Fix" class="headerlink" title="Explanation of the Fix:"></a>Explanation of the Fix:</h3><p>To achieve the desired output, we need to flatten or “unpack” the pairs created by <code>zip(L, reversed(L))</code> and <code>zip(reversed(L), L)</code> into individual elements and combine them correctly. This is where the <code>*</code> operator comes in, which unpacks the results from the <code>zip</code> function.</p>
-<p>By using <code>*</code> before <code>zip(L, reversed(L))</code> and <code>zip(reversed(L), L)</code>, you effectively unpack the tuples into separate elements, allowing the outer <code>zip</code> function to combine them in the desired form.</p>
-<ul>
-<li><p><code>*zip(L, reversed(L))</code>: This unpacks the paired tuples from <code>L</code> and <code>reversed(L)</code>. Instead of getting pairs like <code>(0, 1)</code>, it unpacks them into <code>0, 1, 1, 0</code>.</p>
-</li>
-<li><p><code>*zip(reversed(L), L)</code>: Similarly, this unpacks the reversed pairs.</p>
-</li>
-</ul>
-<p>The final <code>zip</code> call then combines these unpacked elements into the correct tuple format. The result is:</p>
-<p><code>[(0, 1, 1, 0), (1, 0, 0, 1)]</code></p>
-<p>This ensures that the mirrored pairs are placed together in the same tuple as required by the problem.</p>
-
-                
-            
-
-            <!-- 添加打赏 -->
-            
-
-            <!-- 添加版权声明 -->
-            
-
-        </div>
-
-        <!-- 添加置顶 -->
-        <div class="article-info article-info-index">
-            
-
-            <!-- 分类页 -->
-            
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">9021</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">TUT</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-            
-
-            <!-- 添加展开全文 -->
-            
-                <p class="article-more-link">
-                    <a class="article-more-a" href="/post/9ba69f5d.html">show all >></a>
-                </p>
-            
-
-            <!-- 添加分享 -->
-            
-
-            <div class="clearfix"></div>
-
-        </div>
-    </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-    
-
-<!-- 文章页添加mathjax公式 -->
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/2/">下一页 &gt;&gt;</a>
@@ -2938,10 +2811,10 @@ window.MathJax = {
 	  <br>
 	  <div class="footer-center">
 	    <i class="fa fa-file-word-o" aria-hidden="true"></i>
-		<span> 113 篇</span>
+		<span> 114 篇</span>
 		<span class="post-meta-divider">|</span>
 		<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-		<span> <span class="post-count">54.1k</span></span>
+		<span> <span class="post-count">54.8k</span></span>
       </div>
 	  
 	  <!-- 添加不蒜子统计 -->

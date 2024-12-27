@@ -292,6 +292,304 @@ var _hmt = _hmt || [];
         <div id="js-content" class="content-ll">
           
   
+    <article id="post-9021_TUT_4" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/9ba69f5d.html">9021_TUT_4</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/9ba69f5d.html" class="archive-article-date">
+  	<time datetime="2024-09-30T14:00:00.000Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2024-10-01</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">2.4k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">14min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <h1 id="Exercise-1"><a href="#Exercise-1" class="headerlink" title="Exercise 1"></a>Exercise 1</h1><h3 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>At first, I thought this exercise was about dividing by a modulus, where the modulus would always be incremented by one. But then I realized that in some cases, there’s no “2” in the division sequence. For example, for <code>12</code>, the answer is <code>12 6 3 1\n</code>. This indicates that the number is always being divided by <code>2</code>.</p>
+<p>When we look at the examples of these answers, we can see that the format aligns each number to the right, based on the width of the largest number.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">%</span><span class="language-bash">%run_and_test python3 -c <span class="string">&quot;from exercise_4_1 import f1; f1(13)&quot;</span></span></span><br><span class="line"></span><br><span class="line">&#x27;&#x27;&#x27;</span><br><span class="line"> 13  6  3  1\n</span><br><span class="line"> 12  6  3  1\n</span><br><span class="line"> 11  5  2  1\n</span><br><span class="line"> 10  5  2  1\n</span><br><span class="line">  9  4  2  1\n</span><br><span class="line">  8  4  2  1\n</span><br><span class="line">  7  3  1\n</span><br><span class="line">  6  3  1\n</span><br><span class="line">  5  2  1\n</span><br><span class="line">  4  2  1\n</span><br><span class="line">  3  1\n</span><br><span class="line">  2  1\n</span><br><span class="line">  1\n</span><br><span class="line">&#x27;&#x27;&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>So we have the following solution:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Assume that the argument n is an integer at least equal to 1.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Each integer is printed out in a field of size equal to</span></span><br><span class="line"><span class="comment"># the number of digits in n plus 1.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># The output is printed out, not returned.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f1</span>(<span class="params">n</span>):</span><br><span class="line">    w = <span class="built_in">len</span>(<span class="built_in">str</span>(n)) + <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n, <span class="number">0</span>, -<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">while</span> i:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&#x27;<span class="subst">&#123;i:&#123;w&#125;</span>&#125;&#x27;</span>, end=<span class="string">&quot;&quot;</span>)</span><br><span class="line">            i = i // <span class="number">2</span></span><br><span class="line">        <span class="built_in">print</span>()</span><br><span class="line">    <span class="keyword">return</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Complexity-Analysis"><a href="#Complexity-Analysis" class="headerlink" title="Complexity Analysis"></a>Complexity Analysis</h3><p>The time complexity of this algorithm is <code>O(n log n)</code>, where <code>n</code> is the input number. This is because we are dividing the number by <code>2</code> until we reach <code>1</code>. The space complexity is <code>O(1)</code> because we are not using any additional data structures.</p>
+<h1 id="Exercise-2"><a href="#Exercise-2" class="headerlink" title="Exercise 2"></a>Exercise 2</h1><h3 id="Problem-Description-1"><a href="#Problem-Description-1" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>This exercise asks us to repeatedly remove the maximum number from the set until only one element remains. The line print(“A list of sets:”, all(isinstance(x, set) for x in S)) checks if the return value of f2 is a list of sets.</p>
+<h3 id="In-my-solution"><a href="#In-my-solution" class="headerlink" title="In my solution:"></a>In my solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f2</span>(<span class="params">S: <span class="built_in">set</span>[<span class="built_in">int</span>]</span>):</span><br><span class="line">    ans = []</span><br><span class="line">    s_list = <span class="built_in">list</span>(S)  <span class="comment"># Convert the set to a list</span></span><br><span class="line">    s_list.sort()  <span class="comment"># Sort the list</span></span><br><span class="line">    <span class="keyword">while</span> <span class="built_in">len</span>(s_list) &gt; <span class="number">0</span>:</span><br><span class="line">        ans.append(<span class="built_in">set</span>(s_list))  <span class="comment"># Append the current set</span></span><br><span class="line">        s_list.pop()  <span class="comment"># Pop the last (largest) element</span></span><br><span class="line">    <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+
+<p>I convert the set to a list because tuples don’t have a sort() method. So I convert it, sort it, and then pop the largest element (which is at the end of the list) while the length is greater than 1.</p>
+<h3 id="The-standard-solution-is"><a href="#The-standard-solution-is" class="headerlink" title="The standard solution is:"></a>The standard solution is:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f2</span>(<span class="params">S</span>):</span><br><span class="line">    U = [<span class="built_in">set</span>(S)]</span><br><span class="line">    <span class="keyword">while</span> <span class="built_in">len</span>(S) &gt; <span class="number">1</span>:</span><br><span class="line">        S.remove(<span class="built_in">max</span>(S))  <span class="comment"># Remove the maximum element</span></span><br><span class="line">        U.append(<span class="built_in">set</span>(S))  <span class="comment"># Append the current set</span></span><br><span class="line">    <span class="keyword">return</span> U</span><br></pre></td></tr></table></figure>
+
+<p>The standard solution is simpler; it uses max() to find and remove the largest element, then appends the result to the list.</p>
+<p>Standard solution is better because it is more concise and uses less memory.</p>
+<h1 id="Exercise-3"><a href="#Exercise-3" class="headerlink" title="Exercise 3"></a>Exercise 3</h1><h3 id="Problem-Description-2"><a href="#Problem-Description-2" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>As per the description of Exercise 4, we need to remove elements that are equal to the mean value of their neighboring elements (i.e., the element is the average of the one just before and the one just after it).<br>Please pay attention to the special challenge: use only one loop without any break or continue statements, and only one if statement (with no elif nor else statements).</p>
+<h3 id="In-my-solution-1"><a href="#In-my-solution-1" class="headerlink" title="In my solution:"></a>In my solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Assume that the argument L is an increasing list of integers.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Keep removing any member of the list</span></span><br><span class="line"><span class="comment"># that is neither the first one nor the last one</span></span><br><span class="line"><span class="comment"># and that is the average of the one just before and the one just after.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Special challenge: use only one loop without any break or continue statements,</span></span><br><span class="line"><span class="comment"># and only one if statement (with no elif nor else statements).</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f3</span>(<span class="params">L</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(L) - <span class="number">2</span>):</span><br><span class="line">        <span class="keyword">if</span> L[i] + L[i + <span class="number">2</span>] == <span class="number">2</span> * L[i + <span class="number">1</span>]:  <span class="comment"># Check if the middle element is the average</span></span><br><span class="line">            L.pop(i + <span class="number">1</span>)  <span class="comment"># Remove the element if it satisfies the condition</span></span><br><span class="line">            <span class="keyword">return</span> f3(L)  <span class="comment"># Recurse to check the rest of the list</span></span><br><span class="line">    <span class="keyword">return</span> L</span><br></pre></td></tr></table></figure>
+
+<p><strong>Explanation</strong>:</p>
+<ul>
+<li><p>The function iterates through the list, checking if any element (except the first and last) is the average of its neighbors.</p>
+</li>
+<li><p>If an element meets this condition, it’s removed using <code>pop()</code>, and the function calls itself recursively to continue checking the remaining list.</p>
+</li>
+<li><p>This approach ensures that all elements satisfying the condition are removed.</p>
+</li>
+<li><p>The main reason for using <strong>recursion</strong> in the original code is to avoid <code>i</code> going beyond the scope of the list, because the length of the list changes each time an element is deleted, so in the original for loop, the index may exceed the length of the list. Recursion avoids this situation by re-calling the function and re-traversing the list from the beginning.</p>
+</li>
+</ul>
+<p>When we use <code>for i in sth.</code> in Python, <code>i</code> is essentially a “view” or a “shallow copy” of the elements in <code>sth.</code>. Modifying <code>i</code> directly will not change <code>sth.</code> itself. Additionally, we cannot modify the value of <code>i</code>, because in each iteration of the loop, <code>i</code> is reset to the next element in the sequence.<br>This means that if we use a for loop directly in this context, and we remove an element from the list during the loop, the list will get shorter. As a result, <code>i</code> could end up being out of range in subsequent iterations of the loop.</p>
+<h3 id="The-standard-solution-is-1"><a href="#The-standard-solution-is-1" class="headerlink" title="The standard solution is:"></a>The standard solution is:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f3</span>(<span class="params">L</span>):</span><br><span class="line">    i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> (i := i + <span class="number">1</span>) &lt; <span class="built_in">len</span>(L) - <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">if</span> L[i - <span class="number">1</span>] + L[i + <span class="number">1</span>] == L[i] * <span class="number">2</span>:</span><br><span class="line">            L.pop(i)</span><br><span class="line">            i -= <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> L</span><br></pre></td></tr></table></figure>
+
+
+<p><strong>Explanation</strong>:</p>
+<p>The while loop version of the code does avoid recursion, and manually manages the value of i to ensure that the index does not exceed the range after the list is deleted. This reduces the complexity of the recursive call while achieving the same effect.</p>
+<p><strong>Key points</strong>:</p>
+<ul>
+<li>The function uses only one loop and one if statement as required by the challenge.</li>
+<li>Recursion is used to continue processing after each removal.</li>
+</ul>
+<h1 id="Exercise-4"><a href="#Exercise-4" class="headerlink" title="Exercise 4"></a>Exercise 4</h1><h3 id="Problem-Description-3"><a href="#Problem-Description-3" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>You are given an integer <code>n</code>, and the goal is to express <code>n</code> as a sum (or difference) of powers of <code>2</code>. This should be done by leveraging the binary representation of <code>n</code>.<br>Specifically, you need to:</p>
+<ol>
+<li>Convert n to its binary form.</li>
+<li>Identify which positions in the binary form have a 1.</li>
+<li>Use these positions to generate the corresponding powers of 2.</li>
+<li>If n is positive, add the powers of 2 together. If n is negative, subtract the powers of 2.<br>The output should be in the form of an equation, displaying the original number as the sum (or difference) of powers of 2.</li>
+</ol>
+<h4 id="Example-1"><a href="#Example-1" class="headerlink" title="Example 1:"></a>Example 1:</h4><p>For <code>n = 13</code>:</p>
+<p>The binary representation of 13 is 1101.<br>This corresponds to <code>2^3</code> + <code>2^2</code> + <code>2^0</code>, because the 3rd, 2nd, and 0th positions in the binary number are <code>1</code>.</p>
+<p>Output: <code>13 = 2^3 + 2^2 + 2^0</code></p>
+<h3 id="Explanation"><a href="#Explanation" class="headerlink" title="Explanation:"></a>Explanation:</h3><p>The function f4(n) converts an integer n into a sum of powers of 2 based on its binary representation. Let’s go through the code:</p>
+<ol>
+<li><p>Handling the case when n is zero:</p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> n:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;0 = 0&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span></span><br></pre></td></tr></table></figure>
+<p> This part checks <code>if n is zero</code> using if not n. If <code>n</code> is zero, the function prints <code>0 = 0</code> and returns immediately, since zero doesn’t need further decomposition into powers of <code>2</code>.</p>
+</li>
+<li><p>Converting the number to binary:</p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">binary_n = <span class="string">f&#x27;<span class="subst">&#123;n:b&#125;</span>&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>The <code>f&#39;&#123;n:b&#125;&#39;</code> converts the integer <code>n</code> to its binary form as a string (without the <code>0b</code> prefix). For example, if <code>n = 13</code>, <code>binary_n</code> will be <code>1101</code>.</p>
+</li>
+<li><p>Finding the positions of 1s in the binary representation:</p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powers = (i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(binary_n)) <span class="keyword">if</span> binary_n[i] == <span class="string">&#x27;1&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p> This list comprehension creates a list of indices where the binary digit is <code>1</code>. For <code>1101</code>, the <code>positions</code> list will be <code>[0, 2, 3]</code>.</p>
+<ul>
+<li>This is a generator expression that finds the positions (indices) in the binary string where there is a <code>1</code>.</li>
+<li><code>range(len(binary_n))</code> iterates over each character in the binary string, and the condition <code>binary_n[i] == &#39;1&#39;</code>filters out the positions where there is a <code>1</code>.</li>
+<li>For example, if <code>n = 13</code> and <code>binary_n = &#39;1101&#39;</code>, the positions of 1s would be <code>(0, 2, 3)</code>, because the first, third, and fourth bits from the right are <code>1</code>.</li>
+</ul>
+</li>
+<li><p>print(operator.join(f’2^{len(binary_n) - i - 1}’ for i in powers))</p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(operator.join(<span class="string">f&#x27;2^<span class="subst">&#123;<span class="built_in">len</span>(binary_n) - i - <span class="number">1</span>&#125;</span>&#x27;</span> <span class="keyword">for</span> i <span class="keyword">in</span> powers))</span><br></pre></td></tr></table></figure>
+<ul>
+<li>This is the key part of the function that prints the powers of 2 based on the positions of 1s in the binary representation.<ul>
+<li><code>f&#39;2^&#123;len(binary_n) - i - 1&#125;&#39;</code> creates strings like<code> 2^3</code>, <code>2^2</code>, <code>2^0</code> by converting each position i into the corresponding exponent for 2. The exponent is calculated as len(binary_n) - i - 1, where i is the position of the 1 in the binary string.</li>
+<li><code>operator.join(...)</code> joins all these terms together with either<code>&#39; + &#39;</code>or<code>&#39; - &#39;</code>depending on the value of <code>n</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="Exercise-5"><a href="#Exercise-5" class="headerlink" title="Exercise 5"></a>Exercise 5</h1><p>To solve next problems, lets first understand the <code>zip</code> function in Python. </p>
+<ol>
+<li>Let’s try:</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">L1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">L2 = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(L1, L2)))</span><br></pre></td></tr></table></figure>
+
+<p>Output:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[(1, 4), (2, 5), (3, 6)]</span><br></pre></td></tr></table></figure>
+
+<p>And <code>zip</code> in dictionary:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">L1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">L2 = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">dict</span>(<span class="built_in">zip</span>(L1, L2)))</span><br></pre></td></tr></table></figure>
+
+<p>Output:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[(1, 4), (2, 5), (3, 6)]</span><br><span class="line">&#123;1: 4, 2: 5, 3: 6&#125;</span><br></pre></td></tr></table></figure>
+
+<p>The finally we try using <code>zip</code> with <code>*</code>, which is used to unpack the elements of a list or tuple:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">L = [[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>], [<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">zip</span>(L):</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">zip</span>(*L):</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br></pre></td></tr></table></figure>
+
+<p>Output:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">([1, 2, 3],)</span><br><span class="line">([4, 5, 6],)</span><br><span class="line">([7, 8, 9],)</span><br><span class="line">(1, 4, 7)</span><br><span class="line">(2, 5, 8)</span><br><span class="line">(3, 6, 9)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h3 id="Problem-Description-4"><a href="#Problem-Description-4" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>In this problem, we can identify the pattern by observing the example: start from the first and last elements of a list and progressively make pairs towards the center of the list.</p>
+<p>My initial thought was to use a two-pointer approach: one pointer starts at the beginning of the list, and the other starts at the end, and they move towards each other. However, I missed the specific requirement in the problem: “Return an expression built only from list, reversed, and zip.”</p>
+<h3 id="Wrong-Solution"><a href="#Wrong-Solution" class="headerlink" title="Wrong Solution:"></a>Wrong Solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f5</span>(<span class="params">*L</span>):</span><br><span class="line">    ans = []</span><br><span class="line">    left = <span class="number">0</span></span><br><span class="line">    right = <span class="built_in">len</span>(L) - <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> left &lt; <span class="built_in">len</span>(L):</span><br><span class="line">        ans.append(((L[left], L[right]), (L[right], L[left])))</span><br><span class="line">        left += <span class="number">1</span></span><br><span class="line">        right -= <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+
+<h3 id="Correct-Solution"><a href="#Correct-Solution" class="headerlink" title="Correct Solution:"></a>Correct Solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f5</span>(<span class="params">*L</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">list</span>(<span class="built_in">zip</span>(<span class="built_in">zip</span>(L, <span class="built_in">reversed</span>(L)), <span class="built_in">reversed</span>(<span class="built_in">list</span>(<span class="built_in">zip</span>(L, <span class="built_in">reversed</span>(L))))))</span><br></pre></td></tr></table></figure>
+
+
+<p>The idea behind the correct solution is as follows:</p>
+<ol>
+<li><p><code>zip(L, reversed(L))</code> creates pairs of elements where the first comes from <code>L</code> and the second comes from <code>reversed(L)</code> (i.e., <code>L</code> reversed).<br>Example: If <code>L = (1, 2, 3)</code>, then <code>reversed(L)</code> is <code>(3, 2, 1)</code>. So, <code>zip(L, reversed(L))</code> results in <code>[(1, 3), (2, 2), (3, 1)]</code>.</p>
+</li>
+<li><p><code>reversed(list(zip(L, reversed(L))))</code>: Here, we convert the result of <code>zip(L, reversed(L))</code> into a list and then reverse the entire list.<br>Example: If <code>zip(L, reversed(L))</code> produced <code>[(1, 3), (2, 2), (3, 1)]</code>, then <code>reversed(list(zip(L, reversed(L))))</code> will return <code>[(3, 1), (2, 2), (1, 3)]</code>.</p>
+</li>
+<li><p><code>zip(zip(L, reversed(L)), reversed(list(zip(L, reversed(L)))))</code>: This part pairs the result of <code>zip(L, reversed(L))</code> with its reversed version. It takes corresponding elements from both sequences and forms pairs.<br>Example: If <code>zip(L, reversed(L))</code> is <code>[(1, 3), (2, 2), (3, 1)]</code> and its reverse is <code>[(3, 1), (2, 2), (1, 3)]</code>, then <code>zip(zip(L, reversed(L)), reversed(list(zip(L, reversed(L)))))</code> produces pairs of tuples like:</p>
+<ul>
+<li><code>((1, 3), (3, 1))</code></li>
+<li><code>((2, 2), (2, 2))</code></li>
+<li><code>((3, 1), (1, 3))</code></li>
+</ul>
+</li>
+</ol>
+<p>Finally, this expression is wrapped in <code>list()</code> to convert the zip object into a list of tuples.</p>
+<h1 id="Exercise-6"><a href="#Exercise-6" class="headerlink" title="Exercise 6"></a>Exercise 6</h1><h3 id="Problem-Description-5"><a href="#Problem-Description-5" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>Exercise 6 is similar to Exercise 5, requiring us to use <code>zip</code>, <code>*</code>, and <code>list</code> to solve the problem. We are given a variable number of arguments <code>*L</code>, and the goal is to output them in the form of <code>[(...), (...)]</code>. This task is simpler than the previous one, as the pairing only needs to reverse and mirror the elements.</p>
+<p>At first, I attempted the following approach:</p>
+<h3 id="Wrong-Solution-1"><a href="#Wrong-Solution-1" class="headerlink" title="Wrong Solution:"></a>Wrong Solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f6</span>(<span class="params">*L</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">list</span>(<span class="built_in">zip</span>(<span class="built_in">zip</span>(L, <span class="built_in">reversed</span>(L)), <span class="built_in">zip</span>(<span class="built_in">reversed</span>(L), L)))</span><br></pre></td></tr></table></figure>
+
+<p>I tried using <code>zip</code> to pair elements in forward and reverse order:</p>
+<p><code>zip(L, reversed(L))</code> pairs the elements of <code>L</code> with the reversed version of <code>L</code>, while <code>zip(reversed(L), L)</code> pairs them in the reverse order.</p>
+<p>However, the output of this solution was:</p>
+<p><code>[((0, 1), (1, 0)), ((1, 0), (0, 1))]</code></p>
+<p>This did not meet the requirements, as the pairs <code>(0, 1)</code> and <code>(1, 0)</code> were grouped separately. The correct format should have <code>0, 1, 1, 0</code> in the same tuple.</p>
+<h3 id="Correct-Solution-1"><a href="#Correct-Solution-1" class="headerlink" title="Correct Solution:"></a>Correct Solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f6</span>(<span class="params">*L</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">list</span>(<span class="built_in">zip</span>(*<span class="built_in">zip</span>(L, <span class="built_in">reversed</span>(L)), *<span class="built_in">zip</span>(<span class="built_in">reversed</span>(L), L)))</span><br></pre></td></tr></table></figure>
+
+<h3 id="Explanation-of-the-Fix"><a href="#Explanation-of-the-Fix" class="headerlink" title="Explanation of the Fix:"></a>Explanation of the Fix:</h3><p>To achieve the desired output, we need to flatten or “unpack” the pairs created by <code>zip(L, reversed(L))</code> and <code>zip(reversed(L), L)</code> into individual elements and combine them correctly. This is where the <code>*</code> operator comes in, which unpacks the results from the <code>zip</code> function.</p>
+<p>By using <code>*</code> before <code>zip(L, reversed(L))</code> and <code>zip(reversed(L), L)</code>, you effectively unpack the tuples into separate elements, allowing the outer <code>zip</code> function to combine them in the desired form.</p>
+<ul>
+<li><p><code>*zip(L, reversed(L))</code>: This unpacks the paired tuples from <code>L</code> and <code>reversed(L)</code>. Instead of getting pairs like <code>(0, 1)</code>, it unpacks them into <code>0, 1, 1, 0</code>.</p>
+</li>
+<li><p><code>*zip(reversed(L), L)</code>: Similarly, this unpacks the reversed pairs.</p>
+</li>
+</ul>
+<p>The final <code>zip</code> call then combines these unpacked elements into the correct tuple format. The result is:</p>
+<p><code>[(0, 1, 1, 0), (1, 0, 0, 1)]</code></p>
+<p>This ensures that the mirrored pairs are placed together in the same tuple as required by the problem.</p>
+
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+
+            <!-- 分类页 -->
+            
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">9021</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">TUT</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/9ba69f5d.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
     <article id="post-DartsInter-Uni Programming Contest Tasks Leaderboard Contest" class="article article-type-post  article-index" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -777,7 +1075,7 @@ var _hmt = _hmt || [];
 <li>I’m open to collaboration and feedback.</li>
 </ul>
 <h3 id="How-to-contact-me"><a href="#How-to-contact-me" class="headerlink" title="How to contact me"></a>How to contact me</h3><ul>
-<li>Email: <a href="mailto:&#108;&#x6f;&#x6e;&#x67;&#115;&#105;&#x7a;&#x68;&#x75;&#x6f;&#x40;&#x67;&#x6d;&#97;&#x69;&#108;&#46;&#99;&#x6f;&#109;">&#108;&#x6f;&#x6e;&#x67;&#115;&#105;&#x7a;&#x68;&#x75;&#x6f;&#x40;&#x67;&#x6d;&#97;&#x69;&#108;&#46;&#99;&#x6f;&#109;</a></li>
+<li>Email: <a href="mailto:&#x6c;&#111;&#x6e;&#x67;&#x73;&#105;&#122;&#x68;&#x75;&#x6f;&#64;&#103;&#109;&#97;&#105;&#x6c;&#46;&#99;&#111;&#x6d;">&#x6c;&#111;&#x6e;&#x67;&#x73;&#105;&#122;&#x68;&#x75;&#x6f;&#64;&#103;&#109;&#97;&#105;&#x6c;&#46;&#99;&#111;&#x6d;</a></li>
 <li>LinkedIn: <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/longsizhuo/">Sizhuo Long</a></li>
 <li>XiaoHongShu(Small RedBook): <a target="_blank" rel="noopener" href="https://www.xiaohongshu.com/user/profile/5c0b8cc2000000000601e809">@sizhuo_long</a></li>
 </ul>
@@ -1235,20 +1533,20 @@ var _hmt = _hmt || [];
 
 <!-- 文章页添加mathjax公式 -->
   
-    <article id="post-1124. 表现良好的最长时间段_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-1017. 负二进制转换_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
   
     <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/a5d1dfda.html">1124. The longest period of performance One question daily</a>
+      <a class="article-title_code_ant" href="/post/dce95dce.html">1017. Negative binary conversion</a>
     </h2>
   
 
 
                 
-                    <a href="/post/a5d1dfda.html" class="archive-article-date">
+                    <a href="/post/dce95dce.html" class="archive-article-date">
   	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
 	<!-- <i class="icon-calendar icon"></i> -->
 
@@ -1280,7 +1578,7 @@ var _hmt = _hmt || [];
 	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
         <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
         <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">260字</span>
+        <span class="post-count">129字</span>
       </span>
     </span>
 
@@ -1304,13 +1602,10 @@ var _hmt = _hmt || [];
             <!-- 添加分类与标签 -->
             
                 
-                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><img src="../assets/img/2023-02-15.png" alt="2023-02-15.png"><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/longest-well-performing-interval/description/">1124. The longest period of performance.md</a></p>
-<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>This question is not，I thought it was a double pointer but timeout over time，结果是Prefix and算法。The following is<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/longest-well-performing-interval/solutions/2110211/liang-chong-zuo-fa-liang-zhang-tu-miao-d-hysl/">Spiritual god</a>Solution<br>通过Prefix and，我们可以把Elements and elements of sub -array转换成两个Prefix and的差，Right now<br>$$<br>\sum_{j=left}^{right} nums[j] = \sum_{j=0}^{right} nums[j]− \sum_{j=0}^{left-1} nums[j]=s[right+1]−s[left]<br>$$<br>Now that I said it「Elements and elements of sub -array」，那么利用Prefix and s，Turn the problem to：<br>Find two bidding i and j，satisfy j&lt;ij&lt;ij&lt;i and s[j]&lt;s[i]，maximize i−jValue。</p>
-<p><img src="https://pic.leetcode.cn/1676294271-XVWmuP-1124-3.png"></p>
-<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><figcaption><span>Double pointer</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">longestWPI</span>(<span class="params">self, hours: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        ans = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> index, i <span class="keyword">in</span> <span class="built_in">enumerate</span>(hours):</span><br><span class="line">            count = <span class="number">0</span></span><br><span class="line">            j = index</span><br><span class="line">            <span class="keyword">while</span> j &lt; <span class="built_in">len</span>(hours):</span><br><span class="line">                <span class="keyword">if</span> hours[j] &lt;= <span class="number">8</span>:</span><br><span class="line">                    count -= <span class="number">1</span></span><br><span class="line">                <span class="keyword">elif</span> hours[j] &gt; <span class="number">8</span>:</span><br><span class="line">                    count += <span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span> count &gt; <span class="number">0</span>:</span><br><span class="line">                    ans = <span class="built_in">max</span>(ans, j - index + <span class="number">1</span>)</span><br><span class="line">                j += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><figcaption><span>Prefix and</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">longestWPI</span>(<span class="params">self, hours: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        n = <span class="built_in">len</span>(hours)</span><br><span class="line">        s = [<span class="number">0</span>] * (n + <span class="number">1</span>)</span><br><span class="line">        st = [<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> j, h <span class="keyword">in</span> <span class="built_in">enumerate</span>(hours, <span class="number">1</span>):</span><br><span class="line">            s[j] = s[j - <span class="number">1</span>] + (<span class="number">1</span> <span class="keyword">if</span> h &gt; <span class="number">8</span> <span class="keyword">else</span> -<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">if</span> s[j] &lt; s[st[-<span class="number">1</span>]]:</span><br><span class="line">                st.append(j)</span><br><span class="line">        ans = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n, <span class="number">0</span> , -<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">while</span> st <span class="keyword">and</span> s[i] &gt; s[st[-<span class="number">1</span>]]:</span><br><span class="line">                ans = <span class="built_in">max</span>(ans, i-st.pop())</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
-
+                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/convert-to-base-2/description/?envType=daily-question&envId=2024-04-28">1017. Negative binary conversion</a></p>
+<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>The difference from binary is just not always//2，It’s every number//-1</p>
+<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">baseNeg2</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        k = <span class="number">1</span></span><br><span class="line">        ans = []</span><br><span class="line">        <span class="keyword">while</span> n:</span><br><span class="line">            <span class="keyword">if</span> n % <span class="number">2</span>:</span><br><span class="line">                ans.append(<span class="string">&#x27;1&#x27;</span>)</span><br><span class="line">                n -= k</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                ans.append(<span class="string">&#x27;0&#x27;</span>)</span><br><span class="line">            n //= <span class="number">2</span></span><br><span class="line">            k *= -<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>.join(ans[::-<span class="number">1</span>]) <span class="keyword">or</span> <span class="string">&#x27;0&#x27;</span> </span><br></pre></td></tr></table></figure>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">impl</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">base_neg2</span>(<span class="keyword">mut</span> n: <span class="type">i32</span>) <span class="punctuation">-&gt;</span> <span class="type">String</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">ans</span> = <span class="type">Vec</span>::<span class="title function_ invoke__">new</span>();</span><br><span class="line">        <span class="keyword">while</span> n != <span class="number">0</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> n % <span class="number">2</span> != <span class="number">0</span> &#123;</span><br><span class="line">                ans.<span class="title function_ invoke__">push</span>(<span class="string">&#x27;1&#x27;</span>);</span><br><span class="line">                n = (n - <span class="number">1</span>) / -<span class="number">2</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                ans.<span class="title function_ invoke__">push</span>(<span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">                n /= -<span class="number">2</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> ans.<span class="title function_ invoke__">is_empty</span>() &#123;</span><br><span class="line">            ans.<span class="title function_ invoke__">push</span>(<span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        ans.<span class="title function_ invoke__">reverse</span>();</span><br><span class="line">        ans.<span class="title function_ invoke__">iter</span>().<span class="title function_ invoke__">collect</span>()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
                 
             
 
@@ -1339,10 +1634,6 @@ var _hmt = _hmt || [];
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
         		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Prefix and</a>
-        		</li>
       		
 		</ul>
 	</div>
@@ -1352,7 +1643,7 @@ var _hmt = _hmt || [];
             <!-- 添加展开全文 -->
             
                 <p class="article-more-link">
-                    <a class="article-more-a" href="/post/a5d1dfda.html">show all >></a>
+                    <a class="article-more-a" href="/post/dce95dce.html">show all >></a>
                 </p>
             
 
@@ -1390,20 +1681,20 @@ var _hmt = _hmt || [];
 
 <!-- 文章页添加mathjax公式 -->
   
-    <article id="post-1233删除子文件夹_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-1017.负二进制转换_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
   
     <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/6610c769.html">1233Delete the subfolder folder One question daily</a>
+      <a class="article-title_code_ant" href="/post/80cafdc8.html">1017.Negative binary conversion</a>
     </h2>
   
 
 
                 
-                    <a href="/post/6610c769.html" class="archive-article-date">
+                    <a href="/post/80cafdc8.html" class="archive-article-date">
   	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
 	<!-- <i class="icon-calendar icon"></i> -->
 
@@ -1435,7 +1726,7 @@ var _hmt = _hmt || [];
 	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
         <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
         <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">587字</span>
+        <span class="post-count">220字</span>
       </span>
     </span>
 
@@ -1444,7 +1735,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
 	    <i class="fa fa-pagelines" aria-hidden="true"></i>
         <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">3min</span>
+        <span class="post-count">1min</span>
       </span>
     </span>
 	
@@ -1459,16 +1750,49 @@ var _hmt = _hmt || [];
             <!-- 添加分类与标签 -->
             
                 
-                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><img src="../assets/img/2023-02-09.png" alt="2023-02-09.png"><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-sub-folders-from-the-filesystem/description/">1233. Delete the subfolder folder</a></p>
-<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>脑子里的构思yesDictionary tree，But<code>Clanguage</code>的Dictionary tree，Whether it is<code>Python</code><br>still <code>golang</code>I won’t write。 So helpless can only look at the answer。<br>ylbThe big guy is right firstlistSort，Then traverse the list。</p>
-<p>1.ifiBefore<code>[len(ans[-1])]</code>Just happens<code>ans[-1]</code>The element is consistent，Explainiyes<br>ans[-1]Subfolder folder，Then skip。</p>
-<p>2.ifyes<code>[&quot;/a/b/c&quot;,&quot;/a/b/ca&quot;,&quot;/a/b/d&quot;]</code>This situation，Be alone1.的判断yes不够的，at this time<br><code>&quot;/a/b/ca&quot;</code>Before缀and<code>&quot;/a/b/c&quot;</code>yes一样的，但yescaandc实际上yes两个不同的文件夹，So add a judgment front end<br>yes否yes<code>/</code>，<code>&quot;/a/b/ca&quot;</code>and<code>&quot;/a/b/c/a&quot;</code>中后者才会被判定yes前面一个元素的子集。</p>
-<p>Dictionary tree没太看懂:<br>我们可以使用Dictionary tree存储数组 folder All folders in。<br>Dictionary tree的每个节点包含 children Field，Sub -nodes for storing the current nodes，as well as fid Field，<br>Used to store the folder corresponding to the current node in the array folder Bidding。</p>
-<p>For array folder Each folder in it f，We will first f according to / Divide into several skewers，<br>Then start from the root node，依次将子串加入Dictionary tree中。Next，我们从根节点开始搜索Dictionary tree，<br>if当前节点的 fid Field不为 -1，则说明当前节点对应的文件夹yes答案数组中的一个文件夹，<br>We add it to the array and return。otherwise，We search for all sub -nodes of the current node，Finally return to the array of answers。</p>
-<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><figcaption><span>python3</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">removeSubfolders</span>(<span class="params">self, folder: <span class="type">List</span>[<span class="built_in">str</span>]</span>) -&gt; <span class="type">List</span>[<span class="built_in">str</span>]:</span><br><span class="line">        folder.sort()</span><br><span class="line">        ans = [folder[<span class="number">0</span>]]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> folder[<span class="number">1</span>:]:</span><br><span class="line">            m, n = <span class="built_in">len</span>(ans[-<span class="number">1</span>]), <span class="built_in">len</span>(i)</span><br><span class="line">            <span class="comment"># if它的长度大于等于答案数组中最后一个文件夹的长度，并且它Before缀包含答案数组的最后一个文件夹再加上一个 /</span></span><br><span class="line">            <span class="keyword">if</span> m &gt;= n <span class="keyword">or</span> <span class="keyword">not</span> (ans[-<span class="number">1</span>] == i[:m] <span class="keyword">and</span> i[m] == <span class="string">&#x27;/&#x27;</span>):</span><br><span class="line">                ans.append(i)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line"><span class="comment"># Dictionary tree</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Trie</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        self.children = &#123;&#125;</span><br><span class="line">        self.fid = -<span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">insert</span>(<span class="params">self, i, f</span>):</span><br><span class="line">        node = self</span><br><span class="line">        ps = f.split(<span class="string">&#x27;/&#x27;</span>)</span><br><span class="line">        <span class="keyword">for</span> p <span class="keyword">in</span> ps[<span class="number">1</span>:]:</span><br><span class="line">            <span class="keyword">if</span> p <span class="keyword">not</span> <span class="keyword">in</span> node.children:</span><br><span class="line">                node.children[p] = Trie()</span><br><span class="line">            node = node.children[p]</span><br><span class="line">        node.fid = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">search</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">root</span>):</span><br><span class="line">            <span class="keyword">if</span> root.fid != -<span class="number">1</span>:</span><br><span class="line">                ans.append(root.fid)</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            <span class="keyword">for</span> child <span class="keyword">in</span> root.children.values():</span><br><span class="line">                dfs(child)</span><br><span class="line">        ans = []</span><br><span class="line">        dfs(self)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">removeSubfolders</span>(<span class="params">self, folder: <span class="type">List</span>[<span class="built_in">str</span>]</span>) -&gt; <span class="type">List</span>[<span class="built_in">str</span>]:</span><br><span class="line">        trie = Trie()</span><br><span class="line">        <span class="keyword">for</span> i, f <span class="keyword">in</span> <span class="built_in">enumerate</span>(folder):</span><br><span class="line">            trie.insert(i, f)</span><br><span class="line">        <span class="keyword">return</span> [folder[i] <span class="keyword">for</span> i <span class="keyword">in</span> trie.search()]</span><br></pre></td></tr></table></figure>
-<figure class="highlight golang"><figcaption><span>golang</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">removeSubfolders</span><span class="params">(folder []<span class="type">string</span>)</span></span> (ans []<span class="type">string</span>) &#123;</span><br><span class="line">	sort.Strings(folder)</span><br><span class="line">	ans = []<span class="type">string</span>&#123;folder[<span class="number">0</span>]&#125;</span><br><span class="line">	<span class="keyword">for</span> _, i := <span class="keyword">range</span> folder[<span class="number">1</span>:] &#123;</span><br><span class="line">		m, n := <span class="built_in">len</span>(ans[<span class="built_in">len</span>(ans)<span class="number">-1</span>]), <span class="built_in">len</span>(i)</span><br><span class="line">		<span class="keyword">if</span> m &gt;= n || !(ans[<span class="built_in">len</span>(ans)<span class="number">-1</span>] == i[:m] &amp;&amp; i[m] == <span class="string">&#x27;/&#x27;</span>)&#123;</span><br><span class="line">			ans = <span class="built_in">append</span>(ans, i)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p>Give you an integer <code>n</code> ，Return to the integer in the form of a binary string <strong>Negative binary（<code>base -2</code>）</strong>express。</p>
 
+<p><strong>Notice，</strong>Unless the string is&nbsp;<code>"0"</code>，Otherwise, the returned string cannot contain the front guide zero。</p>
 
+<p>&nbsp;</p>
+
+<p><strong>Exemplary example 1：</strong></p>
+
+<pre>
+<strong>enter：</strong>n = 2
+<strong>Output：</strong>"110"
+<strong>explain：</strong>(-2)<sup>2</sup> + (-2)<sup>1</sup> = 2
+</pre>
+
+<p><strong>Exemplary example 2：</strong></p>
+
+<pre>
+<strong>enter：</strong>n = 3
+<strong>Output：</strong>"111"
+<strong>explain：</strong>(-2)<sup>2</sup> + (-2)<sup>1</sup> + (-2)<sup>0</sup> = 3
+</pre>
+
+<p><strong>Exemplary example 3：</strong></p>
+
+<pre>
+<strong>enter：</strong>n = 4
+<strong>Output：</strong>"100"
+<strong>explain：</strong>(-2)<sup>2</sup> = 4
+</pre>
+
+<p>&nbsp;</p>
+
+<p><strong>hint：</strong></p>
+
+<ul> 
+ <li><code>0 &lt;= n &lt;= 10<sup>9</sup></code></li> 
+</ul>
+
+<div><div>Related Topics</div><div><li>math</li></div></div><br><div><li>👍 111</li><li>👎 0</li></div>
+[1017.Negative binary conversion.md]()
+
+<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>We can judge n Every bit from low to high，If the bit is 1，Then the answer is 1，Otherwise 0。If the bit is 1，So we need to n minus k。Next we update n=⌊n/2⌋, k=−k。Continue to judge the next。<br>at last，We will return to the answer。<br>time complexity O(logn)，in n For the given integer。Ignore the space consumption of the answer，Spatial complexity O(1)。</p>
+<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">baseNeg2</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        k = <span class="number">1</span></span><br><span class="line">        ans = []</span><br><span class="line">        <span class="keyword">while</span> n:</span><br><span class="line">            <span class="keyword">if</span> n % <span class="number">2</span>:</span><br><span class="line">                ans.append(<span class="string">&#x27;1&#x27;</span>)</span><br><span class="line">                n -= k</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                ans.append(<span class="string">&#x27;0&#x27;</span>)</span><br><span class="line">            n //= <span class="number">2</span></span><br><span class="line">            k *= -<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>.join(ans[::-<span class="number">1</span>]) <span class="keyword">or</span> <span class="string">&#x27;0&#x27;</span></span><br></pre></td></tr></table></figure>
                 
             
 
@@ -1497,10 +1821,6 @@ var _hmt = _hmt || [];
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
         		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Dictionary tree</a>
-        		</li>
       		
 		</ul>
 	</div>
@@ -1510,7 +1830,7 @@ var _hmt = _hmt || [];
             <!-- 添加展开全文 -->
             
                 <p class="article-more-link">
-                    <a class="article-more-a" href="/post/6610c769.html">show all >></a>
+                    <a class="article-more-a" href="/post/80cafdc8.html">show all >></a>
                 </p>
             
 
@@ -1699,20 +2019,20 @@ var _hmt = _hmt || [];
 
 <!-- 文章页添加mathjax公式 -->
   
-    <article id="post-1139. 最大的以 1 为边界的正方形_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-1124. 表现良好的最长时间段_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
   
     <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/eb193c1f.html">1139. The greatest 1 Formation of the border  One question daily</a>
+      <a class="article-title_code_ant" href="/post/a5d1dfda.html">1124. The longest period of performance One question daily</a>
     </h2>
   
 
 
                 
-                    <a href="/post/eb193c1f.html" class="archive-article-date">
+                    <a href="/post/a5d1dfda.html" class="archive-article-date">
   	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
 	<!-- <i class="icon-calendar icon"></i> -->
 
@@ -1744,7 +2064,7 @@ var _hmt = _hmt || [];
 	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
         <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
         <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">331字</span>
+        <span class="post-count">260字</span>
       </span>
     </span>
 
@@ -1753,7 +2073,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
 	    <i class="fa fa-pagelines" aria-hidden="true"></i>
         <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">2min</span>
+        <span class="post-count">1min</span>
       </span>
     </span>
 	
@@ -1768,11 +2088,13 @@ var _hmt = _hmt || [];
             <!-- 添加分类与标签 -->
             
                 
-                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><img src="../assets/img/2023-02-17.png" alt="2023-02-17.png"><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/largest-1-bordered-square/description/">1139. The greatest 1 Formation of the border.md</a></p>
-<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>quiz6 Simple version，Prefix and求解。It should be noted that the upper left corner is0 Special circumstances are not considered，<br>Need to verify # superior Left Down right Four -edge 1 The number of individuals d<br><img src="https://pic.leetcode.cn/1676448329-qJcoyK-1139.png"></p>
-<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><figcaption><span>错误Code</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">largest1BorderedSquare</span>(<span class="params">self, grid: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        matrix_heng = copy.deepcopy(grid)</span><br><span class="line">        matrix_su = copy.deepcopy(grid)</span><br><span class="line">        ans = <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(grid) == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">if</span> <span class="number">1</span> <span class="keyword">in</span> grid[<span class="number">0</span>]:</span><br><span class="line">                <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:<span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> ind, i <span class="keyword">in</span> <span class="built_in">enumerate</span>(grid):</span><br><span class="line">            <span class="keyword">for</span> index <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(i)):</span><br><span class="line">                <span class="comment"># Each line adds</span></span><br><span class="line">                <span class="keyword">if</span> index &gt;= <span class="number">1</span>:</span><br><span class="line">                    matrix_heng[ind][index] += matrix_heng[ind][index-<span class="number">1</span>]</span><br><span class="line">                <span class="comment"># Add each column</span></span><br><span class="line">                <span class="keyword">if</span> ind &gt;= <span class="number">1</span>:</span><br><span class="line">                    matrix_su[ind][index] += matrix_su[ind-<span class="number">1</span>][index]</span><br><span class="line">        <span class="built_in">print</span>(matrix_heng, matrix_su)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(grid)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(grid[i])):</span><br><span class="line">                minus = <span class="built_in">min</span>(matrix_heng[i][j], matrix_su[i][j])</span><br><span class="line">                <span class="keyword">try</span>:</span><br><span class="line">                    <span class="keyword">if</span> grid[i-minus+<span class="number">1</span>][j-minus+<span class="number">1</span>] == <span class="number">1</span> <span class="keyword">and</span> i &gt;= minus-<span class="number">1</span> <span class="keyword">and</span> j &gt;= minus-<span class="number">1</span>:</span><br><span class="line">                        ans = <span class="built_in">max</span>(ans, minus ** <span class="number">2</span>)</span><br><span class="line">                <span class="keyword">except</span>:</span><br><span class="line">                    <span class="keyword">pass</span></span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><img src="../assets/img/2023-02-15.png" alt="2023-02-15.png"><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/longest-well-performing-interval/description/">1124. The longest period of performance.md</a></p>
+<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>This question is not，I thought it was a double pointer but timeout over time，结果是Prefix and算法。The following is<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/longest-well-performing-interval/solutions/2110211/liang-chong-zuo-fa-liang-zhang-tu-miao-d-hysl/">Spiritual god</a>Solution<br>通过Prefix and，我们可以把Elements and elements of sub -array转换成两个Prefix and的差，Right now<br>$$<br>\sum_{j=left}^{right} nums[j] = \sum_{j=0}^{right} nums[j]− \sum_{j=0}^{left-1} nums[j]=s[right+1]−s[left]<br>$$<br>Now that I said it「Elements and elements of sub -array」，那么利用Prefix and s，Turn the problem to：<br>Find two bidding i and j，satisfy j&lt;ij&lt;ij&lt;i and s[j]&lt;s[i]，maximize i−jValue。</p>
+<p><img src="https://pic.leetcode.cn/1676294271-XVWmuP-1124-3.png"></p>
+<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><figcaption><span>Double pointer</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">longestWPI</span>(<span class="params">self, hours: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        ans = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> index, i <span class="keyword">in</span> <span class="built_in">enumerate</span>(hours):</span><br><span class="line">            count = <span class="number">0</span></span><br><span class="line">            j = index</span><br><span class="line">            <span class="keyword">while</span> j &lt; <span class="built_in">len</span>(hours):</span><br><span class="line">                <span class="keyword">if</span> hours[j] &lt;= <span class="number">8</span>:</span><br><span class="line">                    count -= <span class="number">1</span></span><br><span class="line">                <span class="keyword">elif</span> hours[j] &gt; <span class="number">8</span>:</span><br><span class="line">                    count += <span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span> count &gt; <span class="number">0</span>:</span><br><span class="line">                    ans = <span class="built_in">max</span>(ans, j - index + <span class="number">1</span>)</span><br><span class="line">                j += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">largest1BorderedSquare</span>(<span class="params">self, grid: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        m, n = <span class="built_in">len</span>(grid), <span class="built_in">len</span>(grid[<span class="number">0</span>])</span><br><span class="line">        rs = [<span class="built_in">list</span>(accumulate(row, initial=<span class="number">0</span>)) <span class="keyword">for</span> row <span class="keyword">in</span> grid]  <span class="comment"># 每行的Prefix and</span></span><br><span class="line">        cs = [<span class="built_in">list</span>(accumulate(col, initial=<span class="number">0</span>)) <span class="keyword">for</span> col <span class="keyword">in</span> <span class="built_in">zip</span>(*grid)]  <span class="comment"># 每列的Prefix and</span></span><br><span class="line">        <span class="keyword">for</span> d <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">min</span>(m, n), <span class="number">0</span>, -<span class="number">1</span>):  <span class="comment"># From large to small enumeration square edges d</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(m - d + <span class="number">1</span>):</span><br><span class="line">                <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(n - d + <span class="number">1</span>):  <span class="comment"># 枚举正方形Leftsuperior角坐标 (i,j)</span></span><br><span class="line">                    <span class="comment"># superior Left Down right Four -edge 1 The number of individuals d</span></span><br><span class="line">                    <span class="keyword">if</span> rs[i][j + d] - rs[i][j] == d <span class="keyword">and</span> \</span><br><span class="line">                       cs[j][i + d] - cs[j][i] == d <span class="keyword">and</span> \</span><br><span class="line">                       rs[i + d - <span class="number">1</span>][j + d] - rs[i + d - <span class="number">1</span>][j] == d <span class="keyword">and</span> \</span><br><span class="line">                       cs[j + d - <span class="number">1</span>][i + d] - cs[j + d - <span class="number">1</span>][i] == d:</span><br><span class="line">                        <span class="keyword">return</span> d * d</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><figcaption><span>Prefix and</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">longestWPI</span>(<span class="params">self, hours: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        n = <span class="built_in">len</span>(hours)</span><br><span class="line">        s = [<span class="number">0</span>] * (n + <span class="number">1</span>)</span><br><span class="line">        st = [<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> j, h <span class="keyword">in</span> <span class="built_in">enumerate</span>(hours, <span class="number">1</span>):</span><br><span class="line">            s[j] = s[j - <span class="number">1</span>] + (<span class="number">1</span> <span class="keyword">if</span> h &gt; <span class="number">8</span> <span class="keyword">else</span> -<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">if</span> s[j] &lt; s[st[-<span class="number">1</span>]]:</span><br><span class="line">                st.append(j)</span><br><span class="line">        ans = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n, <span class="number">0</span> , -<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">while</span> st <span class="keyword">and</span> s[i] &gt; s[st[-<span class="number">1</span>]]:</span><br><span class="line">                ans = <span class="built_in">max</span>(ans, i-st.pop())</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+
                 
             
 
@@ -1814,160 +2136,7 @@ var _hmt = _hmt || [];
             <!-- 添加展开全文 -->
             
                 <p class="article-more-link">
-                    <a class="article-more-a" href="/post/eb193c1f.html">show all >></a>
-                </p>
-            
-
-            <!-- 添加分享 -->
-            
-
-            <div class="clearfix"></div>
-
-        </div>
-    </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-    
-
-<!-- 文章页添加mathjax公式 -->
-  
-    <article id="post-1234. 替换子串得到平衡字符串_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/56d97dcf.html">1234. Replace the sub -string to get a balanced string One question daily</a>
-    </h2>
-  
-
-
-                
-                    <a href="/post/56d97dcf.html" class="archive-article-date">
-  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2024-01-01</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-                
-
-                
-                    <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">445字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">2min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-                
-            </header>
-        
-
-        <div class="article-entry" itemprop="articleBody">
-            <!-- 添加分类与标签 -->
-            
-                
-                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><img src="../assets/img/2023-02-13.png" alt="2023-02-13.png"><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/replace-the-substring-for-balanced-string/description/">1234. Replace the sub -string to get a balanced string.md</a></p>
-<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p><code>all()</code>:if bool(x) For all the values ​​in iterative objects x All for True，Then return True。 if可迭代对象为空，Then return True。</p>
-<p>Tongxiang dual pointer，The solution of the spiritual god of this question。<br>If in this string，These four characters happen just to appear n/4 Second-rate，Then it is one「Balanced string」。<br>if在待替换子串之外的任意字符的出现Second-rate数都<strong>Exceed</strong> $m=\dfrac{n}{4}$<br>，So no matter how you replace it，都无法make这个字符的出现Second-rate数等于m。<br>on the other hand，if在待替换子串之外的任意字符的出现Second-rate数都<strong>不Exceed</strong> m，</p>
-<blockquote>
-<p>So it can be replaced ，make s 为Balanced string，即每个字符的出现Second-rate数均为 m。<br>For this question，The left and right end points of the sub -string are left and right，enumerate right，<br>if子串外的任意字符的出现Second-rate数都不Exceedm，The explanation from left arrive<br>rightThis sub -string can be to replace the sub -string，Length right−left+1<br>Update the minimum value of the answer，Move to the right left，Sumid sub -string length。</p>
-</blockquote>
-<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">balancedString</span>(<span class="params">self, s: <span class="built_in">str</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        s_c = Counter(s)</span><br><span class="line">        n = <span class="built_in">len</span>(s)</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">all</span>(s_c[v] &lt;= n//<span class="number">4</span> <span class="keyword">for</span> v <span class="keyword">in</span> s_c):</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        ans, left = inf, <span class="number">0</span></span><br><span class="line">        <span class="comment"># enumerate右端点</span></span><br><span class="line">        <span class="keyword">for</span> i, j <span class="keyword">in</span> <span class="built_in">enumerate</span>(s):</span><br><span class="line">            s_c[j] -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">while</span> <span class="built_in">all</span>(s_c[v] &lt;= n // <span class="number">4</span> <span class="keyword">for</span> v <span class="keyword">in</span> s_c):</span><br><span class="line">                ans = <span class="built_in">min</span>(ans, i - left + <span class="number">1</span>)</span><br><span class="line">                s_c[s[left]] += <span class="number">1</span></span><br><span class="line">                left += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">balancedString</span><span class="params">(s <span class="type">string</span>)</span></span> <span class="type">int</span> &#123;</span><br><span class="line">	cnt, m := [<span class="string">&#x27;X&#x27;</span>]<span class="type">int</span>&#123;&#125;, <span class="built_in">len</span>(s)/<span class="number">4</span></span><br><span class="line">	<span class="keyword">for</span> _, c := <span class="keyword">range</span> s &#123;</span><br><span class="line">		cnt[c]++</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> cnt[<span class="string">&#x27;Q&#x27;</span>] == m &amp;&amp; cnt[<span class="string">&#x27;W&#x27;</span>] == m &amp;&amp; cnt[<span class="string">&#x27;E&#x27;</span>] == m &amp;&amp; cnt[<span class="string">&#x27;R&#x27;</span>] == m &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">	&#125;</span><br><span class="line">	ans, left := <span class="built_in">len</span>(s), <span class="number">0</span></span><br><span class="line">	<span class="keyword">for</span> right, c := <span class="keyword">range</span> s &#123;</span><br><span class="line">		cnt[c]--</span><br><span class="line">		<span class="keyword">for</span> cnt[<span class="string">&#x27;Q&#x27;</span>] &lt;= m &amp;&amp; cnt[<span class="string">&#x27;W&#x27;</span>] &lt;= m &amp;&amp; cnt[<span class="string">&#x27;E&#x27;</span>] &lt;= m &amp;&amp; cnt[<span class="string">&#x27;R&#x27;</span>] &lt;= m &#123;</span><br><span class="line">			ans = min(ans, right-left+<span class="number">1</span>)</span><br><span class="line">			cnt[s[left]]++</span><br><span class="line">			left++</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">min</span><span class="params">(a, b <span class="type">int</span>)</span></span> <span class="type">int</span> &#123; <span class="keyword">if</span> a &gt; b &#123; <span class="keyword">return</span> b &#125;; <span class="keyword">return</span> a &#125;</span><br></pre></td></tr></table></figure>
-
-                
-            
-
-            <!-- 添加打赏 -->
-            
-
-            <!-- 添加版权声明 -->
-            
-
-        </div>
-
-        <!-- 添加置顶 -->
-        <div class="article-info article-info-index">
-            
-
-            <!-- 分类页 -->
-            
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-            
-
-            <!-- 添加展开全文 -->
-            
-                <p class="article-more-link">
-                    <a class="article-more-a" href="/post/56d97dcf.html">show all >></a>
+                    <a class="article-more-a" href="/post/a5d1dfda.html">show all >></a>
                 </p>
             
 
@@ -2059,10 +2228,10 @@ window.MathJax = {
 	  <br>
 	  <div class="footer-center">
 	    <i class="fa fa-file-word-o" aria-hidden="true"></i>
-		<span> 113 篇</span>
+		<span> 114 篇</span>
 		<span class="post-meta-divider">|</span>
 		<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-		<span> <span class="post-count">54.1k</span></span>
+		<span> <span class="post-count">54.8k</span></span>
       </div>
 	  
 	  <!-- 添加不蒜子统计 -->
