@@ -292,6 +292,651 @@ var _hmt = _hmt || [];
         <div id="js-content" class="content-ll">
           
   
+    <article id="post-brief_alternate 作业帮忙_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/dbbd7d58.html">brief_alternate Assignment</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/dbbd7d58.html" class="archive-article-date">
+  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2024-01-01</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">791字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">4min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <h1 id="topic"><a href="#topic" class="headerlink" title="topic"></a>topic</h1><p><a href="../assets/documents/brief_alternate.pdf">brief_alternate.pdf</a><br><a href="../assets/documents/superstore_transaction.csv">superstore_transaction.csv</a></p>
+<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>Self -studypandasData processing，Before<code>import csv</code>Make much more useful。</p>
+<p>What the knowledge point needs to be remembered is：</p>
+<ol>
+<li>df[“Name”] You can directly determine the first line as the name listed，并且返回一个只包含Nameof列表。</li>
+<li>idxmax()Return to the maximum valueindex,max()Maximum meal</li>
+<li><code>.loc </code>The function is pandas An important function in it，Used to select and locate data in the data box。It allows you to choose some lines and columns，To make it DataFrame or Series Back to form。<br>By using the line label and column label as the index，You can perform the following operations in the data box：<br>.Choose a single line of data<br>.Choose multi -line data<br>.Select single -column data<br>.Select multiple columns of data<br>grammar： <code>df.loc[row_indexer, column_indexer]</code><br>in，row_indexer Is the label to choose a line，column_indexer Is the label of the column to be selected。</li>
+<li>unique()Return without duplicationvalueofnumbercount。<br>code show as below：</li>
+</ol>
+<p><a href="../assets/documents/superstore">superstore</a></p>
+<figure class="highlight python"><figcaption><span>s_p</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import pandas library as pd</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="comment"># Read CSV file named &#x27;superstore_transaction.csv&#x27; and store it in a dataframe named &#x27;df&#x27;</span></span><br><span class="line">df = pd.read_csv(<span class="string">&quot;superstore_transaction.csv&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Remove &quot;$&quot; and &quot;,&quot; from the values in the &#x27;Profit&#x27; column and convert it to integer</span></span><br><span class="line">df[<span class="string">&quot;Profit&quot;</span>] = df[<span class="string">&quot;Profit&quot;</span>].<span class="built_in">str</span>.replace(<span class="string">&#x27;$&#x27;</span>, <span class="string">&quot;&quot;</span>).<span class="built_in">str</span>.replace(<span class="string">&quot;,&quot;</span>, <span class="string">&quot;&quot;</span>).astype(<span class="built_in">int</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Remove &quot;$&quot; and &quot;,&quot; from the values in the &#x27;Sales&#x27; column and convert it to integer</span></span><br><span class="line">df[<span class="string">&quot;Sales&quot;</span>] = df[<span class="string">&quot;Sales&quot;</span>].<span class="built_in">str</span>.replace(<span class="string">&#x27;$&#x27;</span>, <span class="string">&quot;&quot;</span>).<span class="built_in">str</span>.replace(<span class="string">&quot;,&quot;</span>, <span class="string">&quot;&quot;</span>).astype(<span class="built_in">int</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Get the index of the row with the maximum value in the &#x27;Profit&#x27; column and store it in &#x27;col_max_profit&#x27;</span></span><br><span class="line">col_max_profit = df[<span class="string">&quot;Profit&quot;</span>].idxmax()</span><br><span class="line"><span class="comment"># Get the index of the row with the maximum value in the &#x27;Sales&#x27; column and store it in &#x27;col_max_sales&#x27;</span></span><br><span class="line">col_max_sales = df[<span class="string">&quot;Sales&quot;</span>].idxmax()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Store the details of the transaction with highest sales</span></span><br><span class="line">highest_sales_info = [</span><br><span class="line">    <span class="string">&quot;=========================\n&quot;</span></span><br><span class="line">    <span class="string">&quot;HIGHEST SALES TRANSACTION\n&quot;</span></span><br><span class="line">    <span class="string">&quot;=========================\n&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Category: &#123;&#125;\n&quot;</span>.<span class="built_in">format</span>(df.loc[col_max_sales, <span class="string">&quot;Category&quot;</span>]),</span><br><span class="line">    <span class="string">&quot;Customer Name: &#123;&#125;\n&quot;</span>.<span class="built_in">format</span>(df.loc[col_max_sales, <span class="string">&quot;Customer Name&quot;</span>]),</span><br><span class="line">    <span class="string">&quot;Product Name: &#123;&#125;\n&quot;</span>.<span class="built_in">format</span>(df.loc[col_max_sales, <span class="string">&quot;Product Name&quot;</span>]),</span><br><span class="line">    <span class="string">&quot;Segment: &#123;&#125;\n&quot;</span>.<span class="built_in">format</span>(df.loc[col_max_sales, <span class="string">&quot;Segment&quot;</span>]),</span><br><span class="line">    <span class="string">&quot;Sub-Category: &#123;&#125;\n&quot;</span>.<span class="built_in">format</span>(df.loc[col_max_sales, <span class="string">&quot;Sub-Category&quot;</span>]),</span><br><span class="line">    <span class="string">&quot;Profit: &#123;&#125;\n&quot;</span>.<span class="built_in">format</span>(df[<span class="string">&quot;Sales&quot;</span>].<span class="built_in">max</span>()),</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Store the details of the transaction with the highest profit</span></span><br><span class="line">highest_profit_info = [</span><br><span class="line">    <span class="string">&quot;==========================\n&quot;</span></span><br><span class="line">    <span class="string">&quot;HIGHEST PROFIT TRANSACTION\n&quot;</span></span><br><span class="line">    <span class="string">&quot;==========================\n&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Category: &#123;&#125;\n&quot;</span>.<span class="built_in">format</span>(df.loc[col_max_profit, <span class="string">&quot;Category&quot;</span>]),</span><br><span class="line">    <span class="string">&quot;Customer Name: &#123;&#125;\n&quot;</span>.<span class="built_in">format</span>(df.loc[col_max_profit, <span class="string">&quot;Customer Name&quot;</span>]),</span><br><span class="line">    <span class="string">&quot;Product Name: &#123;&#125;\n&quot;</span>.<span class="built_in">format</span>(df.loc[col_max_profit, <span class="string">&quot;Product Name&quot;</span>]),</span><br><span class="line">    <span class="string">&quot;Segment: &#123;&#125;\n&quot;</span>.<span class="built_in">format</span>(df.loc[col_max_profit, <span class="string">&quot;Segment&quot;</span>]),</span><br><span class="line">    <span class="string">&quot;Sub-Category: &#123;&#125;\n&quot;</span>.<span class="built_in">format</span>(df.loc[col_max_profit, <span class="string">&quot;Sub-Category&quot;</span>]),</span><br><span class="line">    <span class="string">&quot;Profit: &#123;&#125;\n&quot;</span>.<span class="built_in">format</span>(df[<span class="string">&quot;Profit&quot;</span>].<span class="built_in">max</span>()),</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Open a file named &#x27;summary_report.txt&#x27; in &#x27;append&#x27; mode and store it in &#x27;file&#x27;</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;summary_report.txt&quot;</span>, <span class="string">&quot;a&quot;</span>) <span class="keyword">as</span> file:</span><br><span class="line">    <span class="comment"># Write the &#x27;highest_sales_info&#x27; details to the file</span></span><br><span class="line">    file.write(<span class="string">&#x27;&#x27;</span>.join(highest_sales_info))</span><br><span class="line">    file.write(<span class="string">&#x27;&#x27;</span>.join(highest_profit_info))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><figcaption><span>api</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">url = <span class="string">&quot;&quot;</span></span><br><span class="line">payload = &#123;&#125;</span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&quot;apikey&quot;</span>: <span class="string">&quot;&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">r = requests.request(<span class="string">&quot;GET&quot;</span>, url, headers=headers, data=payload)  <span class="comment"># responseAPI</span></span><br><span class="line"><span class="comment"># 查看response结果</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Status code:&quot;</span>, r.status_code)</span><br><span class="line"><span class="comment"># Back content isjsonFormat file</span></span><br><span class="line"><span class="comment"># WillAPIresponse存储在一个变量中</span></span><br><span class="line"><span class="comment"># json()Function only decodesjsonFormat return</span></span><br><span class="line">response_dict = r.json()</span><br><span class="line"><span class="comment"># print(response_dict)</span></span><br><span class="line"><span class="comment"># process result  获得response字典</span></span><br><span class="line"><span class="comment"># 探索有关仓库of信息  response_dict字典of嵌套</span></span><br><span class="line"><span class="comment"># print(response_dict[&#x27;info&#x27;][&#x27;rate&#x27;])</span></span><br><span class="line"></span><br><span class="line">f = <span class="built_in">open</span>(<span class="string">&quot;summary_report.txt&quot;</span>, <span class="string">&quot;w&quot;</span>)</span><br><span class="line">head = [</span><br><span class="line">    <span class="string">&quot;=================================================\n&quot;</span></span><br><span class="line">    <span class="string">&quot;SINGAPORE TO US DOLLAR EXCHANGE RATE IN REAL TIME\n&quot;</span></span><br><span class="line">    <span class="string">&quot;=================================================\n&quot;</span></span><br><span class="line">]</span><br><span class="line">f.writelines(head)</span><br><span class="line">f.writelines([<span class="built_in">str</span>(response_dict[<span class="string">&#x27;info&#x27;</span>][<span class="string">&#x27;rate&#x27;</span>])+<span class="string">&quot;\n&quot;</span>])</span><br><span class="line">f.close()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;over&quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><figcaption><span>customers</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">df = pd.read_csv(<span class="string">&quot;superstore_transaction.csv&quot;</span>)</span><br><span class="line">highest_sales_info = [</span><br><span class="line">    <span class="string">&quot;====================\n&quot;</span></span><br><span class="line">    <span class="string">&quot;SUPERSTORE CUSTOMERS\n&quot;</span></span><br><span class="line">    <span class="string">&quot;====================\n&quot;</span>,</span><br><span class="line">    <span class="string">&quot;TOTAL: &#123;&#125;\n&quot;</span>.<span class="built_in">format</span>(df[<span class="string">&quot;Customer Name&quot;</span>].nunique(), <span class="string">&quot;Category&quot;</span>),</span><br><span class="line">]</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;summary_report.txt&quot;</span>, <span class="string">&quot;a&quot;</span>) <span class="keyword">as</span> file:</span><br><span class="line">    file.writelines(highest_sales_info)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+
+            <!-- 分类页 -->
+            
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">pandas</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/dbbd7d58.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
+    <article id="post-go_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/67fc8613.html">GOlanguage# GOlanguage可爱捏</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/67fc8613.html" class="archive-article-date">
+  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2024-01-01</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">214字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">1min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <p><img src="../assets/img/motorcycle.svg" alt="motorcycle.svg"></p>
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(<span class="string">&quot;Hello world&quot;</span>)</span><br><span class="line">	arr := []<span class="type">int</span>&#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>&#125;</span><br><span class="line">	fmt.Println(a(arr))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">a</span><span class="params">(x []<span class="type">int</span>)</span></span> []<span class="type">int</span> &#123;</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(x); i++ &#123;</span><br><span class="line">		<span class="keyword">if</span> i%<span class="number">2</span> == <span class="number">0</span> &#123;</span><br><span class="line">			x[i] = <span class="number">1</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> x</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight golang"><figcaption><span>Modify the string</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">s := <span class="string">&quot;hello&quot;</span></span><br><span class="line">c := []<span class="type">byte</span>(s)  <span class="comment">// String s Convert []byte type</span></span><br><span class="line">c[<span class="number">0</span>] = <span class="string">&#x27;c&#x27;</span></span><br><span class="line">s2 := <span class="type">string</span>(c)  <span class="comment">// Conversion back string type</span></span><br><span class="line">fmt.Printf(<span class="string">&quot;%s\n&quot;</span>, s2)</span><br><span class="line"></span><br><span class="line">s := <span class="string">&quot;hello&quot;</span></span><br><span class="line">s = <span class="string">&quot;c&quot;</span> + s[<span class="number">1</span>:] <span class="comment">// Although the string cannot be changed，But sliced ​​operation</span></span><br><span class="line">fmt.Printf(<span class="string">&quot;%s\n&quot;</span>, s)</span><br></pre></td></tr></table></figure>
+<p>What to do if you want to declare a multi -line string？able to pass`To declare：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">m := `hello</span><br><span class="line">world`</span><br></pre></td></tr></table></figure>
+<p>` The string of the included isRawString，即String在代码中of形式就是打印时of形式，It has no character righteousness，Change will also output the original as the original</p>
+<h1 id="错误type"><a href="#错误type" class="headerlink" title="错误type"></a>错误type</h1><p>GoThere is a built -inerrortype，Specially used to process error information，GoofpackageThere is also a bag in iterrorsTo deal with errors：</p>
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">err := errors.New(<span class="string">&quot;emit macho dwarf: elf header corrupted&quot;</span>)</span><br><span class="line"><span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">fmt.Print(err)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+
+            <!-- 分类页 -->
+            
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/67fc8613.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
+    <article id="post-inline_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/2660e935.html">Inline expansion</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/2660e935.html" class="archive-article-date">
+  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2024-01-01</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">340字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">2min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <p>9021Everyone is running for time，This happens to be$algorithm$Essence of development。</p>
+<p><img src="../assets/img/%E6%88%AA%E5%B1%8F2023-10-08%20%E4%B8%8B%E5%8D%8811.35.38.png" alt="screenshot2023-10-08 afternoon11.35.38.png"></p>
+<p>“There is a bunch of functions of code and code without function calls，Which runs faster？”</p>
+<p>Let’s talk about conclusions first：The code without function call runs faster。but<em><strong>readability</strong></em>worse，and<em><strong>The gap between running speed is not large</strong></em>。</p>
+<p>We can ask the following questions：</p>
+<ol>
+<li>Why does the frequency call of the function cause a decline in performance？</li>
+<li>How to solve the decline in this performance？</li>
+<li>What is the Internal Union Extension？</li>
+</ol>
+<h1 id="Why-does-the-frequency-call-of-the-function-cause-a-decline-in-performance？"><a href="#Why-does-the-frequency-call-of-the-function-cause-a-decline-in-performance？" class="headerlink" title="Why does the frequency call of the function cause a decline in performance？"></a>Why does the frequency call of the function cause a decline in performance？</h1><p>Function calls usually involve pressing the parameters into the stack、Jump to function code、Execute function code、Put the return value in the appropriate position、Then jump back to the place where the call function。</p>
+<h1 id="How-to-solve-the-decline-in-this-performance？"><a href="#How-to-solve-the-decline-in-this-performance？" class="headerlink" title="How to solve the decline in this performance？"></a>How to solve the decline in this performance？</h1><p>Tailing recursive optimization、Dead code elimination、Constant communication and constant folding、Internal United Development, etc.。This chapter mainly talks about the expansion of the Internal United Nations。</p>
+<h1 id="What-is-the-Internal-Union-Extension"><a href="#What-is-the-Internal-Union-Extension" class="headerlink" title="What is the Internal Union Extension"></a>What is the Internal Union Extension</h1><p>Wikipedia：</p>
+<pre><code>Inline expansion is used to eliminate the time overhead (excess time) when a function is called. It is typically used for functions that execute frequently. It also has a space benefit for very small functions, and is an enabling transformation for other optimizations.
+Internal expansion is used to eliminate the time overhead of the call function(Excess time)。It is usually used for frequent execution functions。For very small functions，It also has space advantages，And it is a conversion that supports other optimizations。
+</code></pre>
+<p>Frequent calling functions may cause some additional overhead，This overhead is due to the stack operation when the function calls、Factors caused by parameter transmission and return value processing。</p>
+<p>To avoid this overhead，The compiler will try to replace the code of the function call to the function body，This process is called the Inner Union Extension（inline expansion）。</p>
+<p>ref:<br><a target="_blank" rel="noopener" href="https://www.jstage.jst.go.jp/article/sptj1978/44/3/44_3_206/_pdf">https://www.jstage.jst.go.jp/article/sptj1978/44/3/44_3_206/_pdf</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.semanticscholar.org/search?q=Inline%20expansion&amp;sort=relevance">https://www.semanticscholar.org/search?q=Inline%20expansion&amp;sort=relevance</a></p>
+
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+
+            <!-- 分类页 -->
+            
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Composition principle</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/2660e935.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
+    <article id="post-intro_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/941aeb72.html">Some doubt</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/941aeb72.html" class="archive-article-date">
+  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2024-01-01</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">574字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">3min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <h1 id="Table-of-contents"><a href="#Table-of-contents" class="headerlink" title="Table of contents"></a>Table of contents</h1><p><a href="#1background">1.background</a><br><a href="#2holiday">2.holiday</a><br>[3.Programming preference](#3Programming preference)</p>
+<hr>
+<h1 id="1-background："><a href="#1-background：" class="headerlink" title="1.background："></a>1.background：</h1><p>We have7One direction，Distinguished<br>    1. <a target="_blank" rel="noopener" href="https://www.handbook.unsw.edu.au/postgraduate/specialisations/2023/COMPAS">Artificial Intelligence</a><br>    2. <a target="_blank" rel="noopener" href="https://www.handbook.unsw.edu.au/postgraduate/specialisations/2023/COMPBS">Bioinformatics</a><br>    3. <a target="_blank" rel="noopener" href="https://www.handbook.unsw.edu.au/postgraduate/specialisations/2023/COMPCS">Information Technology</a><br>    4. <a target="_blank" rel="noopener" href="https://www.handbook.unsw.edu.au/postgraduate/specialisations/2023/COMPDS">Database Systems</a><br>    5. <a target="_blank" rel="noopener" href="https://www.handbook.unsw.edu.au/postgraduate/specialisations/2023/COMPES">e-Commerce Systems</a><br>    6. <a target="_blank" rel="noopener" href="https://www.handbook.unsw.edu.au/postgraduate/specialisations/2023/COMPIS">Internet working</a><br>    7. <a target="_blank" rel="noopener" href="https://www.handbook.unsw.edu.au/postgraduate/specialisations/2023/COMPSS">Data Science and Engineering</a></p>
+<blockquote>
+<p>My course selection direction for the next semester is<a target="_blank" rel="noopener" href="https://www.handbook.unsw.edu.au/postgraduate/specialisations/2023/COMPAS">Artificial Intelligence</a><br>Not because I like itAIdirection，It’s just because there is a course called next semester9814，Very good to get high scores，And isAICompulsory course。</p>
+</blockquote>
+<h1 id="2-holiday："><a href="#2-holiday：" class="headerlink" title="2.holiday："></a>2.holiday：</h1><p>I chose a course last semester，Taught<em>Python</em>，feel<em>Python</em>Is the best language in the world，So I always plan to learn。这个holiday的编程比赛and练习题全部都是用<em>Python</em>made。</p>
+<p>but在这个holiday的实践中发现，<em>Python</em>The place where it is used is very narrow，在国内基本上只有人工智能的direction。<br>and我holiday自学吴恩达的<a target="_blank" rel="noopener" href="https://www.coursera.org/learn/machine-learning">Machine Learning</a>Course，feel不是很感兴趣，If“Can’t find a job if you don’t learn this”，<br>Then I can learn。<br>It’s just that classmates are constantly talking，人工智能direction找不到工作，Basically, for the model alchemy，No technical content。I thought about it，feel说得对。Similar toChatGPTAnd the commercialization of painting modelAIIt’s not what I can write。</p>
+<hr>
+<p>If it is a back end？<br>There are two ways in front of me to go：<em>Java</em> and <em>C++<em>。<br>I asked about the domestic market，</em>Java</em>The demand seems to be greater，但也更接近于饱and。<br>That<em>Java</em>and<em>C++<em>What about the needs in foreign countries?？</em>Python</em>Is there a need in abroad?？</p>
+<hr>
+<p>If it is the front end？<br>It feels like there is no case that can succeed in the front end，Basically<strong>Full stack</strong>。<br>This blog actually made yesterday，Getting started is simple，But it feels very difficult to deepen，There are relatively few documents on the Internet。</p>
+<hr>
+<p>If it is data analysis？<br>感觉and人工智能差不多，But the road should be widespread，And it seems to be able to use it<em>Python</em>？I’m not sure。</p>
+<hr>
+<h1 id="3-Programming-preference："><a href="#3-Programming-preference：" class="headerlink" title="3.Programming preference："></a>3.Programming preference：</h1><p>For my preferences，I have only learned two languages ​​now，C and Python（JavaandC++andC#Already returned to the teacher）。<br>CIf you are, even a linked list has to be knocked out by yourself，And I am obsessed withPythonConvenience。<br>For example, the same question，I take<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/cracking-the-safe/description/">753. Crack the safe</a>Give an example，itsPythonThe solution is：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">crackSafe</span>(<span class="params">self, n: <span class="built_in">int</span>, k: <span class="built_in">int</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        seen = <span class="built_in">set</span>()</span><br><span class="line">        ans = <span class="built_in">list</span>()</span><br><span class="line">        highest = <span class="number">10</span> ** (n - <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">node: <span class="built_in">int</span></span>):</span><br><span class="line">            <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(k):</span><br><span class="line">                nei = node * <span class="number">10</span> + x</span><br><span class="line">                <span class="keyword">if</span> nei <span class="keyword">not</span> <span class="keyword">in</span> seen:</span><br><span class="line">                    seen.add(nei)</span><br><span class="line">                    dfs(nei % highest)</span><br><span class="line">                    ans.append(<span class="built_in">str</span>(x))</span><br><span class="line"></span><br><span class="line">        dfs(<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;&quot;</span>.join(ans) + <span class="string">&quot;0&quot;</span> * (n - <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p>andC++I have to write：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">private:</span><br><span class="line">    <span class="built_in">unordered_set</span>&lt;<span class="type">int</span>&gt; seen;</span><br><span class="line">    <span class="built_in">string</span> ans;</span><br><span class="line">    <span class="type">int</span> highest;</span><br><span class="line">    <span class="type">int</span> k;</span><br><span class="line"></span><br><span class="line">public:</span><br><span class="line">    <span class="type">void</span> <span class="title function_">dfs</span><span class="params">(<span class="type">int</span> node)</span> &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> x = <span class="number">0</span>; x &lt; k; ++x) &#123;</span><br><span class="line">            <span class="type">int</span> nei = node * <span class="number">10</span> + x;</span><br><span class="line">            <span class="keyword">if</span> (!seen.count(nei)) &#123;</span><br><span class="line">                seen.insert(nei);</span><br><span class="line">                dfs(nei % highest);</span><br><span class="line">                ans += (x + <span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">string</span> <span class="title function_">crackSafe</span><span class="params">(<span class="type">int</span> n, <span class="type">int</span> k)</span> &#123;</span><br><span class="line">        highest = <span class="built_in">pow</span>(<span class="number">10</span>, n - <span class="number">1</span>);</span><br><span class="line">        this-&gt;k = k;</span><br><span class="line">        dfs(<span class="number">0</span>);</span><br><span class="line">        ans += <span class="built_in">string</span>(n - <span class="number">1</span>, <span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>CIt’s even longer。So what is doubtful lies in，feelPythongood，butPythonLack of posts。</p>
+
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+                <div class="article-pop-out tagcloud">
+                    <i class="icon-tuding"></i>
+                    <a class="article-tag-list-link color3">置顶</a>
+                </div>
+            
+
+            <!-- 分类页 -->
+            
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">encryption</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/941aeb72.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
     <article id="post-math_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -1117,10 +1762,10 @@ window.MathJax = {
 	  <br>
 	  <div class="footer-center">
 	    <i class="fa fa-file-word-o" aria-hidden="true"></i>
-		<span> 115 篇</span>
+		<span> 119 篇</span>
 		<span class="post-meta-divider">|</span>
 		<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-		<span> <span class="post-count">56.1k</span></span>
+		<span> <span class="post-count">59.1k</span></span>
       </div>
 	  
 	  <!-- 添加不蒜子统计 -->
@@ -1165,7 +1810,7 @@ window.MathJax = {
       <div class="footer-center">
 	    <i class="fa fa-copyright" aria-hidden="true"></i> 
 		<!-- &copy; -->
-        2022-2024 loong loong
+        2022-2025 loong loong
 		 
 		  <span class="post-meta-divider">|</span>
 		  <a style="color:#1A1A1A" target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">新南威尔士龙龙号</a>

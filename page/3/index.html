@@ -292,6 +292,701 @@ var _hmt = _hmt || [];
         <div id="js-content" class="content-ll">
           
   
+    <article id="post-994.腐烂的橘子_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/56e64fdd.html">994.Rotten orange</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/56e64fdd.html" class="archive-article-date">
+  	<time datetime="2024-05-13T14:00:00.000Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2024-05-14</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">739字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">4min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p>“””</p>
+<p>Given&nbsp;<code>m x n</code>&nbsp;grid
+ <meta charset="UTF-8" />&nbsp;<code>grid</code>&nbsp;middle，Each cell can have one of the following three values：</p>
+
+<ul> 
+ <li>value&nbsp;<code>0</code>&nbsp;Represents the empty unit；</li> 
+ <li>value&nbsp;<code>1</code>&nbsp;Represents fresh oranges；</li> 
+ <li>value&nbsp;<code>2</code>&nbsp;代表Rotten orange。</li> 
+</ul>
+
+<p>every minute，Rotten orange&nbsp;<strong>around&nbsp;4 Adjacent in this direction</strong> Fresh oranges will rot。</p>
+
+<p>return <em>直到单元格middle没有新鲜橘子为止所必须经过的最小分钟数。If it is impossible，return&nbsp;<code>-1</code></em>&nbsp;。</p>
+
+<p>&nbsp;</p>
+
+<p><strong>Exemplary example 1：</strong></p>
+
+<p><strong><img alt="" src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2019/02/16/oranges.png" style="height: 137px; width: 650px;" /></strong></p>
+
+<pre>
+<strong>enter：</strong>grid = [[2,1,1],[1,1,0],[0,1,1]]
+<strong>Output：</strong>4
+</pre>
+
+<p><strong>Exemplary example 2：</strong></p>
+
+<pre>
+<strong>enter：</strong>grid = [[2,1,1],[0,1,1],[1,0,1]]
+<strong>Output：</strong>-1
+<strong>explain：</strong>Orange in the lower left corner（First 2 OK， First 0 List）Never rot，Because rotten will only happen in 4 In the direction。
+</pre>
+
+<p><strong>Exemplary example 3：</strong></p>
+
+<pre>
+<strong>enter：</strong>grid = [[0,2]]
+<strong>Output：</strong>0
+<strong>explain：</strong>because 0 There is no fresh orange in minutes，So the answer is 0 。
+</pre>
+
+<p>&nbsp;</p>
+
+<p><strong>hint：</strong></p>
+
+<ul> 
+ <li><code>m == grid.length</code></li> 
+ <li><code>n == grid[i].length</code></li> 
+ <li><code>1 &lt;= m, n &lt;= 10</code></li> 
+ <li><code>grid[i][j]</code> Only for&nbsp;<code>0</code>、<code>1</code>&nbsp;or&nbsp;<code>2</code></li> 
+</ul>
+
+<div><div>Related Topics</div><div><li>Priority search</li><li>Array</li><li>matrix</li></div></div><br><div><li>👍 872</li><li>👎 0</li></div>
+"""
+
+<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>这个问题可以用Priority search（BFS）To solve。We need to track the spread of rotten oranges，Record time，And check if there is a fresh orange that cannot be rotten。The initial idea of ​​the original idea：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">orangesRotting</span>(<span class="params">self, grid: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        bad_orange = []</span><br><span class="line">        <span class="comment"># 找到所有初始Rotten orange</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(grid)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(grid[<span class="number">0</span>])):</span><br><span class="line">                <span class="keyword">if</span> grid[i][j] == <span class="number">2</span>:</span><br><span class="line">                    <span class="comment"># 存入初始队List</span></span><br><span class="line">                    bad_orange.append((i, j))</span><br></pre></td></tr></table></figure>
+<p>Similar to multi -threaded，每个线程存入一个初始队List，初始队List通过BFSGradual diffusion</p>
+<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">orangesRotting</span>(<span class="params">self, grid: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        bad_orange = deque()</span><br><span class="line">        fresh_oranges = <span class="number">0</span></span><br><span class="line">        rows, cols = <span class="built_in">len</span>(grid), <span class="built_in">len</span>(grid[<span class="number">0</span>])</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 找到所有初始Rotten orange，And calculate the number of fresh oranges</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(rows):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(cols):</span><br><span class="line">                <span class="keyword">if</span> grid[i][j] == <span class="number">2</span>:</span><br><span class="line">                    bad_orange.append((i, j))</span><br><span class="line">                <span class="keyword">elif</span> grid[i][j] == <span class="number">1</span>:</span><br><span class="line">                    fresh_oranges += <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 方向Array：up down left right</span></span><br><span class="line">        directions = [(<span class="number">0</span>, <span class="number">1</span>), (<span class="number">1</span>, <span class="number">0</span>), (<span class="number">0</span>, -<span class="number">1</span>), (-<span class="number">1</span>, <span class="number">0</span>)]</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># If there is no fresh orange，直接return 0</span></span><br><span class="line">        <span class="keyword">if</span> fresh_oranges == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># BFS</span></span><br><span class="line">        minutes = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> bad_orange:</span><br><span class="line">            minutes += <span class="number">1</span></span><br><span class="line">            <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(bad_orange)):</span><br><span class="line">                x, y = bad_orange.popleft()</span><br><span class="line">                <span class="keyword">for</span> dx, dy <span class="keyword">in</span> directions:</span><br><span class="line">                    nx, ny = x + dx, y + dy</span><br><span class="line">                    <span class="keyword">if</span> <span class="number">0</span> &lt;= nx &lt; rows <span class="keyword">and</span> <span class="number">0</span> &lt;= ny &lt; cols <span class="keyword">and</span> grid[nx][ny] == <span class="number">1</span>:</span><br><span class="line">                        grid[nx][ny] = <span class="number">2</span></span><br><span class="line">                        fresh_oranges -= <span class="number">1</span></span><br><span class="line">                        bad_orange.append((nx, ny))</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># If there are fresh oranges，return -1</span></span><br><span class="line">        <span class="keyword">return</span> minutes - <span class="number">1</span> <span class="keyword">if</span> fresh_oranges == <span class="number">0</span> <span class="keyword">else</span> -<span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;sync&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">orangesRotting</span><span class="params">(grid [][]<span class="type">int</span>)</span></span> <span class="type">int</span> &#123;</span><br><span class="line">	rows, cols := <span class="built_in">len</span>(grid), <span class="built_in">len</span>(grid[<span class="number">0</span>])</span><br><span class="line">	badOranges := <span class="built_in">make</span>([][<span class="number">2</span>]<span class="type">int</span>, <span class="number">0</span>)</span><br><span class="line">	freshOranges := <span class="number">0</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// 找到所有初始Rotten orange，And calculate the number of fresh oranges</span></span><br><span class="line">	<span class="keyword">for</span> r := <span class="number">0</span>; r &lt; rows; r++ &#123;</span><br><span class="line">		<span class="keyword">for</span> c := <span class="number">0</span>; c &lt; cols; c++ &#123;</span><br><span class="line">			<span class="keyword">if</span> grid[r][c] == <span class="number">2</span> &#123;</span><br><span class="line">				badOranges = <span class="built_in">append</span>(badOranges, [<span class="number">2</span>]<span class="type">int</span>&#123;r, c&#125;)</span><br><span class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> grid[r][c] == <span class="number">1</span> &#123;</span><br><span class="line">				freshOranges += <span class="number">1</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// If there is no fresh orange，直接return 0</span></span><br><span class="line">	<span class="keyword">if</span> freshOranges == <span class="number">0</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	directions := [][<span class="number">2</span>]<span class="type">int</span>&#123;&#123;<span class="number">0</span>, <span class="number">1</span>&#125;, &#123;<span class="number">1</span>, <span class="number">0</span>&#125;, &#123;<span class="number">0</span>, <span class="number">-1</span>&#125;, &#123;<span class="number">-1</span>, <span class="number">0</span>&#125;&#125;</span><br><span class="line">	minutes := <span class="number">0</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> wg sync.WaitGroup</span><br><span class="line"></span><br><span class="line">	<span class="comment">// BFS</span></span><br><span class="line">	<span class="keyword">for</span> <span class="built_in">len</span>(badOranges) &gt; <span class="number">0</span> &#123;</span><br><span class="line">		minutes++</span><br><span class="line">		nextBadOranges := <span class="built_in">make</span>([][<span class="number">2</span>]<span class="type">int</span>, <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">for</span> _, orange := <span class="keyword">range</span> badOranges &#123;</span><br><span class="line">			x, y := orange[<span class="number">0</span>], orange[<span class="number">1</span>]</span><br><span class="line">			wg.Add(<span class="number">1</span>)</span><br><span class="line">			<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">(x, y <span class="type">int</span>)</span></span> &#123;</span><br><span class="line">				<span class="keyword">defer</span> wg.Done()</span><br><span class="line">				<span class="keyword">for</span> _, d := <span class="keyword">range</span> directions &#123;</span><br><span class="line">					nx, ny := x+d[<span class="number">0</span>], y+d[<span class="number">1</span>]</span><br><span class="line">					<span class="keyword">if</span> nx &gt;= <span class="number">0</span> &amp;&amp; nx &lt; rows &amp;&amp; ny &gt;= <span class="number">0</span> &amp;&amp; ny &lt; cols &amp;&amp; grid[nx][ny] == <span class="number">1</span> &#123;</span><br><span class="line">						grid[nx][ny] = <span class="number">2</span></span><br><span class="line">						nextBadOranges = <span class="built_in">append</span>(nextBadOranges, [<span class="number">2</span>]<span class="type">int</span>&#123;nx, ny&#125;)</span><br><span class="line">						freshOranges--</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;(x, y)</span><br><span class="line">		&#125;</span><br><span class="line">		wg.Wait()</span><br><span class="line">		badOranges = nextBadOranges</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// If there are fresh oranges，return -1</span></span><br><span class="line">	<span class="keyword">if</span> freshOranges &gt; <span class="number">0</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> minutes - <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+
+            <!-- 分类页 -->
+            
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">BFS</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Bilateral queue</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/56e64fdd.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
+    <article id="post-1017. 负二进制转换_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/dce95dce.html">1017. Negative binary conversion</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/dce95dce.html" class="archive-article-date">
+  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2024-01-01</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">129字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">1min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/convert-to-base-2/description/?envType=daily-question&envId=2024-04-28">1017. Negative binary conversion</a></p>
+<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>The difference from binary is just not always//2，It’s every number//-1</p>
+<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">baseNeg2</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        k = <span class="number">1</span></span><br><span class="line">        ans = []</span><br><span class="line">        <span class="keyword">while</span> n:</span><br><span class="line">            <span class="keyword">if</span> n % <span class="number">2</span>:</span><br><span class="line">                ans.append(<span class="string">&#x27;1&#x27;</span>)</span><br><span class="line">                n -= k</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                ans.append(<span class="string">&#x27;0&#x27;</span>)</span><br><span class="line">            n //= <span class="number">2</span></span><br><span class="line">            k *= -<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>.join(ans[::-<span class="number">1</span>]) <span class="keyword">or</span> <span class="string">&#x27;0&#x27;</span> </span><br></pre></td></tr></table></figure>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">impl</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">base_neg2</span>(<span class="keyword">mut</span> n: <span class="type">i32</span>) <span class="punctuation">-&gt;</span> <span class="type">String</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">ans</span> = <span class="type">Vec</span>::<span class="title function_ invoke__">new</span>();</span><br><span class="line">        <span class="keyword">while</span> n != <span class="number">0</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> n % <span class="number">2</span> != <span class="number">0</span> &#123;</span><br><span class="line">                ans.<span class="title function_ invoke__">push</span>(<span class="string">&#x27;1&#x27;</span>);</span><br><span class="line">                n = (n - <span class="number">1</span>) / -<span class="number">2</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                ans.<span class="title function_ invoke__">push</span>(<span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">                n /= -<span class="number">2</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> ans.<span class="title function_ invoke__">is_empty</span>() &#123;</span><br><span class="line">            ans.<span class="title function_ invoke__">push</span>(<span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        ans.<span class="title function_ invoke__">reverse</span>();</span><br><span class="line">        ans.<span class="title function_ invoke__">iter</span>().<span class="title function_ invoke__">collect</span>()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+
+            <!-- 分类页 -->
+            
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/dce95dce.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
+    <article id="post-1138. 字母板上的路径 每日一题_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/fd471847.html">1138. The path on the letter board One question daily</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/fd471847.html" class="archive-article-date">
+  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2024-01-01</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">311字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">1min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><img src="../assets/img/2023-02-12.png" alt="2023-02-12.png"><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/alphabet-board-path/description/">1138. The path on the letter board One question daily.md</a></p>
+<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>Read the wrong questions，According to the method of random letters above the subtitle version。but<code>z</code>Special circumstances are not considered，I thought about it later，Just turn the column into a line，Time complexity isOn3<br>。Look atylbs answer，Use directlyasciiThe code watch simulates a letter board。</p>
+<blockquote>
+<p>From the starting point (0,0)(0, 0)(0,0) Set off，Simulate each step of movement，Style the movement of each step into the answer。Pay attention to the direction of moving“Left、superior、right、Down”Order。</p>
+</blockquote>
+<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">alphabetBoardPath</span>(<span class="params">self, target: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        str1 = <span class="string">&quot;&quot;</span></span><br><span class="line">        board = [<span class="string">&quot;abcde&quot;</span>,</span><br><span class="line">                 <span class="string">&quot;fghij&quot;</span>,</span><br><span class="line">                 <span class="string">&quot;klmno&quot;</span>,</span><br><span class="line">                 <span class="string">&quot;pqrst&quot;</span>,</span><br><span class="line">                 <span class="string">&quot;uvwxy&quot;</span>,</span><br><span class="line">                 <span class="string">&quot;z&quot;</span>]</span><br><span class="line">        now_i = <span class="number">0</span></span><br><span class="line">        now_j = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> board:</span><br><span class="line">            <span class="keyword">for</span> j,value <span class="keyword">in</span> <span class="built_in">enumerate</span>(i):</span><br><span class="line">                <span class="keyword">pass</span></span><br><span class="line">        <span class="keyword">for</span> char <span class="keyword">in</span> target:</span><br><span class="line">            <span class="comment"># See which line is</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(board)):</span><br><span class="line">                <span class="keyword">if</span> char <span class="keyword">in</span> board[i]:</span><br><span class="line">                    <span class="keyword">if</span> i - now_i &gt; <span class="number">0</span>:</span><br><span class="line">                        str1 += <span class="string">&#x27;D&#x27;</span> * (i - now_i)</span><br><span class="line">                    <span class="keyword">if</span> i - now_i &lt; <span class="number">0</span>:</span><br><span class="line">                        str1 += <span class="string">&#x27;U&#x27;</span> * (now_i - i)</span><br><span class="line">                    now_i = i</span><br><span class="line">                    <span class="comment"># Which column</span></span><br><span class="line">                    <span class="keyword">for</span> j, value <span class="keyword">in</span> <span class="built_in">enumerate</span>(board[i]):</span><br><span class="line">                        <span class="keyword">if</span> value == char:</span><br><span class="line">                            <span class="keyword">if</span> j - now_j &gt; <span class="number">0</span>:</span><br><span class="line">                                str1 += <span class="string">&#x27;R&#x27;</span> * (j - now_j)</span><br><span class="line">                            <span class="keyword">if</span> j - now_j &lt; <span class="number">0</span>:</span><br><span class="line">                                str1 += <span class="string">&#x27;L&#x27;</span> * (now_j - j)</span><br><span class="line">                            str1 += <span class="string">&#x27;!&#x27;</span></span><br><span class="line">                            now_j = j</span><br><span class="line">        <span class="keyword">return</span> str1</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">alphabetBoardPath</span>(<span class="params">self, target: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        i = j = <span class="number">0</span></span><br><span class="line">        ans = []</span><br><span class="line">        <span class="keyword">for</span> char <span class="keyword">in</span> target:</span><br><span class="line">            v = <span class="built_in">ord</span>(char) - <span class="built_in">ord</span>(<span class="string">&quot;a&quot;</span>)</span><br><span class="line">            x, y = v // <span class="number">5</span>, v % <span class="number">5</span></span><br><span class="line">            <span class="keyword">while</span> j &gt; y:</span><br><span class="line">                j -= <span class="number">1</span></span><br><span class="line">                ans.append(<span class="string">&quot;L&quot;</span>)</span><br><span class="line">            <span class="keyword">while</span> i &gt; x:</span><br><span class="line">                i -= <span class="number">1</span></span><br><span class="line">                ans.append(<span class="string">&quot;U&quot;</span>)</span><br><span class="line">            <span class="keyword">while</span> j &lt; y:</span><br><span class="line">                j += <span class="number">1</span></span><br><span class="line">                ans.append(<span class="string">&quot;R&quot;</span>)</span><br><span class="line">            <span class="keyword">while</span> i &lt; x:</span><br><span class="line">                i += <span class="number">1</span></span><br><span class="line">                ans.append(<span class="string">&quot;D&quot;</span>)</span><br><span class="line">            ans.append(<span class="string">&quot;!&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;&quot;</span>.join(ans)</span><br></pre></td></tr></table></figure>
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+
+            <!-- 分类页 -->
+            
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/fd471847.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
+    <article id="post-1017.负二进制转换_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/80cafdc8.html">1017.Negative binary conversion</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/80cafdc8.html" class="archive-article-date">
+  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2024-01-01</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">220字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">1min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p>Give you an integer <code>n</code> ，Return to the integer in the form of a binary string <strong>Negative binary（<code>base -2</code>）</strong>express。</p>
+
+<p><strong>Notice，</strong>Unless the string is&nbsp;<code>"0"</code>，Otherwise, the returned string cannot contain the front guide zero。</p>
+
+<p>&nbsp;</p>
+
+<p><strong>Exemplary example 1：</strong></p>
+
+<pre>
+<strong>enter：</strong>n = 2
+<strong>Output：</strong>"110"
+<strong>explain：</strong>(-2)<sup>2</sup> + (-2)<sup>1</sup> = 2
+</pre>
+
+<p><strong>Exemplary example 2：</strong></p>
+
+<pre>
+<strong>enter：</strong>n = 3
+<strong>Output：</strong>"111"
+<strong>explain：</strong>(-2)<sup>2</sup> + (-2)<sup>1</sup> + (-2)<sup>0</sup> = 3
+</pre>
+
+<p><strong>Exemplary example 3：</strong></p>
+
+<pre>
+<strong>enter：</strong>n = 4
+<strong>Output：</strong>"100"
+<strong>explain：</strong>(-2)<sup>2</sup> = 4
+</pre>
+
+<p>&nbsp;</p>
+
+<p><strong>hint：</strong></p>
+
+<ul> 
+ <li><code>0 &lt;= n &lt;= 10<sup>9</sup></code></li> 
+</ul>
+
+<div><div>Related Topics</div><div><li>math</li></div></div><br><div><li>👍 111</li><li>👎 0</li></div>
+[1017.Negative binary conversion.md]()
+
+<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>We can judge n Every bit from low to high，If the bit is 1，Then the answer is 1，Otherwise 0。If the bit is 1，So we need to n minus k。Next we update n=⌊n/2⌋, k=−k。Continue to judge the next。<br>at last，We will return to the answer。<br>time complexity O(logn)，in n For the given integer。Ignore the space consumption of the answer，Spatial complexity O(1)。</p>
+<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">baseNeg2</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        k = <span class="number">1</span></span><br><span class="line">        ans = []</span><br><span class="line">        <span class="keyword">while</span> n:</span><br><span class="line">            <span class="keyword">if</span> n % <span class="number">2</span>:</span><br><span class="line">                ans.append(<span class="string">&#x27;1&#x27;</span>)</span><br><span class="line">                n -= k</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                ans.append(<span class="string">&#x27;0&#x27;</span>)</span><br><span class="line">            n //= <span class="number">2</span></span><br><span class="line">            k *= -<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>.join(ans[::-<span class="number">1</span>]) <span class="keyword">or</span> <span class="string">&#x27;0&#x27;</span></span><br></pre></td></tr></table></figure>
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+
+            <!-- 分类页 -->
+            
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/80cafdc8.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
     <article id="post-1124. 表现良好的最长时间段_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -1222,640 +1917,6 @@ var _hmt = _hmt || [];
 
 <!-- 文章页添加mathjax公式 -->
   
-    <article id="post-142.环形链表II_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/e2c9cca9.html">142.Ring linkedII</a>
-    </h2>
-  
-
-
-                
-                    <a href="/post/e2c9cca9.html" class="archive-article-date">
-  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2024-01-01</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-                
-
-                
-                    <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">738字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">3min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-                
-            </header>
-        
-
-        <div class="article-entry" itemprop="articleBody">
-            <!-- 添加分类与标签 -->
-            
-                
-                    <p><img src="../assets/img/2023-07-01%20(1).png" alt="2023-07-01 (1).png"><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/linked-list-cycle-ii/">142.Ring listII.md</a></p>
-<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><h3 id="Problem-solving："><a href="#Problem-solving：" class="headerlink" title="Problem -solving："></a>Problem -solving：</h3><p>这类Linkedtopic一般都yes使用双pointer法解决的，For example, looking for distance tail K Node、Find a ring entrance、Find the entrance of the public tail, etc.。</p>
-<h3 id="Algorithm："><a href="#Algorithm：" class="headerlink" title="Algorithm："></a>Algorithm：</h3><ol>
-<li><p>Double pointer met for the first time： Set two pointers fast，slow 指向Linked头部 head，fast Walk per round 2 step，slow Walk per round 1 step；</p>
-<p> a. First result： fast pointer走过Linked末端，说明Linked无环，直接return null；</p>
-<p> .TIPS: If there is a ring，Two pointers will definitely meet。Because every time I go 1 wheel，fast and slow Pitch +1，fast The event will catch up slow；<br> b. Second result： whenfast == slowhour， Two pointers in the ring First encounter 。下面分析此hourfast and slowPassing step数关系 ：</p>
-<p> .设Linked共have a+b Node，in Linked头部到Linked入口 have a Node（不计Linked入口节点）， Linked环 have b Node（这里需要Notice，a and b yes未知数，例如图解上Linked a=4 , b=5）；Set two pointers分别走了 f，s step，则have：<br> a. fast 走的step数yesslowstep数的 2 Double，Right now f=2s；（Analyze： fast Walk per round 2 step）<br> b.fast Compare slowGo more n Length of a ring，Right now f=s+nb；（ Analyze： Double pointers have gone through a step，然后在环Inside绕圈直到重合，重合hour fast Compare slow Go 环的长度整数Double ）；<br> .The above two types are reduced：f=2nb，s=nb，Right nowfastandslow The pointer left separately 2n，n indivual Circumference of the ring （Notice： n yes未知数，不同Linked的情况不同）。</p>
-</li>
-</ol>
-                    
-                        <a class="article-more-a" href="/post/e2c9cca9.html#more">more >></a>
-                    
-                
-            
-
-            <!-- 添加打赏 -->
-            
-
-            <!-- 添加版权声明 -->
-            
-
-        </div>
-
-        <!-- 添加置顶 -->
-        <div class="article-info article-info-index">
-            
-
-            <!-- 分类页 -->
-            
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-            
-
-            <!-- 添加展开全文 -->
-            
-                <p class="article-more-link">
-                    <a class="article-more-a" href="/post/e2c9cca9.html">show all >></a>
-                </p>
-            
-
-            <!-- 添加分享 -->
-            
-
-            <div class="clearfix"></div>
-
-        </div>
-    </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-    
-
-<!-- 文章页添加mathjax公式 -->
-  
-    <article id="post-1551使数组中所有元素相等的最小操作数_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/b2a927d5.html">1551. Make all the minimum operations of all elements in the array</a>
-    </h2>
-  
-
-
-                
-                    <a href="/post/b2a927d5.html" class="archive-article-date">
-  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2024-01-01</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-                
-
-                
-                    <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">516字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">3min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-                
-            </header>
-        
-
-        <div class="article-entry" itemprop="articleBody">
-            <!-- 添加分类与标签 -->
-            
-                
-                    <p><img src="../assets/img/2023-01-22%20(3).png" alt="2023-01-22 (3).png"></p>
-<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>It is the second question of the weekly match：<a href="6275%CA%B9%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%D4%AA%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%C8%B5%EF%BF%BD%EF%BF%BD%EF%BF%BD%D0%A1%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD.md">6275Make all the minimum operations of all elements in the arrayII.md</a><br>The first edition of the heart of the heart。It’s completely different from the second edition，Originally wanted to practice the greedy algorithm。但是做着做着就发现了存在math规律。<br>Quote[yong]Big guy’s words：<br>Because it is the difference between the difference,很可能找到一个math公式,use<code>O(1)</code>Time complexity solution. Get a few simple examples first to find the rules</p>
-<ol>
-<li>n=3 The minimum operation is 2</li>
-<li>n=4 The minimum operation is 1 + 3</li>
-<li>n=5 The minimum operation is 2 + 4</li>
-<li>n=6 The minimum operation is 1 + 3 + 5</li>
-<li>n=7 The minimum operation is 2 + 4 + 6<br>whennWhen the number is,The minimum operation is<code>1 + 3 + 5 + ... + n-1 = n*n/4 </code><br>whennWhen it is a strange number,The minimum operation is<code>2 + 4 + ... + n-1 = (n*n - 1) / 4</code></li>
-</ol>
-<p>Get this question,Feel a bit around,Careful analysis discovery <code>arr[i] = (2 * i) + 1 (0 &lt;= i &lt; n)</code>Is a typical equal number list<code>(1,3,5,7,9...)</code>.<br>According to the formula of the equal number column,It’s easy to find a grouparrThe total element is<code>n^2</code>. In the question design, two bids are selected for each operationx ymake<code>arr[x]</code>minus one<code>arr[y]</code>plus one.<br>in other words,No matter how you choosex y,No matter how many times the operation,The sum of the array will not change. The design and guarantee that all elements in the array can ultimately be equal equal.<br>Then we assume that the final element is equal toaSo<code>n*a == n^2</code>,soa == n,That is to say, the final array elements are alln.actuallynIs the average value of the array.<br>Know the end element is allnback,Start traversing in the middle by starting from the start and end of the array,You can reach the smallest number of operations.<br>Suppose the bidding on the left is<code>i ((2 * i) + 1 &lt; n)</code>So相应右边的下标是<code>n - i.</code><br>The corresponding two elemental values ​​andnThe difference is<code>n - 1 + 2 * i</code>.so我们只要计算数组中值小于nElements andnSummary of difference,Get the minimum operation number.</p>
-<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight java"><figcaption><span>java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> <span class="type">int</span> <span class="title function_">minOperations</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">     <span class="keyword">return</span> n * n / <span class="number">4</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Time and space complexity is all O(1)</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><figcaption><span>java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> <span class="type">int</span> <span class="title function_">minOperations</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">operation</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; n ; i += <span class="number">2</span>) &#123;</span><br><span class="line">        operation += (n - i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> operation;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Time complexity isO(n) Space complexity isO(1)</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><figcaption><span>python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minOperations</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        operate = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n, <span class="number">2</span>):</span><br><span class="line">            operate += (n - i)</span><br><span class="line">        <span class="keyword">return</span> operate</span><br></pre></td></tr></table></figure>
-<figure class="highlight erlang"><figcaption><span>erlang</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">-spec</span> min_operations<span class="params">(N :: integer())</span> -&gt; integer<span class="params">()</span>.</span><br><span class="line"><span class="function"><span class="title">min_operations</span><span class="params">(N)</span> -&gt;</span></span><br><span class="line">N * N <span class="keyword">div</span> <span class="number">4</span>.</span><br></pre></td></tr></table></figure>
-<figure class="highlight dart"><figcaption><span>dart</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">  <span class="built_in">int</span> minOperations(<span class="built_in">int</span> n) &#123;</span><br><span class="line">    <span class="keyword">return</span> n * n ~/ <span class="number">4</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight elixir"><figcaption><span>elixir</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">defmodule</span> <span class="title">Solution</span></span> <span class="keyword">do</span></span><br><span class="line">  <span class="variable">@spec</span> min_operations(n :: integer) :: integer</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">min_operations</span></span>(n) <span class="keyword">do</span></span><br><span class="line">        div(n * n , <span class="number">4</span>)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
-
-                
-            
-
-            <!-- 添加打赏 -->
-            
-
-            <!-- 添加版权声明 -->
-            
-
-        </div>
-
-        <!-- 添加置顶 -->
-        <div class="article-info article-info-index">
-            
-
-            <!-- 分类页 -->
-            
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">math</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-            
-
-            <!-- 添加展开全文 -->
-            
-                <p class="article-more-link">
-                    <a class="article-more-a" href="/post/b2a927d5.html">show all >></a>
-                </p>
-            
-
-            <!-- 添加分享 -->
-            
-
-            <div class="clearfix"></div>
-
-        </div>
-    </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-    
-
-<!-- 文章页添加mathjax公式 -->
-  
-    <article id="post-1590.使数组和能被P整除_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/59825e1f.html">1590.Make the array and energyPDivide</a>
-    </h2>
-  
-
-
-                
-                    <a href="/post/59825e1f.html" class="archive-article-date">
-  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2024-01-01</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-                
-
-                
-                    <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">548字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">3min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-                
-            </header>
-        
-
-        <div class="article-entry" itemprop="articleBody">
-            <!-- 添加分类与标签 -->
-            
-                
-                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><a href="">1590.Make the array and energyPDivide.md</a></p>
-<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>‘≡’Together<br>For example nums=[11,2,5,7,8,9]，p=10，So [5,7] Remove，The remaining numbers add 30，Be able to p Divide。<br>All elements and $42mod10 = 2$<br>设All elements andx，RemoveElementsand为y，Makex-y Be able topDivide,satisfy</p>
-<p>y≡x(mod p)-&gt;x % p = y % p</p>
-<p>By prefix and，The problem converts：Find two numbers on the prefix and array <code>s[left]</code> and <code>s[right]</code>，satisfy right−left Minimum</p>
-<p>$$<br>s[right] - s[left] ≡ x (mod p)<br>-&gt;s[right] - x ≡ s[left] (mod p)<br>$$</p>
-<p><code>((s[right]-x)modp+p) mod p = s[left] mod p</code></p>
-<p>Traversal sss At the same time，Hash table last\textit{last}last Record s[i]mod p The last time the bidding appeared，if lastlast Contain<br>(s[i] mod p−x mod p+p) mod p，Let’s set its corresponding setting j，So [j,i) Is a符合topic要求的子数组。</p>
-<p>Enumerate i，Calculate the minimum value of the child array length that meets the requirements，Is the answer。if没有符合要求的子数组，Then return −1。</p>
-<p>Code implementation，You can initialize the answer to nums length n。if最后答案等于 n，It means that there are no sub -array that does not meet the requirements，因为topic不允许将整个数组都移除。</p>
-<blockquote>
-<p>lastIs amap，The key is an integer，Value is an integer。j, ok := last[(v-x+p)%p]This line code is inlastThe search key is(v-x+p)%pElements，And give its value to variablesj。if这个键不存在，SookThe value will befalse，otherwiseokThe value will betrue。<br>The return value of this grammar is two values，The first value is the value corresponding to the key，第二个值Is a布尔值，Indicates whether the key exists。<br>ifokThe value istrue，SoCode中的ifThe statement will be executed，It willansThe value update isi-jandansMinimum value。ifokThe value isfalse，SoifThe statement will be skipped，The program will continue to execute。</p>
-</blockquote>
-<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minSubarray</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], p: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        s = <span class="built_in">list</span>(accumulate(nums, initial=<span class="number">0</span>))</span><br><span class="line">        x = s[-<span class="number">1</span>] % p</span><br><span class="line">        <span class="keyword">if</span> x == <span class="number">0</span>: <span class="keyword">return</span> <span class="number">0</span>  <span class="comment"># Remove the air array（This line can not be）</span></span><br><span class="line"></span><br><span class="line">        ans = n = <span class="built_in">len</span>(nums)</span><br><span class="line">        last = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> i, v <span class="keyword">in</span> <span class="built_in">enumerate</span>(s):</span><br><span class="line">            last[v % p] = i</span><br><span class="line">            j = last.get((v - x) % p, -n)  <span class="comment"># if不存在，-n Be guaranteed i-j &gt;= n</span></span><br><span class="line">            ans = <span class="built_in">min</span>(ans, i - j)</span><br><span class="line">        <span class="keyword">return</span> ans <span class="keyword">if</span> ans &lt; n <span class="keyword">else</span> -<span class="number">1</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">minSubarray</span><span class="params">(nums []<span class="type">int</span>, p <span class="type">int</span>)</span></span> <span class="type">int</span> &#123;</span><br><span class="line">	n := <span class="built_in">len</span>(nums)</span><br><span class="line">	s := <span class="built_in">make</span>([]<span class="type">int</span>, n+<span class="number">1</span>)</span><br><span class="line">	<span class="keyword">for</span> i, v := <span class="keyword">range</span> nums &#123;</span><br><span class="line">		s[i+<span class="number">1</span>] = (s[i] + v) % p</span><br><span class="line">	&#125;</span><br><span class="line">	x := s[n]</span><br><span class="line">	<span class="keyword">if</span> x == <span class="number">0</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	ans := n</span><br><span class="line">	last := <span class="keyword">map</span>[<span class="type">int</span>]<span class="type">int</span>&#123;&#125;</span><br><span class="line">	<span class="keyword">for</span> i, v := <span class="keyword">range</span> s &#123;</span><br><span class="line">		last[v] = i</span><br><span class="line">		<span class="keyword">if</span> j, ok := last[(v-x+p)%p]; ok &#123;</span><br><span class="line">			ans = min(ans, i-j)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> ans &lt; n &#123;</span><br><span class="line">		<span class="keyword">return</span> ans</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">min</span><span class="params">(a, b <span class="type">int</span>)</span></span> <span class="type">int</span> &#123;</span><br><span class="line">	<span class="keyword">if</span> b &lt; a &#123;</span><br><span class="line">		<span class="keyword">return</span> b</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> a</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-                
-            
-
-            <!-- 添加打赏 -->
-            
-
-            <!-- 添加版权声明 -->
-            
-
-        </div>
-
-        <!-- 添加置顶 -->
-        <div class="article-info article-info-index">
-            
-
-            <!-- 分类页 -->
-            
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-            
-
-            <!-- 添加展开全文 -->
-            
-                <p class="article-more-link">
-                    <a class="article-more-a" href="/post/59825e1f.html">show all >></a>
-                </p>
-            
-
-            <!-- 添加分享 -->
-            
-
-            <div class="clearfix"></div>
-
-        </div>
-    </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-    
-
-<!-- 文章页添加mathjax公式 -->
-  
-    <article id="post-1604. 警告一小时内使用相同员工卡大于等于三次的人_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/bb7bcf54.html">1604Warn alert person who uses the same employee card within one hour One question daily</a>
-    </h2>
-  
-
-
-                
-                    <a href="/post/bb7bcf54.html" class="archive-article-date">
-  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2024-01-01</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-                
-
-                
-                    <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">251字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">1min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-                
-            </header>
-        
-
-        <div class="article-entry" itemprop="articleBody">
-            <!-- 添加分类与标签 -->
-            
-                
-                    <h1 id="topic"><a href="#topic" class="headerlink" title="topic"></a>topic</h1><p><img src="../assets/img/2023-02-08.png" alt="2023-02-08.png"></p>
-<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>Pay attention to the data pre -processing of this time question，You can convert time to minutes，You can look at the notes in the code。Thought andylbThe consistency of the big man。<br>Pay attention to，In fact, use the order directlysortIt’s okay。<br>python: <code>:=</code>Walrus operator，Can be assigned in judgment<br>Golang: <code>SScanf</code>SscanfStringstrScanning text，according toformat The format specified by the parameter will save the values ​​of the blank separation that is successfully read in the parameters that successfully passed to the function of this function。<br>Back to the number of entries for successful scanning and any error encountered。</p>
-<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">alertNames</span>(<span class="params">self, keyName: <span class="type">List</span>[<span class="built_in">str</span>], keyTime: <span class="type">List</span>[<span class="built_in">str</span>]</span>) -&gt; <span class="type">List</span>[<span class="built_in">str</span>]:</span><br><span class="line">        ans = <span class="built_in">set</span>()</span><br><span class="line">        dict1 = defaultdict(<span class="built_in">list</span>)</span><br><span class="line">        <span class="keyword">for</span> name, time <span class="keyword">in</span> <span class="built_in">zip</span>(keyName, keyTime):</span><br><span class="line">            dict1[name].append(<span class="built_in">int</span>(time[:<span class="number">2</span>])*<span class="number">60</span>+<span class="built_in">int</span>(time[<span class="number">3</span>:]))</span><br><span class="line">        <span class="built_in">print</span>(dict1)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> dict1:</span><br><span class="line">            <span class="comment"># definition10：00-11：00Three counts appear，Warn</span></span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(dict1[i]) &gt;= <span class="number">3</span>:</span><br><span class="line">                dict1[i].sort()</span><br><span class="line">                <span class="built_in">print</span>(dict1[i])</span><br><span class="line">                <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(dict1[i])):</span><br><span class="line">                    <span class="comment"># Traversing the current hour to one hour,It seems to be able to watch the slice directly</span></span><br><span class="line">                    <span class="comment"># for k in range(len(dict1[i]) + 1, len(dict1[i])+3):</span></span><br><span class="line">                    <span class="keyword">if</span> j + <span class="number">2</span> &lt; <span class="built_in">len</span>(dict1[i]):</span><br><span class="line">                        <span class="comment"># if dict1[i][j:j + 3][0].replace(&quot;:&quot;, &quot;&quot;)[:2]</span></span><br><span class="line">                        <span class="keyword">if</span> <span class="built_in">abs</span>(dict1[i][j:j + <span class="number">3</span>][-<span class="number">1</span>] -</span><br><span class="line">                            dict1[i][j:j + <span class="number">3</span>][<span class="number">0</span>]) &lt;= <span class="number">60</span>:</span><br><span class="line">                            ans.add(i)</span><br><span class="line">                        <span class="built_in">print</span>(dict1[i][j:j + <span class="number">3</span>])</span><br><span class="line">        ans = <span class="built_in">list</span>(ans)</span><br><span class="line">        ans.sort()</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
-
-                
-            
-
-            <!-- 添加打赏 -->
-            
-
-            <!-- 添加版权声明 -->
-            
-
-        </div>
-
-        <!-- 添加置顶 -->
-        <div class="article-info article-info-index">
-            
-
-            <!-- 分类页 -->
-            
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Hash table</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-            
-
-            <!-- 添加展开全文 -->
-            
-                <p class="article-more-link">
-                    <a class="article-more-a" href="/post/bb7bcf54.html">show all >></a>
-                </p>
-            
-
-            <!-- 添加分享 -->
-            
-
-            <div class="clearfix"></div>
-
-        </div>
-    </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-    
-
-<!-- 文章页添加mathjax公式 -->
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&lt;&lt; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/4/">下一页 &gt;&gt;</a>
@@ -1910,10 +1971,10 @@ window.MathJax = {
 	  <br>
 	  <div class="footer-center">
 	    <i class="fa fa-file-word-o" aria-hidden="true"></i>
-		<span> 115 篇</span>
+		<span> 119 篇</span>
 		<span class="post-meta-divider">|</span>
 		<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-		<span> <span class="post-count">56.1k</span></span>
+		<span> <span class="post-count">59.1k</span></span>
       </div>
 	  
 	  <!-- 添加不蒜子统计 -->
@@ -1958,7 +2019,7 @@ window.MathJax = {
       <div class="footer-center">
 	    <i class="fa fa-copyright" aria-hidden="true"></i> 
 		<!-- &copy; -->
-        2022-2024 loong loong
+        2022-2025 loong loong
 		 
 		  <span class="post-meta-divider">|</span>
 		  <a style="color:#1A1A1A" target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">新南威尔士龙龙号</a>

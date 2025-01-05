@@ -292,6 +292,715 @@ var _hmt = _hmt || [];
         <div id="js-content" class="content-ll">
           
   
+    <article id="post-2241. Design an ATM Machine" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/a21411f.html">2241. Design an ATM Machine</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/a21411f.html" class="archive-article-date">
+  	<time datetime="2025-05-31T15:47:00.000Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2025-06-01</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">1.1k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">5min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <h1 id="QUESTION："><a href="#QUESTION：" class="headerlink" title="QUESTION："></a>QUESTION：</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/design-an-atm-machine/description/?envType=daily-question&envId=2025-01-05">2241. Design an ATM Machine.md</a><br>There is an ATM machine that stores banknotes of 5 denominations: 20, 50, 100, 200, and 500 dollars. Initially the ATM is empty. The user can use the machine to deposit or withdraw any amount of money.</p>
+<p>When withdrawing, the machine prioritizes using banknotes of larger values.</p>
+<p>For example, if you want to withdraw $300 and there are 2 $50 banknotes, 1 $100 banknote, and 1 $200 banknote, then the machine will use the $100 and $200 banknotes.<br>However, if you try to withdraw $600 and there are 3 $200 banknotes and 1 $500 banknote, then the withdraw request will be rejected because the machine will first try to use the $500 banknote and then be unable to use banknotes to complete the remaining $100. Note that the machine is not allowed to use the $200 banknotes instead of the $500 banknote.<br>Implement the ATM class:</p>
+<p>ATM() Initializes the ATM object.<br>void deposit(int[] banknotesCount) Deposits new banknotes in the order $20, $50, $100, $200, and $500.<br>int[] withdraw(int amount) Returns an array of length 5 of the number of banknotes that will be handed to the user in the order $20, $50, $100, $200, and $500, and update the number of banknotes in the ATM after withdrawing. Returns [-1] if it is not possible (do not withdraw any banknotes in this case).</p>
+<h1 id="My-Think："><a href="#My-Think：" class="headerlink" title="My Think："></a>My Think：</h1><p>The purpose of this question is to simulate an ATM machine, which returns the amount of money you withdraw, no more and no less. I am greedy, because the second sentence “There are 3 <code>$200</code> bills and 1 <code>$500</code> bill in the machine, so the withdrawal request will be rejected”<br>This shows that we can skip thinking about the knapsack problem in complex dynamic programming and directly consider simple greed.</p>
+<p>Because the denominations of the deposited money are only <code>20</code>, <code>50</code>, <code>100</code>, <code>200</code>, <code>500</code>, we can store them in the list in advance and wait for traversal.</p>
+<p>Then we create a <code>defaultdict()</code> to create a hash table for each denomination in the ATM machine.</p>
+<p><code>deposit()</code> creates a reverse traversal dictionary. Because we need to traverse the dictionary from large denominations to small denominations, the reverse dictionary is very convenient at this time.</p>
+<p>Assuming the initial <code>amount</code> is <code>600</code>, the first denomination traversed is <code>500</code>, It fits the logic of the question very well</p>
+<p>For the <code>withdraw()</code> function, I created a temporary dictionary deep copy storage so that the initial array will not be changed when <code>[-1]</code> is returned. Otherwise, it will be troublesome to backtrack.</p>
+<p>Here, Sylvia and I used two different traversal methods. She traversed the list of denominations, while I traversed the dictionary directly (actually traversed the key directly).</p>
+<ol>
+<li><p>If the current denomination (<code>600</code>) is greater than the current denomination (<code>500</code>), then try to deduct it. If the bank money is withdrawn directly, then look at the next denomination.</p>
+</li>
+<li><p>If it is not withdrawn, then <code>amount</code> deducts the deductible share and then continues to look at the next denomination.</p>
+</li>
+<li><p>If there is still <code>amount</code> left at the end, return <code>[-1]</code>, otherwise calculate how many bills have been consumed in total, which is the answer.</p>
+</li>
+</ol>
+<p>这道题的目的是模拟一台ATM机器, 让你取多少钱, 就返回多少钱, 不能多也不能少. 我是贪心的思想, 因为第二句”机器里有 3 张 <code>$200</code> 的钞票和1 张 <code>$500</code> 的钞票，那么取款请求会被拒绝”<br>这就说明我们可以跳过思考复杂的动态规划中的背包问题, 而直接考虑简单的贪心.</p>
+<p>因为存的钱的面额只有<code>20</code>, <code>50</code>, <code>100</code>, <code>200</code>, <code>500</code> 这五种面额, 于是我们提前存在列表里面等待遍历即可.<br>然后我们创建一个<code>defaultdict()</code>, 为ATM机器里面的每种面额创建哈希表.</p>
+<p><code>deposit()</code>创建了一个反向遍历的字典. 因为我们需要从大面额到小面额遍历字典, 在这个时候反向的字典就很方便.</p>
+<pre><code>假设初始`amount`为`600`, 遍历到的第一个面额就是`500`, 就很符合题目的逻辑
+</code></pre>
+<p><code>withdraw()</code>函数, 我之所以创建了一个临时字典深拷贝储存是在返回<code>[-1]</code>的情况下不更改初始数组. 否则还要回溯挺麻烦的.</p>
+<p>这里我和Sylvia用了两种不同的遍历方式, 她遍历了面额的列表, 而我是直接遍历的字典(实际上直接遍历的key).</p>
+<ol>
+<li>如果当前面额(<code>600</code>)大于了当前面额(<code>500</code>), 那就尝试扣除, 如果直接把银行钱取完了, 那再看下一个面值.</li>
+<li>如果没有取完, 那么<code>amount</code>扣除掉能扣除的份额, 再继续看下一个面额即可.</li>
+<li>到最后<code>amount</code>还有剩余则返回<code>[-1]</code>, 否则计算一共消耗了多少张钞票, 即是答案了.</li>
+</ol>
+<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> copy</span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">List</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ATM</span>:</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        self.sd = defaultdict(<span class="built_in">int</span>)</span><br><span class="line">        self.amount = [<span class="string">&#x27;20&#x27;</span>, <span class="string">&#x27;50&#x27;</span>, <span class="string">&#x27;100&#x27;</span>, <span class="string">&#x27;200&#x27;</span>, <span class="string">&#x27;500&#x27;</span>]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">deposit</span>(<span class="params">self, banknotesCount: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(banknotesCount) - <span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>):</span><br><span class="line">            self.sd[self.amount[i]] += banknotesCount[i]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">withdraw</span>(<span class="params">self, amount: <span class="built_in">int</span></span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        tempSd = copy.deepcopy(self.sd)</span><br><span class="line">        <span class="comment"># key = 面值, value = 张数</span></span><br><span class="line">        <span class="keyword">for</span> key, value <span class="keyword">in</span> tempSd.items():</span><br><span class="line">            <span class="keyword">if</span> amount &gt;= <span class="built_in">int</span>(key) <span class="keyword">and</span> value &gt; <span class="number">0</span>:</span><br><span class="line">                <span class="comment"># 需要多少张钞票</span></span><br><span class="line">                howManyPiece = amount // <span class="built_in">int</span>(key)</span><br><span class="line">                <span class="keyword">if</span> howManyPiece &gt;= value:</span><br><span class="line">                    <span class="comment"># 全部取出来</span></span><br><span class="line">                    tempSd[key] = <span class="number">0</span></span><br><span class="line">                    amount -= value * <span class="built_in">int</span>(key)</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    <span class="comment"># 取出这么多钞票</span></span><br><span class="line">                    tempSd[key] -= howManyPiece</span><br><span class="line">                    amount -= <span class="built_in">int</span>(key) * howManyPiece</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> amount &gt; <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">return</span> [-<span class="number">1</span>]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                ans = []</span><br><span class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> self.sd.keys():</span><br><span class="line">                    ans.append(self.sd[i] - tempSd[i])</span><br><span class="line">                self.sd = copy.deepcopy(tempSd)</span><br><span class="line">                <span class="keyword">return</span> ans[::-<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+
+            <!-- 分类页 -->
+            
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Answer</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/a21411f.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
+    <article id="post-MyCalendar" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/9a3257a2.html">MyCalendar</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/9a3257a2.html" class="archive-article-date">
+  	<time datetime="2025-04-01T11:39:00.000Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2025-04-01</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">1.1k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">5min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <h1 id="QUESTION："><a href="#QUESTION：" class="headerlink" title="QUESTION："></a>QUESTION：</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/my-calendar-iii/submissions/591093593/?envType=daily-question&envId=2025-01-04">MyCalendar.md</a></p>
+<h1 id="My-Think："><a href="#My-Think：" class="headerlink" title="My Think："></a>My Think：</h1><p>Today we are talking about MyCalendar I II III. The daily questions for these three days are the same, so we will do them together.</p>
+<p>今天我们讲MyCalendar I II III, 这三天的每日一题都是一样的,所以一起做了.</p>
+<h3 id="I"><a href="#I" class="headerlink" title="I:"></a>I:</h3><p>We use binary search to find where <code>startTime</code> can be inserted, and return <code>False</code> if it is found in advance. After finding the insertion point, we can check whether there is overlap.</p>
+<p>我们用二分查找, 查找 <code>startTime</code> 在哪里可以插入, 如果提前找到了直接返回 <code>False</code>. 找到了插入点后, 再检查是否有重叠即可.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyCalendar</span>:</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">         self.date = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">book</span>(<span class="params">self, startTime: <span class="built_in">int</span>, endTime: <span class="built_in">int</span></span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        <span class="comment"># Binary Search 二分查找 </span></span><br><span class="line">        n = <span class="built_in">len</span>(self.date)</span><br><span class="line">        left, right = <span class="number">0</span>, n - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> left &lt;= right:</span><br><span class="line">            mid = (left + right) // <span class="number">2</span></span><br><span class="line">            <span class="keyword">if</span> self.date[mid][<span class="number">0</span>] &lt; startTime:</span><br><span class="line">                left = mid + <span class="number">1</span>  <span class="comment"># Move the left pointer 移动左指针</span></span><br><span class="line">            <span class="keyword">elif</span> self.date[mid][<span class="number">0</span>] &gt; startTime:</span><br><span class="line">                right = mid - <span class="number">1</span>  <span class="comment"># Move the right pointer 移动右指针</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span>  <span class="comment"># Find the overlap 发现重叠</span></span><br><span class="line">        <span class="comment"># Check for overlap with previous and next intervals 检查与前后区间的重叠</span></span><br><span class="line">        <span class="keyword">if</span> left &gt; <span class="number">0</span> <span class="keyword">and</span> self.date[left - <span class="number">1</span>][<span class="number">1</span>] &gt; startTime:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">if</span> left &lt; <span class="built_in">len</span>(self.date) <span class="keyword">and</span> self.date[left][<span class="number">0</span>] &lt; endTime:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># Insert it 插入区间</span></span><br><span class="line">        self.date.insert(left, (startTime, endTime))</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="II"><a href="#II" class="headerlink" title="II:"></a>II:</h3><p>This question requires us to check whether there will be three reservations under the conditions of the previous question. Although binary search can also be done, it will be much more complicated. We introduce the idea of ​​differential (Line Sweep) in this question.</p>
+<ol>
+<li><p>Record the changes at each time point (start and end)<br>When a new interval <code>[startTime, endTime)</code> is to be inserted:</p>
+<ol>
+<li>At the position corresponding to <code>startTime</code> +1</li>
+<li>At the position corresponding to <code>endTime</code> -1<br>In this way, we only record “how much the overlap number should be added/subtracted at these two boundary time points”.</li>
+</ol>
+</li>
+<li><p>Count the current maximum overlap when necessary<br>Sort all-time points (keys) from small to large, and accumulate their +1/-1 values in turn.<br>The result of the accumulation is the number of activities carried out simultaneously at the corresponding time (that is, the “overlap number”).<br>If you want to find out whether there is a triple reservation, see whether the maximum of this accumulation process reaches 3 (or higher)</p>
+</li>
+</ol>
+<p>这道题要求我们在上一道题的条件下, 检查是否会出现三次预定. 二分查找虽然也可以做, 但是会复杂很多. 我们在这一题引入差分(Line Sweep)的思想.</p>
+<ol>
+<li><p>记录每个时间点（开始与结束）的变化<br> 当有新的区间 <code>[startTime, endTime)</code> 要插入时：</p>
+<ol>
+<li>在 <code>startTime</code> 对应的位置 +1</li>
+<li>在 <code>endTime</code> 对应的位置 -1<br>这样我们只记录“在这两个边界时间点，重叠数量要加/减多少”。</li>
+</ol>
+</li>
+<li><p>在需要时统计当前的最大重叠<br>把所有的时间点（key）从小到大排序，依次累加其 +1/-1 值。<br>累加的结果就是对应时刻同时进行的活动数量（也就是“重叠数量”）。<br>如果要查找是否出现三重预定，就看这个累加过程最大是否到达 3（或更高）</p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sortedcontainers <span class="keyword">import</span> SortedDict</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyCalendarTwo</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        self.sd = SortedDict()</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">book</span>(<span class="params">self, startTime: <span class="built_in">int</span>, endTime: <span class="built_in">int</span></span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        self.sd[startTime] = self.sd.get(startTime, <span class="number">0</span>) + <span class="number">1</span></span><br><span class="line">        self.sd[endTime] = self.sd.get(endTime, <span class="number">0</span>) - <span class="number">1</span></span><br><span class="line">        s = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> v <span class="keyword">in</span> self.sd.values():</span><br><span class="line">            s += v</span><br><span class="line">            <span class="keyword">if</span> s &gt; <span class="number">2</span>:</span><br><span class="line">                self.sd[startTime] -= <span class="number">1</span></span><br><span class="line">                self.sd[endTime] += <span class="number">1</span></span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="III"><a href="#III" class="headerlink" title="III:"></a>III:</h3><p>This question is even more difficult. It requires us to find the maximum number of multiple reservations. We can just record it based on the previous question.</p>
+<ol>
+<li><p>Difference record</p>
+<p> Same as before: <code>+1</code> at the position corresponding to <code>startTime</code>, <code>-1</code> at the position corresponding to <code>endTime</code>.</p>
+<p> Store in <code>self.sd</code>: <code>key</code> = time point, <code>value</code> = increase or decrease at that time point.</p>
+</li>
+<li><p>Find the maximum number of overlaps</p>
+<p> Use a rolling variable ongoing to indicate “how many overlaps there are at the current moment”.<br> Each time a time point is traversed, the corresponding difference is accumulated to ongoing, and then <code>max_overlap = max(max_overlap, ongoing)</code> is updated.</p>
+</li>
+</ol>
+<p>这道题更加过分, 要求我们找到多重预定中最多有多少重, 我们就在上一道题的基础上记录即可.</p>
+<ol>
+<li><p>差分记录</p>
+<p> 与之前一致：在 <code>startTime</code> 对应的位置 +<code>1</code>，在 <code>endTime</code> 对应的位置 <code>-1</code>。<br> <code>self.sd</code> 中存储：key=时间点, <code>value</code>=该时间点的增减量。</p>
+</li>
+<li><p>求最大重叠数</p>
+<p> 用一个滚动变量 <code>ongoing</code> 表示“当前时刻有多少重叠”。<br> 每遍历一个时间点，把对应的差分累加到 <code>ongoing</code>，然后更新 <code>max_overlap = max(max_overlap, ongoing)</code>。</p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sortedcontainers <span class="keyword">import</span> SortedDict</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyCalendarThree</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        self.sd = SortedDict()</span><br><span class="line"></span><br><span class="line">        self.max_overlap = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">book</span>(<span class="params">self, startTime: <span class="built_in">int</span>, endTime: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="comment"># First, record the &quot;plus 1&quot; and &quot;minus 1&quot; of this reservation.先把这次预定的“加1”和“减1”记录下来</span></span><br><span class="line">        self.sd[startTime] = self.sd.get(startTime, <span class="number">0</span>) + <span class="number">1</span></span><br><span class="line">        self.sd[endTime] = self.sd.get(endTime, <span class="number">0</span>) - <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># Temporary variable, record the number of overlaps 临时变量, 记录几折叠</span></span><br><span class="line">        ongoing = <span class="number">0</span> <span class="comment"># Current overlap number</span></span><br><span class="line">        tmp_max = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> v <span class="keyword">in</span> self.sd.values():</span><br><span class="line">            ongoing += v</span><br><span class="line">            tmp_max = <span class="built_in">max</span>(ongoing, tmp_max)</span><br><span class="line">        self.max_overlap = <span class="built_in">max</span>(self.max_overlap, tmp_max)</span><br><span class="line">        <span class="keyword">return</span> self.max_overlap</span><br></pre></td></tr></table></figure>
+
+
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+
+            <!-- 分类页 -->
+            
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Answer</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Binary Search</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Design</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Segment Tree</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Ordered Set</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Prefix Sum</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/9a3257a2.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
+    <article id="post-3138. Minimum Length of Anagram Concatenation" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/d1339d55.html">3138. Minimum Length of Anagram Concatenation</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/d1339d55.html" class="archive-article-date">
+  	<time datetime="2025-01-04T17:19:57.766Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2025-01-05</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">537字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">2min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <h1 id="Description"><a href="#Description" class="headerlink" title="Description:"></a>Description:</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-length-of-anagram-concatenation/description/?envType=daily-question&amp;envId=2024-12-20">https://leetcode.cn/problems/minimum-length-of-anagram-concatenation/description/?envType=daily-question&amp;envId=2024-12-20</a><br>You are given a string <code>s</code>, which is known to be a concatenation of anagrams of some string <code>t</code>.</p>
+<p>Return the minimum possible length of the string <code>t</code>.</p>
+<p>An anagram is formed by rearranging the letters of a string. For example, “aab”, “aba”, and, “baa” are anagrams of “aab”.</p>
+<h4 id="Example-1"><a href="#Example-1" class="headerlink" title="Example 1:"></a>Example 1:</h4><pre><code>Input: s = &quot;abba&quot;
+
+Output: 2
+
+Explanation:
+
+One possible string t could be &quot;ba&quot;.
+</code></pre>
+<h4 id="Example-2"><a href="#Example-2" class="headerlink" title="Example 2:"></a>Example 2:</h4><pre><code>Input: s = &quot;cdef&quot;
+
+Output: 4
+
+Explanation:
+
+One possible string t could be &quot;cdef&quot;, notice that t can be equal to s.
+</code></pre>
+<h1 id="Thinking"><a href="#Thinking" class="headerlink" title="Thinking:"></a>Thinking:</h1><p>Since the problem naturally suggests using a counting method (<code>Counter</code>), we need to find the minimum substring for each string. For example, for <code>abba</code>, the result is <code>ab</code>; for <code>cdef</code>, it’s <code>cdef</code>.<br>We iterate from length <code>1</code> (a single character) onwards, slicing the string to get the current substring.</p>
+<p>Initially, we compute the character count for the original string using <code>Counter</code>, which gives us a dictionary of character frequencies.<br>Next, we only need to check if the count of each character in the current substring multiplied by <code>n/k</code> equals the count in the original string (i.e., whether repeating the current substring x times equals the original string).</p>
+<p>由于题意很容易联想到这道题要进行计数(Counter). 我们需要找到每个字符串的最小子串，<code>abba</code>为<code>ab</code>, <code>cdef</code>为<code>cdef</code>. 于是我们从长度0（即单个字符）开始遍历，期间通过切片的形式来获取当前子串。<br>因为最开始我们对原始字符串进行了Counter，得到了字符数量和字符对应的字典。接下来我们只需要判断当前子串的Counter到的某个字符的数值乘以<code>n/k</code>是否等于原始字符串的Counter的值即可（即当前子串乘以x倍是否等于源字符串）。</p>
+<h1 id="Code"><a href="#Code" class="headerlink" title="Code:"></a>Code:</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> collections</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minAnagramLength</span>(<span class="params">self, s: <span class="built_in">str</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">check</span>(<span class="params">k: <span class="built_in">int</span></span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">            <span class="comment"># 遍历字符串 s，每次取长度为 k 的子串</span></span><br><span class="line">            <span class="comment"># Iterate over the string `s`, taking substrings of length `k`</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, n, k):</span><br><span class="line">                <span class="comment"># 统计每个字符出现的次数</span></span><br><span class="line">                <span class="comment"># Count the occurrences of each character in the current substring</span></span><br><span class="line">                cnt1 = collections.Counter(s[i: i + k])</span><br><span class="line">                <span class="keyword">for</span> c, v <span class="keyword">in</span> cnt.items():</span><br><span class="line">                    <span class="comment"># 如果每个字符出现的次数乘以 n/k != cnt[] return False</span></span><br><span class="line">                    <span class="comment"># If the count of any character multiplied by (n // k) != the original count, return False</span></span><br><span class="line">                    <span class="keyword">if</span> cnt1[c] * (n // k) != v:</span><br><span class="line">                        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">        cnt = collections.Counter(s)</span><br><span class="line">        n = <span class="built_in">len</span>(s)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> n % i == <span class="number">0</span> <span class="keyword">and</span> check(i):</span><br><span class="line">                <span class="keyword">return</span> i</span><br></pre></td></tr></table></figure>
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+
+            <!-- 分类页 -->
+            
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Hash Table</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">String</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Counting</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Prefix Sum</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/d1339d55.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
+    <article id="post-3046. Split the Array" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/41577de2.html">3046. Split the Array</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/41577de2.html" class="archive-article-date">
+  	<time datetime="2025-01-04T17:19:57.765Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2025-01-05</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">286字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">1min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <h1 id="Description"><a href="#Description" class="headerlink" title="Description:"></a>Description:</h1><p>You are given an integer array nums of even length. You have to split the array into two parts nums1 and nums2 such that:</p>
+<p>nums1.length == nums2.length == nums.length / 2.<br>nums1 should contain distinct elements.<br>nums2 should also contain distinct elements.<br>Return true if it is possible to split the array, and false otherwise.</p>
+<p>Example 1:</p>
+<p>Input: nums = [1,1,2,2,3,4]<br>Output: true<br>Explanation: One of the possible ways to split nums is nums1 = [1,2,3] and nums2 = [1,2,4].<br>Example 2:</p>
+<p>Input: nums = [1,1,1,1]<br>Output: false<br>Explanation: The only possible way to split nums is nums1 = [1,1] and nums2 = [1,1]. Both nums1 and nums2 do not contain distinct elements. Therefore, we return false.</p>
+<h1 id="Thinking"><a href="#Thinking" class="headerlink" title="Thinking:"></a>Thinking:</h1><p>题目要求判断是否可以将数组分成两个部分，使得两个部分的元素都是不同的。<br>最开始考虑的是<code>Counter()</code>记录每个数字是否满足某个条件，如果不满足就返回<code>False</code>。后面发现不需要<code>Counter</code>，普通的字典记录，中途遇到某个数字大于2就返回False即可。</p>
+<h1 id="Code"><a href="#Code" class="headerlink" title="Code:"></a>Code:</h1><figure class="highlight python"><figcaption><span>O(2n)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">isPossibleToSplit</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        Counter_nums = Counter(nums)</span><br><span class="line">        <span class="keyword">for</span> i, j <span class="keyword">in</span> Counter_nums.items():</span><br><span class="line">            <span class="keyword">if</span> j &gt; <span class="number">2</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><figcaption><span>O(n)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">isPossibleToSplit</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        count = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">            count[num] = count.get(num, <span class="number">0</span>) + <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> count[num] &gt; <span class="number">2</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+
+            <!-- 分类页 -->
+            
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/41577de2.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
     <article id="post-1366. Rank Teams by Votes" class="article article-type-post  article-index" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -1752,941 +2461,6 @@ var _hmt = _hmt || [];
 
 <!-- 文章页添加mathjax公式 -->
   
-    <article id="post-9021_TUT_5" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/231af838.html">9021_TUT_5</a>
-    </h2>
-  
-
-
-                
-                    <a href="/post/231af838.html" class="archive-article-date">
-  	<time datetime="2024-10-07T13:00:00.000Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2024-10-08</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-                
-
-                
-                    <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">2.5k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">15min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-                
-            </header>
-        
-
-        <div class="article-entry" itemprop="articleBody">
-            <!-- 添加分类与标签 -->
-            
-                
-                    <h1 id="Exercise-1"><a href="#Exercise-1" class="headerlink" title="Exercise 1"></a>Exercise 1</h1><h3 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>We are given a list <code>L</code> and an integer <code>n</code>. The task is to repeatedly extend the list <code>L</code> a certain number of times (<code>n</code>) by multiplying each element of the list by an increasing factor. The factors start at <code>2</code> and increase by <code>1</code> for each iteration.</p>
-<hr>
-<p>In my solution, I used a while loop to iterate <code>n</code> times. In each iteration, I used a list comprehension to multiply each element of the list <code>L</code> by the current factor and then used the <code>extend()</code> method to add the new elements to the end of the list. Finally, I incremented the factor by <code>1</code> and decremented <code>n</code> by <code>1</code>.<br>Because of the description: <code>L&#39;&#39; == 3 * L&#39;, L&#39; == 2 * L</code> …. </p>
-<h3 id="My-Solution"><a href="#My-Solution" class="headerlink" title="My Solution"></a>My Solution</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f1</span>(<span class="params">L: <span class="built_in">list</span>, n: <span class="built_in">int</span></span>):</span><br><span class="line">    <span class="comment"># because of the des of L&#x27;&#x27; == 3 * L&#x27;, L&#x27; == 2 * L ....</span></span><br><span class="line">    base = <span class="number">2</span></span><br><span class="line">    <span class="comment"># when n bigger than 0, base will always ++,</span></span><br><span class="line">    <span class="keyword">while</span> n:</span><br><span class="line">        <span class="comment"># I want use map() again, but list generator is more simple</span></span><br><span class="line">        <span class="comment"># extend() will add all the elements in the list to the end of the list</span></span><br><span class="line">        L.extend([i * base <span class="keyword">for</span> i <span class="keyword">in</span> L])</span><br><span class="line">        base += <span class="number">1</span></span><br><span class="line">        n -= <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> L</span><br></pre></td></tr></table></figure>
-<h3 id="Standard-Solution"><a href="#Standard-Solution" class="headerlink" title="Standard Solution"></a>Standard Solution</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f1</span>(<span class="params">L, n</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>, n + <span class="number">2</span>):</span><br><span class="line">        L.extend([e * i <span class="keyword">for</span> e <span class="keyword">in</span> L])</span><br><span class="line">    <span class="keyword">return</span> L</span><br></pre></td></tr></table></figure>
-
-<h3 id="Explanation"><a href="#Explanation" class="headerlink" title="Explanation"></a>Explanation</h3><ol>
-<li><strong>My Solution</strong>: Uses a while loop where n is manually decremented after each iteration step by step since it can help me understand what we need. I keep track of the current base manually (base += 1).</li>
-<li><strong>Standard Solution</strong>: Uses a for loop, which automatically increments i in each iteration. The range is explicitly set to go from 2 to n + 2, which avoids the need for manually handling the base.</li>
-</ol>
-<h1 id="Exercise-2"><a href="#Exercise-2" class="headerlink" title="Exercise 2"></a>Exercise 2</h1><h3 id="Problem-Description-1"><a href="#Problem-Description-1" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>We are given a list L and an integer n. The task is to extend the list L such that it becomes the first n members of an infinite list, which is defined as:</p>
-<ul>
-<li>L, followed by 2 * L, followed by 4 * L, followed by 8 * L, and so on.</li>
-</ul>
-<p>This means that:</p>
-<ul>
-<li>L is initially concatenated with 2 * L (all elements of L multiplied by 2). </li>
-<li>Then, 4 * L (all elements of L multiplied by 4) is concatenated, followed by 8 * L, and so on, until the length of the list is at least n.</li>
-</ul>
-<p>The challenge is to achieve this without using any for or while loops.</p>
-<hr>
-<p>We can see the pattern here: <code>L, 2 * L, 4 * L, 8 * L, ...</code> until it reaches the length of n.</p>
-<p>At first, I ignored the description that “without using any for or while loops.”</p>
-<p>Here is my solution:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Assume that the argument L is a nonempty list of integers</span></span><br><span class="line"><span class="comment"># and the argument n is an integer at least equal to the</span></span><br><span class="line"><span class="comment"># length of L.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Given an integer x and a list of integers S,</span></span><br><span class="line"><span class="comment"># let x * S denote the list obtained from S</span></span><br><span class="line"><span class="comment"># by multiplying all its elements by x.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># L becomes the first n members of the infinite list</span></span><br><span class="line"><span class="comment"># defined as L concatenated with 2 * L concatenated</span></span><br><span class="line"><span class="comment"># with 4 * L concatenated with 8 * L...</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Use no for nor while statement.</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f2</span>(<span class="params">L: <span class="built_in">list</span>, n: <span class="built_in">int</span></span>):</span><br><span class="line">    <span class="keyword">while</span> <span class="built_in">len</span>(L) &lt; n:</span><br><span class="line">        L.extend([i * <span class="number">2</span> <span class="keyword">for</span> i <span class="keyword">in</span> L])</span><br><span class="line">    <span class="comment"># use the slice to cut the list to reach the length of n</span></span><br><span class="line">    <span class="keyword">return</span> L[:n]</span><br></pre></td></tr></table></figure>
-
-<h3 id="Standard-Solution-1"><a href="#Standard-Solution-1" class="headerlink" title="Standard Solution"></a>Standard Solution</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f2</span>(<span class="params">L, n</span>):</span><br><span class="line">    L.extend(e * <span class="number">2</span> <span class="keyword">for</span> e <span class="keyword">in</span> L <span class="keyword">if</span> <span class="built_in">len</span>(L) &lt; n)</span><br><span class="line">    <span class="keyword">return</span> L</span><br></pre></td></tr></table></figure>
-
-<h1 id="Exercise-3"><a href="#Exercise-3" class="headerlink" title="Exercise 3"></a>Exercise 3</h1><h3 id="Problem-Description-2"><a href="#Problem-Description-2" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>The goal of this problem is to process a list L, which contains nonempty lists of nonempty lists of integers, and return a pair of lists. Each of these lists will be filtered based on specific conditions related to the length of the sublists and the values inside them.</p>
-<p>Here’s the task broken down:</p>
-<ol>
-<li><p>First List in the Pair:</p>
-<ul>
-<li>For each sublist <code>L&#39;</code> of <code>L</code>, if the length of <code>L&#39;</code> is at least <code>n</code>, then:</li>
-<li>For each sublist <code>L&#39;&#39;</code> of <code>L&#39;</code>, if the sum of the elements of <code>L&#39;&#39;</code> is strictly positive:</li>
-<li>Collect all the strictly positive integers from <code>L&#39;&#39;</code> and add them to the first list.</li>
-</ul>
-</li>
-<li><p>Second List in the Pair:</p>
-<ul>
-<li>This is similar to the first list but slightly simpler:</li>
-<li>For each sublist <code>L&#39;</code> of <code>L</code>, if its length is at least n:</li>
-<li>For each sublist <code>L&#39;&#39;</code> of <code>L&#39;</code>, if the sum of its members is strictly positive:</li>
-<li>Directly collect all the strictly positive integers from <code>L&#39;&#39;</code> and add them to the second list.</li>
-</ul>
-</li>
-</ol>
-<p>The task specifies that we must use <strong>list comprehensions</strong> only—no loops, functions, or other control structures.</p>
-<h3 id="My-Solution-1"><a href="#My-Solution-1" class="headerlink" title="My Solution"></a>My Solution</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f3</span>(<span class="params">L, n</span>):</span><br><span class="line">    <span class="comment"># First list comprehension: we process L&#x27; for length and filter based on sum</span></span><br><span class="line">    first = [</span><br><span class="line">        [x <span class="keyword">for</span> L2 <span class="keyword">in</span> L1 <span class="keyword">if</span> <span class="built_in">sum</span>(L2) &gt; <span class="number">0</span> <span class="keyword">for</span> x <span class="keyword">in</span> L2 <span class="keyword">if</span> x &gt; <span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> L1 <span class="keyword">in</span> L <span class="keyword">if</span> <span class="built_in">len</span>(L1) &gt;= n</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Second list comprehension: similar filtering but simpler output structure</span></span><br><span class="line">    second = [</span><br><span class="line">        [x <span class="keyword">for</span> x <span class="keyword">in</span> L2 <span class="keyword">if</span> x &gt; <span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> L1 <span class="keyword">in</span> L <span class="keyword">if</span> <span class="built_in">len</span>(L1) &gt;= n <span class="keyword">for</span> L2 <span class="keyword">in</span> L1 <span class="keyword">if</span> <span class="built_in">sum</span>(L2) &gt; <span class="number">0</span></span><br><span class="line">    ]</span><br><span class="line">    <span class="keyword">return</span> first, second</span><br></pre></td></tr></table></figure>
-
-<h3 id="Explanation-1"><a href="#Explanation-1" class="headerlink" title="Explanation"></a>Explanation</h3><ol>
-<li><p>First List (<code>first</code>):</p>
-<ul>
-<li>We first filter out the sublists <code>L1</code> whose length is at least <code>n</code> (<code>for L1 in L if len(L1) &gt;= n</code>).</li>
-<li>Inside this, for each valid <code>L1</code>, we process its members <code>L2</code> (which are sublists of integers). We check if the sum of elements of L2 is strictly positive (<code>if sum(L2) &gt; 0</code>).</li>
-<li>For each valid <code>L2</code>, we collect the strictly positive integers (<code>for x in L2 if x &gt; 0</code>).</li>
-<li>This gives us the first list of lists, where each list contains the positive integers from sublists of sublists whose sum is positive.</li>
-</ul>
-</li>
-<li><p>Second List (<code>second</code>):</p>
-<ul>
-<li>Similar to the first list, but here we directly collect the strictly positive integers from the valid sublists <code>L2</code>, without additional nesting.</li>
-<li>We again check that the sum of <code>L2</code> is strictly positive and that the length of <code>L1</code> is at least <code>n</code>.</li>
-<li>The result is a more flattened structure than the first list.</li>
-</ul>
-</li>
-<li><p>Key Concepts:</p>
-<ul>
-<li>Filtering: Both lists involve filtering based on the length of L1 and the sum of L2.</li>
-<li>List Comprehensions: Used extensively to meet the problem’s requirement of not using explicit loops or other control structures.</li>
-</ul>
-</li>
-</ol>
-<h3 id="Standard-Solution-2"><a href="#Standard-Solution-2" class="headerlink" title="Standard Solution"></a>Standard Solution</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f3</span>(<span class="params">L, n</span>):</span><br><span class="line">    <span class="keyword">return</span> ([[e <span class="keyword">for</span> L2 <span class="keyword">in</span> L1 <span class="keyword">if</span> <span class="built_in">sum</span>(L2) &gt; <span class="number">0</span></span><br><span class="line">                 <span class="keyword">for</span> e <span class="keyword">in</span> L2 <span class="keyword">if</span> e &gt; <span class="number">0</span></span><br><span class="line">             ] <span class="keyword">for</span> L1 <span class="keyword">in</span> L <span class="keyword">if</span> <span class="built_in">len</span>(L1) &gt;= n</span><br><span class="line">            ],</span><br><span class="line">            [[e <span class="keyword">for</span> e <span class="keyword">in</span> L2 <span class="keyword">if</span> e &gt; <span class="number">0</span>]</span><br><span class="line">                 <span class="keyword">for</span> L1 <span class="keyword">in</span> L <span class="keyword">if</span> <span class="built_in">len</span>(L1) &gt;= n</span><br><span class="line">                     <span class="keyword">for</span> L2 <span class="keyword">in</span> L1 <span class="keyword">if</span> <span class="built_in">sum</span>(L2) &gt; <span class="number">0</span></span><br><span class="line">            ]</span><br><span class="line">           )</span><br></pre></td></tr></table></figure>
-
-<h1 id="Exercise-4"><a href="#Exercise-4" class="headerlink" title="Exercise 4"></a>Exercise 4</h1><p>We are given a list <code>L</code> of integers, and the goal is to return a list of lists that consists of pairs of elements from the <strong>beginning</strong> and <strong>end</strong> of the list. Specifically:</p>
-<ol>
-<li>The number of pairs <code>n</code> at the beginning and the end should be as large as possible while maintaining symmetry.</li>
-<li>If the length of <code>L</code> is odd, the remaining element in the middle (that cannot form a pair) should be included as a single list.</li>
-<li>No <code>for</code> or <code>while</code> loops should be used in the implementation.</li>
-</ol>
-<h3 id="My-Solution-2"><a href="#My-Solution-2" class="headerlink" title="My Solution"></a>My Solution</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f4</span>(<span class="params">L: <span class="built_in">list</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">list</span>[<span class="built_in">list</span>[<span class="built_in">int</span>]]:</span><br><span class="line">    <span class="comment"># Calculate the number of pairs we can take from both the beginning and end.</span></span><br><span class="line">    n = <span class="built_in">len</span>(L) // <span class="number">2</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Take pairs from the beginning of the list. These are the first n // 2 pairs.</span></span><br><span class="line">    start_pairs = [L[i:i + <span class="number">2</span>] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(L) //  <span class="number">4</span> * <span class="number">2</span>, <span class="number">2</span>)]</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Take pairs from the end of the list. These are the last n // 2 pairs.</span></span><br><span class="line">    end_pairs = [L[i:i + <span class="number">2</span>] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(L) - (<span class="built_in">len</span>(L) // <span class="number">4</span> * <span class="number">2</span>), <span class="built_in">len</span>(L) - <span class="number">1</span>, <span class="number">2</span>)]</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Calculate the remaining part (middle element if the list length is odd).</span></span><br><span class="line">    remain_part = [L[<span class="built_in">len</span>(L) //  <span class="number">4</span> * <span class="number">2</span> : <span class="built_in">len</span>(L) -(<span class="built_in">len</span>(L) // <span class="number">4</span> * <span class="number">2</span>)]] <span class="keyword">if</span> <span class="built_in">len</span>(L) % <span class="number">4</span> <span class="keyword">else</span> []</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Combine the start pairs, the remaining part (if any), and the end pairs.</span></span><br><span class="line">    <span class="keyword">return</span> start_pairs + remain_part + end_pairs <span class="keyword">if</span> remain_part <span class="keyword">else</span> start_pairs + end_pairs</span><br></pre></td></tr></table></figure>
-
-<h3 id="Standard-Solution-3"><a href="#Standard-Solution-3" class="headerlink" title="Standard Solution"></a>Standard Solution</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f4</span>(<span class="params">L</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(L) % <span class="number">2</span>:</span><br><span class="line">        <span class="keyword">return</span> [L[i : i + <span class="number">2</span>] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(L) //  <span class="number">4</span> * <span class="number">2</span>, <span class="number">2</span>)] +\</span><br><span class="line">            [L[<span class="built_in">len</span>(L) //  <span class="number">4</span> * <span class="number">2</span> : <span class="built_in">len</span>(L) -(<span class="built_in">len</span>(L) // <span class="number">4</span> * <span class="number">2</span>)]] +\</span><br><span class="line">            [L[i : i + <span class="number">2</span>] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(L) - (<span class="built_in">len</span>(L) // <span class="number">4</span> * <span class="number">2</span>), <span class="built_in">len</span>(L) - <span class="number">1</span>, <span class="number">2</span>)]</span><br><span class="line">    <span class="keyword">return</span> [L[i : i + <span class="number">2</span>] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(L) - <span class="number">1</span>, <span class="number">2</span>)]</span><br></pre></td></tr></table></figure>
-
-<h3 id="Explanation-2"><a href="#Explanation-2" class="headerlink" title="Explanation"></a>Explanation</h3><p>The reason of why we use <code>len(L) // 4 * 2</code> is that we want to get the number of pairs we can take from both the <strong>beginning</strong> and <strong>end</strong>.</p>
-<p>We have a pair at the beginning and a pair at the end, so we need to divide the length of the list by <code>4</code> to get the number of pairs. We then multiply this by <code>2</code> to get the total number of elements in these pairs.</p>
-<h1 id="Exercise-5"><a href="#Exercise-5" class="headerlink" title="Exercise 5"></a>Exercise 5</h1><p>Before E5, let’s do some exercises.</p>
-<h3 id="Normal-dictionary"><a href="#Normal-dictionary" class="headerlink" title="Normal dictionary:"></a>Normal dictionary:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">d = &#123;&#125;</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> [<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>]:</span><br><span class="line">    <span class="keyword">if</span> i <span class="keyword">in</span> d:</span><br><span class="line">        d[i] += <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="comment"># need to initialize the value of the key</span></span><br><span class="line">        d[i] = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(d)</span><br></pre></td></tr></table></figure>
-<h3 id="defaultdict"><a href="#defaultdict" class="headerlink" title="defaultdict:"></a>defaultdict:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</span><br><span class="line"></span><br><span class="line">d = defaultdict(<span class="built_in">int</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> [<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>]:</span><br><span class="line">    <span class="comment"># no need to initialize the value of the key</span></span><br><span class="line">    d[i] += <span class="number">1</span></span><br><span class="line">    </span><br><span class="line"><span class="built_in">print</span>(d)</span><br></pre></td></tr></table></figure>
-
-<h3 id="Counter"><a href="#Counter" class="headerlink" title="Counter:"></a>Counter:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line"></span><br><span class="line"><span class="comment"># easy to count the number of each element</span></span><br><span class="line">d = Counter([<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>])</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(d)</span><br></pre></td></tr></table></figure>
-
-
-
-
-<h3 id="Problem-Description-3"><a href="#Problem-Description-3" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>The task is to count the number of customers from different countries by reading a CSV file and then printing the count per country in alphabetical order.</p>
-<p>The provided solutions use Python’s csv module to read the data and a dictionary (from the collections.defaultdict class) to keep track of the count of customers from each country.</p>
-<h3 id="My-Solution-3"><a href="#My-Solution-3" class="headerlink" title="My Solution"></a>My Solution</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f5</span>(<span class="params">filename= <span class="string">&#x27;customers-100.csv&#x27;</span></span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">    <span class="comment"># read the file</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(filename, newline=<span class="string">&#x27;&#x27;</span>) <span class="keyword">as</span> csvfile:</span><br><span class="line">        reader = csv.reader(csvfile)</span><br><span class="line">        <span class="built_in">next</span>(reader)  <span class="comment"># skip the header</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># count the number of customers per country</span></span><br><span class="line">        count = defaultdict(<span class="built_in">int</span>)</span><br><span class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> reader:</span><br><span class="line">            count[row[<span class="number">6</span>]] += <span class="number">1</span>  <span class="comment"># country is in the 7th column</span></span><br><span class="line">            </span><br><span class="line">    <span class="comment"># Print the results sorted by country name</span></span><br><span class="line">    <span class="keyword">for</span> key, value <span class="keyword">in</span> <span class="built_in">sorted</span>(count.items()):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;<span class="subst">&#123;value&#125;</span> from <span class="subst">&#123;key&#125;</span>&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<h3 id="Standard-Solution-4"><a href="#Standard-Solution-4" class="headerlink" title="Standard Solution"></a>Standard Solution</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</span><br><span class="line"></span><br><span class="line">countries = defaultdict(<span class="built_in">int</span>)</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;customers-100.csv&#x27;</span>) <span class="keyword">as</span> file:</span><br><span class="line">    _ = <span class="built_in">next</span>(file)  <span class="comment"># skip the header</span></span><br><span class="line">    csv_file = csv.reader(file)</span><br><span class="line">    <span class="keyword">for</span> records <span class="keyword">in</span> csv_file:</span><br><span class="line">        countries[records[<span class="number">6</span>]] += <span class="number">1</span>  <span class="comment"># country data is in the 7th column</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Print the results sorted by country name</span></span><br><span class="line"><span class="keyword">for</span> country <span class="keyword">in</span> <span class="built_in">sorted</span>(countries):</span><br><span class="line">    <span class="built_in">print</span>(countries[country], <span class="string">&#x27;from&#x27;</span>, country)</span><br></pre></td></tr></table></figure>
-
-<h3 id="Additional-Solution"><a href="#Additional-Solution" class="headerlink" title="Additional Solution"></a>Additional Solution</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f5_counter</span>(<span class="params">filename=<span class="string">&#x27;customers-100.csv&#x27;</span></span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(filename, newline=<span class="string">&#x27;&#x27;</span>) <span class="keyword">as</span> csvfile:</span><br><span class="line">        reader = csv.reader(csvfile)</span><br><span class="line">        <span class="built_in">next</span>(reader)  <span class="comment"># skip the header</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># Create a Counter from the country column (assumed to be the 7th column)</span></span><br><span class="line">        country_counter = Counter(row[<span class="number">6</span>] <span class="keyword">for</span> row <span class="keyword">in</span> reader)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Print the results sorted by country name</span></span><br><span class="line">    <span class="keyword">for</span> key, value <span class="keyword">in</span> <span class="built_in">sorted</span>(country_counter.items()):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;<span class="subst">&#123;value&#125;</span> from <span class="subst">&#123;key&#125;</span>&#x27;</span>)</span><br><span class="line"></span><br><span class="line">f5_counter()</span><br></pre></td></tr></table></figure>
-
-<h3 id="Additional-Additional-Solution-Data-Analysis-NOT-Mandatory"><a href="#Additional-Additional-Solution-Data-Analysis-NOT-Mandatory" class="headerlink" title="Additional Additional Solution (Data Analysis) (NOT Mandatory)"></a>Additional Additional Solution (Data Analysis) (NOT Mandatory)</h3><p><strong>Not Mandatory</strong>, but it’s a good way to learn how to use pandas to do data analysis.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="comment"># read file by pandas</span></span><br><span class="line">df = pd.read_csv(<span class="string">&quot;customers-100.csv&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># use pandas&#x27; count()</span></span><br><span class="line">country_counts = df[<span class="string">&#x27;Country&#x27;</span>].value_counts().sort_index()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> country, count <span class="keyword">in</span> country_counts.items():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;<span class="subst">&#123;count&#125;</span> from <span class="subst">&#123;country&#125;</span>&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<h3 id="Explanation-3"><a href="#Explanation-3" class="headerlink" title="Explanation"></a>Explanation</h3><h4 id="Reading-the-CSV-file"><a href="#Reading-the-CSV-file" class="headerlink" title="Reading the CSV file:"></a>Reading the CSV file:</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df = pd.read_csv(filename)</span><br></pre></td></tr></table></figure>
-<p>Using the <code>read_csv()</code> function, Pandas can directly load a CSV file into a <code>DataFrame</code> object, which is similar to a table structure. Each column becomes an attribute of the <code>DataFrame</code>, and the column names automatically become the labels for the <code>DataFrame</code>.</p>
-<h4 id="Counting-the-number-of-customers-per-country"><a href="#Counting-the-number-of-customers-per-country" class="headerlink" title="Counting the number of customers per country:"></a>Counting the number of customers per country:</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">&#x27;Country&#x27;</span>].value_counts()</span><br></pre></td></tr></table></figure>
-
-<p><code>Pandas</code> provides the <code>value_counts()</code> method, which can directly count the frequency of each value in a column. Here, we call <code>value_counts()</code> on the <code>Country</code> column to get the number of customers from each country.</p>
-<h1 id="Exercise-6"><a href="#Exercise-6" class="headerlink" title="Exercise 6"></a>Exercise 6</h1><h3 id="Problem-Description-4"><a href="#Problem-Description-4" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>The task is to create a directory structure where:</p>
-<p><img src="../assets/img/2024-10-08.png" alt="2024-10-08.png"></p>
-<ul>
-<li>There is a top-level directory named <code>First_10_words_per_letter</code>.</li>
-<li>Under this directory, there are two subdirectories:<ul>
-<li><strong>Vowels</strong>: Containing files for letters <code>A</code>, <code>E</code>, <code>I</code>, <code>O</code>, <code>U</code>, <code>Y</code>.</li>
-<li><strong>Consonants</strong>: Containing files for the rest of the letters in the alphabet (B, C, D, etc.).</li>
-</ul>
-</li>
-<li>Each letter (A to Z) has its own file, and each file contains the first 10 words from a dictionary.txt file that start with that letter.</li>
-<li>The directory structure and the files should be generated programmatically, without using any existing hierarchy.</li>
-</ul>
-<h3 id="My-Solution-Not-Perfect-it-relies-on-the-sort-of-dictionary-txt"><a href="#My-Solution-Not-Perfect-it-relies-on-the-sort-of-dictionary-txt" class="headerlink" title="My Solution(Not Perfect, it relies on the sort of dictionary.txt )"></a>My Solution(Not Perfect, it relies on the sort of dictionary.txt )</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> pathlib <span class="keyword">import</span> Path</span><br><span class="line"><span class="keyword">from</span> string <span class="keyword">import</span> ascii_uppercase</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    <span class="comment"># Create the top directory</span></span><br><span class="line">    top_dir = Path(<span class="string">&#x27;First_10_words_per_letter&#x27;</span>)</span><br><span class="line">    <span class="comment"># Create the subdirectories</span></span><br><span class="line">    vowels_dir = top_dir / <span class="string">&#x27;Vowels&#x27;</span></span><br><span class="line">    consonants_dir = top_dir / <span class="string">&#x27;Consonants&#x27;</span></span><br><span class="line">    os.makedirs(vowels_dir)</span><br><span class="line">    os.makedirs(consonants_dir)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Create the files for each letter</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;dictionary.txt&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        <span class="keyword">for</span> letter <span class="keyword">in</span> ascii_uppercase:</span><br><span class="line">            <span class="comment"># Read the first 10 words starting with the letter</span></span><br><span class="line">            count = <span class="number">0</span></span><br><span class="line">            <span class="comment"># Write the words to the file</span></span><br><span class="line">            letter_dir = vowels_dir <span class="keyword">if</span> letter <span class="keyword">in</span> <span class="string">&#x27;AEIOUY&#x27;</span> <span class="keyword">else</span> consonants_dir</span><br><span class="line">            <span class="keyword">with</span> <span class="built_in">open</span>(letter_dir / <span class="string">f&#x27;<span class="subst">&#123;letter&#125;</span>.txt&#x27;</span>, <span class="string">&#x27;w&#x27;</span>) <span class="keyword">as</span> f2:</span><br><span class="line">                <span class="keyword">for</span> word <span class="keyword">in</span> f:</span><br><span class="line">                    <span class="keyword">if</span> word[<span class="number">0</span>] == letter:</span><br><span class="line">                        f2.write(word)</span><br><span class="line">                        count += <span class="number">1</span></span><br><span class="line">                    <span class="keyword">if</span> count &gt;= <span class="number">10</span>:</span><br><span class="line">                        <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-
-<h3 id="Explanation-4"><a href="#Explanation-4" class="headerlink" title="Explanation"></a>Explanation</h3><p>Explanation of My Solution:</p>
-<ol>
-<li><p>Creating Directories:</p>
-<ul>
-<li>I use <code>os.makedirs()</code> to create the top directory (<code>First_10_words_per_letter</code>) and its subdirectories (<code>Vowels</code> and <code>Consonants</code>).</li>
-</ul>
-</li>
-<li><p>Reading the Dictionary File:</p>
-<ul>
-<li>The program reads from dictionary.txt and processes each letter in the alphabet (ascii_uppercase).</li>
-<li>For each letter, I decide whether to place the corresponding file in the Vowels or Consonants subdirectory based on whether the letter is a vowel or consonant.</li>
-</ul>
-</li>
-<li><p>Writing the Words:</p>
-<ul>
-<li>The program writes the first 10 words starting with the given letter into the corresponding .txt file.</li>
-</ul>
-</li>
-<li><p>Potential Issue:</p>
-<ul>
-<li>here is some limitations of this. Say that processing the dictionary on the fly would not be an option if the words in the file were not lexicographically ordered?</li>
-</ul>
-</li>
-</ol>
-<h3 id="Standard-Solution-5"><a href="#Standard-Solution-5" class="headerlink" title="Standard Solution"></a>Standard Solution</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> pathlib <span class="keyword">import</span> Path</span><br><span class="line"><span class="keyword">from</span> string <span class="keyword">import</span> ascii_uppercase</span><br><span class="line"></span><br><span class="line">top_dir = Path(<span class="string">&#x27;First_10_words_per_letter&#x27;</span>)</span><br><span class="line">os.mkdir(top_dir)</span><br><span class="line">vowels_dir = top_dir / <span class="string">&#x27;Vowels&#x27;</span></span><br><span class="line">consonants_dir = top_dir / <span class="string">&#x27;Consonants&#x27;</span></span><br><span class="line">os.mkdir(vowels_dir)</span><br><span class="line">os.mkdir(consonants_dir)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;dictionary.txt&#x27;</span>) <span class="keyword">as</span> dictionary:</span><br><span class="line">    <span class="keyword">for</span> letter <span class="keyword">in</span> ascii_uppercase:</span><br><span class="line">        letter_dir = vowels_dir <span class="keyword">if</span> letter <span class="keyword">in</span> <span class="string">&#x27;AEIOUY&#x27;</span> <span class="keyword">else</span> consonants_dir</span><br><span class="line">        count = <span class="number">0</span></span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(letter_dir / <span class="string">f&#x27;<span class="subst">&#123;letter&#125;</span>.txt&#x27;</span>, <span class="string">&#x27;w&#x27;</span>) <span class="keyword">as</span> filename:</span><br><span class="line">            <span class="keyword">for</span> word <span class="keyword">in</span> dictionary:</span><br><span class="line">                <span class="keyword">if</span> word[<span class="number">0</span>] != letter:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                <span class="keyword">if</span> count &gt;= <span class="number">10</span>:</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">                <span class="built_in">print</span>(word, file=filename, end=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">                count += <span class="number">1</span></span><br></pre></td></tr></table></figure>
-                
-            
-
-            <!-- 添加打赏 -->
-            
-
-            <!-- 添加版权声明 -->
-            
-
-        </div>
-
-        <!-- 添加置顶 -->
-        <div class="article-info article-info-index">
-            
-
-            <!-- 分类页 -->
-            
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">9021</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">TUT</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-            
-
-            <!-- 添加展开全文 -->
-            
-                <p class="article-more-link">
-                    <a class="article-more-a" href="/post/231af838.html">show all >></a>
-                </p>
-            
-
-            <!-- 添加分享 -->
-            
-
-            <div class="clearfix"></div>
-
-        </div>
-    </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-    
-
-<!-- 文章页添加mathjax公式 -->
-  
-    <article id="post-Horse Racing-Inter-Uni Programming Contest" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/7ab03a1b.html">Horse Racing-Inter-Uni Programming Contest</a>
-    </h2>
-  
-
-
-                
-                    <a href="/post/7ab03a1b.html" class="archive-article-date">
-  	<time datetime="2024-10-03T08:57:12.475Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2024-10-03</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-                
-
-                
-                    <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">497字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">2min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-                
-            </header>
-        
-
-        <div class="article-entry" itemprop="articleBody">
-            <!-- 添加分类与标签 -->
-            
-                
-                    <h1 id="Description"><a href="#Description" class="headerlink" title="Description:"></a>Description:</h1><p><a target="_blank" rel="noopener" href="https://interunia.unswcpmsoc.com/task/Horse%20Racing/">https://interunia.unswcpmsoc.com/task/Horse%20Racing/</a></p>
-<h1 id="Thinking"><a href="#Thinking" class="headerlink" title="Thinking:"></a>Thinking:</h1><h3 id="Preprocessing-Horse-Information"><a href="#Preprocessing-Horse-Information" class="headerlink" title="Preprocessing Horse Information:"></a>Preprocessing Horse Information:</h3><p>Combine horse information into a list of tuples, <code>horses</code>, where each tuple contains the horse index, starting position, and velocity.<br>Sort the horses by starting position in descending order. If two horses have the same starting position, sort them by velocity in descending order. This is because the horse with the highest starting position leads initially.</p>
-<h3 id="Constructing-the-Leading-Horse-Timeline"><a href="#Constructing-the-Leading-Horse-Timeline" class="headerlink" title="Constructing the Leading Horse Timeline:"></a>Constructing the Leading Horse Timeline:</h3><ul>
-<li>Use a stack <code>stack</code> to maintain the horses that could become the leader.</li>
-<li>For each horse, check if it has the potential to overtake the current leading horse.<ul>
-<li>If the current horse’s speed is less than or equal to the horse at the top of the stack, it can never overtake and is discarded.</li>
-<li>If the current horse’s speed is greater than the top horse’s, calculate when it will overtake the current leader.</li>
-<li>If the calculated overtaking time is invalid (e.g., earlier than the previous overtaking time), adjust the stack by removing horses that can no longer lead.</li>
-</ul>
-</li>
-</ul>
-<h3 id="Handling-Queries"><a href="#Handling-Queries" class="headerlink" title="Handling Queries:"></a>Handling Queries:</h3><p>Use binary search to handle each query time <code>t</code> in the <code>times</code> list to find the corresponding leading horse.<br><code>bisect.bisect_right(times, t) - 1</code> finds the first time point greater than <code>t</code>, then subtract one to get the corresponding horse index.</p>
-<p><strong>Timeline Construction</strong>: We build a timeline that records the time points when the leading horse changes and the horse that leads during that period.</p>
-<p><strong>Binary Search for Queries</strong>: Since the timeline is sorted chronologically, we can efficiently find the leading horse for each query time using binary search.</p>
-<h1 id="Codes"><a href="#Codes" class="headerlink" title="Codes:"></a>Codes:</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">n, q = <span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().split())</span><br><span class="line">s_list = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().split()))</span><br><span class="line">v_list = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().split()))</span><br><span class="line">t_list = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().split()))</span><br><span class="line"></span><br><span class="line">horses = <span class="built_in">list</span>(<span class="built_in">zip</span>(<span class="built_in">range</span>(n), s_list, v_list))</span><br><span class="line"><span class="comment"># Sort horses by decreasing s_i</span></span><br><span class="line">horses.sort(key=<span class="keyword">lambda</span> x: (-x[<span class="number">1</span>], -x[<span class="number">2</span>]))  <span class="comment"># (-s_i, -v_i)</span></span><br><span class="line"></span><br><span class="line">stack = []</span><br><span class="line"><span class="comment"># 存储每次马匹变化的时间点</span></span><br><span class="line">times = []</span><br><span class="line"><span class="comment"># 存储每次马匹变化的编号</span></span><br><span class="line">horse_indices = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> idx, s_i, v_i <span class="keyword">in</span> horses:</span><br><span class="line">    discard = <span class="literal">False</span></span><br><span class="line">    <span class="comment"># 检查是否可以领先</span></span><br><span class="line">    <span class="keyword">while</span> stack:</span><br><span class="line">        <span class="comment"># 看看顶部</span></span><br><span class="line">        jdx, s_j, v_j = stack[-<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">if</span> v_i &lt;= v_j:</span><br><span class="line">            <span class="comment"># 如果它的速度小于或等于当前领导者的速度，它永远无法超越并被丢弃。</span></span><br><span class="line">            discard = <span class="literal">True</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># Compute t_int</span></span><br><span class="line">            t_prev = times[-<span class="number">1</span>] <span class="keyword">if</span> times <span class="keyword">else</span> <span class="number">0.0</span></span><br><span class="line">            <span class="comment"># 可能超过的时间</span></span><br><span class="line">            t_int = (s_j - s_i) / (v_i - v_j)</span><br><span class="line">            <span class="keyword">if</span> t_int &lt;= t_prev:</span><br><span class="line">                stack.pop()</span><br><span class="line">                times.pop()</span><br><span class="line">                horse_indices.pop()</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> discard:</span><br><span class="line">        <span class="keyword">if</span> stack:</span><br><span class="line">            t_int = (s_j - s_i) / (v_i - v_j)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            t_int = <span class="number">0.0</span></span><br><span class="line">        stack.append((idx, s_i, v_i))</span><br><span class="line">        times.append(t_int)</span><br><span class="line">        horse_indices.append(idx)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> bisect</span><br><span class="line"></span><br><span class="line">result = []</span><br><span class="line"><span class="keyword">for</span> t <span class="keyword">in</span> t_list:</span><br><span class="line">    idx = bisect.bisect_right(times, t) -<span class="number">1</span></span><br><span class="line">    idx = <span class="built_in">max</span>(<span class="number">0</span>, idx)</span><br><span class="line">    result.append(horse_indices[idx]+<span class="number">1</span>)  <span class="comment"># +1 to convert to 1-based indexing</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27; &#x27;</span>.join(<span class="built_in">map</span>(<span class="built_in">str</span>, result)))</span><br></pre></td></tr></table></figure>
-                
-            
-
-            <!-- 添加打赏 -->
-            
-
-            <!-- 添加版权声明 -->
-            
-
-        </div>
-
-        <!-- 添加置顶 -->
-        <div class="article-info article-info-index">
-            
-
-            <!-- 分类页 -->
-            
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Contest</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-            
-
-            <!-- 添加展开全文 -->
-            
-                <p class="article-more-link">
-                    <a class="article-more-a" href="/post/7ab03a1b.html">show all >></a>
-                </p>
-            
-
-            <!-- 添加分享 -->
-            
-
-            <div class="clearfix"></div>
-
-        </div>
-    </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-    
-
-<!-- 文章页添加mathjax公式 -->
-  
-    <article id="post-Counting Stars-Inter-Uni Programming Contest" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/a29b0a05.html">Counting Stars-Inter-Uni Programming Contest</a>
-    </h2>
-  
-
-
-                
-                    <a href="/post/a29b0a05.html" class="archive-article-date">
-  	<time datetime="2024-10-03T08:57:12.474Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2024-10-03</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-                
-
-                
-                    <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">299字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">1min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-                
-            </header>
-        
-
-        <div class="article-entry" itemprop="articleBody">
-            <!-- 添加分类与标签 -->
-            
-                
-                    <h1 id="Description"><a href="#Description" class="headerlink" title="Description:"></a>Description:</h1><p><a target="_blank" rel="noopener" href="https://interunia.unswcpmsoc.com/task/Counting%20Stars/">https://interunia.unswcpmsoc.com/task/Counting%20Stars/</a></p>
-<h1 id="Thinking"><a href="#Thinking" class="headerlink" title="Thinking:"></a>Thinking:</h1><ul>
-<li>Given a set of star positions, we need to calculate the minimum number of stars required to explain these positions.</li>
-<li>Meteors (i.e., moving stars) move from left to right, and from high to low (x coordinates increase, y coordinates decrease), without moving horizontally or vertically.</li>
-<li>Each meteor may appear in multiple positions (because it moves), and the final cumulative image will show all the positions it has passed through.</li>
-<li>The positions of fixed stars remain unchanged.</li>
-</ul>
-<p>Therefore, we need to maintain a list of the <strong>last y-coordinate of the current chain</strong>.</p>
-<ol>
-<li><strong>Sort the points</strong>: Sort them by increasing x coordinates.</li>
-<li><strong>Initialization</strong>: Create an empty list <code>last_y</code> to store the last y-coordinate of each chain.</li>
-<li><strong>Traverse the set of points</strong>:<ul>
-<li>For each point (x, y):<ul>
-<li>Use <code>bisect_right</code> to find the first position in <code>last_y</code> that is greater than the current y.</li>
-<li>If the index is less than the length of <code>last_y</code>, it means there is an existing chain that can accommodate the current point, so we update the last y-coordinate of that chain to the current y.</li>
-<li>If the index is equal to the length of <code>last_y</code>, it means no suitable chain is found, so we need to create a new chain and add the current y to <code>last_y</code>.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<h1 id="Code"><a href="#Code" class="headerlink" title="Code:"></a>Code:</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> bisect</span><br><span class="line"></span><br><span class="line">n = <span class="built_in">int</span>(<span class="built_in">input</span>())</span><br><span class="line">stars = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">    x, y = <span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().split())</span><br><span class="line">    stars.append((x, y))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 按 x 坐标递增排序</span></span><br><span class="line">stars.sort(key=<span class="keyword">lambda</span> x: (x[<span class="number">0</span>],))</span><br><span class="line"></span><br><span class="line">last_y = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> x, y <span class="keyword">in</span> stars:</span><br><span class="line">    idx = bisect.bisect_right(last_y, y)</span><br><span class="line">    <span class="keyword">if</span> idx &lt; <span class="built_in">len</span>(last_y):</span><br><span class="line">        last_y[idx] = y  <span class="comment"># 更新链的最后一个 y 坐标</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        last_y.append(y)  <span class="comment"># 创建新的链</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(last_y))</span><br></pre></td></tr></table></figure>
-                
-            
-
-            <!-- 添加打赏 -->
-            
-
-            <!-- 添加版权声明 -->
-            
-
-        </div>
-
-        <!-- 添加置顶 -->
-        <div class="article-info article-info-index">
-            
-
-            <!-- 分类页 -->
-            
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Contest</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Binary Search</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-            
-
-            <!-- 添加展开全文 -->
-            
-                <p class="article-more-link">
-                    <a class="article-more-a" href="/post/a29b0a05.html">show all >></a>
-                </p>
-            
-
-            <!-- 添加分享 -->
-            
-
-            <div class="clearfix"></div>
-
-        </div>
-    </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-    
-
-<!-- 文章页添加mathjax公式 -->
-  
-    <article id="post-9021_TUT_3" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/671a7e4.html">9021_TUT_3</a>
-    </h2>
-  
-
-
-                
-                    <a href="/post/671a7e4.html" class="archive-article-date">
-  	<time datetime="2024-10-03T08:57:12.473Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2024-10-03</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-                
-
-                
-                    <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">2.2k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">13min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-                
-            </header>
-        
-
-        <div class="article-entry" itemprop="articleBody">
-            <!-- 添加分类与标签 -->
-            
-                
-                    <h1 id="Exercise-1"><a href="#Exercise-1" class="headerlink" title="Exercise 1"></a>Exercise 1</h1><h3 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description:"></a>Problem Description:</h3><p>You are given two integers, <code>m</code> and <code>n</code>, where:</p>
-<ul>
-<li><code>m</code> represents the number of repeated units (patterns).</li>
-<li><code>n</code> represents the number of elements (underscores) within each unit.</li>
-</ul>
-<p>The goal is to generate a string where:</p>
-<ul>
-<li>Each unit contains <code>n</code> underscores (_), separated by <code>|</code>.</li>
-<li>These units are then concatenated together, separated by <code>*</code>.</li>
-</ul>
-<h3 id="My-Solution"><a href="#My-Solution" class="headerlink" title="My Solution:"></a>My Solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">generate_struct</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;|&#x27;</span>.join(n * [<span class="string">&#x27;_&#x27;</span>])</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f1</span>(<span class="params">m, n</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27; * &#x27;</span>.join(m * [generate_struct(n)])</span><br></pre></td></tr></table></figure>
-
-<h4 id="My-Thought-Process"><a href="#My-Thought-Process" class="headerlink" title="My Thought Process:"></a>My Thought Process:</h4><p>I think of each unit as a separate structure. So, I decompose the problem by breaking down the smallest unit, which is the structure made of underscores joined by <code>|</code>.<br>After constructing each unit, I use <code>join()</code> to combine them together using <code>*</code>.</p>
-<h4 id="Helper-Function-generate-struct-n"><a href="#Helper-Function-generate-struct-n" class="headerlink" title="Helper Function generate_struct(n):"></a>Helper Function generate_struct(n):</h4><p>This function generates the basic structure.<br>It creates a list of underscores (<code>_</code>) of length n and joins them with <code>|</code>.<br>Example: If <code>n = 2</code>, the result will be “<code>_|_</code>“.</p>
-<h3 id="Standard-Solution"><a href="#Standard-Solution" class="headerlink" title="Standard Solution:"></a>Standard Solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f1</span>(<span class="params">m, n</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27; * &#x27;</span>.join(<span class="string">&#x27;|&#x27;</span>.join(<span class="string">&#x27;_&#x27;</span> <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n)) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(m))</span><br></pre></td></tr></table></figure>
-
-<h3 id="Concise-Expression"><a href="#Concise-Expression" class="headerlink" title="Concise Expression:"></a>Concise Expression:</h3><p>The inner <code>join</code> creates a string of <code>n</code> underscores joined by <code>|</code> using a generator expression <code>(&#39;_&#39; for _ in range(n))</code>.<br>The outer <code>join</code> repeats this process <code>m</code> times and concatenates the units using <code>*</code>.</p>
-<p>In summary, my solution focuses on modularity by breaking down the problem into smaller parts (like creating a structural unit), whereas the standard solution compresses everything into one line using list comprehensions.</p>
-<h1 id="Exercise-2"><a href="#Exercise-2" class="headerlink" title="Exercise 2"></a>Exercise 2</h1><h3 id="Problem-Description-1"><a href="#Problem-Description-1" class="headerlink" title="Problem Description:"></a>Problem Description:</h3><p>The goal is to generate a pattern based on the digits of a given number n. Specifically:</p>
-<p>If a digit is odd, it should be represented by a black square (⬛).<br>If a digit is even, it should be represented by a white square (⬜).<br>The program takes a number n as input and prints a string of squares corresponding to the digits of n.</p>
-<h3 id="My-Solution-1"><a href="#My-Solution-1" class="headerlink" title="My Solution:"></a>My Solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f2</span>(<span class="params">n</span>):</span><br><span class="line">    ans = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">str</span>(n):</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">int</span>(i) % <span class="number">2</span> == <span class="number">0</span>:</span><br><span class="line">            ans += <span class="string">&#x27;⬜&#x27;</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            ans += <span class="string">&#x27;⬛&#x27;</span></span><br><span class="line">    <span class="built_in">print</span>(ans)</span><br></pre></td></tr></table></figure>
-
-<h4 id="My-Thought-Process-1"><a href="#My-Thought-Process-1" class="headerlink" title="My Thought Process:"></a>My Thought Process:</h4><ol>
-<li><p>Loop through each digit:<br>Convert the number n to a string to iterate over each digit individually.</p>
-</li>
-<li><p>Check if the digit is even or odd:<br>Convert each digit back to an integer and use the modulus operator (% 2) to check if the digit is even or odd.</p>
-</li>
-<li><p>Append the corresponding square:</p>
-<ul>
-<li>If the digit is even, append a white square (⬜) to the result string.</li>
-<li>If the digit is odd, append a black square (⬛).</li>
-</ul>
-</li>
-<li><p>Print the final string:<br>After processing all the digits, print the final string containing black and white squares.</p>
-</li>
-</ol>
-<h3 id="Standard-Solution-1"><a href="#Standard-Solution-1" class="headerlink" title="Standard Solution:"></a>Standard Solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f2</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;&#x27;</span>.join(&#123;<span class="number">0</span>: <span class="string">&#x27;\u2b1c&#x27;</span>, <span class="number">1</span>: <span class="string">&#x27;\u2b1b&#x27;</span>&#125;[<span class="built_in">int</span>(d) % <span class="number">2</span>] <span class="keyword">for</span> d <span class="keyword">in</span> <span class="built_in">str</span>(n)))</span><br></pre></td></tr></table></figure>
-
-<p>Dr.Martin’s solution is:</p>
-<ol>
-<li>More compact and Pythonic.</li>
-<li>Uses a dictionary and list comprehension for brevity and efficiency.</li>
-<li>The Unicode characters for the squares are referenced directly using their escape sequences (<code>\u2b1c</code> for white, <code>\u2b1b</code> for black).</li>
-</ol>
-<h1 id="Exercise-3"><a href="#Exercise-3" class="headerlink" title="Exercise 3"></a>Exercise 3</h1><h3 id="Problem-Description-2"><a href="#Problem-Description-2" class="headerlink" title="Problem Description:"></a>Problem Description:</h3><p>In this task, the number <code>n</code> is treated as a number expressed in different bases (ranging from 2 to 10), and we aim to convert it into its corresponding base 10 value for each of these bases, where the conversion is valid.</p>
-<p>For n = 2143:</p>
-<ul>
-<li><code>2143</code> in base <code>5</code> is equivalent to <code>298</code> in base <code>10</code>.</li>
-<li><code>2143</code> in base <code>6</code> is equivalent to <code>495</code> in base <code>10</code>.</li>
-<li>And so on.</li>
-</ul>
-<p>The goal is to iterate over different base systems from 2 to 10, treat the input number <code>n</code> as if it is expressed in each base, and then convert it to base 10.</p>
-<h3 id="My-Solution-2"><a href="#My-Solution-2" class="headerlink" title="My Solution:"></a>My Solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f3</span>(<span class="params">n: <span class="built_in">int</span></span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>, <span class="number">11</span>):</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="comment"># Treat n as a number in base i and convert it to base 10</span></span><br><span class="line">            value = <span class="built_in">int</span>(<span class="built_in">str</span>(n), i)</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&#x27;<span class="subst">&#123;n&#125;</span> is <span class="subst">&#123;value&#125;</span> in base <span class="subst">&#123;i&#125;</span>&#x27;</span>)</span><br><span class="line">        <span class="keyword">except</span> ValueError:</span><br><span class="line">            <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-<h4 id="My-Thought-Process-2"><a href="#My-Thought-Process-2" class="headerlink" title="My Thought Process:"></a>My Thought Process:</h4><ol>
-<li><p>Iterating over Bases (2 to 10):</p>
-<ul>
-<li>We loop through the base values i ranging from 2 to 10.</li>
-</ul>
-</li>
-<li><p>Conversion Using <code>int()</code>:</p>
-<ul>
-<li>For each base <code>i</code>, we treat the number <code>n</code> as a number in that base. To do this, we first convert <code>n</code> to a string (<code>str(n)</code>) and then use <code>int()</code> to interpret it as a base <code>i</code> number.</li>
-<li>If the digits of <code>n</code> are valid for base <code>i</code>, this conversion succeeds, and the result is the base 10 equivalent of <code>n</code>.</li>
-<li>If the digits of n are not valid for base i (for example, if base 2 is used and n contains digits greater than 1), a ValueError is raised, and we skip the invalid base.</li>
-</ul>
-</li>
-<li><p>Handling Errors with <code>try-except</code>:</p>
-<ul>
-<li>The <code>try-except</code> block ensures that invalid bases are skipped, allowing us to handle cases where the digits in <code>n</code> are not valid for a particular base.</li>
-</ul>
-</li>
-</ol>
-<h3 id="Standard-Solution-2"><a href="#Standard-Solution-2" class="headerlink" title="Standard Solution:"></a>Standard Solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f3</span>(<span class="params">n</span>):</span><br><span class="line">    n_as_string = <span class="built_in">str</span>(n)</span><br><span class="line">    min_base = <span class="built_in">max</span>(<span class="number">2</span>, <span class="built_in">max</span>(&#123;<span class="built_in">int</span>(d) <span class="keyword">for</span> d <span class="keyword">in</span> n_as_string&#125;) + <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">for</span> b <span class="keyword">in</span> <span class="built_in">range</span>(min_base, <span class="number">11</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;<span class="subst">&#123;n&#125;</span> is <span class="subst">&#123;<span class="built_in">int</span>(n_as_string, b)&#125;</span> in base <span class="subst">&#123;b&#125;</span>&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p>It skips the bases where the digits in n are not valid, and it uses a set comprehension to extract the unique digits from n_as_string. The maximum digit is then used to determine the minimum base to start iterating from.</p>
-<h1 id="Exercise-4"><a href="#Exercise-4" class="headerlink" title="Exercise 4"></a>Exercise 4</h1><h3 id="Problem-Description-3"><a href="#Problem-Description-3" class="headerlink" title="Problem Description:"></a>Problem Description:</h3><p>The task is to create a function <code>f4(n, base)</code> that returns a dictionary D, where:</p>
-<p>Keys are integers from <code>0</code> to <code>n</code>.<br>Values are tuples that represent the base <code>base</code> representation of each key, converted from base 10.</p>
-<h3 id="My-Solution-3"><a href="#My-Solution-3" class="headerlink" title="My Solution:"></a>My Solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">convert_to_base</span>(<span class="params">n, base</span>):</span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;0&#x27;</span></span><br><span class="line">    digits = []</span><br><span class="line">    <span class="keyword">while</span> n:</span><br><span class="line">        digits.append(<span class="built_in">str</span>(n % base))</span><br><span class="line">        n //= base</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>.join(digits[::-<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f4</span>(<span class="params">n: <span class="built_in">int</span>, base: <span class="built_in">int</span></span>):</span><br><span class="line">    D = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, n + <span class="number">1</span>):</span><br><span class="line">        D[i] = <span class="built_in">tuple</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, convert_to_base(i, base)))</span><br><span class="line">    <span class="keyword">return</span> D</span><br></pre></td></tr></table></figure>
-
-<h4 id="My-Thought-Process-3"><a href="#My-Thought-Process-3" class="headerlink" title="My Thought Process:"></a>My Thought Process:</h4><ol>
-<li><p>Helper Function <code>convert_to_base(n, base)</code>:</p>
-<ul>
-<li>This function converts a number <code>n</code> from base 10 to the specified base.</li>
-<li>We use a while loop to repeatedly take the modulus (<code>n % base</code>) and append the remainder to the list <code>digits</code>.</li>
-<li>We then divide <code>n</code> by <code>base</code> <code>(n //= base)</code> to reduce it for the next iteration.</li>
-<li>After collecting all digits, we reverse the list and return it as a string.</li>
-</ul>
-</li>
-<li><p>Main Function <code>f4(n, base)</code>:<br>We initialize an empty dictionary <code>D</code>.<br>For each number <code>i</code> from <code>0</code> to <code>n</code>, we convert <code>i</code> to the given base using <code>convert_to_base()</code>.<br>The converted base digits are then mapped to integers and stored in a tuple as the value for each key <code>i</code> in the dictionary.</p>
-</li>
-</ol>
-<h3 id="Explanation-of-Why-map-is-not-Pythonic"><a href="#Explanation-of-Why-map-is-not-Pythonic" class="headerlink" title="Explanation of Why map() is not Pythonic:"></a>Explanation of Why <code>map()</code> is not Pythonic:</h3><p>In the function f4, the use of <code>map(int, convert_to_base(i, base))</code> applies the <code>int</code> function<br>to each element of the result from <code>convert_to_base</code>, effectively converting each character to an integer.</p>
-<p>However, it’s worth noting that the <code>map()</code> function, which originates from functional programming,<br>has largely been superseded by more Pythonic constructs such as list comprehensions.</p>
-<p>These comprehensions are generally considered superior for several reasons:</p>
-<ul>
-<li>They are more elegant and concise.</li>
-<li>They tend to be shorter in terms of syntax, making the code easier to read.</li>
-<li>They are easier to understand for most people, especially those who are more familiar with Python’s<br>standard syntax rather than functional programming constructs.</li>
-<li>In many cases, they are also more efficient in terms of performance.</li>
-</ul>
-<p>For example, instead of using <code>map(int, ...)</code>, the same functionality could be achieved with a<br>list comprehension, like so:</p>
-<p>D[i] = tuple([int(digit) for digit in convert_to_base(i, base)])</p>
-<p>This list comprehension achieves the same result but follows a more modern Pythonic style.</p>
-<h3 id="Standard-Solution-3"><a href="#Standard-Solution-3" class="headerlink" title="Standard Solution:"></a>Standard Solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f4</span>(<span class="params">n, base</span>):</span><br><span class="line">    D = &#123;<span class="number">0</span>: (<span class="number">0</span>,)&#125;</span><br><span class="line">    <span class="keyword">for</span> m <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n + <span class="number">1</span>):</span><br><span class="line">        digits = []</span><br><span class="line">        p = m</span><br><span class="line">        <span class="keyword">while</span> p:</span><br><span class="line">            digits.append(p % base)</span><br><span class="line">            p //= base</span><br><span class="line">        D[m] = <span class="built_in">tuple</span>(<span class="built_in">reversed</span>(digits))</span><br><span class="line">    <span class="keyword">return</span> D</span><br></pre></td></tr></table></figure>
-
-<p>Both solutions are valid and achieve the same result. My approach uses a helper function for base conversion, which adds modularity,<br>whereas the standard solution is more concise and directly integrates the conversion logic into the main function.</p>
-<h1 id="Exercise-5"><a href="#Exercise-5" class="headerlink" title="Exercise 5"></a>Exercise 5</h1><p>At the first, try to run this:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="number">0.1</span> + <span class="number">0.2</span>)</span><br></pre></td></tr></table></figure>
-<p>What happened? The result is not 0.3, but 0.30000000000000004. Why?</p>
-<h3 id="Problem-Description-4"><a href="#Problem-Description-4" class="headerlink" title="Problem Description:"></a>Problem Description:</h3><p>The approach we are using in this exercise is designed to expose the limitations of floating-point arithmetic in computers. Let’s break down why this approach leads to precision inaccuracies and why other methods might not reveal these issues as clearly.</p>
-<p>This problem can seem complex, and it’s designed to highlight the subtleties of floating-point arithmetic. Let’s walk through the logic using the test cases to figure out what the function does.</p>
-<h3 id="Key-Concepts"><a href="#Key-Concepts" class="headerlink" title="Key Concepts:"></a>Key Concepts:</h3><ul>
-<li><strong>Floating-point numbers</strong>: Computers store floating-point numbers using a binary format, which often introduces precision errors.</li>
-<li><strong>Precision</strong>: We’re working with two types of precision in this function—simple precision (same as the length of the fractional part) and double precision (twice that length).</li>
-</ul>
-<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution:"></a>Solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f5</span>(<span class="params">integral_part, fractional_part</span>):</span><br><span class="line">    <span class="comment"># Calculate the number of digits in the fractional part</span></span><br><span class="line">    precision = <span class="built_in">len</span>(<span class="built_in">str</span>(fractional_part))</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Concatenate the integral and fractional parts as strings, then convert to a float</span></span><br><span class="line">    a_float = <span class="built_in">float</span>(<span class="built_in">str</span>(integral_part) + <span class="string">&#x27;.&#x27;</span> + <span class="built_in">str</span>(fractional_part))</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Format the float with precision equal to the number of digits in the fractional part (simple precision)</span></span><br><span class="line">    simple_precision = <span class="string">f&#x27;<span class="subst">&#123;a_float:.&#123;precision&#125;</span>f&#125;&#x27;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Append a number of zeros equal to the fractional part length to the simple precision value (extended precision)</span></span><br><span class="line">    extended_simple_precision = simple_precision + <span class="string">&#x27;0&#x27;</span> * precision</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Format the float with precision equal to twice the number of fractional digits (double precision)</span></span><br><span class="line">    double_precision = <span class="string">f&#x27;<span class="subst">&#123;a_float:.&#123;precision * <span class="number">2</span>&#125;</span>f&#125;&#x27;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Print the first part of the output</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;With&#x27;</span>, precision * <span class="number">2</span>, <span class="string">&#x27;digits after the decimal point, &#x27;</span>, end=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Compare if extended precision and double precision values are the same</span></span><br><span class="line">    <span class="keyword">if</span> extended_simple_precision == double_precision:</span><br><span class="line">        <span class="comment"># If they are the same, it means the float is precise and has trailing zeros</span></span><br><span class="line">        <span class="built_in">print</span>(simple_precision, <span class="string">&#x27;prints out with&#x27;</span>, precision, <span class="string">&#x27;trailing&#x27;</span>,</span><br><span class="line">              precision == <span class="number">1</span> <span class="keyword">and</span> <span class="string">&#x27;zero,&#x27;</span> <span class="keyword">or</span> <span class="string">&#x27;zeroes,&#x27;</span>, <span class="string">&#x27;namely, as&#x27;</span>,</span><br><span class="line">              extended_simple_precision</span><br><span class="line">             )</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="comment"># If not, there is a precision error, and no trailing zeros</span></span><br><span class="line">        <span class="built_in">print</span>(simple_precision, <span class="string">&#x27;prints out as&#x27;</span>, double_precision)</span><br></pre></td></tr></table></figure>
-
-<p>Our function attempts to check and display this floating point error with simple precision (<code>simple_precision</code>) and double precision (<code>double_precision</code>). The error becomes more obvious when we represent floating point numbers with higher precision (double the number of decimal places). So in this way, we show that floating point numbers are not always actually stored as we expect them to be with more precise representation.</p>
-<h1 id="Exercise-6"><a href="#Exercise-6" class="headerlink" title="Exercise 6"></a>Exercise 6</h1><h3 id="Problem-Description-5"><a href="#Problem-Description-5" class="headerlink" title="Problem Description:"></a>Problem Description:</h3><p>In this task, we are given:</p>
-<ul>
-<li>A list <code>L</code>, which contains multiple sub-lists of integers, and all sub-lists have the same length <code>n</code>.</li>
-<li>A list <code>fields</code>, which is a permutation of <code>&#123;1, ..., n&#125;</code>.</li>
-</ul>
-<p>We are required to sort the list L by using a multi-key sorting mechanism, where:</p>
-<ul>
-<li>First, the elements in <code>L</code> are sorted based on the position given by the first element of <code>fields</code>.</li>
-<li>If two sub-lists are equal based on the first field, we move to the second field, and so on.</li>
-<li>Finally, if required, the sorting proceeds up to the last field in <code>fields</code>.</li>
-</ul>
-<h3 id="Example-of-Fields-Explanation"><a href="#Example-of-Fields-Explanation" class="headerlink" title="Example of Fields Explanation:"></a>Example of Fields Explanation:</h3><p>If <code>fields = [2, 1]</code>, it means:</p>
-<ol>
-<li>First, sort based on the second element of each sublist.</li>
-<li>If there are ties (same values in the second position), sort based on the first element.</li>
-</ol>
-<h3 id="My-Solution-4"><a href="#My-Solution-4" class="headerlink" title="My Solution:"></a>My Solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f6</span>(<span class="params">L, fields</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">sorted</span>(L, key=<span class="keyword">lambda</span> x: [x[i-<span class="number">1</span>] <span class="keyword">for</span> i <span class="keyword">in</span> fields])</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li><p>Sorting with sorted():<br>The <code>sorted()</code> function is used to sort the list <code>L</code>.<br>The key parameter defines how the sorting will be performed.</p>
-</li>
-<li><p>Lambda Function:<br>The lambda function defines how the sublists will be sorted. It generates a list of values for each sublist based on the positions specified in <code>fields</code>.<br>For example, if <code>fields = [2, 1]</code>, the lambda function will extract the second and first elements from each sublist in that order, and sorting will be done based on this new list.</p>
-</li>
-<li><p>Key Structure:<br>The key is a list of elements from each sublist, indexed by the positions specified in fields. We use <code>x[i - 1]</code> because fields is <code>1-based</code>, and list indexing in Python is <code>0-based</code>.</p>
-</li>
-<li><p>What is Lambda Function?</p>
-</li>
-</ol>
-<p>For example:</p>
-<p>We have:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f = <span class="keyword">lambda</span> x: x * x</span><br></pre></td></tr></table></figure>
-
-<p>This is equivalent to:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> x * x</span><br></pre></td></tr></table></figure>
-
-<p>And lambda function in a sorted function is used to define a custom sorting key.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">L = [(<span class="number">1</span>,<span class="number">2</span>), (<span class="number">3</span>,<span class="number">1</span>), (<span class="number">5</span>,<span class="number">0</span>)]</span><br><span class="line"></span><br><span class="line">SortedL = <span class="built_in">sorted</span>(L, key=<span class="keyword">lambda</span> x: x[<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(SortedL)</span><br></pre></td></tr></table></figure>
-<p>The result is: <code>[(5, 0), (3, 1), (1, 2)]</code>, it sorts the list based on the second element of each tuple.</p>
-<h3 id="Standard-Solution-4"><a href="#Standard-Solution-4" class="headerlink" title="Standard Solution:"></a>Standard Solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f6</span>(<span class="params">L, fields</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">sorted</span>(L, key=<span class="keyword">lambda</span> x: <span class="built_in">tuple</span>(x[i - <span class="number">1</span>] <span class="keyword">for</span> i <span class="keyword">in</span> fields))</span><br></pre></td></tr></table></figure>
-
-<p><strong>Why Use a Tuple?</strong>:</p>
-<ul>
-<li>Tuples are often preferred for multi-key sorting because they are immutable, and Python’s built-in sorting functions can efficiently compare tuples.</li>
-<li>Each sublist is transformed into a tuple of its elements based on the order defined by fields. The sorted() function then uses these tuples to sort the list.</li>
-</ul>
-
-                
-            
-
-            <!-- 添加打赏 -->
-            
-
-            <!-- 添加版权声明 -->
-            
-
-        </div>
-
-        <!-- 添加置顶 -->
-        <div class="article-info article-info-index">
-            
-
-            <!-- 分类页 -->
-            
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">9021</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">lab</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-            
-
-            <!-- 添加展开全文 -->
-            
-                <p class="article-more-link">
-                    <a class="article-more-a" href="/post/671a7e4.html">show all >></a>
-                </p>
-            
-
-            <!-- 添加分享 -->
-            
-
-            <div class="clearfix"></div>
-
-        </div>
-    </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-    
-
-<!-- 文章页添加mathjax公式 -->
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/2/">下一页 &gt;&gt;</a>
@@ -2741,10 +2515,10 @@ window.MathJax = {
 	  <br>
 	  <div class="footer-center">
 	    <i class="fa fa-file-word-o" aria-hidden="true"></i>
-		<span> 115 篇</span>
+		<span> 119 篇</span>
 		<span class="post-meta-divider">|</span>
 		<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-		<span> <span class="post-count">56.1k</span></span>
+		<span> <span class="post-count">59.1k</span></span>
       </div>
 	  
 	  <!-- 添加不蒜子统计 -->
@@ -2789,7 +2563,7 @@ window.MathJax = {
       <div class="footer-center">
 	    <i class="fa fa-copyright" aria-hidden="true"></i> 
 		<!-- &copy; -->
-        2022-2024 loong loong
+        2022-2025 loong loong
 		 
 		  <span class="post-meta-divider">|</span>
 		  <a style="color:#1A1A1A" target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">新南威尔士龙龙号</a>
