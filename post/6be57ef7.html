@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" >
   
@@ -10,23 +12,23 @@
   <title>1825. Seek out MK average value | Siz Long</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta name="description" content="Problem -solvingmaintain 3 indivual multiset：lower（Minimum kkk indivual数）、middle（Number in the middle）、upper（Most kkk indivual数）。 Insert operation·if num≤max(lower)，Then lowerInsert num·if num≥min(up">
+  <meta name="description" content="topic：1824Minimum side jump number answer：I won’t https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;minimum-sideway-jumps&#x2F;solutions&#x2F;2071617&#x2F;cong-0-dao-1-de-0-1-bfspythonjavacgo-by-1m8z4&#x2F;?orderBy&#x3D;most_votes Code：123456789">
 <meta property="og:type" content="article">
 <meta property="og:title" content="1825. Seek out MK average value">
 <meta property="og:url" content="https://longsizhuo.github.io/post/6be57ef7.html">
 <meta property="og:site_name" content="Siz Long">
-<meta property="og:description" content="Problem -solvingmaintain 3 indivual multiset：lower（Minimum kkk indivual数）、middle（Number in the middle）、upper（Most kkk indivual数）。 Insert operation·if num≤max(lower)，Then lowerInsert num·if num≥min(up">
+<meta property="og:description" content="topic：1824Minimum side jump number answer：I won’t https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;minimum-sideway-jumps&#x2F;solutions&#x2F;2071617&#x2F;cong-0-dao-1-de-0-1-bfspythonjavacgo-by-1m8z4&#x2F;?orderBy&#x3D;most_votes Code：123456789">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://longsizhuo.github.io/assets/img/cadf1776c7767e9ac0bf17750f18368.png">
+<meta property="og:image" content="https://longsizhuo.github.io/assets/img/2023-01-22.png">
 <meta property="article:published_time" content="2023-12-31T13:00:00.000Z">
-<meta property="article:modified_time" content="2024-08-07T09:57:45.039Z">
+<meta property="article:modified_time" content="2024-08-07T09:57:45.038Z">
 <meta property="article:author" content="loong loong">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="unsolved">
 <meta property="article:tag" content="difficulty">
-<meta property="article:tag" content="Multiple set">
+<meta property="article:tag" content="Graph Theory">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://longsizhuo.github.io/assets/img/cadf1776c7767e9ac0bf17750f18368.png">
+<meta name="twitter:image" content="https://longsizhuo.github.io/assets/img/2023-01-22.png">
 
   
     <link rel="alternative" href="//atom.xml" title="Siz Long" type="application/atom+xml">
@@ -300,7 +302,7 @@ var _hmt = _hmt || [];
           <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
         </div>
         <div id="js-content" class="content-ll">
-          <article id="post-1825求出 MK 平均值_translated" class="article article-type-post " itemscope itemprop="blogPost">
+          <article id="post-1824最少侧跳次数_translated" class="article article-type-post " itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
@@ -359,7 +361,7 @@ var _hmt = _hmt || [];
 	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
         <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
         <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">216字</span>
+        <span class="post-count">153字</span>
       </span>
     </span>
 
@@ -383,15 +385,12 @@ var _hmt = _hmt || [];
             <!-- 添加分类与标签 -->
             
                 
-                    <p><img src="../assets/img/cadf1776c7767e9ac0bf17750f18368.png" alt="cadf1776c7767e9ac0bf17750f18368.png"></p>
-<h1 id="Problem-solving"><a href="#Problem-solving" class="headerlink" title="Problem -solving"></a>Problem -solving</h1><p>maintain 3 indivual multiset：lower（Minimum kkk indivual数）、middle（Number in the middle）、upper（Most kkk indivual数）。</p>
-<h1 id="Insert-operation"><a href="#Insert-operation" class="headerlink" title="Insert operation"></a>Insert operation</h1><p>·if num≤max(lower)，Then lowerInsert num<br>·if num≥min(upper)，Then upper Insert num<br>·otherwise，exist middle Insert num<br>if插入后，lower or upper There are more elements than k indivual，Then middle middle Transfer element</p>
-<p>操作过程middlemaintain middle 的element和 sum</p>
-<h1 id="Delete-operation"><a href="#Delete-operation" class="headerlink" title="Delete operation"></a>Delete operation</h1><p>·设删除的element为 d<br>·d 一定存exist于 lower ormiddle or upper middle的一indivualor多indivual集合middle<br>·Choose one delete<br>if删除后，lower or upper middle的element少于 k indivual，Then from middle middle Obtain element</p>
-<p>操作过程middlemaintain middle 的element和 sum</p>
-<h1 id="average-value操作"><a href="#average-value操作" class="headerlink" title="average value操作"></a>average value操作</h1><p>average value = sum/(m−2⋅k)sum / (m - 2\cdot k)sum/(m−2⋅k) （Take down）。</p>
-<p>Code with problems：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MKAverage</span>:</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, m: <span class="built_in">int</span>, k: <span class="built_in">int</span></span>):</span><br><span class="line">        self.m = m</span><br><span class="line">        self.k = k</span><br><span class="line">        self.list1 = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">addElement</span>(<span class="params">self, num: <span class="built_in">int</span></span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        self.list1.append(num)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">calculateMKAverage</span>(<span class="params">self</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(self.list1) &lt; self.m:</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            list2 = self.list1[-<span class="number">1</span>:-self.m-<span class="number">1</span>:-<span class="number">1</span>]</span><br><span class="line">            list2 = <span class="built_in">sorted</span>(list2)</span><br><span class="line">            list2 = list2[self.k:<span class="built_in">len</span>(list2) - self.k]</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sum</span>(list2) // <span class="built_in">len</span>(list2)</span><br></pre></td></tr></table></figure>
+                    <p><img src="/../assets/img/2023-01-22.png" alt="2023-01-22.png"></p>
+<h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-sideway-jumps/description/?orderBy=most_votes">1824Minimum side jump number</a></p>
+<h1 id="answer："><a href="#answer：" class="headerlink" title="answer："></a>answer：</h1><p>I won’t</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-sideway-jumps/solutions/2071617/cong-0-dao-1-de-0-1-bfspythonjavacgo-by-1m8z4/?orderBy=most_votes">https://leetcode.cn/problems/minimum-sideway-jumps/solutions/2071617/cong-0-dao-1-de-0-1-bfspythonjavacgo-by-1m8z4/?orderBy=most_votes</a></p>
+<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minSideJumps</span>(<span class="params">self, obstacles: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        n = <span class="built_in">len</span>(obstacles)</span><br><span class="line">        dis = [[n] * <span class="number">3</span> <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n)]</span><br><span class="line">        dis[<span class="number">0</span>][<span class="number">1</span>] = <span class="number">0</span></span><br><span class="line">        q = deque([(<span class="number">0</span>, <span class="number">1</span>)])  <span class="comment"># starting point</span></span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            i, j = q.popleft()</span><br><span class="line">            d = dis[i][j]</span><br><span class="line">            <span class="keyword">if</span> i == n - <span class="number">1</span>: <span class="keyword">return</span> d  <span class="comment"># reach destination</span></span><br><span class="line">            <span class="keyword">if</span> obstacles[i + <span class="number">1</span>] != j + <span class="number">1</span> <span class="keyword">and</span> d &lt; dis[i + <span class="number">1</span>][j]:  <span class="comment"># To the right</span></span><br><span class="line">                dis[i + <span class="number">1</span>][j] = d</span><br><span class="line">                q.appendleft((i + <span class="number">1</span>, j))  <span class="comment"># Add to the team</span></span><br><span class="line">            <span class="keyword">for</span> k <span class="keyword">in</span> (j + <span class="number">1</span>) % <span class="number">3</span>, (j + <span class="number">2</span>) % <span class="number">3</span>:  <span class="comment"># The other two other runways are enumerated（up/down）</span></span><br><span class="line">                <span class="keyword">if</span> obstacles[i] != k + <span class="number">1</span> <span class="keyword">and</span> d + <span class="number">1</span> &lt; dis[i][k]:</span><br><span class="line">                    dis[i][k] = d + <span class="number">1</span></span><br><span class="line">                    q.append((i, k))  <span class="comment"># Add to the tail</span></span><br></pre></td></tr></table></figure>
+
                 
             
 
@@ -426,7 +425,7 @@ var _hmt = _hmt || [];
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Multiple set</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Graph Theory</a>
         		</li>
       		
 		</ul>
@@ -501,11 +500,11 @@ var _hmt = _hmt || [];
     
 <nav id="article-nav">
   
-    <a href="/post/6be57ef7.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/post/de522cea.html" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          1825. Seek out MK average value
+          1819.Different numbers in the sequence
         
       </div>
     </a>
@@ -538,7 +537,7 @@ var _hmt = _hmt || [];
           <span class="tooltip-content">
 			<span style="font-size: 20px;font-weight: bold;">目录</span>
             <div class="toc-article">
-              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Problem-solving"><span class="toc-number">1.</span> <span class="toc-text">Problem -solving</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Insert-operation"><span class="toc-number">2.</span> <span class="toc-text">Insert operation</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Delete-operation"><span class="toc-number">3.</span> <span class="toc-text">Delete operation</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#average-value%E6%93%8D%E4%BD%9C"><span class="toc-number">4.</span> <span class="toc-text">average value操作</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#topic%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">topic：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#answer%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">answer：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Code%EF%BC%9A"><span class="toc-number">3.</span> <span class="toc-text">Code：</span></a></li></ol>
             </div>
           </span>
         </div>
@@ -635,10 +634,10 @@ var _hmt = _hmt || [];
 	  <br>
 	  <div class="footer-center">
 	    <i class="fa fa-file-word-o" aria-hidden="true"></i>
-		<span> 119 篇</span>
+		<span> 120 篇</span>
 		<span class="post-meta-divider">|</span>
 		<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-		<span> <span class="post-count">59.1k</span></span>
+		<span> <span class="post-count">59.9k</span></span>
       </div>
 	  
 	  <!-- 添加不蒜子统计 -->

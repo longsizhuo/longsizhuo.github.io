@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" >
   
@@ -358,7 +360,7 @@ var _hmt = _hmt || [];
 	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
         <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
         <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">587字</span>
+        <span class="post-count">588字</span>
       </span>
     </span>
 
@@ -382,12 +384,12 @@ var _hmt = _hmt || [];
             <!-- 添加分类与标签 -->
             
                 
-                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><img src="../assets/img/2023-02-09.png" alt="2023-02-09.png"><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-sub-folders-from-the-filesystem/description/">1233. Delete the subfolder folder</a></p>
+                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><img src="/../assets/img/2023-02-09.png" alt="2023-02-09.png"><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-sub-folders-from-the-filesystem/description/">1233. Delete the subfolder folder</a></p>
 <h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>脑子里的构思yesDictionary tree，But<code>Clanguage</code>的Dictionary tree，Whether it is<code>Python</code><br>still <code>golang</code>I won’t write。 So helpless can only look at the answer。<br>ylbThe big guy is right firstlistSort，Then traverse the list。</p>
 <p>1.ifiBefore<code>[len(ans[-1])]</code>Just happens<code>ans[-1]</code>The element is consistent，Explainiyes<br>ans[-1]Subfolder folder，Then skip。</p>
 <p>2.ifyes<code>[&quot;/a/b/c&quot;,&quot;/a/b/ca&quot;,&quot;/a/b/d&quot;]</code>This situation，Be alone1.的判断yes不够的，at this time<br><code>&quot;/a/b/ca&quot;</code>Before缀and<code>&quot;/a/b/c&quot;</code>yes一样的，但yescaandc实际上yes两个不同的文件夹，So add a judgment front end<br>yes否yes<code>/</code>，<code>&quot;/a/b/ca&quot;</code>and<code>&quot;/a/b/c/a&quot;</code>中后者才会被判定yes前面一个元素的子集。</p>
 <p>Dictionary tree没太看懂:<br>我们可以使用Dictionary tree存储数组 folder All folders in。<br>Dictionary tree的每个节点包含 children Field，Sub -nodes for storing the current nodes，as well as fid Field，<br>Used to store the folder corresponding to the current node in the array folder Bidding。</p>
-<p>For array folder Each folder in it f，We will first f according to / Divide into several skewers，<br>Then start from the root node，依次将子串加入Dictionary tree中。Next，我们从根节点开始搜索Dictionary tree，<br>if当前节点的 fid Field不为 -1，则说明当前节点对应的文件夹yes答案数组中的一个文件夹，<br>We add it to the array and return。otherwise，We search for all sub -nodes of the current node，Finally return to the array of answers。</p>
+<p>For array folder Each folder in it f，We will first f according to &#x2F; Divide into several skewers，<br>Then start from the root node，依次将子串加入Dictionary tree中。Next，我们从根节点开始搜索Dictionary tree，<br>if当前节点的 fid Field不为 -1，则说明当前节点对应的文件夹yes答案数组中的一个文件夹，<br>We add it to the array and return。otherwise，We search for all sub -nodes of the current node，Finally return to the array of answers。</p>
 <h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><figcaption><span>python3</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">removeSubfolders</span>(<span class="params">self, folder: <span class="type">List</span>[<span class="built_in">str</span>]</span>) -&gt; <span class="type">List</span>[<span class="built_in">str</span>]:</span><br><span class="line">        folder.sort()</span><br><span class="line">        ans = [folder[<span class="number">0</span>]]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> folder[<span class="number">1</span>:]:</span><br><span class="line">            m, n = <span class="built_in">len</span>(ans[-<span class="number">1</span>]), <span class="built_in">len</span>(i)</span><br><span class="line">            <span class="comment"># if它的长度大于等于答案数组中最后一个文件夹的长度，并且它Before缀包含答案数组的最后一个文件夹再加上一个 /</span></span><br><span class="line">            <span class="keyword">if</span> m &gt;= n <span class="keyword">or</span> <span class="keyword">not</span> (ans[-<span class="number">1</span>] == i[:m] <span class="keyword">and</span> i[m] == <span class="string">&#x27;/&#x27;</span>):</span><br><span class="line">                ans.append(i)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line"><span class="comment"># Dictionary tree</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Trie</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        self.children = &#123;&#125;</span><br><span class="line">        self.fid = -<span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">insert</span>(<span class="params">self, i, f</span>):</span><br><span class="line">        node = self</span><br><span class="line">        ps = f.split(<span class="string">&#x27;/&#x27;</span>)</span><br><span class="line">        <span class="keyword">for</span> p <span class="keyword">in</span> ps[<span class="number">1</span>:]:</span><br><span class="line">            <span class="keyword">if</span> p <span class="keyword">not</span> <span class="keyword">in</span> node.children:</span><br><span class="line">                node.children[p] = Trie()</span><br><span class="line">            node = node.children[p]</span><br><span class="line">        node.fid = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">search</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">root</span>):</span><br><span class="line">            <span class="keyword">if</span> root.fid != -<span class="number">1</span>:</span><br><span class="line">                ans.append(root.fid)</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            <span class="keyword">for</span> child <span class="keyword">in</span> root.children.values():</span><br><span class="line">                dfs(child)</span><br><span class="line">        ans = []</span><br><span class="line">        dfs(self)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">removeSubfolders</span>(<span class="params">self, folder: <span class="type">List</span>[<span class="built_in">str</span>]</span>) -&gt; <span class="type">List</span>[<span class="built_in">str</span>]:</span><br><span class="line">        trie = Trie()</span><br><span class="line">        <span class="keyword">for</span> i, f <span class="keyword">in</span> <span class="built_in">enumerate</span>(folder):</span><br><span class="line">            trie.insert(i, f)</span><br><span class="line">        <span class="keyword">return</span> [folder[i] <span class="keyword">for</span> i <span class="keyword">in</span> trie.search()]</span><br></pre></td></tr></table></figure>
 <figure class="highlight golang"><figcaption><span>golang</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">removeSubfolders</span><span class="params">(folder []<span class="type">string</span>)</span></span> (ans []<span class="type">string</span>) &#123;</span><br><span class="line">	sort.Strings(folder)</span><br><span class="line">	ans = []<span class="type">string</span>&#123;folder[<span class="number">0</span>]&#125;</span><br><span class="line">	<span class="keyword">for</span> _, i := <span class="keyword">range</span> folder[<span class="number">1</span>:] &#123;</span><br><span class="line">		m, n := <span class="built_in">len</span>(ans[<span class="built_in">len</span>(ans)<span class="number">-1</span>]), <span class="built_in">len</span>(i)</span><br><span class="line">		<span class="keyword">if</span> m &gt;= n || !(ans[<span class="built_in">len</span>(ans)<span class="number">-1</span>] == i[:m] &amp;&amp; i[m] == <span class="string">&#x27;/&#x27;</span>)&#123;</span><br><span class="line">			ans = <span class="built_in">append</span>(ans, i)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -497,18 +499,18 @@ var _hmt = _hmt || [];
     
 <nav id="article-nav">
   
-    <a href="/post/a5d1dfda.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/post/56d97dcf.html" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          1124. The longest period of performance One question daily
+          1234. Replace the sub -string to get a balanced string One question daily
         
       </div>
     </a>
   
   
-    <a href="/post/56d97dcf.html" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">1234. Replace the sub -string to get a balanced string One question daily</div>
+    <a href="/post/435a9a0d.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">1250. examine「Good array」 One question daily</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -631,10 +633,10 @@ var _hmt = _hmt || [];
 	  <br>
 	  <div class="footer-center">
 	    <i class="fa fa-file-word-o" aria-hidden="true"></i>
-		<span> 119 篇</span>
+		<span> 120 篇</span>
 		<span class="post-meta-divider">|</span>
 		<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-		<span> <span class="post-count">59.1k</span></span>
+		<span> <span class="post-count">59.9k</span></span>
       </div>
 	  
 	  <!-- 添加不蒜子统计 -->

@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" >
   
@@ -292,6 +294,246 @@ var _hmt = _hmt || [];
         <div id="js-content" class="content-ll">
           
   
+    <article id="post-9021_TUT_7" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/891330b3.html">9021_TUT_7</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/891330b3.html" class="archive-article-date">
+  	<time datetime="2024-10-28T16:00:39.531Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2024-10-29</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">1.4k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">8min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <h1 id="Exercise-1"><a href="#Exercise-1" class="headerlink" title="Exercise 1"></a>Exercise 1</h1><h3 id="what-is-yield-in-python"><a href="#what-is-yield-in-python" class="headerlink" title="what is yield in python?"></a>what is <code>yield</code> in python?</h3><p>The yield keyword in Python is used to create generator functions. A generator function is a special kind of function that returns a generator iterator, which can be used to iterate over a sequence of values. Unlike a regular function that returns a single value using the return statement, a generator function can yield multiple values, one at a time, pausing its state between each one.</p>
+<h3 id="How-it-works"><a href="#How-it-works" class="headerlink" title="How it works?"></a>How it works?</h3><p>When a generator function is called, it doesn’t execute its code immediately. Instead, it returns a generator object that can be iterated over. Each time you request the next item from the generator (using next() or a loop), the generator function resumes execution from where it last left off, runs until it hits a yield statement, and yields the value to the caller.</p>
+<h3 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>First, we need to understand the requirements of the problem:</p>
+<p>Input: A list of integers L, such as [n1, n2, n3, …]. Output:</p>
+<ul>
+<li>Output n1 lines of rank 1 X, which means X without indentation.</li>
+<li>Between each pair of rank 1 X, output n2 lines of rank 2 X, which are indented with one tab (\t).</li>
+<li>Between each pair of rank 2 X, output n3 lines of rank 3 X, which are indented with two tabs.</li>
+<li>Continue this pattern until all elements in the list L have been processed.</li>
+</ul>
+<h3 id="My-solution"><a href="#My-solution" class="headerlink" title="My solution"></a>My solution</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f1</span>():</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot; /\\&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;/  \\&quot;</span>)</span><br><span class="line">        <span class="keyword">yield</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;----&quot;</span>)</span><br><span class="line">        <span class="keyword">yield</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;\\  /&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot; \\/&quot;</span>)</span><br><span class="line">        <span class="keyword">yield</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot; ||&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot; ||&quot;</span>)</span><br><span class="line">        <span class="keyword">yield</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Standard-solution"><a href="#Standard-solution" class="headerlink" title="Standard solution"></a>Standard solution</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f1</span>():</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27; /\\\n/  \\&#x27;</span>)</span><br><span class="line">        <span class="keyword">yield</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;----&#x27;</span>)</span><br><span class="line">        <span class="keyword">yield</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;\\  /\n \\/&#x27;</span>)</span><br><span class="line">        <span class="keyword">yield</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27; ||\n ||&#x27;</span>)</span><br><span class="line">        <span class="keyword">yield</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Exercise-2"><a href="#Exercise-2" class="headerlink" title="Exercise 2"></a>Exercise 2</h1><h3 id="Problem-Description-1"><a href="#Problem-Description-1" class="headerlink" title="Problem Description"></a>Problem Description</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Line:   [1,   3,   3,   1]</span><br><span class="line">           |     |     |</span><br><span class="line">          i=0   i=1   i=2</span><br><span class="line">           ↓     ↓     ↓</span><br><span class="line">Calculate:1+3   3+3   3+1</span><br><span class="line">           ↓     ↓     ↓</span><br><span class="line">Results:   4     6     4</span><br></pre></td></tr></table></figure>
+
+<h3 id="My-solution-1"><a href="#My-solution-1" class="headerlink" title="My solution"></a>My solution</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f2</span>():</span><br><span class="line">    <span class="comment"># initialized</span></span><br><span class="line">    row = [<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="keyword">yield</span> row</span><br><span class="line">        <span class="comment"># row[i] + row[i + 1] is the expression in list comprehension</span></span><br><span class="line">        row = [<span class="number">1</span>] + [row[i] + row[i + <span class="number">1</span>] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(row)-<span class="number">1</span>)] + [<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+
+<h3 id="Standard-solution-1"><a href="#Standard-solution-1" class="headerlink" title="Standard solution"></a>Standard solution</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f2</span>():</span><br><span class="line">    L = [<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">yield</span> L</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        L = [<span class="number">1</span>] + [L[i] + L[i + <span class="number">1</span>] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(L) - <span class="number">1</span>)] + [<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">yield</span> L</span><br></pre></td></tr></table></figure>
+
+<h1 id="Exercise-3"><a href="#Exercise-3" class="headerlink" title="Exercise 3"></a>Exercise 3</h1><h3 id="Problem-Description-2"><a href="#Problem-Description-2" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>First, we need to understand the requirements of the problem:</p>
+<p>Input: A list of integers L, such as [n1, n2, n3, …]. Output:</p>
+<ul>
+<li>Output n1 lines of <strong>rank 1</strong> X, which means X without indentation.</li>
+<li>Between each pair of <strong>rank 1</strong> X, output n2 lines of <strong>rank 2</strong> X, which are indented with one tab (\t).</li>
+<li>Between each pair of <strong>rank 2</strong> X, output n3 lines of <strong>rank 3</strong> X, which are indented with two tabs.</li>
+<li>Continue this pattern until all elements in the list L have been processed.</li>
+</ul>
+<h3 id="My-solution-2"><a href="#My-solution-2" class="headerlink" title="My solution"></a>My solution</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f3</span>(<span class="params">L</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">helper</span>(<span class="params">L, rank</span>):</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> L:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        n = L[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;\t&#x27;</span> * rank + <span class="string">&#x27;X&#x27;</span>)</span><br><span class="line">            <span class="keyword">if</span> i &lt; n - <span class="number">1</span>:</span><br><span class="line">                helper(L[<span class="number">1</span>:], rank + <span class="number">1</span>)</span><br><span class="line">    helper(L, <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+<p>We need to write a recursive function to handle this nested structure. Here is the implementation idea:</p>
+<p>Define a helper function <code>helper(L, rank)</code>, where:</p>
+<ul>
+<li><code>L</code> is the list currently being processed.</li>
+<li><code>rank</code> is the current level (indentation level).</li>
+</ul>
+<p>In the <code>helper</code> function:</p>
+<ol>
+<li>If the list is empty, return directly.</li>
+<li>Get the number of lines to output at the current level, <code>n = L[0]</code>.</li>
+<li>Use a loop to output <code>n</code> lines of the current level’s X, with each line having the corresponding number of tab characters (<code>\t</code>) based on the <code>rank</code>.</li>
+<li>After each output, if it is not the last element and it is not the last line, recursively call <code>helper</code> to handle the next level of <code>X</code> lines.</li>
+</ol>
+<h3 id="Standard-solution-2"><a href="#Standard-solution-2" class="headerlink" title="Standard solution"></a>Standard solution</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f3</span>(<span class="params">L</span>):</span><br><span class="line">    _f3(L, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">_f3</span>(<span class="params">L, n</span>):</span><br><span class="line">    <span class="keyword">if</span> n == <span class="built_in">len</span>(L):</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(L[n] - <span class="number">1</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;\t&#x27;</span> * n, <span class="string">&#x27;X&#x27;</span>, sep=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">        _f3(L, n + <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">if</span> L[n]:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;\t&#x27;</span> * n, <span class="string">&#x27;X&#x27;</span>, sep=<span class="string">&#x27;&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h1 id="Exercise-4"><a href="#Exercise-4" class="headerlink" title="Exercise 4"></a>Exercise 4</h1><h3 id="Problem-Description-3"><a href="#Problem-Description-3" class="headerlink" title="Problem Description"></a>Problem Description</h3><p><strong>Objective:</strong> Given a list <code>L</code> of integers, we need to:</p>
+<ul>
+<li>Break it down into sublists of <strong>equal length</strong>, where the <strong>length is maximal</strong>.</li>
+<li>This process is <strong>recursive</strong>: each sublist is further broken down in the same manner.</li>
+<li>The original list should be <strong>preserved</strong> (i.e., not modified).</li>
+</ul>
+<p><strong>Key Points:</strong></p>
+<ul>
+<li>We aim to split the list into the largest possible sublists of equal length (greater than 1) that evenly divide the length of the list.</li>
+<li>The recursion continues until a sublist cannot be broken down further (i.e., its length cannot be divided into equal parts greater than 1).</li>
+</ul>
+<h3 id="My-solution-3"><a href="#My-solution-3" class="headerlink" title="My solution"></a>My solution</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> sqrt</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f4</span>(<span class="params">L</span>):</span><br><span class="line">    n = <span class="built_in">len</span>(L)</span><br><span class="line">     <span class="comment"># Try to find the maximal sublist length greater than 1</span></span><br><span class="line">    <span class="keyword">for</span> sublist_length <span class="keyword">in</span> <span class="built_in">range</span>(n // <span class="number">2</span>, <span class="number">1</span>, -<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">if</span> n % sublist_length == <span class="number">0</span>:</span><br><span class="line">            <span class="comment"># Split the list into sublists</span></span><br><span class="line">            sublists = [f4(L[i:i + sublist_length]) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, n, sublist_length)]</span><br><span class="line">            <span class="keyword">return</span> sublists</span><br><span class="line">    <span class="keyword">return</span> L.copy()</span><br></pre></td></tr></table></figure>
+
+<h3 id="Standard-solution-3"><a href="#Standard-solution-3" class="headerlink" title="Standard solution"></a>Standard solution</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f4</span>(<span class="params">L</span>):</span><br><span class="line">    <span class="keyword">for</span> n <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>, <span class="built_in">round</span>(sqrt(<span class="built_in">len</span>(L))) + <span class="number">1</span>):</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(L) % n == <span class="number">0</span>:</span><br><span class="line">            w = <span class="built_in">len</span>(L) // n</span><br><span class="line">            <span class="keyword">return</span> [f4(L[i : i + w]) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(L), w)]</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">list</span>(L)</span><br></pre></td></tr></table></figure>
+
+<h1 id="Exercise-5"><a href="#Exercise-5" class="headerlink" title="Exercise 5"></a>Exercise 5</h1><h3 id="Problem-Description-4"><a href="#Problem-Description-4" class="headerlink" title="Problem Description"></a>Problem Description</h3><p><strong>Objective</strong>: Given a special list <code>L</code> (a list whose elements are integers or other special lists), we need to return a dictionary where:</p>
+<p>Keys are tuples of indices <code>(i_1, i_2, ..., i_n)</code>.<br>Values are integers <code>e</code>.<br>The keys represent the path of indices to reach an integer <code>e</code> within the nested list structure.</p>
+<p><strong>Interpretation</strong>:</p>
+<ul>
+<li>If the key is <code>(i_1,)</code>, then <code>L[i_1]</code> is an integer <code>e</code>.</li>
+<li>If the key is <code>(i_1, i_2)</code>, then <code>L[i_1][i_2]</code> is an integer <code>e</code>.</li>
+<li>If the key is <code>(i_1, i_2, i_3)</code>, then <code>L[i_1][i_2][i_3]</code> is an integer <code>e</code>.</li>
+<li>And so on.</li>
+</ul>
+<p><strong>Constraints:</strong></p>
+<p>We need to handle any depth of nesting.<br>Use <code>isinstance()</code> to check if an element is an integer or a list.<br>The original list should not be modified.</p>
+<h3 id="My-solution-4"><a href="#My-solution-4" class="headerlink" title="My solution"></a>My solution</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f5</span>(<span class="params">L</span>):</span><br><span class="line">    result = &#123;&#125;</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">helper</span>(<span class="params">sublist, path</span>):</span><br><span class="line">        <span class="keyword">for</span> index, element <span class="keyword">in</span> <span class="built_in">enumerate</span>(sublist):</span><br><span class="line">            current_path = path + (index,)</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">isinstance</span>(element, <span class="built_in">int</span>):</span><br><span class="line">                result[current_path] = element</span><br><span class="line">            <span class="keyword">elif</span> <span class="built_in">isinstance</span>(element, <span class="built_in">list</span>):</span><br><span class="line">                helper(element, current_path)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="comment"># If there are other types, you might want to handle them or raise an error</span></span><br><span class="line">                <span class="keyword">pass</span></span><br><span class="line">    helper(L, ())</span><br><span class="line">    <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
+
+<h3 id="Standard-solution-4"><a href="#Standard-solution-4" class="headerlink" title="Standard solution"></a>Standard solution</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f5</span>(<span class="params">L</span>):</span><br><span class="line">    D = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(L)):</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">isinstance</span>(L[i], <span class="built_in">int</span>):</span><br><span class="line">            D[(i,)] = L[i]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            E = f5(L[i])</span><br><span class="line">            <span class="keyword">for</span> s <span class="keyword">in</span> E:</span><br><span class="line">                D[i, *s] = E[s]</span><br><span class="line">    <span class="keyword">return</span> D</span><br></pre></td></tr></table></figure>
+
+<h3 id="Difference-between-my-solution-and-the-standard-solution"><a href="#Difference-between-my-solution-and-the-standard-solution" class="headerlink" title="Difference between my solution and the standard solution"></a>Difference between my solution and the standard solution</h3><p><strong>My Solution</strong></p>
+<ul>
+<li>Uses a Helper Function (helper): Your solution defines an inner function helper(sublist, path) to handle the recursion.</li>
+<li>Explicit Path Passing: The path variable, representing the current position in the nested list, is explicitly passed and updated at each recursive call.</li>
+<li>State Encapsulation: By using a nested function, the state (path and result) is encapsulated within the f5 function’s scope.<br><strong>Standard Solution</strong></li>
+<li>Direct Recursion: The standard solution directly calls f5(L[i]) recursively without using a helper function.</li>
+<li>Implicit Path Construction: It constructs the path by combining the current index i with the indices from the recursive call (s) using tuple unpacking.</li>
+<li>Dictionary Merging: After each recursive call, it merges the returned dictionary E into the current dictionary D.</li>
+</ul>
+<h1 id="Exercise-6"><a href="#Exercise-6" class="headerlink" title="Exercise 6"></a>Exercise 6</h1><h3 id="Problem-Description-5"><a href="#Problem-Description-5" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>The given problem is not strictly about the Fibonacci sequence, but it generalizes similar principles to a broader set of recursive relationships. In the problem, you’re asked to compute the n-th term of a series, where the series is defined by some initial terms (first_terms) and a set of recurrence factors (factors). The Fibonacci sequence is a special case of such a recurrence relation, where each term is the sum of the two preceding terms.</p>
+<h3 id="My-solution-Wrong"><a href="#My-solution-Wrong" class="headerlink" title="My solution(Wrong)"></a>My solution(Wrong)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f6</span>(<span class="params">first_terms, factors, n</span>):</span><br><span class="line">    k = <span class="built_in">len</span>(first_terms) - <span class="number">1</span></span><br><span class="line">    sequence = first_terms.copy()</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># If n is within the initial terms, return it directly</span></span><br><span class="line">    <span class="keyword">if</span> n &lt;= k:</span><br><span class="line">        <span class="keyword">return</span> sequence[n]</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Compute terms iteratively up to n</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(k + <span class="number">1</span>, n + <span class="number">1</span>):</span><br><span class="line">        xi = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> s <span class="keyword">in</span> <span class="built_in">range</span>(k + <span class="number">1</span>):</span><br><span class="line">            xi += factors[s] * sequence[i - k - <span class="number">1</span> + s]</span><br><span class="line">        sequence.append(xi)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> sequence[n]</span><br></pre></td></tr></table></figure>
+
+<h3 id="Standard-solution-5"><a href="#Standard-solution-5" class="headerlink" title="Standard solution"></a>Standard solution</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f6</span>(<span class="params">first_terms, factors, n</span>):</span><br><span class="line">    series = &#123;i: first_terms[i] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(first_terms))&#125;</span><br><span class="line">    _f6(factors, n, series)</span><br><span class="line">    <span class="keyword">return</span> series[n]</span><br><span class="line">    </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">_f6</span>(<span class="params">factors, n, series</span>):</span><br><span class="line">    <span class="keyword">if</span> n <span class="keyword">in</span> series:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    x = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(factors) + <span class="number">1</span>):</span><br><span class="line">        _f6(factors, n - i, series)</span><br><span class="line">        x += factors[-i] * series[n - i]</span><br><span class="line">    series[n] = x</span><br></pre></td></tr></table></figure>
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+
+            <!-- 分类页 -->
+            
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Answer</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Tutorial</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">9021</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/891330b3.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
     <article id="post-9021_TUT_5" class="article article-type-post  article-index" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -337,7 +579,7 @@ var _hmt = _hmt || [];
 	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
         <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
         <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">2.5k字</span>
+        <span class="post-count">2.6k字</span>
       </span>
     </span>
 
@@ -346,7 +588,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
 	    <i class="fa fa-pagelines" aria-hidden="true"></i>
         <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">15min</span>
+        <span class="post-count">16min</span>
       </span>
     </span>
 	
@@ -368,7 +610,7 @@ var _hmt = _hmt || [];
 <h3 id="Standard-Solution"><a href="#Standard-Solution" class="headerlink" title="Standard Solution"></a>Standard Solution</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f1</span>(<span class="params">L, n</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>, n + <span class="number">2</span>):</span><br><span class="line">        L.extend([e * i <span class="keyword">for</span> e <span class="keyword">in</span> L])</span><br><span class="line">    <span class="keyword">return</span> L</span><br></pre></td></tr></table></figure>
 
 <h3 id="Explanation"><a href="#Explanation" class="headerlink" title="Explanation"></a>Explanation</h3><ol>
-<li><strong>My Solution</strong>: Uses a while loop where n is manually decremented after each iteration step by step since it can help me understand what we need. I keep track of the current base manually (base += 1).</li>
+<li><strong>My Solution</strong>: Uses a while loop where n is manually decremented after each iteration step by step since it can help me understand what we need. I keep track of the current base manually (base +&#x3D; 1).</li>
 <li><strong>Standard Solution</strong>: Uses a for loop, which automatically increments i in each iteration. The range is explicitly set to go from 2 to n + 2, which avoids the need for manually handling the base.</li>
 </ol>
 <h1 id="Exercise-2"><a href="#Exercise-2" class="headerlink" title="Exercise 2"></a>Exercise 2</h1><h3 id="Problem-Description-1"><a href="#Problem-Description-1" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>We are given a list L and an integer n. The task is to extend the list L such that it becomes the first n members of an infinite list, which is defined as:</p>
@@ -474,7 +716,7 @@ var _hmt = _hmt || [];
 
 <p><code>Pandas</code> provides the <code>value_counts()</code> method, which can directly count the frequency of each value in a column. Here, we call <code>value_counts()</code> on the <code>Country</code> column to get the number of customers from each country.</p>
 <h1 id="Exercise-6"><a href="#Exercise-6" class="headerlink" title="Exercise 6"></a>Exercise 6</h1><h3 id="Problem-Description-4"><a href="#Problem-Description-4" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>The task is to create a directory structure where:</p>
-<p><img src="../assets/img/2024-10-08.png" alt="2024-10-08.png"></p>
+<p><img src="/../assets/img/2024-10-08.png" alt="2024-10-08.png"></p>
 <ul>
 <li>There is a top-level directory named <code>First_10_words_per_letter</code>.</li>
 <li>Under this directory, there are two subdirectories:<ul>
@@ -507,7 +749,7 @@ var _hmt = _hmt || [];
 </li>
 <li><p>Potential Issue:</p>
 <ul>
-<li>here is some limitations of this. Say that processing the dictionary on the fly would not be an option if the words in the file were not lexicographically ordered?</li>
+<li>here is some limitations of this. Say that processing the dictionary on the fly would not be an option if the words in the file were not lexicographically ordered?<br>[&#x2F;&#x2F;]: # (   - One small mistake is that the file handle f for the dictionary.txt file is shared across iterations, but the file is being processed linearly. Once a word is read, it is not reset for the next letter. This will cause issues because the loop keeps reading until the end of the file and will skip words that should be in earlier letters.)</li>
 </ul>
 </li>
 </ol>
@@ -1034,7 +1276,7 @@ var _hmt = _hmt || [];
 <li>The Unicode characters for the squares are referenced directly using their escape sequences (<code>\u2b1c</code> for white, <code>\u2b1b</code> for black).</li>
 </ol>
 <h1 id="Exercise-3"><a href="#Exercise-3" class="headerlink" title="Exercise 3"></a>Exercise 3</h1><h3 id="Problem-Description-2"><a href="#Problem-Description-2" class="headerlink" title="Problem Description:"></a>Problem Description:</h3><p>In this task, the number <code>n</code> is treated as a number expressed in different bases (ranging from 2 to 10), and we aim to convert it into its corresponding base 10 value for each of these bases, where the conversion is valid.</p>
-<p>For n = 2143:</p>
+<p>For n &#x3D; 2143:</p>
 <ul>
 <li><code>2143</code> in base <code>5</code> is equivalent to <code>298</code> in base <code>10</code>.</li>
 <li><code>2143</code> in base <code>6</code> is equivalent to <code>495</code> in base <code>10</code>.</li>
@@ -1089,7 +1331,7 @@ var _hmt = _hmt || [];
 <li>In many cases, they are also more efficient in terms of performance.</li>
 </ul>
 <p>For example, instead of using <code>map(int, ...)</code>, the same functionality could be achieved with a<br>list comprehension, like so:</p>
-<p>D[i] = tuple([int(digit) for digit in convert_to_base(i, base)])</p>
+<p>D[i] &#x3D; tuple([int(digit) for digit in convert_to_base(i, base)])</p>
 <p>This list comprehension achieves the same result but follows a more modern Pythonic style.</p>
 <h3 id="Standard-Solution-3"><a href="#Standard-Solution-3" class="headerlink" title="Standard Solution:"></a>Standard Solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f4</span>(<span class="params">n, base</span>):</span><br><span class="line">    D = &#123;<span class="number">0</span>: (<span class="number">0</span>,)&#125;</span><br><span class="line">    <span class="keyword">for</span> m <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n + <span class="number">1</span>):</span><br><span class="line">        digits = []</span><br><span class="line">        p = m</span><br><span class="line">        <span class="keyword">while</span> p:</span><br><span class="line">            digits.append(p % base)</span><br><span class="line">            p //= base</span><br><span class="line">        D[m] = <span class="built_in">tuple</span>(<span class="built_in">reversed</span>(digits))</span><br><span class="line">    <span class="keyword">return</span> D</span><br></pre></td></tr></table></figure>
 
@@ -1304,7 +1546,7 @@ var _hmt = _hmt || [];
 <p>In the updated version of Exercise 1, we use the formatting :.2f instead of round(). Here’s the key difference between the two:</p>
 <ul>
 <li><code>round()</code>: This is a Python built-in function that rounds a number to a specified number of decimal places. For example, round(1.236, 2) will return 1.24. However, the output of round() is still a float, but it does not guarantee a fixed number of decimal places when printed. For instance, round(1.0001, 2) would return 1.0 and only display one decimal place, not two.</li>
-<li><code>:.2f</code>: This is part of Python’s string formatting and ensures the number is displayed with exactly two decimal places, no matter what the number is. It also rounds the number appropriately. For instance, number = 1.0 formatted as f”{number:.2f}” will print 1.00. This makes :.2f particularly useful for consistent display of decimal places, which is important for formatting output for users.</li>
+<li><code>:.2f</code>: This is part of Python’s string formatting and ensures the number is displayed with exactly two decimal places, no matter what the number is. It also rounds the number appropriately. For instance, number &#x3D; 1.0 formatted as f”{number:.2f}” will print 1.00. This makes :.2f particularly useful for consistent display of decimal places, which is important for formatting output for users.</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        i = <span class="built_in">input</span>(<span class="string">&#x27;Enter a floating point number between -1 and 1 excluded: &#x27;</span>)</span><br><span class="line">        number = <span class="built_in">float</span>(i)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&#x27;.&#x27;</span> <span class="keyword">not</span> <span class="keyword">in</span> i:</span><br><span class="line">            <span class="keyword">raise</span> ValueError</span><br><span class="line">        <span class="keyword">if</span> -<span class="number">1</span> &lt; number &lt; <span class="number">1</span>:</span><br><span class="line">            <span class="comment"># not using round() here because it rounds to the nearest even number</span></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&#x27;\nUp to +/-0.005, you input <span class="subst">&#123;number:<span class="number">.2</span>f&#125;</span>&#x27;</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">raise</span> ValueError</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">except</span> ValueError:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;You got that wrong, try again!\n&quot;</span>)</span><br></pre></td></tr></table></figure>
 <h1 id="Exercise-2"><a href="#Exercise-2" class="headerlink" title="Exercise 2:"></a>Exercise 2:</h1><p>This exercise involves processing a block of text and formatting it into sentences. Each sentence should have its first word capitalized, and the remaining words should be in lowercase. The task is to handle spaces and punctuation properly.</p>
@@ -1390,17 +1632,17 @@ var _hmt = _hmt || [];
 <ul>
 <li>The program uses a loop to divide n by 2 until n is no longer divisible by 2, counting the number of divisions (k).</li>
 <li>The absolute value of n is used to ensure correct handling of negative numbers, and a sign is added to the final result if the original number was negative.</li>
-<li>The program handles the special case where n = 0 by printing a unique message.</li>
+<li>The program handles the special case where n &#x3D; 0 by printing a unique message.</li>
 </ul>
 <p>More Details:</p>
 <ol>
-<li>You need to express the given integer n as n = 2^k * m.<ul>
+<li>You need to express the given integer n as n &#x3D; 2^k * m.<ul>
 <li>k represents the number of times n can be divided by 2. In other words, it is the power of 2 in the factorization of n.</li>
 <li>m is the remaining odd part after dividing out all factors of 2.</li>
 </ul>
 </li>
 <li>If n is negative, the output should include a negative sign.</li>
-<li>Special case: If n = 0, a specific message should be printed.</li>
+<li>Special case: If n &#x3D; 0, a specific message should be printed.</li>
 <li>The result is printed directly, not returned.</li>
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Assume that the argument n is an integer.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># The output is printed out, not returned.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># You might find the abs() function useful.</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f6</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;0 = 2^k * 0 for all integers k!&quot;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        k = <span class="number">0</span></span><br><span class="line">        ori = n</span><br><span class="line">        <span class="keyword">if</span> n &lt; <span class="number">0</span>:</span><br><span class="line">            sign = <span class="string">&#x27;-&#x27;</span></span><br><span class="line">            n = -n</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            sign = <span class="string">&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">while</span> n % <span class="number">2</span> == <span class="number">0</span>:</span><br><span class="line">            n //= <span class="number">2</span></span><br><span class="line">            k += <span class="number">1</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;ori&#125;</span> = <span class="subst">&#123;sign&#125;</span>2^<span class="subst">&#123;k&#125;</span> * <span class="subst">&#123;n&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span></span><br></pre></td></tr></table></figure>
@@ -1945,11 +2187,11 @@ var _hmt = _hmt || [];
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Contest</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Inter-Uni Programming Contest</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Inter-Uni Programming Contest</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Contest</a>
         		</li>
       		
 		</ul>
@@ -2043,7 +2285,7 @@ var _hmt = _hmt || [];
 	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
         <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
         <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">620字</span>
+        <span class="post-count">626字</span>
       </span>
     </span>
 
@@ -2074,16 +2316,20 @@ var _hmt = _hmt || [];
 <ol>
 <li>The function takes two integer arguments, m and n. Both are assumed to be at least 0.</li>
 <li>It constructs a pattern consisting of vertical bars (|) enclosing underscores (_), repeated m times. The number of underscores between the bars is determined by n.</li>
-<li>For example, if m = 3 and n = 4, the output would be:<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">|____||____||____|</span><br></pre></td></tr></table></figure></li>
+<li>For example, if m &#x3D; 3 and n &#x3D; 4, the output would be:</li>
 </ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">|____||____||____|</span><br></pre></td></tr></table></figure>
+
 <h1 id="Slide-3-Function-2-f2-n"><a href="#Slide-3-Function-2-f2-n" class="headerlink" title="Slide 3: Function 2 - f2(n)"></a>Slide 3: Function 2 - f2(n)</h1><p>The second function, f2, creates a square pattern made up of digits. Here’s the function:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f2</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="keyword">return</span> (<span class="built_in">str</span>(n) * n + <span class="string">&#x27;\n&#x27;</span>) * n</span><br></pre></td></tr></table></figure>
 
 <ol>
 <li>This function takes an integer n and generates a square of n rows, where each row contains the digit n repeated n times.</li>
 <li>The pattern ends with a newline after each row.</li>
-<li>For example, if n = 3, the output will be:<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">333</span></span><br><span class="line"><span class="number">333</span></span><br><span class="line"><span class="number">333</span></span><br></pre></td></tr></table></figure></li>
+<li>For example, if n &#x3D; 3, the output will be:</li>
 </ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">333</span></span><br><span class="line"><span class="number">333</span></span><br><span class="line"><span class="number">333</span></span><br></pre></td></tr></table></figure>
+
 <h1 id="Slide-4-Function-3-f3-L"><a href="#Slide-4-Function-3-f3-L" class="headerlink" title="Slide 4: Function 3 - f3(L)"></a>Slide 4: Function 3 - f3(L)</h1><p>Next, we have f3, which works on a list of integers:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f3</span>(<span class="params">L</span>):</span><br><span class="line">    <span class="keyword">while</span> <span class="built_in">len</span>(L) &gt; <span class="number">1</span> <span class="keyword">and</span> L[<span class="number">0</span>] &gt; L[<span class="number">1</span>]:</span><br><span class="line">        L.remove(L[<span class="number">0</span>])</span><br><span class="line">    <span class="built_in">print</span>(L)</span><br></pre></td></tr></table></figure>
 
@@ -2091,7 +2337,7 @@ var _hmt = _hmt || [];
 <li>This function removes elements from the start of the list until the first two consecutive elements are in non-decreasing order.</li>
 <li>The process continues as long as the first element is strictly greater than the second element.</li>
 <li>Once the list is stable, it prints the modified list.</li>
-<li>For example, if L = [9, 8, 7, 10], the function will remove 9, 8, and 7, leaving [10].</li>
+<li>For example, if L &#x3D; [9, 8, 7, 10], the function will remove 9, 8, and 7, leaving [10].</li>
 </ol>
 <h1 id="Slide-5-Function-4-f4-D-n"><a href="#Slide-5-Function-4-f4-D-n" class="headerlink" title="Slide 5: Function 4 - f4(D, n)"></a>Slide 5: Function 4 - f4(D, n)</h1><p>The fourth function, f4, works with dictionaries:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f4</span>(<span class="params">D, n</span>):</span><br><span class="line">    <span class="keyword">if</span> n <span class="keyword">not</span> <span class="keyword">in</span> D:</span><br><span class="line">        <span class="keyword">return</span> []</span><br><span class="line">    ans = [n]</span><br><span class="line">    <span class="keyword">while</span> n <span class="keyword">in</span> D <span class="keyword">and</span> D[n] &gt; n:</span><br><span class="line">        ans.append(D[n])</span><br><span class="line">        n = D[n]</span><br><span class="line">    <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
@@ -2099,7 +2345,7 @@ var _hmt = _hmt || [];
 <ol>
 <li>This function takes a dictionary D and an integer n. It generates a strictly increasing sequence of integers based on the relationships defined in the dictionary.</li>
 <li>Starting from n, it appends D[n], D[D[n]], and so on to the list, as long as each subsequent value is greater than the previous one.</li>
-<li>For example, if D = {1: 2, 2: 3, 3: 5} and n = 1, the function will return [1, 2, 3, 5].</li>
+<li>For example, if D &#x3D; {1: 2, 2: 3, 3: 5} and n &#x3D; 1, the function will return [1, 2, 3, 5].</li>
 </ol>
 <h1 id="Slide-6-Function-5-f5-filename"><a href="#Slide-6-Function-5-f5-filename" class="headerlink" title="Slide 6: Function 5 - f5(filename)"></a>Slide 6: Function 5 - f5(filename)</h1><p>The fifth function, f5, reads from a file and processes each line:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f5</span>(<span class="params">filename</span>):</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(filename) <span class="keyword">as</span> f:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> f:</span><br><span class="line">            name, number = i.split(<span class="string">&#x27;,&#x27;</span>)</span><br><span class="line">            number = <span class="built_in">int</span>(number) * <span class="number">1000</span></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;number&#125;</span> people named <span class="subst">&#123;name&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
@@ -2107,15 +2353,18 @@ var _hmt = _hmt || [];
 <ol>
 <li>This function reads a text file, where each line consists of a name and a count separated by a comma.</li>
 <li>The function multiplies the count by 1000 and prints the result in the format: “X people named Y”.</li>
-<li>For example, if the file contains a line “John,5”, it will print:<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5000 people named John</span><br></pre></td></tr></table></figure></li>
+<li>For example, if the file contains a line “John,5”, it will print:</li>
 </ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5000 people named John</span><br></pre></td></tr></table></figure>
+
 <h1 id="Slide-7-Function-6-f6-filename"><a href="#Slide-7-Function-6-f6-filename" class="headerlink" title="Slide 7: Function 6 - f6(filename)"></a>Slide 7: Function 6 - f6(filename)</h1><p>The final function, f6, also reads from a text file, but with a different format:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f6</span>(<span class="params">filename</span>):</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(filename) <span class="keyword">as</span> f:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> f:</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> i.isspace():</span><br><span class="line">                number, charactor = i.split()</span><br><span class="line">                <span class="built_in">print</span>(<span class="built_in">int</span>(number) * charactor)</span><br></pre></td></tr></table></figure>
 <ol>
 <li>This function reads lines that contain an integer followed by a symbol (e.g., “5 *”).</li>
 <li>It multiplies the symbol by the integer and prints the result.</li>
-<li>For example, if the file contains the line “3 # “, the function will print:<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">### </span><br></pre></td></tr></table></figure></li>
+<li>For example, if the file contains the line “3 # “, the function will print:</li>
 </ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">### </span><br></pre></td></tr></table></figure>
 
                 
             
@@ -2237,7 +2486,7 @@ var _hmt = _hmt || [];
 	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
         <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
         <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">339字</span>
+        <span class="post-count">322字</span>
       </span>
     </span>
 
@@ -2246,7 +2495,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
 	    <i class="fa fa-pagelines" aria-hidden="true"></i>
         <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">2min</span>
+        <span class="post-count">1min</span>
       </span>
     </span>
 	
@@ -2273,7 +2522,7 @@ var _hmt = _hmt || [];
 <li>I’m open to collaboration and feedback.</li>
 </ul>
 <h3 id="How-to-contact-me"><a href="#How-to-contact-me" class="headerlink" title="How to contact me"></a>How to contact me</h3><ul>
-<li>Email: <a href="mailto:&#x6c;&#111;&#x6e;&#x67;&#115;&#x69;&#122;&#104;&#x75;&#x6f;&#x40;&#103;&#109;&#x61;&#x69;&#x6c;&#46;&#x63;&#111;&#x6d;">&#x6c;&#111;&#x6e;&#x67;&#115;&#x69;&#122;&#104;&#x75;&#x6f;&#x40;&#103;&#109;&#x61;&#x69;&#x6c;&#46;&#x63;&#111;&#x6d;</a></li>
+<li>Email: <a href="mailto:&#x6c;&#111;&#110;&#103;&#115;&#x69;&#122;&#104;&#x75;&#x6f;&#64;&#103;&#109;&#97;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#109;">longsizhuo@gmail.com</a></li>
 <li>LinkedIn: <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/longsizhuo/">Sizhuo Long</a></li>
 <li>XiaoHongShu(Small RedBook): <a target="_blank" rel="noopener" href="https://www.xiaohongshu.com/user/profile/5c0b8cc2000000000601e809">@sizhuo_long</a></li>
 </ul>
@@ -2366,162 +2615,6 @@ var _hmt = _hmt || [];
 
 <!-- 文章页添加mathjax公式 -->
   
-    <article id="post-964E" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/2280b647.html">964E</a>
-    </h2>
-  
-
-
-                
-                    <a href="/post/2280b647.html" class="archive-article-date">
-  	<time datetime="2024-08-06T17:34:00.000Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2024-08-07</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-                
-
-                
-                    <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">527字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">3min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-                
-            </header>
-        
-
-        <div class="article-entry" itemprop="articleBody">
-            <!-- 添加分类与标签 -->
-            
-                
-                    <h1 id="Question"><a href="#Question" class="headerlink" title="Question:"></a>Question:</h1><div class="ttypography"><div class="problem-statement"><div class="header"><div class="title">E. Triple Operations</div><div class="time-limit"><div class="property-title">time limit per test</div>1 second</div><div class="memory-limit"><div class="property-title">memory limit per test</div>256 megabytes</div><div class="input-file input-standard"><div class="property-title">input</div>standard input</div><div class="output-file output-standard"><div class="property-title">output</div>standard output</div></div><div><p>On the board Ivy wrote down all integers from <span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-1-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mi>l</mi></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-1" style="width: 0.36em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.301em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.313em, 1000.24em, 2.384em, -999.997em); top: -2.199em; left: 0em;"><span class="mrow" id="MathJax-Span-2"><span class="mi" id="MathJax-Span-3" style="font-family: MathJax_Math-italic;">l</span></span><span style="display: inline-block; width: 0px; height: 2.205em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.068em; border-left: 0px solid; width: 0px; height: 1.004em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>l</mi></math></span></span><script type="math/tex" id="MathJax-Element-1">l</script> to <span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-2-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mi>r</mi></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-4" style="width: 0.598em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.479em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.61em, 1000.48em, 2.384em, -999.997em); top: -2.199em; left: 0em;"><span class="mrow" id="MathJax-Span-5"><span class="mi" id="MathJax-Span-6" style="font-family: MathJax_Math-italic;">r</span></span><span style="display: inline-block; width: 0px; height: 2.205em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.068em; border-left: 0px solid; width: 0px; height: 0.718em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>r</mi></math></span></span><script type="math/tex" id="MathJax-Element-2">r</script>, inclusive.</p><p>In an operation, she does the following: </p><ul> <li> pick two numbers <span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-3-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mi>x</mi></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-7" style="width: 0.717em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.598em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.61em, 1000.54em, 2.384em, -999.997em); top: -2.199em; left: 0em;"><span class="mrow" id="MathJax-Span-8"><span class="mi" id="MathJax-Span-9" style="font-family: MathJax_Math-italic;">x</span></span><span style="display: inline-block; width: 0px; height: 2.205em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.068em; border-left: 0px solid; width: 0px; height: 0.718em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>x</mi></math></span></span><script type="math/tex" id="MathJax-Element-3">x</script> and <span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-4-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mi>y</mi></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-10" style="width: 0.598em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.479em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.61em, 1000.48em, 2.562em, -999.997em); top: -2.199em; left: 0em;"><span class="mrow" id="MathJax-Span-11"><span class="mi" id="MathJax-Span-12" style="font-family: MathJax_Math-italic;">y<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span></span><span style="display: inline-block; width: 0px; height: 2.205em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.282em; border-left: 0px solid; width: 0px; height: 0.932em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>y</mi></math></span></span><script type="math/tex" id="MathJax-Element-4">y</script> on the board, erase them, and in their place write the numbers <span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-5-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>3</mn><mi>x</mi></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-13" style="width: 1.313em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.074em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.372em, 1001.01em, 2.384em, -999.997em); top: -2.199em; left: 0em;"><span class="mrow" id="MathJax-Span-14"><span class="mn" id="MathJax-Span-15" style="font-family: MathJax_Main;">3</span><span class="mi" id="MathJax-Span-16" style="font-family: MathJax_Math-italic;">x</span></span><span style="display: inline-block; width: 0px; height: 2.205em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.068em; border-left: 0px solid; width: 0px; height: 1.004em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>3</mn><mi>x</mi></math></span></span><script type="math/tex" id="MathJax-Element-5">3x</script> and <span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-6-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mo fence=&quot;false&quot; stretchy=&quot;false&quot;>&amp;#x230A;</mo><mfrac><mi>y</mi><mn>3</mn></mfrac><mo fence=&quot;false&quot; stretchy=&quot;false&quot;>&amp;#x230B;</mo></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-17" style="width: 1.967em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.61em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.134em, 1001.43em, 2.801em, -999.997em); top: -2.199em; left: 0em;"><span class="mrow" id="MathJax-Span-18"><span class="mo" id="MathJax-Span-19" style="font-family: MathJax_Main;">⌊</span><span class="mfrac" id="MathJax-Span-20"><span style="display: inline-block; position: relative; width: 0.479em; height: 0px; margin-right: 0.122em; margin-left: 0.122em;"><span style="position: absolute; clip: rect(3.515em, 1000.36em, 4.289em, -999.997em); top: -4.58em; left: 50%; margin-left: -0.176em;"><span class="mi" id="MathJax-Span-21" style="font-size: 70.7%; font-family: MathJax_Math-italic;">y<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span><span style="display: inline-block; width: 0px; height: 3.991em;"></span></span><span style="position: absolute; clip: rect(3.336em, 1000.3em, 4.17em, -999.997em); top: -3.568em; left: 50%; margin-left: -0.176em;"><span class="mn" id="MathJax-Span-22" style="font-size: 70.7%; font-family: MathJax_Main;">3</span><span style="display: inline-block; width: 0px; height: 3.991em;"></span></span><span style="position: absolute; clip: rect(0.836em, 1000.48em, 1.253em, -999.997em); top: -1.307em; left: 0em;"><span style="display: inline-block; overflow: hidden; vertical-align: 0em; border-top: 1.3px solid; width: 0.479em; height: 0px;"></span><span style="display: inline-block; width: 0px; height: 1.074em;"></span></span></span></span><span class="mo" id="MathJax-Span-23" style="font-family: MathJax_Main;">⌋</span></span><span style="display: inline-block; width: 0px; height: 2.205em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.568em; border-left: 0px solid; width: 0px; height: 1.718em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mo fence="false" stretchy="false">⌊</mo><mfrac><mi>y</mi><mn>3</mn></mfrac><mo fence="false" stretchy="false">⌋</mo></math></span></span><script type="math/tex" id="MathJax-Element-6">\lfloor \frac{y}{3} \rfloor</script>. (Here <span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-7-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mo fence=&quot;false&quot; stretchy=&quot;false&quot;>&amp;#x230A;</mo><mo>&amp;#x2219;</mo><mo fence=&quot;false&quot; stretchy=&quot;false&quot;>&amp;#x230B;</mo></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-24" style="width: 1.67em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.372em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.253em, 1001.19em, 2.622em, -999.997em); top: -2.199em; left: 0em;"><span class="mrow" id="MathJax-Span-25"><span class="mo" id="MathJax-Span-26" style="font-family: MathJax_Main;">⌊</span><span class="mo" id="MathJax-Span-27" style="font-family: MathJax_Main;">∙</span><span class="mo" id="MathJax-Span-28" style="font-family: MathJax_Main;">⌋</span></span><span style="display: inline-block; width: 0px; height: 2.205em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.354em; border-left: 0px solid; width: 0px; height: 1.361em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mo fence="false" stretchy="false">⌊</mo><mo>∙</mo><mo fence="false" stretchy="false">⌋</mo></math></span></span><script type="math/tex" id="MathJax-Element-7">\lfloor \bullet \rfloor</script> denotes rounding down to the nearest integer).</li></ul> <p>What is the minimum number of operations Ivy needs to make all numbers on the board equal <span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-8-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>0</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-29" style="width: 0.598em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.479em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.372em, 1000.42em, 2.384em, -999.997em); top: -2.199em; left: 0em;"><span class="mrow" id="MathJax-Span-30"><span class="mn" id="MathJax-Span-31" style="font-family: MathJax_Main;">0</span></span><span style="display: inline-block; width: 0px; height: 2.205em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.068em; border-left: 0px solid; width: 0px; height: 1.004em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>0</mn></math></span></span><script type="math/tex" id="MathJax-Element-8">0</script>? We have a proof that this is always possible.</p></div><div class="input-specification"><div class="section-title">Input</div><p>The first line contains an integer <span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-9-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mi>t</mi></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-32" style="width: 0.479em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.36em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.372em, 1000.3em, 2.384em, -999.997em); top: -2.199em; left: 0em;"><span class="mrow" id="MathJax-Span-33"><span class="mi" id="MathJax-Span-34" style="font-family: MathJax_Math-italic;">t</span></span><span style="display: inline-block; width: 0px; height: 2.205em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.068em; border-left: 0px solid; width: 0px; height: 0.932em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>t</mi></math></span></span><script type="math/tex" id="MathJax-Element-9">t</script> (<span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-10-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>1</mn><mo>&amp;#x2264;</mo><mi>t</mi><mo>&amp;#x2264;</mo><msup><mn>10</mn><mn>4</mn></msup></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-35" style="width: 6.074em; display: inline-block;"><span style="display: inline-block; position: relative; width: 5.063em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.134em, 1005.06em, 2.503em, -999.997em); top: -2.199em; left: 0em;"><span class="mrow" id="MathJax-Span-36"><span class="mn" id="MathJax-Span-37" style="font-family: MathJax_Main;">1</span><span class="mo" id="MathJax-Span-38" style="font-family: MathJax_Main; padding-left: 0.301em;">≤</span><span class="mi" id="MathJax-Span-39" style="font-family: MathJax_Math-italic; padding-left: 0.301em;">t</span><span class="mo" id="MathJax-Span-40" style="font-family: MathJax_Main; padding-left: 0.301em;">≤</span><span class="msubsup" id="MathJax-Span-41" style="padding-left: 0.301em;"><span style="display: inline-block; position: relative; width: 1.432em; height: 0px;"><span style="position: absolute; clip: rect(3.158em, 1000.96em, 4.17em, -999.997em); top: -3.985em; left: 0em;"><span class="mn" id="MathJax-Span-42" style="font-family: MathJax_Main;">10</span><span style="display: inline-block; width: 0px; height: 3.991em;"></span></span><span style="position: absolute; top: -4.402em; left: 1.015em;"><span class="mn" id="MathJax-Span-43" style="font-size: 70.7%; font-family: MathJax_Main;">4</span><span style="display: inline-block; width: 0px; height: 3.991em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.205em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.211em; border-left: 0px solid; width: 0px; height: 1.361em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>1</mn><mo>≤</mo><mi>t</mi><mo>≤</mo><msup><mn>10</mn><mn>4</mn></msup></math></span></span><script type="math/tex" id="MathJax-Element-10">1 \leq t \leq 10^4</script>)&nbsp;— the number of test cases.</p><p>The only line of each test case contains two integers <span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-11-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mi>l</mi></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-44" style="width: 0.36em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.301em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.313em, 1000.24em, 2.384em, -999.997em); top: -2.199em; left: 0em;"><span class="mrow" id="MathJax-Span-45"><span class="mi" id="MathJax-Span-46" style="font-family: MathJax_Math-italic;">l</span></span><span style="display: inline-block; width: 0px; height: 2.205em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.068em; border-left: 0px solid; width: 0px; height: 1.004em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>l</mi></math></span></span><script type="math/tex" id="MathJax-Element-11">l</script> and <span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-12-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mi>r</mi></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-47" style="width: 0.598em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.479em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.61em, 1000.48em, 2.384em, -999.997em); top: -2.199em; left: 0em;"><span class="mrow" id="MathJax-Span-48"><span class="mi" id="MathJax-Span-49" style="font-family: MathJax_Math-italic;">r</span></span><span style="display: inline-block; width: 0px; height: 2.205em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.068em; border-left: 0px solid; width: 0px; height: 0.718em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>r</mi></math></span></span><script type="math/tex" id="MathJax-Element-12">r</script> (<span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-13-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>1</mn><mo>&amp;#x2264;</mo><mi>l</mi><mo>&amp;lt;</mo><mi>r</mi><mo>&amp;#x2264;</mo><mn>2</mn><mo>&amp;#x22C5;</mo><msup><mn>10</mn><mn>5</mn></msup></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-50" style="width: 9.765em; display: inline-block;"><span style="display: inline-block; position: relative; width: 8.098em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.134em, 1008.1em, 2.503em, -999.997em); top: -2.199em; left: 0em;"><span class="mrow" id="MathJax-Span-51"><span class="mn" id="MathJax-Span-52" style="font-family: MathJax_Main;">1</span><span class="mo" id="MathJax-Span-53" style="font-family: MathJax_Main; padding-left: 0.301em;">≤</span><span class="mi" id="MathJax-Span-54" style="font-family: MathJax_Math-italic; padding-left: 0.301em;">l</span><span class="mo" id="MathJax-Span-55" style="font-family: MathJax_Main; padding-left: 0.301em;">&lt;</span><span class="mi" id="MathJax-Span-56" style="font-family: MathJax_Math-italic; padding-left: 0.301em;">r</span><span class="mo" id="MathJax-Span-57" style="font-family: MathJax_Main; padding-left: 0.301em;">≤</span><span class="mn" id="MathJax-Span-58" style="font-family: MathJax_Main; padding-left: 0.301em;">2</span><span class="mo" id="MathJax-Span-59" style="font-family: MathJax_Main; padding-left: 0.241em;">⋅</span><span class="msubsup" id="MathJax-Span-60" style="padding-left: 0.241em;"><span style="display: inline-block; position: relative; width: 1.432em; height: 0px;"><span style="position: absolute; clip: rect(3.158em, 1000.96em, 4.17em, -999.997em); top: -3.985em; left: 0em;"><span class="mn" id="MathJax-Span-61" style="font-family: MathJax_Main;">10</span><span style="display: inline-block; width: 0px; height: 3.991em;"></span></span><span style="position: absolute; top: -4.402em; left: 1.015em;"><span class="mn" id="MathJax-Span-62" style="font-size: 70.7%; font-family: MathJax_Main;">5</span><span style="display: inline-block; width: 0px; height: 3.991em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.205em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.211em; border-left: 0px solid; width: 0px; height: 1.361em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>1</mn><mo>≤</mo><mi>l</mi><mo>&lt;</mo><mi>r</mi><mo>≤</mo><mn>2</mn><mo>⋅</mo><msup><mn>10</mn><mn>5</mn></msup></math></span></span><script type="math/tex" id="MathJax-Element-13">1 \leq l < r \leq 2 \cdot 10^5</script>).</p></div><div class="output-specification"><div class="section-title">Output</div><p>For each test case, output a single integer&nbsp;— the minimum number of operations needed to make all numbers on the board equal <span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-14-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>0</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-63" style="width: 0.598em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.479em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.372em, 1000.42em, 2.384em, -999.997em); top: -2.199em; left: 0em;"><span class="mrow" id="MathJax-Span-64"><span class="mn" id="MathJax-Span-65" style="font-family: MathJax_Main;">0</span></span><span style="display: inline-block; width: 0px; height: 2.205em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.068em; border-left: 0px solid; width: 0px; height: 1.004em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>0</mn></math></span></span><script type="math/tex" id="MathJax-Element-14">0</script>.</p></div><div class="sample-tests"><div class="section-title">Example</div><div class="sample-test"><div class="input"><div class="title">Input<div title="Copy" data-clipboard-target="#id004302314141906183" id="id004065344854040902" class="input-output-copier">Copy</div></div><pre id="id004302314141906183"><div class="test-example-line test-example-line-even test-example-line-0">4</div><div class="test-example-line test-example-line-odd test-example-line-1" style="">1 3</div><div class="test-example-line test-example-line-even test-example-line-2" style="">2 4</div><div class="test-example-line test-example-line-odd test-example-line-3" style="">199999 200000</div><div class="test-example-line test-example-line-even test-example-line-4" style="">19 84</div></pre></div><div class="output"><div class="title">Output<div title="Copy" data-clipboard-target="#id005777267915344002" id="id005785704180199143" class="input-output-copier">Copy</div></div><pre id="id005777267915344002">5
-6
-36
-263
-</pre></div></div></div><div class="note"><div class="section-title">Note</div><p>In the first test case, we can perform <span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-15-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mn>5</mn></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-66" style="width: 0.598em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.479em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.372em, 1000.42em, 2.384em, -999.997em); top: -2.199em; left: 0em;"><span class="mrow" id="MathJax-Span-67"><span class="mn" id="MathJax-Span-68" style="font-family: MathJax_Main;">5</span></span><span style="display: inline-block; width: 0px; height: 2.205em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.068em; border-left: 0px solid; width: 0px; height: 1.004em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>5</mn></math></span></span><script type="math/tex" id="MathJax-Element-15">5</script> operations as follows: <span class="MathJax_Preview" style="color: inherit;"></span><div class="MathJax_Display" style="text-align: center;"><span class="MathJax" id="MathJax-Element-16-Frame" tabindex="0" style="text-align: center; position: relative;" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot; display=&quot;block&quot;><mn>1</mn><mo>,</mo><mn>2</mn><mo>,</mo><mn>3</mn><munderover><mo>&amp;#x2192;</mo><mpadded width=&quot;+0.611em&quot; lspace=&quot;0.278em&quot; voffset=&quot;-.24em&quot;><mi>x</mi><mo>=</mo><mn>1</mn><mo>,</mo><mspace width=&quot;thinmathspace&quot; /><mi>y</mi><mo>=</mo><mn>2</mn></mpadded><mpadded width=&quot;+0.611em&quot; lspace=&quot;0.278em&quot; voffset=&quot;.15em&quot; /></munderover><mn>3</mn><mo>,</mo><mn>0</mn><mo>,</mo><mn>3</mn><munderover><mo>&amp;#x2192;</mo><mpadded width=&quot;+0.611em&quot; lspace=&quot;0.278em&quot; voffset=&quot;-.24em&quot;><mi>x</mi><mo>=</mo><mn>0</mn><mo>,</mo><mspace width=&quot;thinmathspace&quot; /><mi>y</mi><mo>=</mo><mn>3</mn></mpadded><mpadded width=&quot;+0.611em&quot; lspace=&quot;0.278em&quot; voffset=&quot;.15em&quot; /></munderover><mn>1</mn><mo>,</mo><mn>0</mn><mo>,</mo><mn>3</mn><munderover><mo>&amp;#x2192;</mo><mpadded width=&quot;+0.611em&quot; lspace=&quot;0.278em&quot; voffset=&quot;-.24em&quot;><mi>x</mi><mo>=</mo><mn>0</mn><mo>,</mo><mspace width=&quot;thinmathspace&quot; /><mi>y</mi><mo>=</mo><mn>3</mn></mpadded><mpadded width=&quot;+0.611em&quot; lspace=&quot;0.278em&quot; voffset=&quot;.15em&quot; /></munderover><mn>1</mn><mo>,</mo><mn>0</mn><mo>,</mo><mn>1</mn><munderover><mo>&amp;#x2192;</mo><mpadded width=&quot;+0.611em&quot; lspace=&quot;0.278em&quot; voffset=&quot;-.24em&quot;><mi>x</mi><mo>=</mo><mn>0</mn><mo>,</mo><mspace width=&quot;thinmathspace&quot; /><mi>y</mi><mo>=</mo><mn>1</mn></mpadded><mpadded width=&quot;+0.611em&quot; lspace=&quot;0.278em&quot; voffset=&quot;.15em&quot; /></munderover><mn>0</mn><mo>,</mo><mn>0</mn><mo>,</mo><mn>1</mn><munderover><mo>&amp;#x2192;</mo><mpadded width=&quot;+0.611em&quot; lspace=&quot;0.278em&quot; voffset=&quot;-.24em&quot;><mi>x</mi><mo>=</mo><mn>0</mn><mo>,</mo><mspace width=&quot;thinmathspace&quot; /><mi>y</mi><mo>=</mo><mn>1</mn></mpadded><mpadded width=&quot;+0.611em&quot; lspace=&quot;0.278em&quot; voffset=&quot;.15em&quot; /></munderover><mn>0</mn><mo>,</mo><mn>0</mn><mo>,</mo><mn>0</mn><mo>.</mo></math>" role="presentation"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-69" style="width: 42.086em; display: inline-block;"><span style="display: inline-block; position: relative; width: 35.062em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.193em, 1035em, 3.396em, -999.997em); top: -2.199em; left: 0em;"><span class="mrow" id="MathJax-Span-70"><span class="mn" id="MathJax-Span-71" style="font-family: MathJax_Main;">1</span><span class="mo" id="MathJax-Span-72" style="font-family: MathJax_Main;">,</span><span class="mn" id="MathJax-Span-73" style="font-family: MathJax_Main; padding-left: 0.182em;">2</span><span class="mo" id="MathJax-Span-74" style="font-family: MathJax_Main;">,</span><span class="mn" id="MathJax-Span-75" style="font-family: MathJax_Main; padding-left: 0.182em;">3</span><span class="munderover" id="MathJax-Span-76" style="padding-left: 0.301em;"><span style="display: inline-block; position: relative; width: 3.455em; height: 0px;"><span style="position: absolute; clip: rect(3.277em, 1003.4em, 4.17em, -999.997em); top: -3.985em; left: 0.003em;"><span class="mo" id="MathJax-Span-77" style=""><span style="display: inline-block; position: relative; width: 3.396em; height: 0px;"><span style="position: absolute; font-family: MathJax_Main; top: -3.985em; left: -0.057em;">−<span style="display: inline-block; width: 0px; height: 3.991em;"></span></span><span style="position: absolute; font-family: MathJax_Main; top: -3.985em; left: 2.443em;">→<span style="display: inline-block; width: 0px; height: 3.991em;"></span></span><span style="font-family: MathJax_Main; position: absolute; top: -3.985em; left: 0.42em;">−<span style="display: inline-block; width: 0px; height: 3.991em;"></span></span><span style="font-family: MathJax_Main; position: absolute; top: -3.985em; left: 0.955em;">−<span style="display: inline-block; width: 0px; height: 3.991em;"></span></span><span style="font-family: MathJax_Main; position: absolute; top: -3.985em; left: 1.432em;">−<span style="display: inline-block; width: 0px; height: 3.991em;"></span></span><span style="font-family: MathJax_Main; position: absolute; top: -3.985em; left: 1.967em;">−<span style="display: inline-block; width: 0px; height: 3.991em;"></span></span></span></span><span style="display: inline-block; width: 0px; height: 3.991em;"></span></span><span style="position: absolute; clip: rect(3.336em, 1003.1em, 4.527em, -999.997em); top: -3.33em; left: 0em;"><span class="mpadded" id="MathJax-Span-78"><span style="display: inline-block; position: relative; width: 3.455em; height: 0px;"><span style="position: absolute; clip: rect(3.336em, 1002.92em, 4.289em, -999.997em); top: -3.747em; left: 0.241em;"><span class="mrow" id="MathJax-Span-79"><span class="mi" id="MathJax-Span-80" style="font-size: 70.7%; font-family: MathJax_Math-italic;">x</span><span class="mo" id="MathJax-Span-81" style="font-size: 70.7%; font-family: MathJax_Main;">=</span><span class="mn" id="MathJax-Span-82" style="font-size: 70.7%; font-family: MathJax_Main;">1</span><span class="mo" id="MathJax-Span-83" style="font-size: 70.7%; font-family: MathJax_Main;">,</span><span class="mspace" id="MathJax-Span-84" style="height: 0em; vertical-align: 0em; width: 0.182em; display: inline-block; overflow: hidden;"></span><span class="mi" id="MathJax-Span-85" style="font-size: 70.7%; font-family: MathJax_Math-italic;">y<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span><span class="mo" id="MathJax-Span-86" style="font-size: 70.7%; font-family: MathJax_Main;">=</span><span class="mn" id="MathJax-Span-87" style="font-size: 70.7%; font-family: MathJax_Main;">2</span></span><span style="display: inline-block; width: 0px; height: 3.991em;"></span></span></span></span><span style="display: inline-block; width: 0px; height: 3.991em;"></span></span><span style="position: absolute; clip: rect(3.634em, 1000.24em, 4.17em, -999.997em); top: -4.699em; left: 1.491em;"><span class="mpadded" id="MathJax-Span-88"><span style="display: inline-block; position: relative; width: 0.539em; height: 0px;"><span style="position: absolute; clip: rect(3.812em, 1000em, 4.17em, -999.997em); top: -4.164em; left: 0.241em;"><span class="mrow" id="MathJax-Span-89"></span><span style="display: inline-block; width: 0px; height: 3.991em;"></span></span></span></span><span style="display: inline-block; width: 0px; height: 3.991em;"></span></span></span></span><span class="mn" id="MathJax-Span-90" style="font-family: MathJax_Main; padding-left: 0.301em;">3</span><span class="mo" id="MathJax-Span-91" style="font-family: MathJax_Main;">,</span><span class="mn" id="MathJax-Span-92" style="font-family: MathJax_Main; padding-left: 0.182em;">0</span><span class="mo" id="MathJax-Span-93" style="font-family: MathJax_Main;">,</span><span class="mn" id="MathJax-Span-94" style="font-family: MathJax_Main; padding-left: 0.182em;">3</span><span class="munderover" id="MathJax-Span-95" style="padding-left: 0.301em;"><span style="display: inline-block; position: relative; width: 3.455em; height: 0px;"><span style="position: absolute; clip: rect(3.277em, 1003.4em, 4.17em, -999.997em); top: -3.985em; left: 0.003em;"><span class="mo" id="MathJax-Span-96" style=""><span style="display: inline-block; position: relative; width: 3.396em; height: 0px;"><span style="position: absolute; font-family: MathJax_Main; top: -3.985em; left: -0.057em;">−<span style="display: inline-block; width: 0px; height: 3.991em;"></span></span><span style="position: absolute; font-family: MathJax_Main; top: -3.985em; left: 2.443em;">→<span style="display: inline-block; width: 0px; height: 3.991em;"></span></span><span style="font-family: MathJax_Main; position: absolute; top: -3.985em; left: 0.42em;">−<span style="display: inline-block; width: 0px; height: 3.991em;"></span></span><span style="font-family: MathJax_Main; position: absolute; top: -3.985em; left: 0.955em;">−<span style="display: inline-block; width: 0px; height: 3.991em;"></span></span><span style="font-family: MathJax_Main; position: absolute; top: -3.985em; left: 1.432em;">−<span style="display: inline-block; width: 0px; height: 3.991em;"></span></span><span style="font-family: MathJax_Main; position: absolute; top: -3.985em; left: 1.967em;">−<span style="display: inline-block; width: 0px; height: 3.991em;"></span></span></span></span><span style="display: inline-block; width: 0px; height: 3.991em;"></span></span><span style="position: absolute; clip: rect(3.336em, 1003.16em, 4.527em, -999.997em); top: -3.33em; left: 0em;"><span class="mpadded" id="MathJax-Span-97"><span style="display: inline-block; position: relative; width: 3.455em; height: 0px;"><span style="position: absolute; clip: rect(3.336em, 1002.92em, 4.289em, -999.997em); top: -3.747em; left: 0.241em;"><span class="mrow" id="MathJax-Span-98"><span class="mi" id="MathJax-Span-99" style="font-size: 70.7%; font-family: MathJax_Math-italic;">x</span><span class="mo" id="MathJax-Span-100" style="font-size: 70.7%; font-family: MathJax_Main;">=</span><span class="mn" id="MathJax-Span-101" style="font-size: 70.7%; font-family: MathJax_Main;">0</span><span class="mo" id="MathJax-Span-102" style="font-size: 70.7%; font-family: MathJax_Main;">,</span><span class="mspace" id="MathJax-Span-103" style="height: 0em; vertical-align: 0em; width: 0.182em; display: inline-block; overflow: hidden;"></span><span class="mi" id="MathJax-Span-104" style="font-size: 70.7%; font-family: MathJax_Math-italic;">y<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span><span class="mo" id="MathJax-Span-105" style="font-size: 70.7%; font-family: MathJax_Main;">=</span><span class="mn" id="MathJax-Span-106" style="font-size: 70.7%; font-family: MathJax_Main;">3</span></span><span style="display: inline-block; width: 0px; height: 3.991em;"></span></span></span></span><span style="display: inline-block; width: 0px; height: 3.991em;"></span></span><span style="position: absolute; clip: rect(3.634em, 1000.24em, 4.17em, -999.997em); top: -4.699em; left: 1.491em;"><span class="mpadded" id="MathJax-Span-107"><span style="display: inline-block; position: relative; width: 0.539em; height: 0px;"><span style="position: absolute; clip: rect(3.812em, 1000em, 4.17em, -999.997em); top: -4.164em; left: 0.241em;"><span class="mrow" id="MathJax-Span-108"></span><span style="display: inline-block; width: 0px; height: 3.991em;"></span></span></span></span><span style="display: inline-block; width: 0px; height: 3.991em;"></span></span></span></span><span class="mn" id="MathJax-Span-109" style="font-family: MathJax_Main; padding-left: 0.301em;">1</span><span class="mo" id="MathJax-Span-110" style="font-family: MathJax_Main;">,</span><span class="mn" id="MathJax-Span-111" style="font-family: MathJax_Main; padding-left: 0.182em;">0</span><span class="mo" id="MathJax-Span-112" style="font-family: MathJax_Main;">,</span><span class="mn" id="MathJax-Span-113" style="font-family: MathJax_Main; padding-left: 0.182em;">3</span><span class="munderover" id="MathJax-Span-114" style="padding-left: 0.301em;"><span style="display: inline-block; position: relative; width: 3.455em; height: 0px;"><span style="position: absolute; clip: rect(3.277em, 1003.4em, 4.17em, -999.997em); top: -3.985em; left: 0.003em;"><span class="mo" id="MathJax-Span-115" style=""><span style="display: inline-block; position: relative; width: 3.396em; height: 0px;"><span style="position: absolute; font-family: MathJax_Main; top: -3.985em; left: -0.057em;">−<span style="display: inline-block; width: 0px; height: 3.991em;"></span></span><span style="position: absolute; font-family: MathJax_Main; top: -3.985em; left: 2.443em;">→<span style="display: inline-block; width: 0px; height: 3.991em;"></span></span><span style="font-family: MathJax_Main; position: absolute; top: -3.985em; left: 0.42em;">−<span style="display: inline-block; width: 0px; height: 3.991em;"></span></span><span style="font-family: MathJax_Main; position: absolute; top: -3.985em; left: 0.955em;">−<span style="display: inline-block; width: 0px; height: 3.991em;"></span></span><span style="font-family: MathJax_Main; position: absolute; top: -3.985em; left: 1.432em;">−<span style="display: inline-block; width: 0px; height: 3.991em;"></span></span><span style="font-family: MathJax_Main; position: absolute; top: -3.985em; left: 1.967em;">−<span style="display: inline-block; width: 0px; height: 3.991em;"></span></span></span></span><span style="display: inline-block; width: 0px; height: 3.991em;"></span></span><span style="position: absolute; clip: rect(3.336em, 1003.16em, 4.527em, -999.997em); top: -3.33em; left: 0em;"><span class="mpadded" id="MathJax-Span-116"><span style="display: inline-block; position: relative; width: 3.455em; height: 0px;"><span style="position: absolute; clip: rect(3.336em, 1002.92em, 4.289em, -999.997em); top: -3.747em; left: 0.241em;"><span class="mrow" id="MathJax-Span-117"><span class="mi" id="MathJax-Span-118" style="font-size: 70.7%; font-family: MathJax_Math-italic;">x</span><span class="mo" id="MathJax-Span-119" style="font-size: 70.7%; font-family: MathJax_Main;">=</span><span class="mn" id="MathJax-Span-120" style="font-size: 70.7%; font-family: MathJax_Main;">0</span><span class="mo" id="MathJax-Span-121" style="font-size: 70.7%; font-family: MathJax_Main;">,</span><span class="mspace" id="MathJax-Span-122" style="height: 0em; vertical-align: 0em; width: 0.182em; display: inline-block; overflow: hidden;"></span><span class="mi" id="MathJax-Span-123" style="font-size: 70.7%; font-family: MathJax_Math-italic;">y<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span><span class="mo" id="MathJax-Span-124" style="font-size: 70.7%; font-family: MathJax_Main;">=</span><span class="mn" id="MathJax-Span-125" style="font-size: 70.7%; font-family: MathJax_Main;">3</span></span><span style="display: inline-block; width: 0px; height: 3.991em;"></span></span></span></span><span style="display: inline-block; width: 0px; height: 3.991em;"></span></span><span style="position: absolute; clip: rect(3.634em, 1000.24em, 4.17em, -999.997em); top: -4.699em; left: 1.491em;"><span class="mpadded" id="MathJax-Span-126"><span style="display: inline-block; position: relative; width: 0.539em; height: 0px;"><span style="position: absolute; clip: rect(3.812em, 1000em, 4.17em, -999.997em); top: -4.164em; left: 0.241em;"><span class="mrow" id="MathJax-Span-127"></span><span style="display: inline-block; width: 0px; height: 3.991em;"></span></span></span></span><span style="display: inline-block; width: 0px; height: 3.991em;"></span></span></span></span><span class="mn" id="MathJax-Span-128" style="font-family: MathJax_Main; padding-left: 0.301em;">1</span><span class="mo" id="MathJax-Span-129" style="font-family: MathJax_Main;">,</span><span class="mn" id="MathJax-Span-130" style="font-family: MathJax_Main; padding-left: 0.182em;">0</span><span class="mo" id="MathJax-Span-131" style="font-family: MathJax_Main;">,</span><span class="mn" id="MathJax-Span-132" style="font-family: MathJax_Main; padding-left: 0.182em;">1</span><span class="munderover" id="MathJax-Span-133" style="padding-left: 0.301em;"><span style="display: inline-block; position: relative; width: 3.455em; height: 0px;"><span style="position: absolute; clip: rect(3.277em, 1003.4em, 4.17em, -999.997em); top: -3.985em; left: 0.003em;"><span class="mo" id="MathJax-Span-134" style=""><span style="display: inline-block; position: relative; width: 3.396em; height: 0px;"><span style="position: absolute; font-family: MathJax_Main; top: -3.985em; left: -0.057em;">−<span style="display: inline-block; width: 0px; height: 3.991em;"></span></span><span style="position: absolute; font-family: MathJax_Main; top: -3.985em; left: 2.443em;">→<span style="display: inline-block; width: 0px; height: 3.991em;"></span></span><span style="font-family: MathJax_Main; position: absolute; top: -3.985em; left: 0.42em;">−<span style="display: inline-block; width: 0px; height: 3.991em;"></span></span><span style="font-family: MathJax_Main; position: absolute; top: -3.985em; left: 0.955em;">−<span style="display: inline-block; width: 0px; height: 3.991em;"></span></span><span style="font-family: MathJax_Main; position: absolute; top: -3.985em; left: 1.432em;">−<span style="display: inline-block; width: 0px; height: 3.991em;"></span></span><span style="font-family: MathJax_Main; position: absolute; top: -3.985em; left: 1.967em;">−<span style="display: inline-block; width: 0px; height: 3.991em;"></span></span></span></span><span style="display: inline-block; width: 0px; height: 3.991em;"></span></span><span style="position: absolute; clip: rect(3.336em, 1003.1em, 4.527em, -999.997em); top: -3.33em; left: 0em;"><span class="mpadded" id="MathJax-Span-135"><span style="display: inline-block; position: relative; width: 3.455em; height: 0px;"><span style="position: absolute; clip: rect(3.336em, 1002.86em, 4.289em, -999.997em); top: -3.747em; left: 0.241em;"><span class="mrow" id="MathJax-Span-136"><span class="mi" id="MathJax-Span-137" style="font-size: 70.7%; font-family: MathJax_Math-italic;">x</span><span class="mo" id="MathJax-Span-138" style="font-size: 70.7%; font-family: MathJax_Main;">=</span><span class="mn" id="MathJax-Span-139" style="font-size: 70.7%; font-family: MathJax_Main;">0</span><span class="mo" id="MathJax-Span-140" style="font-size: 70.7%; font-family: MathJax_Main;">,</span><span class="mspace" id="MathJax-Span-141" style="height: 0em; vertical-align: 0em; width: 0.182em; display: inline-block; overflow: hidden;"></span><span class="mi" id="MathJax-Span-142" style="font-size: 70.7%; font-family: MathJax_Math-italic;">y<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span><span class="mo" id="MathJax-Span-143" style="font-size: 70.7%; font-family: MathJax_Main;">=</span><span class="mn" id="MathJax-Span-144" style="font-size: 70.7%; font-family: MathJax_Main;">1</span></span><span style="display: inline-block; width: 0px; height: 3.991em;"></span></span></span></span><span style="display: inline-block; width: 0px; height: 3.991em;"></span></span><span style="position: absolute; clip: rect(3.634em, 1000.24em, 4.17em, -999.997em); top: -4.699em; left: 1.491em;"><span class="mpadded" id="MathJax-Span-145"><span style="display: inline-block; position: relative; width: 0.539em; height: 0px;"><span style="position: absolute; clip: rect(3.812em, 1000em, 4.17em, -999.997em); top: -4.164em; left: 0.241em;"><span class="mrow" id="MathJax-Span-146"></span><span style="display: inline-block; width: 0px; height: 3.991em;"></span></span></span></span><span style="display: inline-block; width: 0px; height: 3.991em;"></span></span></span></span><span class="mn" id="MathJax-Span-147" style="font-family: MathJax_Main; padding-left: 0.301em;">0</span><span class="mo" id="MathJax-Span-148" style="font-family: MathJax_Main;">,</span><span class="mn" id="MathJax-Span-149" style="font-family: MathJax_Main; padding-left: 0.182em;">0</span><span class="mo" id="MathJax-Span-150" style="font-family: MathJax_Main;">,</span><span class="mn" id="MathJax-Span-151" style="font-family: MathJax_Main; padding-left: 0.182em;">1</span><span class="munderover" id="MathJax-Span-152" style="padding-left: 0.301em;"><span style="display: inline-block; position: relative; width: 3.455em; height: 0px;"><span style="position: absolute; clip: rect(3.277em, 1003.4em, 4.17em, -999.997em); top: -3.985em; left: 0.003em;"><span class="mo" id="MathJax-Span-153" style=""><span style="display: inline-block; position: relative; width: 3.396em; height: 0px;"><span style="position: absolute; font-family: MathJax_Main; top: -3.985em; left: -0.057em;">−<span style="display: inline-block; width: 0px; height: 3.991em;"></span></span><span style="position: absolute; font-family: MathJax_Main; top: -3.985em; left: 2.443em;">→<span style="display: inline-block; width: 0px; height: 3.991em;"></span></span><span style="font-family: MathJax_Main; position: absolute; top: -3.985em; left: 0.42em;">−<span style="display: inline-block; width: 0px; height: 3.991em;"></span></span><span style="font-family: MathJax_Main; position: absolute; top: -3.985em; left: 0.955em;">−<span style="display: inline-block; width: 0px; height: 3.991em;"></span></span><span style="font-family: MathJax_Main; position: absolute; top: -3.985em; left: 1.432em;">−<span style="display: inline-block; width: 0px; height: 3.991em;"></span></span><span style="font-family: MathJax_Main; position: absolute; top: -3.985em; left: 1.967em;">−<span style="display: inline-block; width: 0px; height: 3.991em;"></span></span></span></span><span style="display: inline-block; width: 0px; height: 3.991em;"></span></span><span style="position: absolute; clip: rect(3.336em, 1003.1em, 4.527em, -999.997em); top: -3.33em; left: 0em;"><span class="mpadded" id="MathJax-Span-154"><span style="display: inline-block; position: relative; width: 3.455em; height: 0px;"><span style="position: absolute; clip: rect(3.336em, 1002.86em, 4.289em, -999.997em); top: -3.747em; left: 0.241em;"><span class="mrow" id="MathJax-Span-155"><span class="mi" id="MathJax-Span-156" style="font-size: 70.7%; font-family: MathJax_Math-italic;">x</span><span class="mo" id="MathJax-Span-157" style="font-size: 70.7%; font-family: MathJax_Main;">=</span><span class="mn" id="MathJax-Span-158" style="font-size: 70.7%; font-family: MathJax_Main;">0</span><span class="mo" id="MathJax-Span-159" style="font-size: 70.7%; font-family: MathJax_Main;">,</span><span class="mspace" id="MathJax-Span-160" style="height: 0em; vertical-align: 0em; width: 0.182em; display: inline-block; overflow: hidden;"></span><span class="mi" id="MathJax-Span-161" style="font-size: 70.7%; font-family: MathJax_Math-italic;">y<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span><span class="mo" id="MathJax-Span-162" style="font-size: 70.7%; font-family: MathJax_Main;">=</span><span class="mn" id="MathJax-Span-163" style="font-size: 70.7%; font-family: MathJax_Main;">1</span></span><span style="display: inline-block; width: 0px; height: 3.991em;"></span></span></span></span><span style="display: inline-block; width: 0px; height: 3.991em;"></span></span><span style="position: absolute; clip: rect(3.634em, 1000.24em, 4.17em, -999.997em); top: -4.699em; left: 1.491em;"><span class="mpadded" id="MathJax-Span-164"><span style="display: inline-block; position: relative; width: 0.539em; height: 0px;"><span style="position: absolute; clip: rect(3.812em, 1000em, 4.17em, -999.997em); top: -4.164em; left: 0.241em;"><span class="mrow" id="MathJax-Span-165"></span><span style="display: inline-block; width: 0px; height: 3.991em;"></span></span></span></span><span style="display: inline-block; width: 0px; height: 3.991em;"></span></span></span></span><span class="mn" id="MathJax-Span-166" style="font-family: MathJax_Main; padding-left: 0.301em;">0</span><span class="mo" id="MathJax-Span-167" style="font-family: MathJax_Main;">,</span><span class="mn" id="MathJax-Span-168" style="font-family: MathJax_Main; padding-left: 0.182em;">0</span><span class="mo" id="MathJax-Span-169" style="font-family: MathJax_Main;">,</span><span class="mn" id="MathJax-Span-170" style="font-family: MathJax_Main; padding-left: 0.182em;">0</span><span class="mo" id="MathJax-Span-171" style="font-family: MathJax_Main;">.</span></span><span style="display: inline-block; width: 0px; height: 2.205em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -1.139em; border-left: 0px solid; width: 0px; height: 2.218em;"></span></span></nobr><span class="MJX_Assistive_MathML MJX_Assistive_MathML_Block" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mn>1</mn><mo>,</mo><mn>2</mn><mo>,</mo><mn>3</mn><munderover><mo>→</mo><mpadded width="+0.611em" lspace="0.278em" voffset="-.24em"><mi>x</mi><mo>=</mo><mn>1</mn><mo>,</mo><mspace width="thinmathspace"></mspace><mi>y</mi><mo>=</mo><mn>2</mn></mpadded><mpadded width="+0.611em" lspace="0.278em" voffset=".15em"></mpadded></munderover><mn>3</mn><mo>,</mo><mn>0</mn><mo>,</mo><mn>3</mn><munderover><mo>→</mo><mpadded width="+0.611em" lspace="0.278em" voffset="-.24em"><mi>x</mi><mo>=</mo><mn>0</mn><mo>,</mo><mspace width="thinmathspace"></mspace><mi>y</mi><mo>=</mo><mn>3</mn></mpadded><mpadded width="+0.611em" lspace="0.278em" voffset=".15em"></mpadded></munderover><mn>1</mn><mo>,</mo><mn>0</mn><mo>,</mo><mn>3</mn><munderover><mo>→</mo><mpadded width="+0.611em" lspace="0.278em" voffset="-.24em"><mi>x</mi><mo>=</mo><mn>0</mn><mo>,</mo><mspace width="thinmathspace"></mspace><mi>y</mi><mo>=</mo><mn>3</mn></mpadded><mpadded width="+0.611em" lspace="0.278em" voffset=".15em"></mpadded></munderover><mn>1</mn><mo>,</mo><mn>0</mn><mo>,</mo><mn>1</mn><munderover><mo>→</mo><mpadded width="+0.611em" lspace="0.278em" voffset="-.24em"><mi>x</mi><mo>=</mo><mn>0</mn><mo>,</mo><mspace width="thinmathspace"></mspace><mi>y</mi><mo>=</mo><mn>1</mn></mpadded><mpadded width="+0.611em" lspace="0.278em" voffset=".15em"></mpadded></munderover><mn>0</mn><mo>,</mo><mn>0</mn><mo>,</mo><mn>1</mn><munderover><mo>→</mo><mpadded width="+0.611em" lspace="0.278em" voffset="-.24em"><mi>x</mi><mo>=</mo><mn>0</mn><mo>,</mo><mspace width="thinmathspace"></mspace><mi>y</mi><mo>=</mo><mn>1</mn></mpadded><mpadded width="+0.611em" lspace="0.278em" voffset=".15em"></mpadded></munderover><mn>0</mn><mo>,</mo><mn>0</mn><mo>,</mo><mn>0</mn><mo>.</mo></math></span></span></div><script type="math/tex; mode=display" id="MathJax-Element-16"> 1,2,3 \xrightarrow[x=1,\,y=2]{} 3,0,3 \xrightarrow[x=0,\,y=3]{} 1,0,3 \xrightarrow[x=0,\,y=3]{} 1,0,1 \xrightarrow[x=0,\,y=1]{} 0,0,1 \xrightarrow[x=0,\,y=1]{} 0,0,0 .</script></p></div></div><p>  </p></div>
-[964E.md](https://codeforces.com/contest/1999/problem/E)
-
-<h1 id="My-think"><a href="#My-think" class="headerlink" title="My think:"></a>My think:</h1><p>At first, I thought it was a simple simulation problem: calculate the number of times x when the smallest<br>number divided by 3 equals 0, and then the answer would be x * 2 plus the number of remaining times when<br>the left number divided by 3 equals 0. However, this approach is incorrect.</p>
-<p>By utilizing the characteristics of exponential growth and performing some simple<br>calculations, we can quickly determine the minimum number of operations within a given range.<br>This method has a low time complexity and can efficiently handle large input ranges.</p>
-<h1 id="Code"><a href="#Code" class="headerlink" title="Code:"></a>Code:</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line">t = <span class="built_in">int</span>(<span class="built_in">input</span>())</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(t):</span><br><span class="line">    num = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().split()))</span><br><span class="line">    l = num[<span class="number">0</span>]</span><br><span class="line">    r = num[<span class="number">1</span>]</span><br><span class="line">    start_pow3 = <span class="number">1</span></span><br><span class="line">    cnt_start = <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> start_pow3 &lt;= (l / <span class="number">3</span>):</span><br><span class="line">        start_pow3 *= <span class="number">3</span></span><br><span class="line">        cnt_start += <span class="number">1</span></span><br><span class="line">    ans = cnt_start</span><br><span class="line">    pow3 = start_pow3</span><br><span class="line">    next_pow3 = start_pow3 * <span class="number">3</span></span><br><span class="line">    <span class="keyword">while</span> pow3 &lt;= r:</span><br><span class="line">        ans += (<span class="built_in">min</span>(r + <span class="number">1</span>, next_pow3) - <span class="built_in">max</span>(l, pow3)) * cnt_start</span><br><span class="line">        cnt_start += <span class="number">1</span></span><br><span class="line">        pow3 *= <span class="number">3</span></span><br><span class="line">        next_pow3 *= <span class="number">3</span></span><br><span class="line">    <span class="built_in">print</span>(ans)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">min_operations_to_zero</span>(<span class="params">n</span>):</span><br><span class="line">    operations = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> n &gt; <span class="number">0</span>:</span><br><span class="line">        n = n // <span class="number">3</span></span><br><span class="line">        operations += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> operations</span><br><span class="line"></span><br><span class="line">t = <span class="built_in">int</span>(<span class="built_in">input</span>())</span><br><span class="line">results = []</span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(t):</span><br><span class="line">    l, r = <span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().split())</span><br><span class="line">    total_operations = <span class="number">0</span></span><br><span class="line">    oper = min_operations_to_zero(l)</span><br><span class="line">    <span class="keyword">for</span> n <span class="keyword">in</span> <span class="built_in">range</span>(l+<span class="number">1</span>, r+<span class="number">1</span>):</span><br><span class="line">        total_operations += min_operations_to_zero(n)</span><br><span class="line">    total_operations += oper*<span class="number">2</span></span><br><span class="line">    results.append(total_operations)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> result <span class="keyword">in</span> results:</span><br><span class="line">    <span class="built_in">print</span>(result)</span><br></pre></td></tr></table></figure>
-                
-            
-
-            <!-- 添加打赏 -->
-            
-
-            <!-- 添加版权声明 -->
-            
-
-        </div>
-
-        <!-- 添加置顶 -->
-        <div class="article-info article-info-index">
-            
-
-            <!-- 分类页 -->
-            
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Answer</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-            
-
-            <!-- 添加展开全文 -->
-            
-                <p class="article-more-link">
-                    <a class="article-more-a" href="/post/2280b647.html">show all >></a>
-                </p>
-            
-
-            <!-- 添加分享 -->
-            
-
-            <div class="clearfix"></div>
-
-        </div>
-    </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-    
-
-<!-- 文章页添加mathjax公式 -->
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&lt;&lt; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/3/">下一页 &gt;&gt;</a>
@@ -2576,10 +2669,10 @@ window.MathJax = {
 	  <br>
 	  <div class="footer-center">
 	    <i class="fa fa-file-word-o" aria-hidden="true"></i>
-		<span> 119 篇</span>
+		<span> 120 篇</span>
 		<span class="post-meta-divider">|</span>
 		<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-		<span> <span class="post-count">59.1k</span></span>
+		<span> <span class="post-count">59.9k</span></span>
       </div>
 	  
 	  <!-- 添加不蒜子统计 -->

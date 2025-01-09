@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" >
   
@@ -357,7 +359,7 @@ var _hmt = _hmt || [];
 	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
         <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
         <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">620字</span>
+        <span class="post-count">632字</span>
       </span>
     </span>
 
@@ -385,16 +387,16 @@ var _hmt = _hmt || [];
 <p>For each queries[i], you need to find the index of the queries[i]th occurrence of x in the nums array. If there are fewer than queries[i] occurrences of x, the answer should be -1 for that query.</p>
 <p>Return an integer array answer containing the answers to all queries.</p>
 <p>Example 1:</p>
-<p>Input: nums = [1,3,1,7], queries = [1,3,2,4], x = 1</p>
+<p>Input: nums &#x3D; [1,3,1,7], queries &#x3D; [1,3,2,4], x &#x3D; 1</p>
 <p>Output: [0,-1,2,-1]</p>
 <p>Explanation:</p>
 <p>For the 1st query, the first occurrence of 1 is at index 0.<br>For the 2nd query, there are only two occurrences of 1 in nums, so the answer is -1.<br>For the 3rd query, the second occurrence of 1 is at index 2.<br>For the 4th query, there are only two occurrences of 1 in nums, so the answer is -1.<br>Example 2:</p>
-<p>Input: nums = [1,2,3], queries = [10], x = 5</p>
+<p>Input: nums &#x3D; [1,2,3], queries &#x3D; [10], x &#x3D; 5</p>
 <p>Output: [-1]</p>
 <p>Explanation:</p>
 <p>For the 1st query, 5 doesn’t exist in nums, so the answer is -1.</p>
 <p>Constraints:</p>
-<p>1 &lt;= nums.length, queries.length &lt;= 105<br>1 &lt;= queries[i] &lt;= 105<br>1 &lt;= nums[i], x &lt;= 104</p>
+<p>1 &lt;&#x3D; nums.length, queries.length &lt;&#x3D; 105<br>1 &lt;&#x3D; queries[i] &lt;&#x3D; 105<br>1 &lt;&#x3D; nums[i], x &lt;&#x3D; 104</p>
 <h1 id="My-Think："><a href="#My-Think：" class="headerlink" title="My Think："></a>My Think：</h1><p>I haven’t written a solution for a long time. Now that I’m on vacation, I’m starting over. This question requires us to find “all x’s indices” from the given nums, and then return the index address of the queries-th x.<br>So we can use the list generation formula <code>indices = [i for i, value in enumerate(nums) if value == x]</code> to return a list containing all x’s indices,<br>and then query them one by one.<br>First mistake: I didn’t consider the case where indices is empty, so <code>indices[q-1] out of range</code>.<br>Second mistake: I forgot that the for loop in Golang needs two parameters to receive the value passed by range.</p>
 <p>很久没有写题解了,现在放假了于是重新开始了. 这一道题要求我们从给定的nums中找到”所有x的索引”, 然后返回第queries个x的索引地址即可.<br>于是我们可以用列表生成式<code>indices = [i for i, value in enumerate(nums) if value == x]</code>来返回一个包含所有x索引的列表,<br>然后依次在其中查询即可.<br>第一次错误: 没有考虑indices为空的情况, 于是<code>indices[q-1] out of range</code>.<br>第二次错误: 忘记了Golang里的for循环需要两个参数接收range传来的value.</p>
 <h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">occurrencesOfElement</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], queries: <span class="type">List</span>[<span class="built_in">int</span>], x: <span class="built_in">int</span></span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        <span class="comment"># Find the indices of all elements equal to x</span></span><br><span class="line">        indices = [i <span class="keyword">for</span> i, value <span class="keyword">in</span> <span class="built_in">enumerate</span>(nums) <span class="keyword">if</span> value == x]</span><br><span class="line">        <span class="comment"># print(indices)</span></span><br><span class="line">        n = <span class="built_in">len</span>(indices)</span><br><span class="line">        ans = []</span><br><span class="line">        <span class="keyword">for</span> q <span class="keyword">in</span> queries:</span><br><span class="line">            <span class="keyword">if</span> indices <span class="keyword">and</span> q-<span class="number">1</span> &lt; n:</span><br><span class="line">                ans.append(indices[q-<span class="number">1</span>])</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                ans.append(-<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
@@ -643,10 +645,10 @@ var _hmt = _hmt || [];
 	  <br>
 	  <div class="footer-center">
 	    <i class="fa fa-file-word-o" aria-hidden="true"></i>
-		<span> 119 篇</span>
+		<span> 120 篇</span>
 		<span class="post-meta-divider">|</span>
 		<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-		<span> <span class="post-count">59.1k</span></span>
+		<span> <span class="post-count">59.9k</span></span>
       </div>
 	  
 	  <!-- 添加不蒜子统计 -->

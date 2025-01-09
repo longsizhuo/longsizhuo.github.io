@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" >
   
@@ -368,7 +370,7 @@ var _hmt = _hmt || [];
 	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
         <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
         <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">738字</span>
+        <span class="post-count">751字</span>
       </span>
     </span>
 
@@ -392,25 +394,25 @@ var _hmt = _hmt || [];
             <!-- 添加分类与标签 -->
             
                 
-                    <p><img src="../assets/img/2023-07-01%20(1).png" alt="2023-07-01 (1).png"><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/linked-list-cycle-ii/">142.Ring listII.md</a></p>
+                    <p><img src="/../assets/img/2023-07-01%20(1).png" alt="2023-07-01 (1).png"><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/linked-list-cycle-ii/">142.Ring listII.md</a></p>
 <h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><h3 id="Problem-solving："><a href="#Problem-solving：" class="headerlink" title="Problem -solving："></a>Problem -solving：</h3><p>这类Linkedtopic一般都yes使用双pointer法解决的，For example, looking for distance tail K Node、Find a ring entrance、Find the entrance of the public tail, etc.。</p>
 <h3 id="Algorithm："><a href="#Algorithm：" class="headerlink" title="Algorithm："></a>Algorithm：</h3><ol>
 <li><p>Double pointer met for the first time： Set two pointers fast，slow 指向Linked头部 head，fast Walk per round 2 step，slow Walk per round 1 step；</p>
 <p> a. First result： fast pointer走过Linked末端，说明Linked无环，直接return null；</p>
-<p> .TIPS: If there is a ring，Two pointers will definitely meet。Because every time I go 1 wheel，fast and slow Pitch +1，fast The event will catch up slow；<br> b. Second result： whenfast == slowhour， Two pointers in the ring First encounter 。下面分析此hourfast and slowPassing step数关系 ：</p>
-<p> .设Linked共have a+b Node，in Linked头部到Linked入口 have a Node（不计Linked入口节点）， Linked环 have b Node（这里需要Notice，a and b yes未知数，例如图解上Linked a=4 , b=5）；Set two pointers分别走了 f，s step，则have：<br> a. fast 走的step数yesslowstep数的 2 Double，Right now f=2s；（Analyze： fast Walk per round 2 step）<br> b.fast Compare slowGo more n Length of a ring，Right now f=s+nb；（ Analyze： Double pointers have gone through a step，然后在环Inside绕圈直到重合，重合hour fast Compare slow Go 环的长度整数Double ）；<br> .The above two types are reduced：f=2nb，s=nb，Right nowfastandslow The pointer left separately 2n，n indivual Circumference of the ring （Notice： n yes未知数，不同Linked的情况不同）。</p>
+<p> .TIPS: If there is a ring，Two pointers will definitely meet。Because every time I go 1 wheel，fast and slow Pitch +1，fast The event will catch up slow；<br> b. Second result： whenfast &#x3D;&#x3D; slowhour， Two pointers in the ring First encounter 。下面分析此hourfast and slowPassing step数关系 ：</p>
+<p> .设Linked共have a+b Node，in Linked头部到Linked入口 have a Node（不计Linked入口节点）， Linked环 have b Node（这里需要Notice，a and b yes未知数，例如图解上Linked a&#x3D;4 , b&#x3D;5）；Set two pointers分别走了 f，s step，则have：<br> a. fast 走的step数yesslowstep数的 2 Double，Right now f&#x3D;2s；（Analyze： fast Walk per round 2 step）<br> b.fast Compare slowGo more n Length of a ring，Right now f&#x3D;s+nb；（ Analyze： Double pointers have gone through a step，然后在环Inside绕圈直到重合，重合hour fast Compare slow Go 环的长度整数Double ）；<br> .The above two types are reduced：f&#x3D;2nb，s&#x3D;nb，Right nowfastandslow The pointer left separately 2n，n indivual Circumference of the ring （Notice： n yes未知数，不同Linked的情况不同）。</p>
 </li>
 </ol>
 <span id="more"></span>
 
 <ol start="2">
 <li><p>Current situation analysis：</p>
-<p> .if让pointer从Linked头部一直向前走并统计step数k，那么所have 走到Linked入口节点hour的step数 yes：k=a+nb（Leave first a step到入口节点，Over time 1 Ring（ b step）I will go to the entrance node again）。</p>
+<p> .if让pointer从Linked头部一直向前走并统计step数k，那么所have 走到Linked入口节点hour的step数 yes：k&#x3D;a+nb（Leave first a step到入口节点，Over time 1 Ring（ b step）I will go to the entrance node again）。</p>
 <p> ..Current，slow pointerPassingstep数为 nb step。therefore，We just find a way slow Go again a step停下来，You can get to the entrance to the ring。</p>
 <p>…但yes我们不知道 a Value，what to do？依然yes使用双pointer法。我们构建一indivualpointer，此pointer需要have以下性质：此pointerandslow Go forward together a step后，The two nodes at the entrance re -coincide。So where does it need to get to the entrance node? a step？答案yesLinked头部head。</p>
 </li>
 <li><p>Double pointer met for the second time：<br> .slowpointer Unchanged position ，Willfastpointer重新 指向Linked头部节点 ；slowandfast同hour每wheel向前走 1 step；</p>
-<p> ..TIPS：此hour f=0，s=nb ；<br> …when fast pointer走到f=a stephour，slow pointer走到steps=a+nb，此hour 两pointer重合，并同hour指向Linked环入口 。</p>
+<p> ..TIPS：此hour f&#x3D;0，s&#x3D;nb ；<br> …when fast pointer走到f&#x3D;a stephour，slow pointer走到steps&#x3D;a+nb，此hour 两pointer重合，并同hour指向Linked环入口 。</p>
 </li>
 <li><p>returnslowpointer指向的节点。</p>
 </li>
@@ -519,11 +521,11 @@ var _hmt = _hmt || [];
     
 <nav id="article-nav">
   
-    <a href="/post/435a9a0d.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/post/14b94db7.html" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          1250. examine「Good array」 One question daily
+          1237. Find out the positive combination of the given square  One question daily
         
       </div>
     </a>
@@ -653,10 +655,10 @@ var _hmt = _hmt || [];
 	  <br>
 	  <div class="footer-center">
 	    <i class="fa fa-file-word-o" aria-hidden="true"></i>
-		<span> 119 篇</span>
+		<span> 120 篇</span>
 		<span class="post-meta-divider">|</span>
 		<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-		<span> <span class="post-count">59.1k</span></span>
+		<span> <span class="post-count">59.9k</span></span>
       </div>
 	  
 	  <!-- 添加不蒜子统计 -->

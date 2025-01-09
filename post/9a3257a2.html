@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" >
   
@@ -17,16 +19,16 @@
 <meta property="og:site_name" content="Siz Long">
 <meta property="og:description" content="QUESTION：MyCalendar.md My Think：Today we are talking about MyCalendar I II III. The daily questions for these three days are the same, so we will do them together. 今天我们讲MyCalendar I II III, 这三天的每日一题都是">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2025-04-01T11:39:00.000Z">
-<meta property="article:modified_time" content="2025-01-04T17:21:01.986Z">
+<meta property="article:published_time" content="2025-01-04T17:19:58.571Z">
+<meta property="article:modified_time" content="2025-01-05T17:00:10.294Z">
 <meta property="article:author" content="loong loong">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="Answer">
+<meta property="article:tag" content="Prefix Sum">
 <meta property="article:tag" content="Binary Search">
 <meta property="article:tag" content="Design">
 <meta property="article:tag" content="Segment Tree">
 <meta property="article:tag" content="Ordered Set">
-<meta property="article:tag" content="Prefix Sum">
 <meta name="twitter:card" content="summary">
 
   
@@ -315,12 +317,12 @@ var _hmt = _hmt || [];
 
                 
                     <a href="/post/9a3257a2.html" class="archive-article-date">
-  	<time datetime="2025-04-01T11:39:00.000Z" itemprop="datePublished">
+  	<time datetime="2025-01-04T17:19:58.571Z" itemprop="datePublished">
 	<!-- <i class="icon-calendar icon"></i> -->
 
 	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
 	&nbsp;
-	2025-04-01</time>
+	2025-01-05</time>
 	
 	<!-- busuanzi阅读量统计
 	
@@ -396,10 +398,10 @@ var _hmt = _hmt || [];
 <li><p>Record the changes at each time point (start and end)<br>When a new interval <code>[startTime, endTime)</code> is to be inserted:</p>
 <ol>
 <li>At the position corresponding to <code>startTime</code> +1</li>
-<li>At the position corresponding to <code>endTime</code> -1<br>In this way, we only record “how much the overlap number should be added/subtracted at these two boundary time points”.</li>
+<li>At the position corresponding to <code>endTime</code> -1<br>In this way, we only record “how much the overlap number should be added&#x2F;subtracted at these two boundary time points”.</li>
 </ol>
 </li>
-<li><p>Count the current maximum overlap when necessary<br>Sort all-time points (keys) from small to large, and accumulate their +1/-1 values in turn.<br>The result of the accumulation is the number of activities carried out simultaneously at the corresponding time (that is, the “overlap number”).<br>If you want to find out whether there is a triple reservation, see whether the maximum of this accumulation process reaches 3 (or higher)</p>
+<li><p>Count the current maximum overlap when necessary<br>Sort all-time points (keys) from small to large, and accumulate their +1&#x2F;-1 values in turn.<br>The result of the accumulation is the number of activities carried out simultaneously at the corresponding time (that is, the “overlap number”).<br>If you want to find out whether there is a triple reservation, see whether the maximum of this accumulation process reaches 3 (or higher)</p>
 </li>
 </ol>
 <p>这道题要求我们在上一道题的条件下, 检查是否会出现三次预定. 二分查找虽然也可以做, 但是会复杂很多. 我们在这一题引入差分(Line Sweep)的思想.</p>
@@ -407,10 +409,10 @@ var _hmt = _hmt || [];
 <li><p>记录每个时间点（开始与结束）的变化<br> 当有新的区间 <code>[startTime, endTime)</code> 要插入时：</p>
 <ol>
 <li>在 <code>startTime</code> 对应的位置 +1</li>
-<li>在 <code>endTime</code> 对应的位置 -1<br>这样我们只记录“在这两个边界时间点，重叠数量要加/减多少”。</li>
+<li>在 <code>endTime</code> 对应的位置 -1<br>这样我们只记录“在这两个边界时间点，重叠数量要加&#x2F;减多少”。</li>
 </ol>
 </li>
-<li><p>在需要时统计当前的最大重叠<br>把所有的时间点（key）从小到大排序，依次累加其 +1/-1 值。<br>累加的结果就是对应时刻同时进行的活动数量（也就是“重叠数量”）。<br>如果要查找是否出现三重预定，就看这个累加过程最大是否到达 3（或更高）</p>
+<li><p>在需要时统计当前的最大重叠<br>把所有的时间点（key）从小到大排序，依次累加其 +1&#x2F;-1 值。<br>累加的结果就是对应时刻同时进行的活动数量（也就是“重叠数量”）。<br>如果要查找是否出现三重预定，就看这个累加过程最大是否到达 3（或更高）</p>
 </li>
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sortedcontainers <span class="keyword">import</span> SortedDict</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyCalendarTwo</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        self.sd = SortedDict()</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">book</span>(<span class="params">self, startTime: <span class="built_in">int</span>, endTime: <span class="built_in">int</span></span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        self.sd[startTime] = self.sd.get(startTime, <span class="number">0</span>) + <span class="number">1</span></span><br><span class="line">        self.sd[endTime] = self.sd.get(endTime, <span class="number">0</span>) - <span class="number">1</span></span><br><span class="line">        s = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> v <span class="keyword">in</span> self.sd.values():</span><br><span class="line">            s += v</span><br><span class="line">            <span class="keyword">if</span> s &gt; <span class="number">2</span>:</span><br><span class="line">                self.sd[startTime] -= <span class="number">1</span></span><br><span class="line">                self.sd[endTime] += <span class="number">1</span></span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
@@ -419,7 +421,7 @@ var _hmt = _hmt || [];
 <ol>
 <li><p>Difference record</p>
 <p> Same as before: <code>+1</code> at the position corresponding to <code>startTime</code>, <code>-1</code> at the position corresponding to <code>endTime</code>.</p>
-<p> Store in <code>self.sd</code>: <code>key</code> = time point, <code>value</code> = increase or decrease at that time point.</p>
+<p> Store in <code>self.sd</code>: <code>key</code> &#x3D; time point, <code>value</code> &#x3D; increase or decrease at that time point.</p>
 </li>
 <li><p>Find the maximum number of overlaps</p>
 <p> Use a rolling variable ongoing to indicate “how many overlaps there are at the current moment”.<br> Each time a time point is traversed, the corresponding difference is accumulated to ongoing, and then <code>max_overlap = max(max_overlap, ongoing)</code> is updated.</p>
@@ -428,7 +430,7 @@ var _hmt = _hmt || [];
 <p>这道题更加过分, 要求我们找到多重预定中最多有多少重, 我们就在上一道题的基础上记录即可.</p>
 <ol>
 <li><p>差分记录</p>
-<p> 与之前一致：在 <code>startTime</code> 对应的位置 +<code>1</code>，在 <code>endTime</code> 对应的位置 <code>-1</code>。<br> <code>self.sd</code> 中存储：key=时间点, <code>value</code>=该时间点的增减量。</p>
+<p> 与之前一致：在 <code>startTime</code> 对应的位置 +<code>1</code>，在 <code>endTime</code> 对应的位置 <code>-1</code>。<br> <code>self.sd</code> 中存储：key&#x3D;时间点, <code>value</code>&#x3D;该时间点的增减量。</p>
 </li>
 <li><p>求最大重叠数</p>
 <p> 用一个滚动变量 <code>ongoing</code> 表示“当前时刻有多少重叠”。<br> 每遍历一个时间点，把对应的差分累加到 <code>ongoing</code>，然后更新 <code>max_overlap = max(max_overlap, ongoing)</code>。</p>
@@ -467,6 +469,10 @@ var _hmt = _hmt || [];
         		</li>
       		 
         		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Prefix Sum</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Binary Search</a>
         		</li>
       		 
@@ -480,10 +486,6 @@ var _hmt = _hmt || [];
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Ordered Set</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Prefix Sum</a>
         		</li>
       		
 		</ul>
@@ -692,10 +694,10 @@ var _hmt = _hmt || [];
 	  <br>
 	  <div class="footer-center">
 	    <i class="fa fa-file-word-o" aria-hidden="true"></i>
-		<span> 119 篇</span>
+		<span> 120 篇</span>
 		<span class="post-meta-divider">|</span>
 		<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-		<span> <span class="post-count">59.1k</span></span>
+		<span> <span class="post-count">59.9k</span></span>
       </div>
 	  
 	  <!-- 添加不蒜子统计 -->
