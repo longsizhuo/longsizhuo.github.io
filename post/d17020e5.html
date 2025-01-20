@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" >
   
@@ -21,8 +23,8 @@
 <meta property="article:modified_time" content="2024-11-11T05:54:50.387Z">
 <meta property="article:author" content="loong loong">
 <meta property="article:tag" content="Python">
-<meta property="article:tag" content="9021">
 <meta property="article:tag" content="Answer">
+<meta property="article:tag" content="9021">
 <meta name="twitter:card" content="summary">
 
   
@@ -82,7 +84,7 @@ var _hmt = _hmt || [];
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/node-tikzjax@latest/css/fonts.css" /><style>.tikzjax { display: block; text-align: center; user-select: none; }</style></head>
 <body>
 
 <div id="container" q-class="show:isCtnShow">
@@ -484,8 +486,10 @@ var _hmt = _hmt || [];
 <ol>
 <li><p>Validation Method:</p>
 <ul>
-<li>The standard solution defines a <code>_validate</code> method to handle checks for the operands (<code>Modulo</code> type and modulus equality), improving code reuse.</li>
-<li>My solution performs these checks directly inside the <code>__add__</code> and <code>__mul__</code> methods.</li>
+<li><p>The standard solution defines a <code>_validate</code> method to handle checks for the operands (<code>Modulo</code> type and modulus equality), improving code reuse.</p>
+</li>
+<li><p>My solution performs these checks directly inside the <code>__add__</code> and <code>__mul__</code> methods.</p>
+</li>
 </ul>
 </li>
 <li><p>In-Place Operations:</p>
@@ -509,20 +513,20 @@ var _hmt = _hmt || [];
 <h3 id="Standard-Solution-3"><a href="#Standard-Solution-3" class="headerlink" title="Standard Solution"></a>Standard Solution</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Prime</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        Prime.p = <span class="number">2</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__iter__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__next__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">if</span> Prime.p == <span class="number">2</span>:</span><br><span class="line">            Prime.p = <span class="number">1</span></span><br><span class="line">            <span class="keyword">return</span> <span class="number">2</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">                Prime.p += <span class="number">2</span></span><br><span class="line">                <span class="keyword">if</span> <span class="built_in">all</span> (Prime.p % k <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>, Prime.p // <span class="number">2</span> + <span class="number">1</span>, <span class="number">2</span>)):</span><br><span class="line">                    <span class="keyword">return</span> Prime.p</span><br></pre></td></tr></table></figure>
 
 <h1 id="Exercise-5"><a href="#Exercise-5" class="headerlink" title="Exercise 5"></a>Exercise 5</h1><h3 id="Shoelace-Formula"><a href="#Shoelace-Formula" class="headerlink" title="Shoelace Formula"></a>Shoelace Formula</h3><p>The shoelace formula, also known as Gauss’s area formula or the surveyor’s formula, is a mathematical method used to calculate the area of a polygon when given the coordinates of its vertices. This method is especially useful for polygons whose vertices are defined on a Cartesian coordinate system. It is called the “shoelace formula” because of the crisscross pattern formed when calculating the terms.</p>
-<p>$ A = \frac{1}{2} \left| \sum_{i=1}^{n} (x_i y_{i+1} - y_i x_{i+1}) \right|$</p>
-<h3 id="Example-Calculation"><a href="#Example-Calculation" class="headerlink" title="Example Calculation"></a>Example Calculation</h3><p>Consider a triangle with vertices $(x_1, y_1)=(2,4)$, $(x_2, y_2)=(5,11)$ and $(x_3, y_3)=(12, 8)$:</p>
+<p>$ A &#x3D; \frac{1}{2} \left| \sum_{i&#x3D;1}^{n} (x_i y_{i+1} - y_i x_{i+1}) \right|$</p>
+<h3 id="Example-Calculation"><a href="#Example-Calculation" class="headerlink" title="Example Calculation"></a>Example Calculation</h3><p>Consider a triangle with vertices $(x_1, y_1)&#x3D;(2,4)$, $(x_2, y_2)&#x3D;(5,11)$ and $(x_3, y_3)&#x3D;(12, 8)$:</p>
 <ol>
 <li><p>Write the coordinates as:</p>
 <p> $(2, 4), (5, 11), (12, 8), (2, 4)$</p>
 </li>
 <li><p>Multiply diagonally from left to right:</p>
-<p> $2 \times 11 + 5 \times 8 + 12 \times 4 = 22 + 40 + 48 = 110$</p>
+<p> $2 \times 11 + 5 \times 8 + 12 \times 4 &#x3D; 22 + 40 + 48 &#x3D; 110$</p>
 </li>
 <li><p>Multiply diagonally from right to left:</p>
-<p> $4 \times 5 + 11 \times 12 + 8 \times 2 = 20 + 132 + 16 = 168$</p>
+<p> $4 \times 5 + 11 \times 12 + 8 \times 2 &#x3D; 20 + 132 + 16 &#x3D; 168$</p>
 </li>
 <li><p>Subtract and divide by <code>2</code>:</p>
-<p> $A = \frac{1}{2} \left| 110 - 168 \right| = \frac{1}{2} \times 58 = 29$</p>
+<p> $A &#x3D; \frac{1}{2} \left| 110 - 168 \right| &#x3D; \frac{1}{2} \times 58 &#x3D; 29$</p>
 </li>
 <li><p>Thus, the area of the triangle is <code>29</code>.</p>
 </li>
@@ -594,11 +598,11 @@ var _hmt = _hmt || [];
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">9021</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Answer</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Answer</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">9021</a>
         		</li>
       		
 		</ul>
@@ -807,10 +811,10 @@ var _hmt = _hmt || [];
 	  <br>
 	  <div class="footer-center">
 	    <i class="fa fa-file-word-o" aria-hidden="true"></i>
-		<span> 114 篇</span>
+		<span> 122 篇</span>
 		<span class="post-meta-divider">|</span>
 		<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-		<span> <span class="post-count">54.3k</span></span>
+		<span> <span class="post-count">60.6k</span></span>
       </div>
 	  
 	  <!-- 添加不蒜子统计 -->
@@ -855,7 +859,7 @@ var _hmt = _hmt || [];
       <div class="footer-center">
 	    <i class="fa fa-copyright" aria-hidden="true"></i> 
 		<!-- &copy; -->
-        2022-2024 loong loong
+        2022-2025 loong loong
 		 
 		  <span class="post-meta-divider">|</span>
 		  <a style="color:#1A1A1A" target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">新南威尔士龙龙号</a>

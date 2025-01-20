@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" >
   
@@ -10,12 +12,12 @@
   <title>146.LRU cache | Siz Long</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta name="description" content="topic：I met for the first time：’2023&#x2F;3&#x2F;14-15:21’ 146.LRU cache.md Thought：Simple simulation，Use the dictionary to make it，好像完全没用到双向Linked和LRU的Thought。。。I’m guilty，I can remember the air conditioner ma">
+  <meta name="description" content="topic：I met for the first time：’2023&#x2F;3&#x2F;14-15:21’ 146.LRU cache.md Thought：Simple simulation，Use the dictionary to make it，好像完全没用到双向Linked和LRU的Thought。。。I’m guilty，I can remember the air cond">
 <meta property="og:type" content="article">
 <meta property="og:title" content="146.LRU cache">
 <meta property="og:url" content="https://longsizhuo.github.io/post/b9130c0e.html">
 <meta property="og:site_name" content="Siz Long">
-<meta property="og:description" content="topic：I met for the first time：’2023&#x2F;3&#x2F;14-15:21’ 146.LRU cache.md Thought：Simple simulation，Use the dictionary to make it，好像完全没用到双向Linked和LRU的Thought。。。I’m guilty，I can remember the air conditioner ma">
+<meta property="og:description" content="topic：I met for the first time：’2023&#x2F;3&#x2F;14-15:21’ 146.LRU cache.md Thought：Simple simulation，Use the dictionary to make it，好像完全没用到双向Linked和LRU的Thought。。。I’m guilty，I can remember the air cond">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://longsizhuo.github.io/assets/img/%E6%88%AA%E5%B1%8F2023-09-25%20%E4%B8%8A%E5%8D%881.14.08.png">
 <meta property="og:image" content="https://longsizhuo.github.io/assets/img/%E6%88%AA%E5%B1%8F2023-09-25%20%E4%B8%8A%E5%8D%881.25.22.png">
@@ -88,7 +90,7 @@ var _hmt = _hmt || [];
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/node-tikzjax@latest/css/fonts.css" /><style>.tikzjax { display: block; text-align: center; user-select: none; }</style></head>
 <body>
 
 <div id="container" q-class="show:isCtnShow">
@@ -362,7 +364,7 @@ var _hmt = _hmt || [];
 	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
         <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
         <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">447字</span>
+        <span class="post-count">449字</span>
       </span>
     </span>
 
@@ -386,12 +388,12 @@ var _hmt = _hmt || [];
             <!-- 添加分类与标签 -->
             
                 
-                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p>I met for the first time：’2023/3/14-15:21’<br><img src="../assets/img/%E6%88%AA%E5%B1%8F2023-09-25%20%E4%B8%8A%E5%8D%881.14.08.png" alt="screenshot2023-09-25 morning1.14.08.png"></p>
+                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p>I met for the first time：’2023&#x2F;3&#x2F;14-15:21’<br><img src="/../assets/img/%E6%88%AA%E5%B1%8F2023-09-25%20%E4%B8%8A%E5%8D%881.14.08.png" alt="screenshot2023-09-25 morning1.14.08.png"></p>
 <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/lru-cache/">146.LRU cache.md</a></p>
 <h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>Simple simulation，Use the dictionary to make it，好像完全没用到双向Linked和LRU的Thought。。。I’m guilty，I can remember the air conditioner made in half a year ago。<br>answer就看Code的注释应该就能看懂，I will reply if I don’t understand。</p>
 <h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">LRUCache</span>:</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, capacity: <span class="built_in">int</span></span>):</span><br><span class="line">        self.capacity = capacity</span><br><span class="line">        self.cache = collections.OrderedDict()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get</span>(<span class="params">self, key: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="comment"># ifkeyIn the dictionary，returnvalue</span></span><br><span class="line">        <span class="keyword">if</span> key <span class="keyword">in</span> self.cache:</span><br><span class="line">            self.cache.move_to_end(key)</span><br><span class="line">            <span class="keyword">return</span> self.cache[key]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># ifkey不In the dictionary，return-1</span></span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">put</span>(<span class="params">self, key: <span class="built_in">int</span>, value: <span class="built_in">int</span></span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">if</span> key <span class="keyword">in</span> self.cache:</span><br><span class="line">            <span class="comment"># ifkeyIn the dictionary，renewvalue</span></span><br><span class="line">            self.cache.move_to_end(key)</span><br><span class="line">            self.cache[key] = value</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(self.cache) == self.capacity:</span><br><span class="line">                <span class="comment"># ifkey不In the dictionary，The dictionary is full，Delete the least recently used elements</span></span><br><span class="line">                self.cache.popitem(last=<span class="literal">False</span>)</span><br><span class="line">            <span class="comment"># ifkey不In the dictionary，Dictionary is not full，Add element</span></span><br><span class="line">            <span class="comment"># self.cache.move_to_end(key)</span></span><br><span class="line">            self.cache[key] = value</span><br></pre></td></tr></table></figure>
 
-<h1 id="Second-solution"><a href="#Second-solution" class="headerlink" title="Second solution"></a>Second solution</h1><p><img src="../assets/img/%E6%88%AA%E5%B1%8F2023-09-25%20%E4%B8%8A%E5%8D%881.25.22.png" alt="screenshot2023-09-25 morning1.25.22.png"></p>
+<h1 id="Second-solution"><a href="#Second-solution" class="headerlink" title="Second solution"></a>Second solution</h1><p><img src="/../assets/img/%E6%88%AA%E5%B1%8F2023-09-25%20%E4%B8%8A%E5%8D%881.25.22.png" alt="screenshot2023-09-25 morning1.25.22.png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Node</span>:</span><br><span class="line">    <span class="comment"># Improve the speed of access attributes，And save memory</span></span><br><span class="line">    __slots__ = <span class="string">&#x27;prev&#x27;</span>, <span class="string">&#x27;next&#x27;</span>, <span class="string">&#x27;key&#x27;</span>, <span class="string">&#x27;value&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, key=<span class="number">0</span>, value=<span class="number">0</span></span>):</span><br><span class="line">        self.key = key</span><br><span class="line">        self.value = value</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LRUCache</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, capacity: <span class="built_in">int</span></span>):</span><br><span class="line">        self.capacity = capacity</span><br><span class="line">        self.dummy = Node()  <span class="comment"># Sentry node</span></span><br><span class="line">        self.dummy.prev = self.dummy</span><br><span class="line">        self.dummy.<span class="built_in">next</span> = self.dummy</span><br><span class="line">        self.key_to_node = <span class="built_in">dict</span>()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_node</span>(<span class="params">self, key: <span class="built_in">int</span></span>) -&gt; <span class="type">Optional</span>[Node]:</span><br><span class="line">        <span class="keyword">if</span> key <span class="keyword">not</span> <span class="keyword">in</span> self.key_to_node:  <span class="comment"># No this book</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        node = self.key_to_node[key]  <span class="comment"># Have this book</span></span><br><span class="line">        self.remove(node)  <span class="comment"># Draw this book</span></span><br><span class="line">        self.push_front(node)  <span class="comment"># Put on the top</span></span><br><span class="line">        <span class="keyword">return</span> node</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get</span>(<span class="params">self, key: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        node = self.get_node(key)</span><br><span class="line">        <span class="keyword">return</span> node.value <span class="keyword">if</span> node <span class="keyword">else</span> -<span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">put</span>(<span class="params">self, key: <span class="built_in">int</span>, value: <span class="built_in">int</span></span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        node = self.get_node(key)</span><br><span class="line">        <span class="keyword">if</span> node:  <span class="comment"># Have this book</span></span><br><span class="line">            node.value = value  <span class="comment"># renew value</span></span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        self.key_to_node[key] = node = Node(key, value)  <span class="comment"># new book</span></span><br><span class="line">        self.push_front(node)  <span class="comment"># Put on the top</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(self.key_to_node) &gt; self.capacity:  <span class="comment"># There are too many books</span></span><br><span class="line">            back_node = self.dummy.prev</span><br><span class="line">            <span class="keyword">del</span> self.key_to_node[back_node.key]</span><br><span class="line">            self.remove(back_node)  <span class="comment"># Remove the last book</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Delete a node（Draw a book）</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">remove</span>(<span class="params">self, x: Node</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        x.prev.<span class="built_in">next</span> = x.<span class="built_in">next</span></span><br><span class="line">        x.<span class="built_in">next</span>.prev = x.prev</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 在Linked头添加一个节点（把一本书Put on the top）</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">push_front</span>(<span class="params">self, x: Node</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        x.prev = self.dummy</span><br><span class="line">        x.<span class="built_in">next</span> = self.dummy.<span class="built_in">next</span></span><br><span class="line">        x.prev.<span class="built_in">next</span> = x</span><br><span class="line">        x.<span class="built_in">next</span>.prev = x</span><br></pre></td></tr></table></figure>
                 
             
@@ -510,18 +512,18 @@ var _hmt = _hmt || [];
     
 <nav id="article-nav">
   
-    <a href="/post/d8b8a149.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/post/7f1331bc.html" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          1460.Class ScheduleIV
+          1333.Restaurant filter
         
       </div>
     </a>
   
   
-    <a href="/post/85beb0bf.html" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">213.Hiccup II</div>
+    <a href="/post/3a21fe32.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">2251.The number of flowers during the flowering period</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -644,10 +646,10 @@ var _hmt = _hmt || [];
 	  <br>
 	  <div class="footer-center">
 	    <i class="fa fa-file-word-o" aria-hidden="true"></i>
-		<span> 114 篇</span>
+		<span> 122 篇</span>
 		<span class="post-meta-divider">|</span>
 		<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-		<span> <span class="post-count">54.3k</span></span>
+		<span> <span class="post-count">60.6k</span></span>
       </div>
 	  
 	  <!-- 添加不蒜子统计 -->
@@ -692,7 +694,7 @@ var _hmt = _hmt || [];
       <div class="footer-center">
 	    <i class="fa fa-copyright" aria-hidden="true"></i> 
 		<!-- &copy; -->
-        2022-2024 loong loong
+        2022-2025 loong loong
 		 
 		  <span class="post-meta-divider">|</span>
 		  <a style="color:#1A1A1A" target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">新南威尔士龙龙号</a>

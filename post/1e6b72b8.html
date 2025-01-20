@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" >
   
@@ -81,7 +83,7 @@ var _hmt = _hmt || [];
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/node-tikzjax@latest/css/fonts.css" /><style>.tikzjax { display: block; text-align: center; user-select: none; }</style></head>
 <body>
 
 <div id="container" q-class="show:isCtnShow">
@@ -355,7 +357,7 @@ var _hmt = _hmt || [];
 	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
         <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
         <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">391字</span>
+        <span class="post-count">394字</span>
       </span>
     </span>
 
@@ -380,10 +382,10 @@ var _hmt = _hmt || [];
             
                 
                     <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximize-greatness-of-an-array/">6324. Maximize the great value of the array.md</a><br>Give you a bidding 0 Started integer array nums 。You need to nums Re -arrange into a new array perm 。</p>
-<p>definition nums of Great value To satisfy 0 &lt;= i &lt; nums.length and perm[i] &gt; nums[i] of下标数目。</p>
+<p>definition nums of Great value To satisfy 0 &lt;&#x3D; i &lt; nums.length and perm[i] &gt; nums[i] of下标数目。</p>
 <p>Please return to re -arrangement nums 后of maximum Great value。</p>
 <p>Exemplary example 1：</p>
-<p>enter：nums = [1,3,5,2,1,3,1]<br>Output：4<br>explain：A optimal arrangement scheme is perm = [2,5,1,3,3,1,1] 。<br>The bidding is 0, 1, 3 and 4 Place，All perm[i] &gt; nums[i] 。So we return 4 。</p>
+<p>enter：nums &#x3D; [1,3,5,2,1,3,1]<br>Output：4<br>explain：A optimal arrangement scheme is perm &#x3D; [2,5,1,3,3,1,1] 。<br>The bidding is 0, 1, 3 and 4 Place，All perm[i] &gt; nums[i] 。So we return 4 。</p>
 <h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>Three ways to think about this question：<br>    The first is Tian Ji horse racing（I am）： InumsContinuously reappear，Advance numbers，Then compare（time out）<br>    Then there is a double pointer-Hash table：<br>        每个元素只能被bigof元素指向一次（for example5Compare3big，3Can’t follow4对Compare了）<br>        Two pointers point to the tail element at the same time，whenleft not less than rightof时候，left–。<br>        else left– right–  Counter– count ++<br>        Last returncount<br>    灵神ofTian Ji horse racing：<br>        sort后直接在原数组上面找Comparewhen前元素bigof元素</p>
 <h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><figcaption><span>I am</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maximizeGreatness</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        nums.sort()</span><br><span class="line">        nums_source.sort()</span><br><span class="line">        max_count = <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># when新数组与旧数组相同时，Stop loop</span></span><br><span class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)):</span><br><span class="line">             nums_source = nums_source[<span class="number">1</span>:] + [nums_source[<span class="number">0</span>]]</span><br><span class="line">             <span class="built_in">print</span>(nums_source, nums)</span><br><span class="line">             count = <span class="number">0</span></span><br><span class="line">             <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)):</span><br><span class="line">                 <span class="keyword">if</span> nums_source[i] &gt; nums[i]:</span><br><span class="line">                     count += <span class="number">1</span></span><br><span class="line">                     <span class="built_in">print</span>(count)</span><br><span class="line">             max_count = <span class="built_in">max</span>(max_count, count)</span><br><span class="line">        <span class="keyword">return</span> max_count</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><figcaption><span>Double pointer+Hash table</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maximizeGreatness</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        nums.sort()</span><br><span class="line">        <span class="comment">#print(nums)</span></span><br><span class="line">        left = <span class="built_in">len</span>(nums) - <span class="number">1</span></span><br><span class="line">        dicts = Counter(nums)</span><br><span class="line">        count = <span class="number">0</span></span><br><span class="line">        right = left</span><br><span class="line">        <span class="keyword">while</span> right &gt;= left &gt;= <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">if</span> nums[right] &lt;= nums[left]:</span><br><span class="line">                left -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> nums[right] &gt; nums[left]:</span><br><span class="line">                <span class="keyword">if</span> dicts[nums[left]] &gt; <span class="number">0</span>:</span><br><span class="line">                    dicts[nums[left]] -= <span class="number">1</span></span><br><span class="line">                    left -= <span class="number">1</span></span><br><span class="line">                    right -= <span class="number">1</span></span><br><span class="line">                    count += <span class="number">1</span></span><br><span class="line">                    <span class="comment">#print(dicts, nums, count)</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    left -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> right == <span class="number">0</span> <span class="keyword">or</span> left == <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> count</span><br></pre></td></tr></table></figure>
@@ -623,10 +625,10 @@ var _hmt = _hmt || [];
 	  <br>
 	  <div class="footer-center">
 	    <i class="fa fa-file-word-o" aria-hidden="true"></i>
-		<span> 114 篇</span>
+		<span> 122 篇</span>
 		<span class="post-meta-divider">|</span>
 		<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-		<span> <span class="post-count">54.3k</span></span>
+		<span> <span class="post-count">60.6k</span></span>
       </div>
 	  
 	  <!-- 添加不蒜子统计 -->
@@ -671,7 +673,7 @@ var _hmt = _hmt || [];
       <div class="footer-center">
 	    <i class="fa fa-copyright" aria-hidden="true"></i> 
 		<!-- &copy; -->
-        2022-2024 loong loong
+        2022-2025 loong loong
 		 
 		  <span class="post-meta-divider">|</span>
 		  <a style="color:#1A1A1A" target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">新南威尔士龙龙号</a>
