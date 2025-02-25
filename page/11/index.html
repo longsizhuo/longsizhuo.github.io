@@ -294,20 +294,20 @@ var _hmt = _hmt || [];
         <div id="js-content" class="content-ll">
           
   
-    <article id="post-[1333]餐厅过滤器_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-[1462]课程表IV_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
   
     <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/7f1331bc.html">1333.Restaurant filter</a>
+      <a class="article-title_code_ant" href="/post/d8b8a149.html">1460.Class ScheduleIV</a>
     </h2>
   
 
 
                 
-                    <a href="/post/7f1331bc.html" class="archive-article-date">
+                    <a href="/post/d8b8a149.html" class="archive-article-date">
   	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
 	<!-- <i class="icon-calendar icon"></i> -->
 
@@ -339,7 +339,7 @@ var _hmt = _hmt || [];
 	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
         <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
         <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">231字</span>
+        <span class="post-count">146字</span>
       </span>
     </span>
 
@@ -363,13 +363,12 @@ var _hmt = _hmt || [];
             <!-- 添加分类与标签 -->
             
                 
-                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><img src="/../assets/img/%E6%88%AA%E5%B1%8F2023-09-27%20%E4%B8%8B%E5%8D%883.45.32.png" alt="screenshot2023-09-27 afternoon3.45.32.png"></p>
-<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/filter-restaurants-by-vegan-friendly-price-and-distance/">1333.Restaurant filter.md</a></p>
-<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>This is the beginningpopThought，But time complexity is too high，400ms，It is later changed to a list derivative。<br>I think of the senior said，pop()The running time is okay，But once the index is added inside，It will be particularly slow。<br>sorted and lambda Usage：<br>lambdayesPythonAnonymous function in。it’s here，lambda x: (x[1], x[0])Definitions a acceptance of an elementx（in this case，xyesrestaurantsA list in the list）And return a tuple(x[1], x[0])The function。</p>
-<p>this means，Sort首先基于每个子列表的第二个元素x[1]，Then based on this basisx[0]。in other words，It first followsx[1]进行Sort，ifx[1]same，According tox[0]进行Sort。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> ind &lt; <span class="built_in">len</span>(restaurants):</span><br><span class="line">     i = restaurants[ind]</span><br><span class="line">     <span class="keyword">if</span> veganFriendly == <span class="number">1</span> <span class="keyword">and</span> i[<span class="number">2</span>] == <span class="number">0</span>:</span><br><span class="line">         restaurants.pop(ind)</span><br><span class="line">     <span class="keyword">elif</span> maxPrice &lt; i[<span class="number">3</span>]:</span><br><span class="line">         restaurants.pop(ind)</span><br><span class="line">     <span class="keyword">elif</span> maxDistance &lt; i[<span class="number">4</span>]:</span><br><span class="line">         restaurants.pop(ind)</span><br><span class="line">     <span class="keyword">else</span>:</span><br><span class="line">         ind += <span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">filterRestaurants</span>(<span class="params">self, restaurants: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]], veganFriendly: <span class="built_in">int</span>, maxPrice: <span class="built_in">int</span>, maxDistance: <span class="built_in">int</span></span>) -&gt; \</span><br><span class="line">            <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        restaurants = [</span><br><span class="line">            i <span class="keyword">for</span> i <span class="keyword">in</span> restaurants</span><br><span class="line">            <span class="keyword">if</span> (veganFriendly == <span class="number">0</span> <span class="keyword">or</span> i[<span class="number">2</span>] == veganFriendly)</span><br><span class="line">               <span class="keyword">and</span> i[<span class="number">3</span>] &lt;= maxPrice</span><br><span class="line">               <span class="keyword">and</span> i[<span class="number">4</span>] &lt;= maxDistance</span><br><span class="line">        ]</span><br><span class="line">        restaurants = <span class="built_in">sorted</span>(restaurants, key=<span class="keyword">lambda</span> x: (x[<span class="number">1</span>], x[<span class="number">0</span>]), reverse=<span class="literal">True</span>)</span><br><span class="line">        <span class="keyword">return</span> [i[<span class="number">0</span>] <span class="keyword">for</span> i <span class="keyword">in</span> restaurants]</span><br></pre></td></tr></table></figure>
+                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><img src="/../assets/img/img_2.png" alt="img_2.png"></p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/course-schedule-iv/?envType=daily-question&envId=2023-09-12">[1460]Class ScheduleIV.md</a></p>
+<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>一开始的想法是构建有向picture，然后在有向picture中找到queryDoes the two points have a father -son relationship?。<br>But watchylbAfter the answer，I find that the accessability is faster first。<br>First traversalprerequirements，Record all the accessibility。<br>Then triple cycle，Connect all the availability。</p>
+<pre><code>i-&gt;j-&gt;k，ifi-&gt;k，Soi-&gt;kIt is。
+</code></pre>
+<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">checkIfPrerequisite</span>(<span class="params">self, n: <span class="built_in">int</span>, prerequisites: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]], queries: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="type">List</span>[</span><br><span class="line">        <span class="built_in">bool</span>]:</span><br><span class="line">        f = [[<span class="literal">False</span>] * n <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n)]</span><br><span class="line">        <span class="keyword">for</span> a, b <span class="keyword">in</span> prerequisites:</span><br><span class="line">            f[a][b] = <span class="literal">True</span></span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">                <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">                    f[i][j] = f[i][j] <span class="keyword">or</span> (f[i][k] <span class="keyword">and</span> f[k][j])</span><br><span class="line">        <span class="keyword">return</span> [f[a][b] <span class="keyword">for</span> a, b <span class="keyword">in</span> queries]</span><br></pre></td></tr></table></figure>
                 
             
 
@@ -400,11 +399,19 @@ var _hmt = _hmt || [];
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Priority search</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Sort</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">In -depth priority search</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">picture</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Topology</a>
         		</li>
       		
 		</ul>
@@ -415,174 +422,7 @@ var _hmt = _hmt || [];
             <!-- 添加展开全文 -->
             
                 <p class="article-more-link">
-                    <a class="article-more-a" href="/post/7f1331bc.html">show all >></a>
-                </p>
-            
-
-            <!-- 添加分享 -->
-            
-
-            <div class="clearfix"></div>
-
-        </div>
-    </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-    
-
-<!-- 文章页添加mathjax公式 -->
-  
-    <article id="post-[146]LRU 缓存_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/b9130c0e.html">146.LRU cache</a>
-    </h2>
-  
-
-
-                
-                    <a href="/post/b9130c0e.html" class="archive-article-date">
-  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2024-01-01</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-                
-
-                
-                    <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">449字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">2min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-                
-            </header>
-        
-
-        <div class="article-entry" itemprop="articleBody">
-            <!-- 添加分类与标签 -->
-            
-                
-                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p>I met for the first time：’2023&#x2F;3&#x2F;14-15:21’<br><img src="/../assets/img/%E6%88%AA%E5%B1%8F2023-09-25%20%E4%B8%8A%E5%8D%881.14.08.png" alt="screenshot2023-09-25 morning1.14.08.png"></p>
-<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/lru-cache/">146.LRU cache.md</a></p>
-<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>Simple simulation，Use the dictionary to make it，好像完全没用到双向Linked和LRU的Thought。。。I’m guilty，I can remember the air conditioner made in half a year ago。<br>answer就看Code的注释应该就能看懂，I will reply if I don’t understand。</p>
-<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">LRUCache</span>:</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, capacity: <span class="built_in">int</span></span>):</span><br><span class="line">        self.capacity = capacity</span><br><span class="line">        self.cache = collections.OrderedDict()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get</span>(<span class="params">self, key: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="comment"># ifkeyIn the dictionary，returnvalue</span></span><br><span class="line">        <span class="keyword">if</span> key <span class="keyword">in</span> self.cache:</span><br><span class="line">            self.cache.move_to_end(key)</span><br><span class="line">            <span class="keyword">return</span> self.cache[key]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># ifkey不In the dictionary，return-1</span></span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">put</span>(<span class="params">self, key: <span class="built_in">int</span>, value: <span class="built_in">int</span></span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">if</span> key <span class="keyword">in</span> self.cache:</span><br><span class="line">            <span class="comment"># ifkeyIn the dictionary，renewvalue</span></span><br><span class="line">            self.cache.move_to_end(key)</span><br><span class="line">            self.cache[key] = value</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(self.cache) == self.capacity:</span><br><span class="line">                <span class="comment"># ifkey不In the dictionary，The dictionary is full，Delete the least recently used elements</span></span><br><span class="line">                self.cache.popitem(last=<span class="literal">False</span>)</span><br><span class="line">            <span class="comment"># ifkey不In the dictionary，Dictionary is not full，Add element</span></span><br><span class="line">            <span class="comment"># self.cache.move_to_end(key)</span></span><br><span class="line">            self.cache[key] = value</span><br></pre></td></tr></table></figure>
-
-<h1 id="Second-solution"><a href="#Second-solution" class="headerlink" title="Second solution"></a>Second solution</h1><p><img src="/../assets/img/%E6%88%AA%E5%B1%8F2023-09-25%20%E4%B8%8A%E5%8D%881.25.22.png" alt="screenshot2023-09-25 morning1.25.22.png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Node</span>:</span><br><span class="line">    <span class="comment"># Improve the speed of access attributes，And save memory</span></span><br><span class="line">    __slots__ = <span class="string">&#x27;prev&#x27;</span>, <span class="string">&#x27;next&#x27;</span>, <span class="string">&#x27;key&#x27;</span>, <span class="string">&#x27;value&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, key=<span class="number">0</span>, value=<span class="number">0</span></span>):</span><br><span class="line">        self.key = key</span><br><span class="line">        self.value = value</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LRUCache</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, capacity: <span class="built_in">int</span></span>):</span><br><span class="line">        self.capacity = capacity</span><br><span class="line">        self.dummy = Node()  <span class="comment"># Sentry node</span></span><br><span class="line">        self.dummy.prev = self.dummy</span><br><span class="line">        self.dummy.<span class="built_in">next</span> = self.dummy</span><br><span class="line">        self.key_to_node = <span class="built_in">dict</span>()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_node</span>(<span class="params">self, key: <span class="built_in">int</span></span>) -&gt; <span class="type">Optional</span>[Node]:</span><br><span class="line">        <span class="keyword">if</span> key <span class="keyword">not</span> <span class="keyword">in</span> self.key_to_node:  <span class="comment"># No this book</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        node = self.key_to_node[key]  <span class="comment"># Have this book</span></span><br><span class="line">        self.remove(node)  <span class="comment"># Draw this book</span></span><br><span class="line">        self.push_front(node)  <span class="comment"># Put on the top</span></span><br><span class="line">        <span class="keyword">return</span> node</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get</span>(<span class="params">self, key: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        node = self.get_node(key)</span><br><span class="line">        <span class="keyword">return</span> node.value <span class="keyword">if</span> node <span class="keyword">else</span> -<span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">put</span>(<span class="params">self, key: <span class="built_in">int</span>, value: <span class="built_in">int</span></span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        node = self.get_node(key)</span><br><span class="line">        <span class="keyword">if</span> node:  <span class="comment"># Have this book</span></span><br><span class="line">            node.value = value  <span class="comment"># renew value</span></span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        self.key_to_node[key] = node = Node(key, value)  <span class="comment"># new book</span></span><br><span class="line">        self.push_front(node)  <span class="comment"># Put on the top</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(self.key_to_node) &gt; self.capacity:  <span class="comment"># There are too many books</span></span><br><span class="line">            back_node = self.dummy.prev</span><br><span class="line">            <span class="keyword">del</span> self.key_to_node[back_node.key]</span><br><span class="line">            self.remove(back_node)  <span class="comment"># Remove the last book</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Delete a node（Draw a book）</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">remove</span>(<span class="params">self, x: Node</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        x.prev.<span class="built_in">next</span> = x.<span class="built_in">next</span></span><br><span class="line">        x.<span class="built_in">next</span>.prev = x.prev</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 在Linked头添加一个节点（把一本书Put on the top）</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">push_front</span>(<span class="params">self, x: Node</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        x.prev = self.dummy</span><br><span class="line">        x.<span class="built_in">next</span> = self.dummy.<span class="built_in">next</span></span><br><span class="line">        x.prev.<span class="built_in">next</span> = x</span><br><span class="line">        x.<span class="built_in">next</span>.prev = x</span><br></pre></td></tr></table></figure>
-                
-            
-
-            <!-- 添加打赏 -->
-            
-
-            <!-- 添加版权声明 -->
-            
-
-        </div>
-
-        <!-- 添加置顶 -->
-        <div class="article-info article-info-index">
-            
-
-            <!-- 分类页 -->
-            
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Hash table</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Linked</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">design</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">双向Linked</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-            
-
-            <!-- 添加展开全文 -->
-            
-                <p class="article-more-link">
-                    <a class="article-more-a" href="/post/b9130c0e.html">show all >></a>
+                    <a class="article-more-a" href="/post/d8b8a149.html">show all >></a>
                 </p>
             
 
@@ -795,20 +635,20 @@ var _hmt = _hmt || [];
 
 <!-- 文章页添加mathjax公式 -->
   
-    <article id="post-[2490]回环句_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-[213]打家劫舍 II_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
   
     <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/5c07686c.html">2490Return ring sentence</a>
+      <a class="article-title_code_ant" href="/post/85beb0bf.html">213.Hiccup II</a>
     </h2>
   
 
 
                 
-                    <a href="/post/5c07686c.html" class="archive-article-date">
+                    <a href="/post/85beb0bf.html" class="archive-article-date">
   	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
 	<!-- <i class="icon-calendar icon"></i> -->
 
@@ -840,7 +680,7 @@ var _hmt = _hmt || [];
 	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
         <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
         <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">70字</span>
+        <span class="post-count">258字</span>
       </span>
     </span>
 
@@ -864,9 +704,9 @@ var _hmt = _hmt || [];
             <!-- 添加分类与标签 -->
             
                 
-                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><img src="/../assets/img/2023-07-01.png" alt="2023-07-01.png"><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/circular-sentence/">[2490]Return ring sentence.md</a></p>
-<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>Divide each word，Then stitch together（<code>123</code>Stitch<code>123123</code>），Determine whether the next word corresponding to each word meets whether the next word meets the same first。</p>
-<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">isCircularSentence</span>(<span class="params">self, sentence: <span class="built_in">str</span></span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        sentence = sentence.split(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">        length = <span class="built_in">len</span>(sentence)</span><br><span class="line">        sentence += sentence</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, length):</span><br><span class="line">            <span class="keyword">if</span> sentence[i][-<span class="number">1</span>] != sentence[i+<span class="number">1</span>][<span class="number">0</span>]:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><img src="/../assets/img/%E6%88%AA%E5%B1%8F2023-09-18%20%E4%B8%8A%E5%8D%882.31.30.png" alt="screenshot2023-09-18 morning2.31.30.png"><br><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/house-robber-ii/">topic链接</a></p>
+<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>这一次终于懂一点Dynamic planning了，The first is the youngest problem，I first thought it was to consider where to start，Start from the first or the second one（这刚好是和Hiccup1Difference）。<br>但实际上最小子问题还是和Hiccup1Same：Whether to rob the current house。<br>First we set one<code>dp</code>Array，<code>dp[i]</code>Indicate robbery to the first<code>i</code>The maximum return when a house。<br>Then we rob the current house after we rob the current house <code>dp[i] = dp[i-2] + nums[i]</code>，(Because the house can not be robbed before the current house is robbed)，Do not rob the current house <code>dp[i] = dp[i-1]</code>。<br>So we can get the state transfer equation：<code>dp[i] = max(dp[i-2] + nums[i], dp[i-1])</code>。<br>Last classification discussion and robbery, the first or the second start。</p>
+<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">rob</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">rob1</span>(<span class="params">nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(nums) == <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">return</span> nums[<span class="number">0</span>]</span><br><span class="line">            ans = <span class="number">0</span></span><br><span class="line">            dp = [<span class="number">0</span>] * <span class="built_in">len</span>(nums)</span><br><span class="line">            <span class="comment"># def: dp[i]Express the robberyiHome</span></span><br><span class="line">            <span class="comment"># theft FirstiHouse，The income isdp[i-2]+nums[i], 不theftFirstiHouse，The income isdp[i-1]</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)):</span><br><span class="line">                dp[i] = <span class="built_in">max</span>(dp[i - <span class="number">2</span>] + nums[i], dp[i - <span class="number">1</span>])</span><br><span class="line">                ans = <span class="built_in">max</span>(ans, dp[i])</span><br><span class="line">            <span class="keyword">return</span> ans</span><br><span class="line">        <span class="comment"># 打劫First一家，或者First二家开始</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">max</span>(rob1(nums[:-<span class="number">1</span>]), rob1(nums[<span class="number">1</span>:])) <span class="keyword">if</span> <span class="built_in">len</span>(nums) != <span class="number">1</span> <span class="keyword">else</span> nums[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
                 
             
 
@@ -897,7 +737,11 @@ var _hmt = _hmt || [];
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">String</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Dynamic planning</a>
         		</li>
       		
 		</ul>
@@ -908,7 +752,174 @@ var _hmt = _hmt || [];
             <!-- 添加展开全文 -->
             
                 <p class="article-more-link">
-                    <a class="article-more-a" href="/post/5c07686c.html">show all >></a>
+                    <a class="article-more-a" href="/post/85beb0bf.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
+    <article id="post-[146]LRU 缓存_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/b9130c0e.html">146.LRU cache</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/b9130c0e.html" class="archive-article-date">
+  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2024-01-01</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">449字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">2min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p>I met for the first time：’2023&#x2F;3&#x2F;14-15:21’<br><img src="/../assets/img/%E6%88%AA%E5%B1%8F2023-09-25%20%E4%B8%8A%E5%8D%881.14.08.png" alt="screenshot2023-09-25 morning1.14.08.png"></p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/lru-cache/">146.LRU cache.md</a></p>
+<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>Simple simulation，Use the dictionary to make it，好像完全没用到双向Linked和LRU的Thought。。。I’m guilty，I can remember the air conditioner made in half a year ago。<br>answer就看Code的注释应该就能看懂，I will reply if I don’t understand。</p>
+<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">LRUCache</span>:</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, capacity: <span class="built_in">int</span></span>):</span><br><span class="line">        self.capacity = capacity</span><br><span class="line">        self.cache = collections.OrderedDict()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get</span>(<span class="params">self, key: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="comment"># ifkeyIn the dictionary，returnvalue</span></span><br><span class="line">        <span class="keyword">if</span> key <span class="keyword">in</span> self.cache:</span><br><span class="line">            self.cache.move_to_end(key)</span><br><span class="line">            <span class="keyword">return</span> self.cache[key]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># ifkey不In the dictionary，return-1</span></span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">put</span>(<span class="params">self, key: <span class="built_in">int</span>, value: <span class="built_in">int</span></span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">if</span> key <span class="keyword">in</span> self.cache:</span><br><span class="line">            <span class="comment"># ifkeyIn the dictionary，renewvalue</span></span><br><span class="line">            self.cache.move_to_end(key)</span><br><span class="line">            self.cache[key] = value</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(self.cache) == self.capacity:</span><br><span class="line">                <span class="comment"># ifkey不In the dictionary，The dictionary is full，Delete the least recently used elements</span></span><br><span class="line">                self.cache.popitem(last=<span class="literal">False</span>)</span><br><span class="line">            <span class="comment"># ifkey不In the dictionary，Dictionary is not full，Add element</span></span><br><span class="line">            <span class="comment"># self.cache.move_to_end(key)</span></span><br><span class="line">            self.cache[key] = value</span><br></pre></td></tr></table></figure>
+
+<h1 id="Second-solution"><a href="#Second-solution" class="headerlink" title="Second solution"></a>Second solution</h1><p><img src="/../assets/img/%E6%88%AA%E5%B1%8F2023-09-25%20%E4%B8%8A%E5%8D%881.25.22.png" alt="screenshot2023-09-25 morning1.25.22.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Node</span>:</span><br><span class="line">    <span class="comment"># Improve the speed of access attributes，And save memory</span></span><br><span class="line">    __slots__ = <span class="string">&#x27;prev&#x27;</span>, <span class="string">&#x27;next&#x27;</span>, <span class="string">&#x27;key&#x27;</span>, <span class="string">&#x27;value&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, key=<span class="number">0</span>, value=<span class="number">0</span></span>):</span><br><span class="line">        self.key = key</span><br><span class="line">        self.value = value</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LRUCache</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, capacity: <span class="built_in">int</span></span>):</span><br><span class="line">        self.capacity = capacity</span><br><span class="line">        self.dummy = Node()  <span class="comment"># Sentry node</span></span><br><span class="line">        self.dummy.prev = self.dummy</span><br><span class="line">        self.dummy.<span class="built_in">next</span> = self.dummy</span><br><span class="line">        self.key_to_node = <span class="built_in">dict</span>()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_node</span>(<span class="params">self, key: <span class="built_in">int</span></span>) -&gt; <span class="type">Optional</span>[Node]:</span><br><span class="line">        <span class="keyword">if</span> key <span class="keyword">not</span> <span class="keyword">in</span> self.key_to_node:  <span class="comment"># No this book</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        node = self.key_to_node[key]  <span class="comment"># Have this book</span></span><br><span class="line">        self.remove(node)  <span class="comment"># Draw this book</span></span><br><span class="line">        self.push_front(node)  <span class="comment"># Put on the top</span></span><br><span class="line">        <span class="keyword">return</span> node</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get</span>(<span class="params">self, key: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        node = self.get_node(key)</span><br><span class="line">        <span class="keyword">return</span> node.value <span class="keyword">if</span> node <span class="keyword">else</span> -<span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">put</span>(<span class="params">self, key: <span class="built_in">int</span>, value: <span class="built_in">int</span></span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        node = self.get_node(key)</span><br><span class="line">        <span class="keyword">if</span> node:  <span class="comment"># Have this book</span></span><br><span class="line">            node.value = value  <span class="comment"># renew value</span></span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        self.key_to_node[key] = node = Node(key, value)  <span class="comment"># new book</span></span><br><span class="line">        self.push_front(node)  <span class="comment"># Put on the top</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(self.key_to_node) &gt; self.capacity:  <span class="comment"># There are too many books</span></span><br><span class="line">            back_node = self.dummy.prev</span><br><span class="line">            <span class="keyword">del</span> self.key_to_node[back_node.key]</span><br><span class="line">            self.remove(back_node)  <span class="comment"># Remove the last book</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Delete a node（Draw a book）</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">remove</span>(<span class="params">self, x: Node</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        x.prev.<span class="built_in">next</span> = x.<span class="built_in">next</span></span><br><span class="line">        x.<span class="built_in">next</span>.prev = x.prev</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 在Linked头添加一个节点（把一本书Put on the top）</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">push_front</span>(<span class="params">self, x: Node</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        x.prev = self.dummy</span><br><span class="line">        x.<span class="built_in">next</span> = self.dummy.<span class="built_in">next</span></span><br><span class="line">        x.prev.<span class="built_in">next</span> = x</span><br><span class="line">        x.<span class="built_in">next</span>.prev = x</span><br></pre></td></tr></table></figure>
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+
+            <!-- 分类页 -->
+            
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Hash table</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Linked</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">design</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">双向Linked</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/b9130c0e.html">show all >></a>
                 </p>
             
 
@@ -1262,6 +1273,320 @@ var _hmt = _hmt || [];
 
 <!-- 文章页添加mathjax公式 -->
   
+    <article id="post-[2490]回环句_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/5c07686c.html">2490Return ring sentence</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/5c07686c.html" class="archive-article-date">
+  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2024-01-01</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">70字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">1min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><img src="/../assets/img/2023-07-01.png" alt="2023-07-01.png"><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/circular-sentence/">[2490]Return ring sentence.md</a></p>
+<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>Divide each word，Then stitch together（<code>123</code>Stitch<code>123123</code>），Determine whether the next word corresponding to each word meets whether the next word meets the same first。</p>
+<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">isCircularSentence</span>(<span class="params">self, sentence: <span class="built_in">str</span></span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        sentence = sentence.split(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">        length = <span class="built_in">len</span>(sentence)</span><br><span class="line">        sentence += sentence</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, length):</span><br><span class="line">            <span class="keyword">if</span> sentence[i][-<span class="number">1</span>] != sentence[i+<span class="number">1</span>][<span class="number">0</span>]:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+
+            <!-- 分类页 -->
+            
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">String</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/5c07686c.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
+    <article id="post-[2].两数相加_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/fa9db6b8.html">2 .Two numbers</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/fa9db6b8.html" class="archive-article-date">
+  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2024-01-01</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">388字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">2min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><img src="/../assets/img/2023-07-03.png" alt="2023-07-03.png"><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/add-two-numbers/">[2].Two numbers.md</a></p>
+<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>I originally wrote the stupidest way，把两个Linked转换成数字，Then add，再转换成Linked。But it’s strange that I was right when I was running locally，But it’s wrong when you submit，<br>What is deducted is a very strange one<code>precompiled.listnode.ListNode</code>，But mine is<code>&#39;__main__.ListNode&#39;</code>。<br>So I can only watch<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/add-two-numbers/solution/dong-hua-jian-ji-xie-fa-cong-di-gui-dao-oe0di/">0x3f</a>s answer。</p>
+<pre><code>Two node values ​​each time`l1.val`，`l2.val`In -digit`carry`Add，Divide 10 The remaining number is the digital digit that the current node needs to be saved，Divide10The business is the new position value
+</code></pre>
+<p>Code implementation，There is a trick to simplify code：ifrecursion中发现<code>l2</code>Length ratio ratio<code>l1</code>Longer，So it can be exchanged<code>l1</code>and <code>l2</code>，ensure <code>l1</code>Not an empty node，So as to simplify code logic。</p>
+<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="comment"># l1 and l2 Node for current traversal，carry Be in place</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">addTwoNumbers</span>(<span class="params">self, l1: <span class="type">Optional</span>[ListNode], l2: <span class="type">Optional</span>[ListNode], carry=<span class="number">0</span></span>) -&gt; <span class="type">Optional</span>[ListNode]:</span><br><span class="line">        <span class="keyword">if</span> l1 <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">and</span> l2 <span class="keyword">is</span> <span class="literal">None</span>:  <span class="comment"># recursion边界：l1 and l2 All empty nodes</span></span><br><span class="line">            <span class="keyword">return</span> ListNode(carry) <span class="keyword">if</span> carry <span class="keyword">else</span> <span class="literal">None</span>  <span class="comment"># If you are in place，Just create an additional node</span></span><br><span class="line">        <span class="keyword">if</span> l1 <span class="keyword">is</span> <span class="literal">None</span>:  <span class="comment"># if l1 Empty，Then then l2 一定Not an empty node</span></span><br><span class="line">            l1, l2 = l2, l1  <span class="comment"># exchange l1 and l2，ensure l1 non empty，从而简化Code</span></span><br><span class="line">        carry += l1.val + (l2.val <span class="keyword">if</span> l2 <span class="keyword">else</span> <span class="number">0</span>)  <span class="comment"># 节点值andcarry加在一起</span></span><br><span class="line">        l1.val = carry % <span class="number">10</span>  <span class="comment"># Each node saves a digital position</span></span><br><span class="line">        l1.<span class="built_in">next</span> = self.addTwoNumbers(l1.<span class="built_in">next</span>, l2.<span class="built_in">next</span> <span class="keyword">if</span> l2 <span class="keyword">else</span> <span class="literal">None</span>, carry // <span class="number">10</span>)  <span class="comment"># carry</span></span><br><span class="line">        <span class="keyword">return</span> l1</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">addTwoNumbers</span>(<span class="params">self, l1: <span class="type">Optional</span>[ListNode], l2: <span class="type">Optional</span>[ListNode], carry = <span class="number">0</span></span>) -&gt; <span class="type">Optional</span>[ListNode]:</span><br><span class="line">        l1_list = []</span><br><span class="line">        l2_list=[]</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">recursion_list</span>(<span class="params">node:ListNode, listt</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> node:</span><br><span class="line">                <span class="keyword">return</span> listt</span><br><span class="line">            listt.append(node.val)</span><br><span class="line">            <span class="keyword">return</span> recursion_list(node.<span class="built_in">next</span>, listt)</span><br><span class="line">        l1_list = recursion_list(l1, l1_list)</span><br><span class="line">        l2_list = recursion_list(l2, l2_list)</span><br><span class="line">        l1_list = <span class="string">&#x27;&#x27;</span>.join(<span class="built_in">map</span>(<span class="built_in">str</span>, l1_list))</span><br><span class="line">        l2_list = <span class="string">&#x27;&#x27;</span>.join(<span class="built_in">map</span>(<span class="built_in">str</span>, l2_list))</span><br><span class="line">        l3 = <span class="built_in">str</span>(<span class="built_in">int</span>(l1_list)+<span class="built_in">int</span>(l2_list))</span><br><span class="line">        <span class="built_in">print</span>(l3)</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">recursion_linkArray</span>(<span class="params">num</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> num:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">            head = ListNode(<span class="number">0</span>)</span><br><span class="line">            current = head</span><br><span class="line">            <span class="keyword">for</span> c <span class="keyword">in</span> num:</span><br><span class="line">                current.<span class="built_in">next</span> = ListNode(<span class="built_in">int</span>(c))</span><br><span class="line">                current = current.<span class="built_in">next</span></span><br><span class="line">            <span class="keyword">return</span> head.<span class="built_in">next</span></span><br><span class="line">        head = recursion_linkArray(l3[::-<span class="number">1</span>])</span><br><span class="line">        <span class="built_in">print</span>(recursion_list(head, []))</span><br><span class="line">        <span class="built_in">print</span>(<span class="built_in">type</span>(l1), <span class="built_in">type</span>(head))</span><br><span class="line">        <span class="keyword">return</span> head</span><br></pre></td></tr></table></figure>
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+
+            <!-- 分类页 -->
+            
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">math</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Linked</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">recursion</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/fa9db6b8.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
     <article id="post-[2591]将钱分给最多的儿童_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -1379,169 +1704,6 @@ var _hmt = _hmt || [];
             
                 <p class="article-more-link">
                     <a class="article-more-a" href="/post/6a9ab144.html">show all >></a>
-                </p>
-            
-
-            <!-- 添加分享 -->
-            
-
-            <div class="clearfix"></div>
-
-        </div>
-    </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-    
-
-<!-- 文章页添加mathjax公式 -->
-  
-    <article id="post-[337]打家劫舍III_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/86590614.html">213.Hiccup III</a>
-    </h2>
-  
-
-
-                
-                    <a href="/post/86590614.html" class="archive-article-date">
-  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2024-01-01</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-                
-
-                
-                    <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">158字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">1min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-                
-            </header>
-        
-
-        <div class="article-entry" itemprop="articleBody">
-            <!-- 添加分类与标签 -->
-            
-                
-                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><img src="/../assets/img/%E6%88%AA%E5%B1%8F2023-09-18%20%E4%B8%8B%E5%8D%881.08.41.png" alt="screenshot2023-09-18 afternoon1.08.41.png"><br><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/house-robber-iii/">topic链接</a></p>
-<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>Reference ylb 大佬的answer，<br>这道题andHiccup1and2The difference is，这道题是一棵Binary tree，And you can’t rob the neighboring node。<br>So his youngest child problem is：Robbing the current node，You can’t rob your left and right children。<br>If you steal root node，那么不能偷取其左右子node，Result <code>root.val+lb +rb</code>；<br>If not steal root node，那么可以偷取其左右子node，Result <code>max(la, lb)+max(ra ,rb)</code>。</p>
-<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">rob</span>(<span class="params">self, root: <span class="type">Optional</span>[TreeNode]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">_rob</span>(<span class="params">root: <span class="type">Optional</span>[TreeNode]</span>) -&gt; (<span class="built_in">int</span>, <span class="built_in">int</span>):</span><br><span class="line">            <span class="comment"># Minority problem:dp[i]=dp[i-2]+nums[i], dp[i-1]</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">            la, lb = _rob(root.left)</span><br><span class="line">            ra, rb = _rob(root.right)</span><br><span class="line">            <span class="keyword">return</span> root.val + lb + rb, <span class="built_in">max</span>(la, lb) + <span class="built_in">max</span>(ra, rb)</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">max</span>(_rob(root))</span><br></pre></td></tr></table></figure>
-                
-            
-
-            <!-- 添加打赏 -->
-            
-
-            <!-- 添加版权声明 -->
-            
-
-        </div>
-
-        <!-- 添加置顶 -->
-        <div class="article-info article-info-index">
-            
-
-            <!-- 分类页 -->
-            
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Dynamic planning</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Binary tree</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">In -depth priority search</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Tree</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-            
-
-            <!-- 添加展开全文 -->
-            
-                <p class="article-more-link">
-                    <a class="article-more-a" href="/post/86590614.html">show all >></a>
                 </p>
             
 
@@ -1749,169 +1911,6 @@ for (x1, y1), (x2, y2) in pairwise(pos): dx, dy = abs(x1 - x2), abs(y1 - y2)
 
 <!-- 文章页添加mathjax公式 -->
   
-    <article id="post-[2].两数相加_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/fa9db6b8.html">2 .Two numbers</a>
-    </h2>
-  
-
-
-                
-                    <a href="/post/fa9db6b8.html" class="archive-article-date">
-  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2024-01-01</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-                
-
-                
-                    <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">388字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">2min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-                
-            </header>
-        
-
-        <div class="article-entry" itemprop="articleBody">
-            <!-- 添加分类与标签 -->
-            
-                
-                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><img src="/../assets/img/2023-07-03.png" alt="2023-07-03.png"><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/add-two-numbers/">[2].Two numbers.md</a></p>
-<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>I originally wrote the stupidest way，把两个Linked转换成数字，Then add，再转换成Linked。But it’s strange that I was right when I was running locally，But it’s wrong when you submit，<br>What is deducted is a very strange one<code>precompiled.listnode.ListNode</code>，But mine is<code>&#39;__main__.ListNode&#39;</code>。<br>So I can only watch<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/add-two-numbers/solution/dong-hua-jian-ji-xie-fa-cong-di-gui-dao-oe0di/">0x3f</a>s answer。</p>
-<pre><code>Two node values ​​each time`l1.val`，`l2.val`In -digit`carry`Add，Divide 10 The remaining number is the digital digit that the current node needs to be saved，Divide10The business is the new position value
-</code></pre>
-<p>Code implementation，There is a trick to simplify code：ifrecursion中发现<code>l2</code>Length ratio ratio<code>l1</code>Longer，So it can be exchanged<code>l1</code>and <code>l2</code>，ensure <code>l1</code>Not an empty node，So as to simplify code logic。</p>
-<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="comment"># l1 and l2 Node for current traversal，carry Be in place</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">addTwoNumbers</span>(<span class="params">self, l1: <span class="type">Optional</span>[ListNode], l2: <span class="type">Optional</span>[ListNode], carry=<span class="number">0</span></span>) -&gt; <span class="type">Optional</span>[ListNode]:</span><br><span class="line">        <span class="keyword">if</span> l1 <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">and</span> l2 <span class="keyword">is</span> <span class="literal">None</span>:  <span class="comment"># recursion边界：l1 and l2 All empty nodes</span></span><br><span class="line">            <span class="keyword">return</span> ListNode(carry) <span class="keyword">if</span> carry <span class="keyword">else</span> <span class="literal">None</span>  <span class="comment"># If you are in place，Just create an additional node</span></span><br><span class="line">        <span class="keyword">if</span> l1 <span class="keyword">is</span> <span class="literal">None</span>:  <span class="comment"># if l1 Empty，Then then l2 一定Not an empty node</span></span><br><span class="line">            l1, l2 = l2, l1  <span class="comment"># exchange l1 and l2，ensure l1 non empty，从而简化Code</span></span><br><span class="line">        carry += l1.val + (l2.val <span class="keyword">if</span> l2 <span class="keyword">else</span> <span class="number">0</span>)  <span class="comment"># 节点值andcarry加在一起</span></span><br><span class="line">        l1.val = carry % <span class="number">10</span>  <span class="comment"># Each node saves a digital position</span></span><br><span class="line">        l1.<span class="built_in">next</span> = self.addTwoNumbers(l1.<span class="built_in">next</span>, l2.<span class="built_in">next</span> <span class="keyword">if</span> l2 <span class="keyword">else</span> <span class="literal">None</span>, carry // <span class="number">10</span>)  <span class="comment"># carry</span></span><br><span class="line">        <span class="keyword">return</span> l1</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">addTwoNumbers</span>(<span class="params">self, l1: <span class="type">Optional</span>[ListNode], l2: <span class="type">Optional</span>[ListNode], carry = <span class="number">0</span></span>) -&gt; <span class="type">Optional</span>[ListNode]:</span><br><span class="line">        l1_list = []</span><br><span class="line">        l2_list=[]</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">recursion_list</span>(<span class="params">node:ListNode, listt</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> node:</span><br><span class="line">                <span class="keyword">return</span> listt</span><br><span class="line">            listt.append(node.val)</span><br><span class="line">            <span class="keyword">return</span> recursion_list(node.<span class="built_in">next</span>, listt)</span><br><span class="line">        l1_list = recursion_list(l1, l1_list)</span><br><span class="line">        l2_list = recursion_list(l2, l2_list)</span><br><span class="line">        l1_list = <span class="string">&#x27;&#x27;</span>.join(<span class="built_in">map</span>(<span class="built_in">str</span>, l1_list))</span><br><span class="line">        l2_list = <span class="string">&#x27;&#x27;</span>.join(<span class="built_in">map</span>(<span class="built_in">str</span>, l2_list))</span><br><span class="line">        l3 = <span class="built_in">str</span>(<span class="built_in">int</span>(l1_list)+<span class="built_in">int</span>(l2_list))</span><br><span class="line">        <span class="built_in">print</span>(l3)</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">recursion_linkArray</span>(<span class="params">num</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> num:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">            head = ListNode(<span class="number">0</span>)</span><br><span class="line">            current = head</span><br><span class="line">            <span class="keyword">for</span> c <span class="keyword">in</span> num:</span><br><span class="line">                current.<span class="built_in">next</span> = ListNode(<span class="built_in">int</span>(c))</span><br><span class="line">                current = current.<span class="built_in">next</span></span><br><span class="line">            <span class="keyword">return</span> head.<span class="built_in">next</span></span><br><span class="line">        head = recursion_linkArray(l3[::-<span class="number">1</span>])</span><br><span class="line">        <span class="built_in">print</span>(recursion_list(head, []))</span><br><span class="line">        <span class="built_in">print</span>(<span class="built_in">type</span>(l1), <span class="built_in">type</span>(head))</span><br><span class="line">        <span class="keyword">return</span> head</span><br></pre></td></tr></table></figure>
-                
-            
-
-            <!-- 添加打赏 -->
-            
-
-            <!-- 添加版权声明 -->
-            
-
-        </div>
-
-        <!-- 添加置顶 -->
-        <div class="article-info article-info-index">
-            
-
-            <!-- 分类页 -->
-            
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">math</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Linked</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">recursion</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-            
-
-            <!-- 添加展开全文 -->
-            
-                <p class="article-more-link">
-                    <a class="article-more-a" href="/post/fa9db6b8.html">show all >></a>
-                </p>
-            
-
-            <!-- 添加分享 -->
-            
-
-            <div class="clearfix"></div>
-
-        </div>
-    </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-    
-
-<!-- 文章页添加mathjax公式 -->
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/10/">&lt;&lt; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/12/">下一页 &gt;&gt;</a>
@@ -1966,10 +1965,10 @@ window.MathJax = {
 	  <br>
 	  <div class="footer-center">
 	    <i class="fa fa-file-word-o" aria-hidden="true"></i>
-		<span> 122 篇</span>
+		<span> 123 篇</span>
 		<span class="post-meta-divider">|</span>
 		<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-		<span> <span class="post-count">60.6k</span></span>
+		<span> <span class="post-count">60.7k</span></span>
       </div>
 	  
 	  <!-- 添加不蒜子统计 -->

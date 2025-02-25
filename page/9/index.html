@@ -294,20 +294,20 @@ var _hmt = _hmt || [];
         <div id="js-content" class="content-ll">
           
   
-    <article id="post-6275使数组中所有元素相等的最小操作数_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-538.把二叉搜索树转换为累加树_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
   
     <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/4e14482b.html">6275. Make all the minimum operations of all elements in the array II</a>
+      <a class="article-title_code_ant" href="/post/32401b69.html">538.Convert the binary search tree to cumulative tree</a>
     </h2>
   
 
 
                 
-                    <a href="/post/4e14482b.html" class="archive-article-date">
+                    <a href="/post/32401b69.html" class="archive-article-date">
   	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
 	<!-- <i class="icon-calendar icon"></i> -->
 
@@ -339,7 +339,7 @@ var _hmt = _hmt || [];
 	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
         <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
         <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">202字</span>
+        <span class="post-count">1.2k字</span>
       </span>
     </span>
 
@@ -348,7 +348,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
 	    <i class="fa fa-pagelines" aria-hidden="true"></i>
         <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">1min</span>
+        <span class="post-count">6min</span>
       </span>
     </span>
 	
@@ -363,13 +363,118 @@ var _hmt = _hmt || [];
             <!-- 添加分类与标签 -->
             
                 
-                    <p><img src="/../assets/img/2023-01-22%20(1).png" alt="2023-01-22 (1).png"><br><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/biweekly-contest-96/problems/minimum-operations-to-make-array-equal-ii/">6275. Make all the minimum operations of all elements in the array II</a></p>
-<h1 id="Thought"><a href="#Thought" class="headerlink" title="Thought:"></a>Thought:</h1><p>Weekly Two Questions！！！</p>
-<p>·First use the list derivative to calculate the difference between each element。<br>·Then，Initialize a counter to track the required operations required。<br>·The difference between traversing，And check whether each difference can be removed。<br>·if not，Then return -1，Because the array cannot be equal to the given operation。<br>·If it is eliminated，It removes the absolute value of the difference to add to the counter。<br>·at last，It returns the required number of operations。</p>
-<blockquote>
-<p>for example：<code>[3,0,-6,3]</code>It is every positive number divided by3In harmony，Tested many times，是因为at last一种特殊情况（When two list items, etc.）No consideration。</p>
-</blockquote>
-<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minOperations</span>(<span class="params">self, nums1: <span class="type">List</span>[<span class="built_in">int</span>], nums2: <span class="type">List</span>[<span class="built_in">int</span>], k: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">if</span> k &lt;= <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">if</span> nums1 != nums2:</span><br><span class="line">                <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        diff = [nums1[i] - nums2[i] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums1))]</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">sum</span>(diff) != <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">sum</span>(diff) % k != <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">        operations = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> index, d <span class="keyword">in</span> <span class="built_in">enumerate</span>(diff):</span><br><span class="line">            <span class="keyword">if</span> d % k != <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> d &gt; <span class="number">0</span>:</span><br><span class="line">                operations += d // k</span><br><span class="line">        <span class="keyword">return</span> operations</span><br></pre></td></tr></table></figure>
+                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p>“””</p>
+<p>Give two forks<strong> search </strong>Root node，The node value of the tree is different，Please convert it to a cumulative tree（Greater Sum Tree），Make each node <code>node</code>&nbsp;The new value of the original tree is greater than or equal to the original tree&nbsp;<code>node.val</code>&nbsp;The sum of the value。</p>
+
+<p>remind，二叉searchTree满足下列约束条件：</p>
+
+<ul> 
+ <li>The left tree of the node contains only the key<strong> Less than </strong>Node node node。</li> 
+ <li>The right tree of the node contains only the key<strong> more than the</strong> Node node node。</li> 
+ <li>左右子Tree也必须是二叉searchTree。</li> 
+</ul>
+
+<p><strong>Notice：</strong>This question 1038:&nbsp;<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-search-tree-to-greater-sum-tree/">https://leetcode-cn.com/problems/binary-search-tree-to-greater-sum-tree/</a> same</p>
+
+<p>&nbsp;</p>
+
+<p><strong>Exemplary example 1：</strong></p>
+
+<p><strong><img alt="" src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2019/05/03/tree.png" style="height: 364px; width: 534px;" /></strong></p>
+
+<pre><strong>enter：</strong>[4,1,6,0,2,5,7,null,null,null,3,null,null,null,8]
+<strong>Output：</strong>[30,36,21,36,35,26,15,null,null,null,33,null,null,null,8]
+</pre>
+
+<p><strong>Exemplary example 2：</strong></p>
+
+<pre><strong>enter：</strong>root = [0,null,1]
+<strong>Output：</strong>[1,null,1]
+</pre>
+
+<p><strong>Exemplary example 3：</strong></p>
+
+<pre><strong>enter：</strong>root = [1,0,2]
+<strong>Output：</strong>[3,3,2]
+</pre>
+
+<p><strong>Exemplary example 4：</strong></p>
+
+<pre><strong>enter：</strong>root = [3,2,4,1]
+<strong>Output：</strong>[7,9,4,10]
+</pre>
+
+<p>&nbsp;</p>
+
+<p><strong>hint：</strong></p>
+
+<ul> 
+ <li>The number of nodes in the tree is in <code>0</code>&nbsp;and <code>10<sup>4</sup></code><sup>&nbsp;</sup>between。</li> 
+ <li>The value of each node <code>-10<sup>4</sup></code>&nbsp;and&nbsp;<code>10<sup>4</sup></code>&nbsp;between。</li> 
+ <li>All the values ​​in the tree <strong>互不same</strong> 。</li> 
+ <li>给定的Tree为二叉searchTree。</li> 
+</ul>
+
+<div><div>Related Topics</div><div><li>Tree</li><li>深度优先search</li><li>二叉searchTree</li><li>Binary tree</li></div></div><br><div><li>👍 904</li><li>👎 0</li></div>
+"""
+
+<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>method one：Travel in the preface<br>Thinking and algorithm</p>
+<p>本题中要求我们将每个节点的值修改为原来的节点值加上所有more than the它的节点值之and。这样我们只需要Travel in the preface该二叉searchTree，记录过程中的节点值之and，Not continuously update the node value of the nodes you currently traversed，即可得到topic要求的累加Tree。</p>
+<p>Method Two：Morris Traversal<br>Thinking and algorithm</p>
+<p>There is a clever way to be online，只占用常数空间来实现中序Traversal。This method is caused by J. H. Morris exist 1979 Annual thesis「Traversing Binary Trees Simply and Cheaply」Proposed for the first time，Because it is called Morris Traversal。</p>
+<p>我们以一个简单的Binary tree为例进行说明。假设我们要进行中序Traversal的 Morris Traversal。</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="code">    1</span></span><br><span class="line"><span class="code">   / \</span></span><br><span class="line"><span class="code">  2   3</span></span><br><span class="line"><span class="code"> / \</span></span><br><span class="line"><span class="code">4   5</span></span><br><span class="line"><span class="code"></span></span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>Initialization The current node is the root node（current &#x3D; 1）。</p>
+</li>
+<li><p>When the current node is not empty，Execute the following steps：</p>
+<ol>
+<li>The left node of the current node is not empty。We find the front -drive node of the current node，也就是左子Tree中的最右节点。exist这个例子中，The front -drive node is the node5。</li>
+<li>The right node of the front -drive node is empty，Point your right node to the current node（5 -&gt; 1）。</li>
+<li>Move the current node to its left child node（current &#x3D; 2）。</li>
+</ol>
+ <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line"> \</span><br><span class="line">  2</span><br><span class="line"> / \</span><br><span class="line">4   5</span><br></pre></td></tr></table></figure>
+<ol>
+<li>The left node of the current node is not empty。We find the front -drive node of the current node，也就是左子Tree中的最右节点。exist这个例子中，The front -drive node is the node4。</li>
+<li>The right node of the front -drive node is empty，Point your right node to the current node（4 -&gt; 2）。</li>
+<li>Move the current node to its left child node（current &#x3D; 4）。</li>
+</ol>
+ <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line"> \</span><br><span class="line">  2</span><br><span class="line">   \</span><br><span class="line"><span class="code">    4</span></span><br><span class="line"><span class="code">     \</span></span><br><span class="line"><span class="code">      5</span></span><br><span class="line"><span class="code">    </span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>The left node of the current node is empty。Output当前节点的值（4）。</p>
+</li>
+<li><p>Move the current node to its right node（current &#x3D; 5）。</p>
+</li>
+<li><p>The left node of the current node is empty。Output当前节点的值（5）。</p>
+</li>
+<li><p>Move the current node to its right node（current &#x3D; 2）。</p>
+</li>
+</ol>
+ <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line"> \</span><br><span class="line">  2</span><br><span class="line">   \</span><br><span class="line"><span class="code">    4</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>The left node of the current node is empty。Output当前节点的值（2）。</li>
+<li>Move the current node to its right node（current &#x3D; 1）。</li>
+</ol>
+ <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line"> \</span><br><span class="line">  2</span><br></pre></td></tr></table></figure>
+<ol>
+<li>The left node of the current node is empty。Output当前节点的值（1）。</li>
+<li>Move the current node to its right node（current &#x3D; 3）。</li>
+</ol>
+ <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line"> \</span><br><span class="line">  2</span><br></pre></td></tr></table></figure>
+<ol>
+<li>The left node of the current node is empty。Output当前节点的值（3）。</li>
+<li>Move the current node to its right node（current &#x3D; null）。</li>
+</ol>
+</li>
+<li><p>The current node is empty，Traversal结束。</p>
+</li>
+<li></li>
+</ol>
+<p>According to the above steps，通过修改节点between的指针关系，我们完成了对Binary tree的中序Traversal。</p>
+<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><figcaption><span>中序Traversal</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">convertBST</span>(<span class="params">self, root: TreeNode</span>) -&gt; TreeNode:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">root: TreeNode</span>):</span><br><span class="line">            <span class="keyword">nonlocal</span> total</span><br><span class="line">            <span class="keyword">if</span> root:</span><br><span class="line">                dfs(root.right)</span><br><span class="line">                total += root.val</span><br><span class="line">                root.val = total</span><br><span class="line">                dfs(root.left)</span><br><span class="line">        </span><br><span class="line">        total = <span class="number">0</span></span><br><span class="line">        dfs(root)</span><br><span class="line">        <span class="keyword">return</span> root</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><figcaption><span>MorrisTraversal</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">convertBST</span>(<span class="params">self, root: TreeNode</span>) -&gt; TreeNode:</span><br><span class="line">        <span class="comment"># Get the successor node of the given node（中序Traversal中的下一个节点）</span></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">getSuccessor</span>(<span class="params">node: TreeNode</span>) -&gt; TreeNode:</span><br><span class="line">            succ = node.right</span><br><span class="line">            <span class="keyword">while</span> succ.left <span class="keyword">and</span> succ.left != node:</span><br><span class="line">                succ = succ.left</span><br><span class="line">            <span class="keyword">return</span> succ</span><br><span class="line">        </span><br><span class="line">        total = <span class="number">0</span>  <span class="comment"># 记录累加的节点值之and</span></span><br><span class="line">        node = root  <span class="comment"># The current node initialization is the root node</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> node:</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> node.right:  <span class="comment"># If the right node of the current node is empty</span></span><br><span class="line">                total += node.val  <span class="comment"># Add the value of the current node to the cumulative value</span></span><br><span class="line">                node.val = total  <span class="comment"># Update the value of the current node to accumulate value</span></span><br><span class="line">                node = node.left  <span class="comment"># Move the current node to its left child node</span></span><br><span class="line">            <span class="keyword">else</span>:  <span class="comment"># If the right node of the current node is not empty</span></span><br><span class="line">                succ = getSuccessor(node)  <span class="comment"># Get the successor node of the current node</span></span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> succ.left:  <span class="comment"># If the left node of the successor node is empty</span></span><br><span class="line">                    succ.left = node  <span class="comment"># Point the left -node of the successor node to the current node，Establish a clue</span></span><br><span class="line">                    node = node.right  <span class="comment"># Move the current node to its right node</span></span><br><span class="line">                <span class="keyword">else</span>:  <span class="comment"># If the left node of the successor node is not empty</span></span><br><span class="line">                    succ.left = <span class="literal">None</span>  <span class="comment"># Set the left node of the successor node to empty，Remove clues</span></span><br><span class="line">                    total += node.val  <span class="comment"># Add the value of the current node to the cumulative value</span></span><br><span class="line">                    node.val = total  <span class="comment"># Update the value of the current node to accumulate value</span></span><br><span class="line">                    node = node.left  <span class="comment"># Move the current node to its left child node</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> root  <span class="comment"># Return to the root node</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">convertBST</span>(<span class="params">self, root: TreeNode</span>) -&gt; TreeNode:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">convert</span>(<span class="params">node: TreeNode, total: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> node:</span><br><span class="line">                <span class="keyword">return</span> total</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 递归Traversal右子Tree</span></span><br><span class="line">            total = convert(node.right, total)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># Update the node value to accumulate and add value</span></span><br><span class="line">            total += node.val</span><br><span class="line">            node.val = total</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 递归Traversal左子Tree</span></span><br><span class="line">            total = convert(node.left, total)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> total</span><br><span class="line"></span><br><span class="line">        convert(root, <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> root</span><br></pre></td></tr></table></figure>
                 
             
 
@@ -400,7 +505,7 @@ var _hmt = _hmt || [];
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">greedy</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Binary tree</a>
         		</li>
       		
 		</ul>
@@ -411,7 +516,7 @@ var _hmt = _hmt || [];
             <!-- 添加展开全文 -->
             
                 <p class="article-more-link">
-                    <a class="article-more-a" href="/post/4e14482b.html">show all >></a>
+                    <a class="article-more-a" href="/post/32401b69.html">show all >></a>
                 </p>
             
 
@@ -560,6 +665,161 @@ var _hmt = _hmt || [];
             
                 <p class="article-more-link">
                     <a class="article-more-a" href="/post/81004405.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
+    <article id="post-6275使数组中所有元素相等的最小操作数_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/4e14482b.html">6275. Make all the minimum operations of all elements in the array II</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/4e14482b.html" class="archive-article-date">
+  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2024-01-01</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">202字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">1min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <p><img src="/../assets/img/2023-01-22%20(1).png" alt="2023-01-22 (1).png"><br><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/biweekly-contest-96/problems/minimum-operations-to-make-array-equal-ii/">6275. Make all the minimum operations of all elements in the array II</a></p>
+<h1 id="Thought"><a href="#Thought" class="headerlink" title="Thought:"></a>Thought:</h1><p>Weekly Two Questions！！！</p>
+<p>·First use the list derivative to calculate the difference between each element。<br>·Then，Initialize a counter to track the required operations required。<br>·The difference between traversing，And check whether each difference can be removed。<br>·if not，Then return -1，Because the array cannot be equal to the given operation。<br>·If it is eliminated，It removes the absolute value of the difference to add to the counter。<br>·at last，It returns the required number of operations。</p>
+<blockquote>
+<p>for example：<code>[3,0,-6,3]</code>It is every positive number divided by3In harmony，Tested many times，是因为at last一种特殊情况（When two list items, etc.）No consideration。</p>
+</blockquote>
+<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minOperations</span>(<span class="params">self, nums1: <span class="type">List</span>[<span class="built_in">int</span>], nums2: <span class="type">List</span>[<span class="built_in">int</span>], k: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">if</span> k &lt;= <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">if</span> nums1 != nums2:</span><br><span class="line">                <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        diff = [nums1[i] - nums2[i] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums1))]</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">sum</span>(diff) != <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">sum</span>(diff) % k != <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">        operations = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> index, d <span class="keyword">in</span> <span class="built_in">enumerate</span>(diff):</span><br><span class="line">            <span class="keyword">if</span> d % k != <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> d &gt; <span class="number">0</span>:</span><br><span class="line">                operations += d // k</span><br><span class="line">        <span class="keyword">return</span> operations</span><br></pre></td></tr></table></figure>
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+
+            <!-- 分类页 -->
+            
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">greedy</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/4e14482b.html">show all >></a>
                 </p>
             
 
@@ -1209,6 +1469,159 @@ var _hmt = _hmt || [];
 
 <!-- 文章页添加mathjax公式 -->
   
+    <article id="post-6347统计范围内的元音字符串数_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/52923acb.html">6347Number of vowel string within the scope of statistics</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/52923acb.html" class="archive-article-date">
+  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2024-01-01</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">414字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">2min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <h1 id="topic"><a href="#topic" class="headerlink" title="topic"></a>topic</h1><p><img src="/../assets/img/2023-02-05%20(2).png" alt="2023-02-05 (2).png"></p>
+<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>Pay attention to pre -processing and prefixing<br>Prefix and an algorithm，Used to find the prefix and the array。The prefix and definition of the array are defined as the harmony of the prefix element in a certain position of the array。in other words，The prefix and the elements of each position of an array are added to the previous element。</p>
+<p>This code uses prefix and to optimize the query process。It pre -processed whether the first letter of each word is a meta sound，Then save these results in a list。Then，It uses prefix and calculate each query result。</p>
+<p>Specifically，For each query (i, j)，It will be statistics from words[i] arrive words[j] Conditional conditions（The first letter is a Yuan Yin）Number of words。This can be used by using counts[j+1] - counts[i] To be done。This is because counts[j+1] Contain words[0] arrive words[j] Conditional conditionsNumber of words，and counts[i] Contain words[0] arrive words[i-1] Conditional conditionsNumber of words。therefore，counts[j+1] - counts[i] That words[i] arrive words[j] Conditional conditionsNumber of words。</p>
+<p>In the code，counts Arrays use prefix and pre -processing，therefore可以在 O(1) Calculate the results of each query within time。This makes the total running time of the code from coming from O(n^2) Fall to O(n)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">vowelStrings</span>(<span class="params">self, words: <span class="type">List</span>[<span class="built_in">str</span>], queries: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        yuanyin = &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;e&#x27;</span>, <span class="string">&#x27;i&#x27;</span>, <span class="string">&#x27;o&#x27;</span>, <span class="string">&#x27;u&#x27;</span>&#125;</span><br><span class="line">        ans = []</span><br><span class="line">        <span class="keyword">for</span> i, j <span class="keyword">in</span> queries:</span><br><span class="line">            count = <span class="number">0</span></span><br><span class="line">            <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(i, j + <span class="number">1</span>):</span><br><span class="line">                <span class="keyword">if</span> words[x][<span class="number">0</span>] <span class="keyword">in</span> yuanyin <span class="keyword">and</span> words[x][-<span class="number">1</span>] <span class="keyword">in</span> yuanyin:</span><br><span class="line">                    count += <span class="number">1</span></span><br><span class="line">            ans.append(count)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">vowelStrings</span>(<span class="params">self, words: <span class="type">List</span>[<span class="built_in">str</span>], queries: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        yuanyin = <span class="built_in">set</span>(<span class="string">&#x27;aeiou&#x27;</span>)</span><br><span class="line">        <span class="comment"># Traversing each word，Determine whether its first letter is a metaphysical sound</span></span><br><span class="line">        <span class="comment"># Save the results in words_first_last List</span></span><br><span class="line">        words_first_last = [(word[<span class="number">0</span>] <span class="keyword">in</span> yuanyin, word[-<span class="number">1</span>] <span class="keyword">in</span> yuanyin) <span class="keyword">for</span> word <span class="keyword">in</span> words]</span><br><span class="line">        <span class="comment"># Create counts List，Used to store prefixes and</span></span><br><span class="line">        counts = [<span class="number">0</span>] * (<span class="built_in">len</span>(words) + <span class="number">1</span>)</span><br><span class="line">        <span class="comment"># Traversing each word，Calculate prefix and</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(words)):</span><br><span class="line">            counts[i + <span class="number">1</span>] = counts[i] + <span class="built_in">int</span>(words_first_last[i][<span class="number">0</span>] <span class="keyword">and</span> words_first_last[i][<span class="number">1</span>])</span><br><span class="line">        <span class="comment"># Traversing each query，Calculate the result of the query</span></span><br><span class="line">        ans = [counts[j + <span class="number">1</span>] - counts[i] <span class="keyword">for</span> i, j <span class="keyword">in</span> queries]</span><br><span class="line">        <span class="comment"># Return result</span></span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+
+            <!-- 分类页 -->
+            
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/52923acb.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
     <article id="post-6338猴子碰撞的方法数_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -1334,159 +1747,6 @@ var _hmt = _hmt || [];
             
                 <p class="article-more-link">
                     <a class="article-more-a" href="/post/2aa720ec.html">show all >></a>
-                </p>
-            
-
-            <!-- 添加分享 -->
-            
-
-            <div class="clearfix"></div>
-
-        </div>
-    </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-    
-
-<!-- 文章页添加mathjax公式 -->
-  
-    <article id="post-6347统计范围内的元音字符串数_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/52923acb.html">6347Number of vowel string within the scope of statistics</a>
-    </h2>
-  
-
-
-                
-                    <a href="/post/52923acb.html" class="archive-article-date">
-  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2024-01-01</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-                
-
-                
-                    <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">414字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">2min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-                
-            </header>
-        
-
-        <div class="article-entry" itemprop="articleBody">
-            <!-- 添加分类与标签 -->
-            
-                
-                    <h1 id="topic"><a href="#topic" class="headerlink" title="topic"></a>topic</h1><p><img src="/../assets/img/2023-02-05%20(2).png" alt="2023-02-05 (2).png"></p>
-<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>Pay attention to pre -processing and prefixing<br>Prefix and an algorithm，Used to find the prefix and the array。The prefix and definition of the array are defined as the harmony of the prefix element in a certain position of the array。in other words，The prefix and the elements of each position of an array are added to the previous element。</p>
-<p>This code uses prefix and to optimize the query process。It pre -processed whether the first letter of each word is a meta sound，Then save these results in a list。Then，It uses prefix and calculate each query result。</p>
-<p>Specifically，For each query (i, j)，It will be statistics from words[i] arrive words[j] Conditional conditions（The first letter is a Yuan Yin）Number of words。This can be used by using counts[j+1] - counts[i] To be done。This is because counts[j+1] Contain words[0] arrive words[j] Conditional conditionsNumber of words，and counts[i] Contain words[0] arrive words[i-1] Conditional conditionsNumber of words。therefore，counts[j+1] - counts[i] That words[i] arrive words[j] Conditional conditionsNumber of words。</p>
-<p>In the code，counts Arrays use prefix and pre -processing，therefore可以在 O(1) Calculate the results of each query within time。This makes the total running time of the code from coming from O(n^2) Fall to O(n)</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">vowelStrings</span>(<span class="params">self, words: <span class="type">List</span>[<span class="built_in">str</span>], queries: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        yuanyin = &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;e&#x27;</span>, <span class="string">&#x27;i&#x27;</span>, <span class="string">&#x27;o&#x27;</span>, <span class="string">&#x27;u&#x27;</span>&#125;</span><br><span class="line">        ans = []</span><br><span class="line">        <span class="keyword">for</span> i, j <span class="keyword">in</span> queries:</span><br><span class="line">            count = <span class="number">0</span></span><br><span class="line">            <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(i, j + <span class="number">1</span>):</span><br><span class="line">                <span class="keyword">if</span> words[x][<span class="number">0</span>] <span class="keyword">in</span> yuanyin <span class="keyword">and</span> words[x][-<span class="number">1</span>] <span class="keyword">in</span> yuanyin:</span><br><span class="line">                    count += <span class="number">1</span></span><br><span class="line">            ans.append(count)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">vowelStrings</span>(<span class="params">self, words: <span class="type">List</span>[<span class="built_in">str</span>], queries: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        yuanyin = <span class="built_in">set</span>(<span class="string">&#x27;aeiou&#x27;</span>)</span><br><span class="line">        <span class="comment"># Traversing each word，Determine whether its first letter is a metaphysical sound</span></span><br><span class="line">        <span class="comment"># Save the results in words_first_last List</span></span><br><span class="line">        words_first_last = [(word[<span class="number">0</span>] <span class="keyword">in</span> yuanyin, word[-<span class="number">1</span>] <span class="keyword">in</span> yuanyin) <span class="keyword">for</span> word <span class="keyword">in</span> words]</span><br><span class="line">        <span class="comment"># Create counts List，Used to store prefixes and</span></span><br><span class="line">        counts = [<span class="number">0</span>] * (<span class="built_in">len</span>(words) + <span class="number">1</span>)</span><br><span class="line">        <span class="comment"># Traversing each word，Calculate prefix and</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(words)):</span><br><span class="line">            counts[i + <span class="number">1</span>] = counts[i] + <span class="built_in">int</span>(words_first_last[i][<span class="number">0</span>] <span class="keyword">and</span> words_first_last[i][<span class="number">1</span>])</span><br><span class="line">        <span class="comment"># Traversing each query，Calculate the result of the query</span></span><br><span class="line">        ans = [counts[j + <span class="number">1</span>] - counts[i] <span class="keyword">for</span> i, j <span class="keyword">in</span> queries]</span><br><span class="line">        <span class="comment"># Return result</span></span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
-
-                
-            
-
-            <!-- 添加打赏 -->
-            
-
-            <!-- 添加版权声明 -->
-            
-
-        </div>
-
-        <!-- 添加置顶 -->
-        <div class="article-info article-info-index">
-            
-
-            <!-- 分类页 -->
-            
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-            
-
-            <!-- 添加展开全文 -->
-            
-                <p class="article-more-link">
-                    <a class="article-more-a" href="/post/52923acb.html">show all >></a>
                 </p>
             
 
@@ -1682,155 +1942,6 @@ var _hmt = _hmt || [];
 
 <!-- 文章页添加mathjax公式 -->
   
-    <article id="post-704二分查找_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/41f30363.html">704. Two -point search</a>
-    </h2>
-  
-
-
-                
-                    <a href="/post/41f30363.html" class="archive-article-date">
-  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2024-01-01</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-                
-
-                
-                    <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">194字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">1min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-                
-            </header>
-        
-
-        <div class="article-entry" itemprop="articleBody">
-            <!-- 添加分类与标签 -->
-            
-                
-                    <p><a target="_blank" rel="noopener" href="https://leetcode.cn/leetbook/read/learning-algorithms-with-leetcode/xsshgi/">https://leetcode.cn/leetbook/read/learning-algorithms-with-leetcode/xsshgi/</a><br>Not difficult，Just recursive to take a note</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">search</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], target: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">recursion</span>(<span class="params">nums, left, right, target</span>):</span><br><span class="line">            <span class="keyword">if</span> left &gt; right:</span><br><span class="line">                <span class="comment"># Recursive end</span></span><br><span class="line">                <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">            mid = left + (right - left) // <span class="number">2</span></span><br><span class="line">            <span class="keyword">if</span> nums[mid] == target:</span><br><span class="line">                <span class="keyword">return</span> mid</span><br><span class="line">            <span class="keyword">elif</span> nums[mid] &lt; target:</span><br><span class="line">                left = mid + <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                right = mid - <span class="number">1</span></span><br><span class="line">            <span class="keyword">return</span> recursion(nums, left, right, target)</span><br><span class="line"></span><br><span class="line">        left = <span class="number">0</span></span><br><span class="line">        right = <span class="built_in">len</span>(nums) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> recursion(nums, left, right, target)</span><br></pre></td></tr></table></figure>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/leetbook/read/learning-algorithms-with-leetcode/xssbke/">https://leetcode.cn/leetbook/read/learning-algorithms-with-leetcode/xssbke/</a></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># The guess API is already defined for you.</span></span><br><span class="line"><span class="comment"># @param num, your guess</span></span><br><span class="line"><span class="comment"># @return -1 if num is higher than the picked number</span></span><br><span class="line"><span class="comment">#          1 if num is lower than the picked number</span></span><br><span class="line"><span class="comment">#          otherwise return 0</span></span><br><span class="line"><span class="comment"># def guess(num: int) -&gt; int:</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">guessNumber</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">            <span class="keyword">def</span> <span class="title function_">recursion</span>(<span class="params">nums, left, right</span>):</span><br><span class="line">                <span class="keyword">if</span> left &gt; right:</span><br><span class="line">                    <span class="comment"># Recursive end</span></span><br><span class="line">                    <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">                mid = left + (right - left) // <span class="number">2</span></span><br><span class="line">                <span class="keyword">if</span> guess(mid) == <span class="number">0</span>:</span><br><span class="line">                    <span class="keyword">return</span> mid</span><br><span class="line">                <span class="keyword">elif</span> guess(mid) == <span class="number">1</span>:</span><br><span class="line">                    left = mid + <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    right = mid - <span class="number">1</span></span><br><span class="line">                <span class="keyword">return</span> recursion(nums, left, right)</span><br><span class="line"></span><br><span class="line">            left = <span class="number">1</span></span><br><span class="line">            right = n</span><br><span class="line">            <span class="keyword">return</span> recursion(n, left, right)</span><br></pre></td></tr></table></figure>
-
-                
-            
-
-            <!-- 添加打赏 -->
-            
-
-            <!-- 添加版权声明 -->
-            
-
-        </div>
-
-        <!-- 添加置顶 -->
-        <div class="article-info article-info-index">
-            
-
-            <!-- 分类页 -->
-            
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-            
-
-            <!-- 添加展开全文 -->
-            
-                <p class="article-more-link">
-                    <a class="article-more-a" href="/post/41f30363.html">show all >></a>
-                </p>
-            
-
-            <!-- 添加分享 -->
-            
-
-            <div class="clearfix"></div>
-
-        </div>
-    </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-    
-
-<!-- 文章页添加mathjax公式 -->
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/8/">&lt;&lt; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/10/">下一页 &gt;&gt;</a>
@@ -1885,10 +1996,10 @@ window.MathJax = {
 	  <br>
 	  <div class="footer-center">
 	    <i class="fa fa-file-word-o" aria-hidden="true"></i>
-		<span> 122 篇</span>
+		<span> 123 篇</span>
 		<span class="post-meta-divider">|</span>
 		<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-		<span> <span class="post-count">60.6k</span></span>
+		<span> <span class="post-count">60.7k</span></span>
       </div>
 	  
 	  <!-- 添加不蒜子统计 -->

@@ -294,7 +294,266 @@ var _hmt = _hmt || [];
         <div id="js-content" class="content-ll">
           
   
-    <article id="post-9021_TUT_9" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-invisible/9021_TUT_6" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/31af57d6.html">9021_TUT_6</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/31af57d6.html" class="archive-article-date">
+  	<time datetime="2024-11-11T05:54:50.340Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2024-11-11</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">2.7k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">16min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <h1 id="Exercise-1"><a href="#Exercise-1" class="headerlink" title="Exercise 1"></a>Exercise 1</h1><h3 id="Problem-description"><a href="#Problem-description" class="headerlink" title="Problem description"></a>Problem description</h3><p>It is hard to find the pattern of the input and output. But through this example:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">statements = &#x27;from exercise_6_1 import f1; &#x27;\</span><br><span class="line">            &#x27;L = [[4, 8], [6, 3, 0], [7]]; print(f1(L))&#x27;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">%</span><span class="language-bash">%run_and_test python3 -c <span class="string">&quot;<span class="variable">$statements</span>&quot;</span></span></span><br><span class="line"></span><br><span class="line">&#x27;([0, 3, 4, 6, 7, 8], [[0, 3], [4, 6, 7], [8]])\n&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>We need to sort the elements into a one-dimensional list and then split them according to the lengths of the sublists in the input.</p>
+<h3 id="My-Solution"><a href="#My-Solution" class="headerlink" title="My Solution"></a>My Solution</h3><p>So, the function <code>f1</code> should be like this:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f1</span>(<span class="params">L</span>):</span><br><span class="line">    <span class="comment"># Calculate the length of each sublist</span></span><br><span class="line">    lengths = [<span class="built_in">len</span>(i) <span class="keyword">for</span> i <span class="keyword">in</span> L]</span><br><span class="line">    <span class="comment"># Split the list into a one-dimensional list</span></span><br><span class="line">    P = [i <span class="keyword">for</span> j <span class="keyword">in</span> L <span class="keyword">for</span> i <span class="keyword">in</span> j]</span><br><span class="line">    P.sort()</span><br><span class="line">    ans = []</span><br><span class="line">    flag = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(L)):</span><br><span class="line">        ans.append(P[flag: flag + lengths[i]])</span><br><span class="line">        flag += lengths[i]</span><br><span class="line">    <span class="keyword">return</span> P, ans</span><br></pre></td></tr></table></figure>
+
+<h3 id="Standard-Solution"><a href="#Standard-Solution" class="headerlink" title="Standard Solution"></a>Standard Solution</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f1</span>(<span class="params">L</span>):</span><br><span class="line">    lengths = [<span class="built_in">len</span>(L1) <span class="keyword">for</span> L1 <span class="keyword">in</span> L]</span><br><span class="line">    F = <span class="built_in">sorted</span>(e <span class="keyword">for</span> L1 <span class="keyword">in</span> L <span class="keyword">for</span> e <span class="keyword">in</span> L1)</span><br><span class="line">    R = []</span><br><span class="line">    i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> n <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(L)):</span><br><span class="line">        R.append(F[i : (i := i + lengths[n])])</span><br><span class="line">    <span class="keyword">return</span> F, R</span><br></pre></td></tr></table></figure>
+
+<h3 id="Explanation"><a href="#Explanation" class="headerlink" title="Explanation"></a>Explanation</h3><p>The difference between the two solutions is that the standard solution uses the walrus operator <code>:=</code> to simplify the code. The walrus operator is a new feature in Python 3.8. It is used to assign a value to a variable as part of an expression. It is useful when you want to assign a value to a variable and use that value in the same expression.</p>
+<h1 id="Exercise-2"><a href="#Exercise-2" class="headerlink" title="Exercise 2"></a>Exercise 2</h1><h3 id="Problem-description-1"><a href="#Problem-description-1" class="headerlink" title="Problem description"></a>Problem description</h3><p>This exercise ask us to output the sum of diagonal elements of a matrix. Based on the line where <code>i</code>, <code>j</code> are located.<br>We can use <code>Numpy</code> to solve this problem. It has a function <code>numpy.diagonal()</code> that can return the diagonal elements of a matrix.</p>
+<h3 id="My-Solution-1"><a href="#My-Solution-1" class="headerlink" title="My Solution"></a>My Solution</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f2</span>(<span class="params">L, i, j, major=<span class="literal">True</span></span>):</span><br><span class="line">    <span class="comment"># Convert L to a numpy array for easier indexing</span></span><br><span class="line">    L = np.array(L)</span><br><span class="line">    i -= <span class="number">1</span></span><br><span class="line">    j -= <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> major:</span><br><span class="line">        dia = <span class="built_in">sum</span>(np.diag(L, k= j - i))</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        dia = <span class="built_in">sum</span>(np.diag(np.fliplr(L), k= (<span class="built_in">len</span>(L) - <span class="number">1</span> - j) - i))</span><br><span class="line">    <span class="keyword">return</span> dia</span><br></pre></td></tr></table></figure>
+<h3 id="Explanation-1"><a href="#Explanation-1" class="headerlink" title="Explanation"></a>Explanation</h3><p>In a normal matrix, the <code>np.diag()</code> function allows extracting diagonals at different offsets, where the offset <code>k=0</code> represents the main diagonal.</p>
+<p>When we flip the matrix, the coordinates for each cell change in such a way that we need to adjust our calculation of the offset accordingly.</p>
+<p>Specifically, for a matrix of size <code>n</code>, flipping it means that the column index <code>j</code> of the original matrix transforms to <code>(n - 1 - j)</code> in the flipped version. Hence, when we want to calculate the offset of the diagonal that passes through <code>(i, j)</code> in the original matrix, we need to determine the offset using <code>(n - 1 - j) - i</code> to correctly represent the position in the flipped version.</p>
+<h3 id="Standard-Solution-1"><a href="#Standard-Solution-1" class="headerlink" title="Standard Solution"></a>Standard Solution</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f2</span>(<span class="params">L, i, j, major=<span class="literal">True</span></span>):</span><br><span class="line">    i1 = i = i - <span class="number">1</span></span><br><span class="line">    j1 = j = j - <span class="number">1</span></span><br><span class="line">    the_sum = L[i1][j1]</span><br><span class="line">    <span class="keyword">if</span> major:</span><br><span class="line">        <span class="keyword">while</span> (i1 := i1 - <span class="number">1</span>) &gt;= <span class="number">0</span> <span class="keyword">and</span> (j1 := j1 - <span class="number">1</span>) &gt;= <span class="number">0</span>:</span><br><span class="line">            the_sum += L[i1][j1]</span><br><span class="line">        i1, j1 = i, j</span><br><span class="line">        <span class="keyword">while</span> (i1 := i1 + <span class="number">1</span>) &lt; <span class="built_in">len</span>(L) <span class="keyword">and</span> (j1 := j1 + <span class="number">1</span>) &lt; <span class="built_in">len</span>(L):</span><br><span class="line">            the_sum += L[i1][j1]</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">while</span> (i1 := i1 - <span class="number">1</span>) &gt;= <span class="number">0</span> <span class="keyword">and</span> (j1 := j1 + <span class="number">1</span>) &lt; <span class="built_in">len</span>(L):</span><br><span class="line">            the_sum += L[i1][j1]</span><br><span class="line">        i1, j1 = i, j</span><br><span class="line">        <span class="keyword">while</span> (i1 := i1 + <span class="number">1</span>) &lt; <span class="built_in">len</span>(L) <span class="keyword">and</span> (j1 := j1 - <span class="number">1</span>) &gt;= <span class="number">0</span>:</span><br><span class="line">            the_sum += L[i1][j1]</span><br><span class="line">    <span class="keyword">return</span> the_sum</span><br></pre></td></tr></table></figure>
+
+<h3 id="Explanation-2"><a href="#Explanation-2" class="headerlink" title="Explanation"></a>Explanation</h3><p>The standard solution uses a while loop to iterate through the elements of the matrix based on the given indices <code>i</code> and <code>j</code>. It calculates the sum of the diagonal elements by moving in the specified direction (major or minor diagonal) and updating the sum accordingly.</p>
+<h1 id="Exercise-3"><a href="#Exercise-3" class="headerlink" title="Exercise 3"></a>Exercise 3</h1><h3 id="Problem-description-2"><a href="#Problem-description-2" class="headerlink" title="Problem description"></a>Problem description</h3><p>This exercise involves swapping elements in a square matrix with an even side length such that each element in a specified half (‘top’, ‘bottom’, ‘left’, or ‘right’) is at least equal to its diagonally opposite element.</p>
+<p>If the half is ‘top’ or ‘left’, the element in that half should be at least equal to the diagonally opposite one, otherwise they should be swapped. Conversely, if the half is ‘bottom’ or ‘right’, the element in the other half should be swapped if it is greater.</p>
+<h3 id="Standard-Solution-2"><a href="#Standard-Solution-2" class="headerlink" title="Standard Solution"></a>Standard Solution</h3><p>The solution is implemented by creating a copy of the matrix and then iterating over the relevant half to determine if swapping is necessary based on the given criteria.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Assume that the argument L is a list of lists of integers</span></span><br><span class="line"><span class="comment"># that displays as a square with an even side length</span></span><br><span class="line"><span class="comment"># and the argument half is one of</span></span><br><span class="line"><span class="comment"># &#x27;top&#x27;, &#x27;bottom&#x27;, &#x27;left&#x27; or &#x27;right&#x27;.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Possibly swaps elements that are diagonally opposite</span></span><br><span class="line"><span class="comment"># so that the element in the &quot;half&quot; part of the square is</span></span><br><span class="line"><span class="comment"># at least equal to the other element.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f3</span>(<span class="params">L, half=<span class="string">&#x27;top&#x27;</span></span>):</span><br><span class="line">    <span class="comment"># Create a copy of the original list to avoid modifying it directly</span></span><br><span class="line">    L1 = [<span class="built_in">list</span>(row) <span class="keyword">for</span> row <span class="keyword">in</span> L]</span><br><span class="line">    n = <span class="built_in">len</span>(L)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Define ranges based on the specified half</span></span><br><span class="line">    ranges = &#123;</span><br><span class="line">        <span class="string">&#x27;top&#x27;</span>: (<span class="built_in">range</span>(n // <span class="number">2</span>), <span class="built_in">range</span>(n)),</span><br><span class="line">        <span class="string">&#x27;bottom&#x27;</span>: (<span class="built_in">range</span>(n // <span class="number">2</span>, n), <span class="built_in">range</span>(n)),</span><br><span class="line">        <span class="string">&#x27;left&#x27;</span>: (<span class="built_in">range</span>(n), <span class="built_in">range</span>(n // <span class="number">2</span>)),</span><br><span class="line">        <span class="string">&#x27;right&#x27;</span>: (<span class="built_in">range</span>(n), <span class="built_in">range</span>(n // <span class="number">2</span>, n))</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Iterate through the specified half and possibly swap diagonally opposite elements</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> ranges[half][<span class="number">0</span>]:</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> ranges[half][<span class="number">1</span>]:</span><br><span class="line">            <span class="keyword">if</span> L[i][j] &lt; L[-i - <span class="number">1</span>][-j - <span class="number">1</span>]:</span><br><span class="line">                L1[i][j], L1[-i - <span class="number">1</span>][-j - <span class="number">1</span>] = L1[-i - <span class="number">1</span>][-j - <span class="number">1</span>], L1[i][j]</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> L1</span><br></pre></td></tr></table></figure>
+
+<h3 id="Explanation-3"><a href="#Explanation-3" class="headerlink" title="Explanation"></a>Explanation</h3><p>The approach in my solution uses a dictionary to define the ranges for each half of the matrix. By iterating over these ranges, it ensures that only the elements in the specified half are considered. If the element in the specified half is smaller than its diagonally opposite counterpart, they are swapped.</p>
+<p>The ranges dictionary defines which rows and columns are to be iterated based on the specified half:</p>
+<ul>
+<li><code>&#39;top&#39;</code> considers the top half of the matrix (rows from <code>0</code> to <code>n//2</code>)</li>
+<li><code>&#39;bottom&#39;</code> considers the bottom half of the matrix (rows from <code>n//2</code> to <code>n</code>)</li>
+<li><code>&#39;left&#39;</code> considers the left half of the matrix (columns from <code>0</code> to <code>n//2</code>)</li>
+<li><code>&#39;right&#39;</code> considers the right half of the matrix (columns from <code>n//2</code> to <code>n</code>)</li>
+</ul>
+<p>The values are swapped only if they do not meet the condition defined for the given half.</p>
+<h1 id="Exercise-4"><a href="#Exercise-4" class="headerlink" title="Exercise 4"></a>Exercise 4</h1><h3 id="Problem-description-3"><a href="#Problem-description-3" class="headerlink" title="Problem description"></a>Problem description</h3><p>This exercise involves creating a visual pattern on an <code>n x n</code> grid using two different characters to represent black and white cells. The argument <code>n</code> is an integer at least equal to 1, and the argument <code>black_center</code> is either <code>True</code> or <code>False</code>, which influences the color of the center of the grid. The function should use <code>np.full()</code> to create the grid and modify it using simple loops without nested loops.</p>
+<p>The function prints the grid instead of returning it.</p>
+<h3 id="My-Solution-2"><a href="#My-Solution-2" class="headerlink" title="My Solution"></a>My Solution</h3><p>The solution starts by creating an <code>n x n</code> grid initialized entirely to either black or white, depending on whether the center should be black or not. The function then iteratively adjusts concentric squares within the grid, switching the colors as needed.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">black</span>(<span class="params">i, black_centre</span>):</span><br><span class="line">    <span class="keyword">return</span> (i % <span class="number">4</span> <span class="keyword">in</span> &#123;<span class="number">1</span>, <span class="number">2</span>&#125;) ^ (<span class="keyword">not</span> black_centre)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f4</span>(<span class="params">n, black_centre=<span class="literal">True</span></span>):</span><br><span class="line">    <span class="comment"># Create the initial grid based on the color of the center</span></span><br><span class="line">    grid = np.full((n, n), <span class="string">&#x27;⬛&#x27;</span>) <span class="keyword">if</span> black(n, black_centre)\</span><br><span class="line">                                 <span class="keyword">else</span> np.full((n, n), <span class="string">&#x27;⬜&#x27;</span>)</span><br><span class="line">    <span class="comment"># Adjust concentric squares within the grid</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n // <span class="number">2</span> + <span class="number">1</span>):</span><br><span class="line">        grid[i : n - i, i : n - i] = <span class="string">&#x27;⬛&#x27;</span> <span class="keyword">if</span> black(n - <span class="number">2</span> * i, black_centre)\</span><br><span class="line">                                           <span class="keyword">else</span> <span class="string">&#x27;⬜&#x27;</span></span><br><span class="line">    <span class="comment"># Print the grid row by row</span></span><br><span class="line">    <span class="keyword">for</span> row <span class="keyword">in</span> grid:</span><br><span class="line">        <span class="built_in">print</span>(*row, sep=<span class="string">&#x27;&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Explanation-4"><a href="#Explanation-4" class="headerlink" title="Explanation"></a>Explanation</h3><ul>
+<li>The function <code>black(i, black_centre)</code> determines the color of the concentric square based on the current size <code>i</code> and whether the center should be black (<code>black_centre</code> argument).</li>
+<li>The <code>np.full()</code> function is used to create the grid, either filled with black (‘⬛’) or white (‘⬜’), depending on the value of <code>black(n, black_centre)</code>, which determines the color of the center.</li>
+<li>The <code>for</code> loop iterates through half of the matrix (<code>n // 2</code>), adjusting each concentric square layer by layer.<ul>
+<li>The slicing operation <code>grid[i : n - i, i : n - i]</code> selects the relevant inner square and fills it with either black or white, alternating colors as determined by <code>black(n - 2 * i, black_centre)</code>.</li>
+</ul>
+</li>
+<li>Finally, the grid is printed row by row, with each character printed consecutively for easy visualization.</li>
+</ul>
+<h3 id="Standard-Solution-3"><a href="#Standard-Solution-3" class="headerlink" title="Standard Solution"></a>Standard Solution</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">black</span>(<span class="params">i, black_centre</span>):</span><br><span class="line">    <span class="keyword">return</span> (i % <span class="number">4</span> <span class="keyword">in</span> &#123;<span class="number">1</span>, <span class="number">2</span>&#125;) ^ (<span class="keyword">not</span> black_centre)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f4</span>(<span class="params">n, black_centre=<span class="literal">True</span></span>):</span><br><span class="line">    <span class="comment"># Create the grid, starting with the initial color based on the center</span></span><br><span class="line">    grid = np.full((n, n), <span class="string">&#x27;⬛&#x27;</span> <span class="keyword">if</span> black(n, black_centre) <span class="keyword">else</span> <span class="string">&#x27;⬜&#x27;</span>)</span><br><span class="line">    <span class="comment"># Iterate to adjust each concentric layer</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n // <span class="number">2</span> + <span class="number">1</span>):</span><br><span class="line">        color = <span class="string">&#x27;⬛&#x27;</span> <span class="keyword">if</span> black(n - <span class="number">2</span> * i, black_centre) <span class="keyword">else</span> <span class="string">&#x27;⬜&#x27;</span></span><br><span class="line">        grid[i:n-i, i:n-i] = color</span><br><span class="line">    <span class="comment"># Print the grid</span></span><br><span class="line">    <span class="keyword">for</span> row <span class="keyword">in</span> grid:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;&#x27;</span>.join(row))</span><br></pre></td></tr></table></figure>
+
+<h3 id="Explanation-5"><a href="#Explanation-5" class="headerlink" title="Explanation"></a>Explanation</h3><p>The standard solution follows a similar approach to my solution but uses slightly different syntax to achieve the same result:</p>
+<ul>
+<li>The grid is created using <code>np.full()</code>, just like in my solution.</li>
+<li>The loop iterates through each concentric layer, updating the color accordingly. The variable <code>color</code> is used to determine what color each inner square should be, making the assignment more readable.</li>
+<li>The grid is printed in a slightly different way by joining the row’s elements into a single string (<code>print(&#39;&#39;.join(row))</code>). This makes the output cleaner by removing the spaces between characters, which is purely aesthetic.</li>
+</ul>
+<p>The primary differences between my solution and the standard solution are the use of inline expressions for color selection and minor differences in how the final output is formatted when printed.</p>
+<h1 id="Exercise-5"><a href="#Exercise-5" class="headerlink" title="Exercise 5"></a>Exercise 5</h1><h3 id="Try-it"><a href="#Try-it" class="headerlink" title="Try it!"></a>Try it!</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># Define a 2D NumPy array (matrix)</span></span><br><span class="line">array = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">                  [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>],</span><br><span class="line">                  [<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Sum all elements</span></span><br><span class="line">total_sum = np.<span class="built_in">sum</span>(array)  <span class="comment"># Output: 45</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Sum along rows (axis=1)</span></span><br><span class="line">row_sums = np.<span class="built_in">sum</span>(array, axis=<span class="number">1</span>)  <span class="comment"># Output: [6, 15, 24]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Sum along columns (axis=0)</span></span><br><span class="line">column_sums = np.<span class="built_in">sum</span>(array, axis=<span class="number">0</span>)  <span class="comment"># Output: [12, 15, 18]</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(total_sum, row_sums, column_sums)</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="Problem-description-4"><a href="#Problem-description-4" class="headerlink" title="Problem description"></a>Problem description</h3><p>The exercise is to compute the sum of elements in a given row and column and display a colored square at their intersection based on the sign of the sum:</p>
+<ul>
+<li>A blue square (‘🟦’) if the sum is <code>0</code>.</li>
+<li>A green square (‘🟩’) if the sum is strictly positive.</li>
+<li>A red square (‘🟥’) if the sum is strictly negative.</li>
+</ul>
+<p>For example, given a list of lists representing the matrix:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.  .  2  .  .</span><br><span class="line">2  0 -3  7 -4</span><br><span class="line">.  . -4  .  .</span><br></pre></td></tr></table></figure>
+
+<p>The function should compute the sum for each row and column, and update the intersection elements accordingly.</p>
+<p>The function should use <code>np.sum()</code> and <code>np.sign()</code> to simplify calculations, and should use at most loops within loops, avoiding deeper nesting.</p>
+<p>The output is printed, not returned.</p>
+<h3 id="My-Solution-3"><a href="#My-Solution-3" class="headerlink" title="My Solution"></a>My Solution</h3><p>The solution uses NumPy to calculate the sum of each row and column. The function then iterates through the given list and determines the sign of the sum at each intersection, displaying the appropriate color.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f5</span>(<span class="params">L</span>):</span><br><span class="line">    <span class="comment"># Convert L to a numpy array for easier manipulation</span></span><br><span class="line">    L = np.array(L)</span><br><span class="line">    n_rows, n_cols = L.shape</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Calculate row and column sums</span></span><br><span class="line">    row_sums = np.<span class="built_in">sum</span>(L, axis=<span class="number">1</span>)</span><br><span class="line">    col_sums = np.<span class="built_in">sum</span>(L, axis=<span class="number">0</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Iterate through the list and determine the color for each intersection</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n_rows):</span><br><span class="line">        row = []</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(n_cols):</span><br><span class="line">            intersection_sum = row_sums[i] + col_sums[j] - L[i][j]  <span class="comment"># Avoid double counting L[i][j]</span></span><br><span class="line">            <span class="keyword">if</span> intersection_sum == <span class="number">0</span>:</span><br><span class="line">                row.append(<span class="string">&#x27;🟦&#x27;</span>)  <span class="comment"># Blue square</span></span><br><span class="line">            <span class="keyword">elif</span> intersection_sum &gt; <span class="number">0</span>:</span><br><span class="line">                row.append(<span class="string">&#x27;🟩&#x27;</span>)  <span class="comment"># Green square</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                row.append(<span class="string">&#x27;🟥&#x27;</span>)  <span class="comment"># Red square</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;&#x27;</span>.join(row))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Test with the provided statements</span></span><br><span class="line">statements = <span class="string">&#x27;from exercise_6_5 import f5; &#x27;</span>\</span><br><span class="line">             <span class="string">&#x27;f5([[4, -6, -5], [6, -7, 6]])&#x27;</span></span><br><span class="line"></span><br><span class="line">%%run_and_test python3 -c <span class="string">&quot;$statements&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;🟥🟥🟥\n&#x27;</span></span><br><span class="line"><span class="string">&#x27;🟩🟥🟦\n&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Explanation-6"><a href="#Explanation-6" class="headerlink" title="Explanation"></a>Explanation</h3><ul>
+<li><strong>NumPy Conversion</strong>: The list <code>L</code> is converted to a NumPy array to take advantage of the efficient <code>np.sum()</code> function for computing sums.</li>
+<li><strong>Row and Column Sums</strong>: The sums for rows and columns are computed separately using <code>np.sum()</code> with the appropriate <code>axis</code> argument.</li>
+<li><strong>Iteration for Colors</strong>: The function then iterates over each element in the matrix to determine the color of the intersection based on the calculated row and column sums. The color is chosen as follows:<ul>
+<li><code>&#39;🟦&#39;</code> (blue) for a sum of <code>0</code>.</li>
+<li><code>&#39;🟩&#39;</code> (green) for a strictly positive sum.</li>
+<li><code>&#39;🟥&#39;</code> (red) for a strictly negative sum.</li>
+</ul>
+</li>
+<li><strong>Output</strong>: Finally, the grid is printed row by row.</li>
+</ul>
+<h3 id="Standard-Solution-4"><a href="#Standard-Solution-4" class="headerlink" title="Standard Solution"></a>Standard Solution</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f5</span>(<span class="params">L</span>):</span><br><span class="line">    L1 = np.array(L)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(L1.shape[<span class="number">0</span>]):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(L1.shape[<span class="number">1</span>]):</span><br><span class="line">            L[i][j] = &#123; <span class="number">0</span>: <span class="string">&#x27;🟦&#x27;</span>,</span><br><span class="line">                        <span class="number">1</span>: <span class="string">&#x27;🟩&#x27;</span>,</span><br><span class="line">                       -<span class="number">1</span>: <span class="string">&#x27;🟥&#x27;</span></span><br><span class="line">                      &#125;[np.sign(np.<span class="built_in">sum</span>(L1[i, :])</span><br><span class="line">                                + np.<span class="built_in">sum</span>(L1[: , j])</span><br><span class="line">                                - L1[i, j]</span><br><span class="line">                               )</span><br><span class="line">                       ]</span><br><span class="line">    <span class="keyword">for</span> row <span class="keyword">in</span> L:</span><br><span class="line">        <span class="built_in">print</span>(*row, sep=<span class="string">&#x27;&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Explanation-7"><a href="#Explanation-7" class="headerlink" title="Explanation"></a>Explanation</h3><p>The standard solution follows a similar approach to my solution but uses a dictionary to map the sign of the sum to the corresponding color. The <code>np.sign()</code> function is used to determine the sign of the sum, and the dictionary is used to select the appropriate color based on the sign.</p>
+<h1 id="Exercise-6"><a href="#Exercise-6" class="headerlink" title="Exercise 6"></a>Exercise 6</h1><h3 id="Problem-description-5"><a href="#Problem-description-5" class="headerlink" title="Problem description"></a>Problem description</h3><p>This exercise is similar to Exercise 5, where we compute the sum of elements in a given row and column and display a colored square at their intersection based on the sign of the sum:</p>
+<ul>
+<li>A blue square (‘🟦’) if the sum is <code>0</code>.</li>
+<li>A green square (‘🟩’) if the sum is strictly positive.</li>
+<li>A red square (‘🟥’) if the sum is strictly negative.</li>
+</ul>
+<p>However, the main differences are:</p>
+<ul>
+<li><strong>Input Structure</strong>: The list <code>L</code> must be a <strong>square matrix</strong> (i.e., the number of rows equals the number of columns).</li>
+<li><strong>Optimization Requirement</strong>: The solution for <code>f6</code> must avoid manual loops for computation (except for output). Instead, the solution must use <strong>vectorized operations</strong> in NumPy to enhance computational efficiency.</li>
+<li><strong>Advanced NumPy Usage</strong>: The exercise explicitly suggests using advanced NumPy functions such as <code>np.vectorize()</code>, <code>np.newaxis</code>, and broadcasting.</li>
+</ul>
+<p>The output is printed, not returned.</p>
+<h3 id="My-Solution-4"><a href="#My-Solution-4" class="headerlink" title="My Solution"></a>My Solution</h3><p>The solution for <code>f6</code> uses advanced NumPy techniques to fully vectorize the computations without using explicit loops (except for printing). It creates the required colored grid by computing the sum for each row and column and then using a vectorized mapping to determine the color.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f6</span>(<span class="params">L</span>):</span><br><span class="line">    L1 = np.array(L)</span><br><span class="line">    <span class="comment"># Vectorize the color selection based on the sum of row and column</span></span><br><span class="line">    <span class="keyword">for</span> row <span class="keyword">in</span> np.vectorize(<span class="keyword">lambda</span> e: &#123; <span class="number">0</span>: <span class="string">&#x27;🟦&#x27;</span>,</span><br><span class="line">                                        <span class="number">1</span>: <span class="string">&#x27;🟩&#x27;</span>,</span><br><span class="line">                                       -<span class="number">1</span>: <span class="string">&#x27;🟥&#x27;</span></span><br><span class="line">                                      &#125;[e]</span><br><span class="line">                           )(np.sign(np.<span class="built_in">sum</span>(L1, axis=<span class="number">1</span>)[:, np.newaxis]</span><br><span class="line">                                     + np.<span class="built_in">sum</span>(L1.T, axis=<span class="number">1</span>)</span><br><span class="line">                                     - L1</span><br><span class="line">                                    )</span><br><span class="line">                            ):</span><br><span class="line">        <span class="built_in">print</span>(*row, sep=<span class="string">&#x27;&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Explanation-8"><a href="#Explanation-8" class="headerlink" title="Explanation"></a>Explanation</h3><ul>
+<li><strong>Vectorization</strong>: The solution uses <code>np.vectorize()</code> to apply a function element-wise over an array, effectively mapping each sum to a specific color.</li>
+<li><strong>Avoiding Loops</strong>: Instead of iterating through each element manually, the solution leverages NumPy’s vectorization to calculate row and column sums simultaneously.</li>
+<li><strong>Broadcasting and <code>np.newaxis</code></strong>: The use of <code>[:, np.newaxis]</code> helps in broadcasting the row sums across the columns to facilitate efficient addition with the column sums. This allows the entire computation to be performed without explicit looping.</li>
+<li><strong>Output</strong>: Finally, each row is printed with the appropriate color, similar to Exercise 5.</li>
+</ul>
+<h3 id="Key-Differences-from-Exercise-5"><a href="#Key-Differences-from-Exercise-5" class="headerlink" title="Key Differences from Exercise 5"></a>Key Differences from Exercise 5</h3><ol>
+<li><strong>Input Structure</strong>: Exercise 5 allows any list of lists, whereas Exercise 6 requires a square matrix.</li>
+<li><strong>Loop Usage</strong>: Exercise 5 uses explicit loops to calculate intersection sums, whereas Exercise 6 relies entirely on <strong>vectorized operations</strong> and avoids manual loops (except for printing).</li>
+<li><strong>Efficiency</strong>: Exercise 6 is more computationally efficient, as it is designed to handle larger datasets using optimized NumPy operations, whereas Exercise 5 uses loops that can be slower for large matrices.</li>
+</ol>
+
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+
+            <!-- 分类页 -->
+            
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">9021</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/31af57d6.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
+    <article id="post-invisible/9021_TUT_9" class="article article-type-post  article-index" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
@@ -552,7 +811,7 @@ var _hmt = _hmt || [];
 
 <!-- 文章页添加mathjax公式 -->
   
-    <article id="post-9021_TUT_8" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-invisible/9021_TUT_8" class="article article-type-post  article-index" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
@@ -890,7 +1149,7 @@ var _hmt = _hmt || [];
 
 <!-- 文章页添加mathjax公式 -->
   
-    <article id="post-9021_TUT_5" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-invisible/9021_TUT_5" class="article article-type-post  article-index" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
@@ -1072,7 +1331,7 @@ var _hmt = _hmt || [];
 
 <p><code>Pandas</code> provides the <code>value_counts()</code> method, which can directly count the frequency of each value in a column. Here, we call <code>value_counts()</code> on the <code>Country</code> column to get the number of customers from each country.</p>
 <h1 id="Exercise-6"><a href="#Exercise-6" class="headerlink" title="Exercise 6"></a>Exercise 6</h1><h3 id="Problem-Description-4"><a href="#Problem-Description-4" class="headerlink" title="Problem Description"></a>Problem Description</h3><p>The task is to create a directory structure where:</p>
-<p><img src="/../assets/img/2024-10-08.png" alt="2024-10-08.png"></p>
+<p><img src="/../../assets/img/2024-10-08.png" alt="2024-10-08.png"></p>
 <ul>
 <li>There is a top-level directory named <code>First_10_words_per_letter</code>.</li>
 <li>Under this directory, there are two subdirectories:<ul>
@@ -1189,7 +1448,7 @@ var _hmt = _hmt || [];
 
 <!-- 文章页添加mathjax公式 -->
   
-    <article id="post-9021_TUT_4" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-invisible/9021_TUT_4" class="article article-type-post  article-index" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
@@ -1487,7 +1746,7 @@ var _hmt = _hmt || [];
 
 <!-- 文章页添加mathjax公式 -->
   
-    <article id="post-9021_TUT_3" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-invisible/9021_TUT_3" class="article article-type-post  article-index" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
@@ -2333,7 +2592,7 @@ var _hmt = _hmt || [];
 
 <!-- 文章页添加mathjax公式 -->
   
-    <article id="post-9021_TUT_2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-invisible/9021_TUT_2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
@@ -2596,180 +2855,6 @@ var _hmt = _hmt || [];
 
 <!-- 文章页添加mathjax公式 -->
   
-    <article id="post-hello-world_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/edc2b94.html">Top of an article</a>
-    </h2>
-  
-
-
-                
-                    <a href="/post/edc2b94.html" class="archive-article-date">
-  	<time datetime="2024-09-10T15:11:32.940Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2024-09-11</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-                
-
-                
-                    <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">322字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">1min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-                
-            </header>
-        
-
-        <div class="article-entry" itemprop="articleBody">
-            <!-- 添加分类与标签 -->
-            
-                
-                    <h1 id="longsizhuo123-github-io"><a href="#longsizhuo123-github-io" class="headerlink" title="longsizhuo123.github.io"></a>longsizhuo123.github.io</h1><p><img src="https://user-images.githubusercontent.com/114939201/214082770-35d1fb45-9891-4b73-ba89-18e33030640f.png" alt="pattern_stripes-1_1_2_0-0_125_1__cc2a35_4f372d_00a1b0_edc951_eb6941"></p>
-<p><em>“Maybe it could be a nice memory”</em></p>
-<p>Welcome to my personal blog repository on Github! My name is Sizhuo Long, and I am currently a student in Australia. This repository is home to my personal blog, which is built using the HEXO static site generator. </p>
-<p>On my blog, you’ll find a variety of content including my thoughts on technology, programming, and the latest developments in my field of study. I also share my experiences and lessons learned from the projects I’ve worked on. </p>
-<p>I hope that by sharing my knowledge and insights, I can help others who are interested in the same topics. I welcome any comments and feedback, and I am always open to collaboration. </p>
-<p><strong>Thank you for visiting my blog</strong>, I hope you will find something interesting here. And I would really appreciate it if you could pay more attention to my blog and <strong>follow me</strong>.</p>
-<h3 id="Why-you-should-follow-me"><a href="#Why-you-should-follow-me" class="headerlink" title="Why you should follow me"></a>Why you should follow me</h3><ul>
-<li>I’ll share my personal experiences and thoughts on technology and programming </li>
-<li>I’ll keep you updated on the latest developments in my field of study</li>
-<li>I’m open to collaboration and feedback.</li>
-</ul>
-<h3 id="How-to-contact-me"><a href="#How-to-contact-me" class="headerlink" title="How to contact me"></a>How to contact me</h3><ul>
-<li>Email: <a href="mailto:&#x6c;&#111;&#110;&#x67;&#115;&#x69;&#122;&#x68;&#117;&#x6f;&#x40;&#x67;&#x6d;&#x61;&#105;&#108;&#46;&#x63;&#x6f;&#x6d;">longsizhuo@gmail.com</a></li>
-<li>LinkedIn: <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/longsizhuo/">Sizhuo Long</a></li>
-<li>XiaoHongShu(Small RedBook): <a target="_blank" rel="noopener" href="https://www.xiaohongshu.com/user/profile/5c0b8cc2000000000601e809">@sizhuo_long</a></li>
-</ul>
-<p>Thank you for reading, and I hope you enjoy my blog!</p>
-<p><img src="https://user-images.githubusercontent.com/114939201/214082782-ae84027e-0a15-4ed4-843b-00a29ea19480.png" alt="pattern_stripes-1_1_2_0-0_125_1__cc2a35_4f372d_00a1b0_edc951_eb6941"></p>
-<p><strong><a target="_blank" rel="noopener" href="https://longsizhuo.shinyapps.io/long/">Single -cellRNAData analysis tool</a></strong><br>The project I did before，There are many errors，Don’t spray。<br><strong><a href="../html/home.html">Shu Di Travel Bacteria</a></strong><br>This is a small assignment when I was a second junior year，It’s a group operation。At first I couldn’t get the link<code>html</code>document，I read a lot of official documents orCSDNdocument<br>    。Finally read an article，Said to beHEXODang the<code>generate</code>when，I willsource中的documentappendarrivepublicMiddle，I tried many times later，Discover directly<br>public为源document夹，Just call the directory。Although this will cause it to be unable to bemddocument中超链接arrivedocument。    </p>
-<p>at the same time，也exist新的bugunsolved：login.htmlUnable toindex.htmlJump<br>Linkin:</p>
-<div class="badge-base LI-profile-badge" data-locale="zh_CN" data-size="medium" data-theme="dark" data-type="HORIZONTAL" data-vanity="longsizhuo" data-version="v1"><a class="badge-base__link LI-simple-link" target="_blank" rel="noopener" href="https://au.linkedin.com/in/longsizhuo?trk=profile-badge">Sizhuo Long</a></div>
-
-
-
-
-                
-            
-
-            <!-- 添加打赏 -->
-            
-
-            <!-- 添加版权声明 -->
-            
-
-        </div>
-
-        <!-- 添加置顶 -->
-        <div class="article-info article-info-index">
-            
-                <div class="article-pop-out tagcloud">
-                    <i class="icon-tuding"></i>
-                    <a class="article-tag-list-link color3">置顶</a>
-                </div>
-            
-
-            <!-- 分类页 -->
-            
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">unsolved</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">front end</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-            
-
-            <!-- 添加展开全文 -->
-            
-                <p class="article-more-link">
-                    <a class="article-more-a" href="/post/edc2b94.html">show all >></a>
-                </p>
-            
-
-            <!-- 添加分享 -->
-            
-
-            <div class="clearfix"></div>
-
-        </div>
-    </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-    
-
-<!-- 文章页添加mathjax公式 -->
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&lt;&lt; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/3/">下一页 &gt;&gt;</a>
@@ -2824,10 +2909,10 @@ window.MathJax = {
 	  <br>
 	  <div class="footer-center">
 	    <i class="fa fa-file-word-o" aria-hidden="true"></i>
-		<span> 122 篇</span>
+		<span> 123 篇</span>
 		<span class="post-meta-divider">|</span>
 		<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-		<span> <span class="post-count">60.6k</span></span>
+		<span> <span class="post-count">60.7k</span></span>
       </div>
 	  
 	  <!-- 添加不蒜子统计 -->
