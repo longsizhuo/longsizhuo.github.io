@@ -294,6 +294,271 @@ var _hmt = _hmt || [];
         <div id="js-content" class="content-ll">
           
   
+    <article id="post-invisible/9021_TUT_2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/becdc081.html">9021_TUT_2</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/becdc081.html" class="archive-article-date">
+  	<time datetime="2025-03-03T04:38:00.058Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2025-03-03</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">2.8k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">17min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <h1 id="Exercise-1"><a href="#Exercise-1" class="headerlink" title="Exercise 1:"></a>Exercise 1:</h1><p>This exercise focuses on input validation and formatting floating-point numbers. The goal is to prompt the user to enter a floating-point number between -1 and 1 (exclusive). If the input is valid, the program rounds the number to two decimal places and prints it. Otherwise, it keeps prompting the user until a valid input is provided.<br>Key Points:</p>
+<ul>
+<li>The program uses a try-except block to catch invalid inputs (e.g., strings that cannot be converted to floats).</li>
+<li>The input() function is wrapped in an infinite while loop to continuously ask for input until the correct condition is met.</li>
+</ul>
+<p>In the updated version of Exercise 1, we use the formatting :.2f instead of round(). Here’s the key difference between the two:</p>
+<ul>
+<li><code>round()</code>: This is a Python built-in function that rounds a number to a specified number of decimal places. For example, round(1.236, 2) will return 1.24. However, the output of round() is still a float, but it does not guarantee a fixed number of decimal places when printed. For instance, round(1.0001, 2) would return 1.0 and only display one decimal place, not two.</li>
+<li><code>:.2f</code>: This is part of Python’s string formatting and ensures the number is displayed with exactly two decimal places, no matter what the number is. It also rounds the number appropriately. For instance, number &#x3D; 1.0 formatted as f”{number:.2f}” will print 1.00. This makes :.2f particularly useful for consistent display of decimal places, which is important for formatting output for users.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        i = <span class="built_in">input</span>(<span class="string">&#x27;Enter a floating point number between -1 and 1 excluded: &#x27;</span>)</span><br><span class="line">        number = <span class="built_in">float</span>(i)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&#x27;.&#x27;</span> <span class="keyword">not</span> <span class="keyword">in</span> i:</span><br><span class="line">            <span class="keyword">raise</span> ValueError</span><br><span class="line">        <span class="keyword">if</span> -<span class="number">1</span> &lt; number &lt; <span class="number">1</span>:</span><br><span class="line">            <span class="comment"># not using round() here because it rounds to the nearest even number</span></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&#x27;\nUp to +/-0.005, you input <span class="subst">&#123;number:<span class="number">.2</span>f&#125;</span>&#x27;</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">raise</span> ValueError</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">except</span> ValueError:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;You got that wrong, try again!\n&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="Exercise-2"><a href="#Exercise-2" class="headerlink" title="Exercise 2:"></a>Exercise 2:</h1><p>This exercise involves processing a block of text and formatting it into sentences. Each sentence should have its first word capitalized, and the remaining words should be in lowercase. The task is to handle spaces and punctuation properly.</p>
+<p>Key Points:</p>
+<ul>
+<li>A regular expression (re.sub) is used to replace multiple spaces with a single space.</li>
+<li>Another regular expression (re.split) is used to split the text into sentences while preserving punctuation marks.</li>
+<li>After splitting, the sentences are processed: the first word is capitalized, and all other words are made lowercase.</li>
+<li>Finally, the processed sentences are recombined into a single formatted text.</li>
+</ul>
+<h3 id="Why-use-re-in-Exercise-2-and-what-is-re"><a href="#Why-use-re-in-Exercise-2-and-what-is-re" class="headerlink" title="Why use re in Exercise 2, and what is re?"></a>Why use re in Exercise 2, and what is re?</h3><p>In Exercise 2, we use re (Python’s regular expression module) to process and format the text input. Let’s break down why re is used and what it is:</p>
+<h3 id="What-is-re"><a href="#What-is-re" class="headerlink" title="What is re?"></a>What is re?</h3><p>re stands for regular expressions, which are powerful tools for matching patterns in strings. The re module in Python allows you to work with regular expressions to search, split, and manipulate text based on specific patterns. Regular expressions are highly flexible and efficient for handling complex string operations.</p>
+<h3 id="Why-use-re-in-Exercise-2"><a href="#Why-use-re-in-Exercise-2" class="headerlink" title="Why use re in Exercise 2?"></a>Why use re in Exercise 2?</h3><p>In this exercise, we need to handle several complex text manipulations:</p>
+<ol>
+<li>Replace multiple spaces with a single space: Sentences in the text may have irregular spaces between words, so we need to normalize these spaces. Instead of writing loops or conditions to handle each case, we use re.sub() with a pattern r’\s+’ to easily match all occurrences of one or more spaces and replace them with a single space.</li>
+<li>Split sentences while preserving punctuation: We need to split the text into individual sentences, where each sentence is followed by punctuation (e.g., ‘.’, ‘!’, or ‘?’). The function re.split(r’([.!?])’, text) allows us to split the text based on punctuation while keeping the punctuation marks, which is crucial for proper sentence reconstruction.</li>
+</ol>
+<p>Regular expressions allow us to:</p>
+<ul>
+<li>Efficiently match patterns like spaces or punctuation.</li>
+<li>Perform complex text transformations with minimal code.</li>
+<li>Handle edge cases that would otherwise require more manual handling.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Assume that the argument text is a string that denotes a text,</span></span><br><span class="line"><span class="comment"># defined as one or more sentences, two successive</span></span><br><span class="line"><span class="comment"># sentences being separated by at least one space,</span></span><br><span class="line"><span class="comment"># the first sentence being possibly preceded with spaces,</span></span><br><span class="line"><span class="comment"># the last sentence being possibly followed by spaces,</span></span><br><span class="line"><span class="comment"># a sentence being defined as at least two words,</span></span><br><span class="line"><span class="comment"># two successive words in a sentence being separated by</span></span><br><span class="line"><span class="comment"># at least one space, a word being defined as a sequence</span></span><br><span class="line"><span class="comment"># of (uppercase or lowercase) letters,</span></span><br><span class="line"><span class="comment"># - possibly followed by a comma for a word that is</span></span><br><span class="line"><span class="comment">#   not the last one in its sentence,</span></span><br><span class="line"><span class="comment"># - definitely followed by a full stop, an exclamation mark</span></span><br><span class="line"><span class="comment">#   or a question mark for a word that is the last one</span></span><br><span class="line"><span class="comment">#   in its sentence.</span></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f2</span>(<span class="params">text</span>):</span><br><span class="line">    <span class="comment"># Use regular expression to replace multiple spaces with a single space</span></span><br><span class="line">    text = re.sub(<span class="string">r&#x27;\s+&#x27;</span>, <span class="string">&#x27; &#x27;</span>, text.strip())</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Correct way to split sentences while preserving delimiters</span></span><br><span class="line">    sentences = re.split(<span class="string">r&#x27;([.!?])&#x27;</span>, text)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Process sentences and punctuation separately</span></span><br><span class="line">    new_text = []</span><br><span class="line">    i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; <span class="built_in">len</span>(sentences)-<span class="number">1</span>:</span><br><span class="line">        sentence = sentences[i].strip()</span><br><span class="line">        <span class="keyword">if</span> sentence:</span><br><span class="line">            sentence =<span class="string">&#x27; &#x27;</span>.join(sentence.capitalize().split())</span><br><span class="line">            <span class="comment"># Rebuild the sentence and add back the punctuation</span></span><br><span class="line">            new_text.append(sentence +sentences[i +<span class="number">1</span>])</span><br><span class="line">        i += <span class="number">2</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27; &#x27;</span>.join(new_text)</span><br></pre></td></tr></table></figure>
+
+<h1 id="Exercise-3"><a href="#Exercise-3" class="headerlink" title="Exercise 3:"></a>Exercise 3:</h1><p>This exercise works with lists of integers and aims to repeatedly remove the first and last elements of the list as long as they are equal. The list is treated as a double-ended queue (deque) for efficient removal of elements from both ends.</p>
+<p>Key Points:</p>
+<ul>
+<li>The deque data structure is used because it provides O(1) operations for popping elements from both ends, which is more efficient than using lists.</li>
+<li>The program checks if the first and last elements of the deque are equal and removes them until this condition is no longer met.</li>
+<li>The deque is converted back to a list before being returned.</li>
+</ul>
+<h3 id="Why-is-deque-more-efficient-than-list-in-Exercise-3"><a href="#Why-is-deque-more-efficient-than-list-in-Exercise-3" class="headerlink" title="Why is deque more efficient than list in Exercise 3?"></a>Why is <code>deque</code> more efficient than <code>list</code> in Exercise 3?</h3><p>In Exercise 3, we are frequently removing elements from both the front (left) and the back (right) of the list. This is where using a deque (double-ended queue) from Python’s collections module becomes more efficient compared to using a standard list.</p>
+<p>Here’s why:</p>
+<ul>
+<li><p>List Behavior: When you use a standard list and call list.pop(0) to remove the first (leftmost) element, it requires shifting all the remaining elements one position to the left. This shift operation takes linear time—O(n), where n is the number of elements in the list. This means that for every removal from the front, the larger the list, the slower the operation becomes.</p>
+<ul>
+<li>Removing from the right side of a list using list.pop() is an O(1) operation (constant time) because no elements need to be shifted, making it efficient only when working from the end of the list.</li>
+</ul>
+</li>
+<li><p>Deque Behavior: A deque (double-ended queue) is specifically designed to support efficient append and pop operations from both ends. In a deque, both popleft() and pop() operations take constant time—O(1)—because the deque is implemented as a doubly linked list. This means no elements need to be shifted when popping from the left or right.</p>
+<ul>
+<li>In Exercise 3, where we need to frequently remove elements from both ends of the list, using a deque ensures that both the removal from the left (popleft()) and the right (pop()) are performed in constant time. This makes the entire process much more efficient, especially for large lists where repeated operations would slow down if we used a standard list.</li>
+</ul>
+</li>
+</ul>
+<h3 id="What-is-a-deque"><a href="#What-is-a-deque" class="headerlink" title="What is a deque?"></a>What is a <code>deque</code>?</h3><p>A deque (short for “double-ended queue”) is a data structure that allows for fast appending and popping of elements from both ends. It is part of the collections module in Python and is optimized for scenarios where you need to efficiently add or remove elements from both ends of the sequence.</p>
+<h3 id="Key-Features-of-deque"><a href="#Key-Features-of-deque" class="headerlink" title="Key Features of deque:"></a>Key Features of <code>deque</code>:</h3><ul>
+<li><code>O(1)</code> time complexity for operations on both ends (append, pop, appendleft, popleft).</li>
+<li>It is implemented as a <strong>doubly linked list</strong>, meaning each element contains a reference to both the previous and next elements, allowing efficient traversal in both directions.</li>
+<li><code>deque</code> is ideal for scenarios where you need frequent and efficient insertions and removals from both the front and back of a sequence, unlike a standard list where such operations are costly at the front.</li>
+</ul>
+<h3 id="Standard-Solution"><a href="#Standard-Solution" class="headerlink" title="Standard Solution:"></a>Standard Solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f3</span>(<span class="params">L</span>):</span><br><span class="line"><span class="comment"># Remove the list as long as it has at least two elements and the first and last elements are equal</span></span><br><span class="line">    <span class="keyword">while</span> <span class="built_in">len</span>(L) &gt; <span class="number">1</span> <span class="keyword">and</span> L[<span class="number">0</span>] == L[-<span class="number">1</span>]:</span><br><span class="line">        L.pop(<span class="number">0</span>) <span class="comment"># Remove the first element</span></span><br><span class="line">        L.pop(-<span class="number">1</span>) <span class="comment"># Remove the last element</span></span><br><span class="line">    <span class="keyword">return</span> L</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="My-Solution"><a href="#My-Solution" class="headerlink" title="My Solution:"></a>My Solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f3</span>(<span class="params">L</span>):</span><br><span class="line">    L = deque(L)  <span class="comment"># Convert the list to a deque for efficient popping from both ends</span></span><br><span class="line">    <span class="comment"># Continue removing elements while there are at least two elements and the first and last are equal</span></span><br><span class="line">    <span class="keyword">while</span> <span class="built_in">len</span>(L) &gt; <span class="number">1</span> <span class="keyword">and</span> L[<span class="number">0</span>] == L[-<span class="number">1</span>]:</span><br><span class="line">        L.popleft()  <span class="comment"># Efficiently remove the first element (O(1) operation)</span></span><br><span class="line">        L.pop()      <span class="comment"># Efficiently remove the last element (O(1) operation)</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">list</span>(L)   <span class="comment"># Convert the deque back to a list and return it</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Exercise-4"><a href="#Exercise-4" class="headerlink" title="Exercise 4:"></a>Exercise 4:</h1><p>This exercise deals with lists of integers that are in increasing order. The goal is to remove any element whose value is equal to its index in the list. The program iterates over the list and removes such elements, ensuring the index is correctly adjusted after each removal.</p>
+<p>Key Points:</p>
+<ul>
+<li>The program uses a while loop and checks if the element at index i is equal to i. If true, it removes the element and does not increment i, so that the next element at the same position is checked.</li>
+<li>The remove() function is used to delete the element, which is appropriate for this task.</li>
+<li>Care is taken to ensure that index adjustments are handled correctly.</li>
+</ul>
+<p>The reason we use remove() instead of pop(0) or popleft() in a deque is that we need to specifically remove the value that matches the number we reached. pop() and popleft() remove elements by position, without considering the value, which isn’t suitable for our case.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Assume that the argument L is a list of integers</span></span><br><span class="line"><span class="comment"># that forms an increasing sequence.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># For as long as some member of the list is equal to its index</span></span><br><span class="line"><span class="comment"># in the list, pop out the leftmost such member of the list.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f4</span>(<span class="params">L</span>):</span><br><span class="line">    i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; <span class="built_in">len</span>(L):</span><br><span class="line">        <span class="keyword">if</span> L[i] == i:</span><br><span class="line">            L.remove(L[i])  <span class="comment"># Using remove() here since popleft() removes from the left only</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            i += <span class="number">1</span>  <span class="comment"># Only increment i if no element was removed</span></span><br><span class="line">    <span class="keyword">return</span> L</span><br></pre></td></tr></table></figure>
+
+<h1 id="Exercise-5"><a href="#Exercise-5" class="headerlink" title="Exercise 5:"></a>Exercise 5:</h1><p>This exercise works with a circular list of integers. The task is to identify elements that are both larger than one of their adjacent elements and smaller than the other. The result is returned as a dictionary where each key is such an element, and its value is a pair of the adjacent elements (one smaller and one larger).</p>
+<p>Key Points:</p>
+<ul>
+<li>The list is treated as circular, meaning the first element is considered adjacent to the last element.</li>
+<li>The program iterates through the list, compares each element with its neighbors, and stores those that meet the criteria.</li>
+<li>For each valid element, the adjacent smaller and larger elements are stored in a dictionary.</li>
+</ul>
+<p>To solve this problem, we need to create a dictionary D where each key is an element in the list L that satisfies a certain condition, and the value is a tuple of two elements. The first element of this tuple is the adjacent element that is smaller than the current key, and the second element is the adjacent element that is larger than the current key.</p>
+<p>Steps:</p>
+<ol>
+<li>Loop structure: Check each element.</li>
+<li>Processing of adjacent elements: Since the list is cyclic, the previous element of the first element is the last element, and the next element of the last element is the first element.</li>
+<li>Condition check: Find the adjacent elements that are smaller and larger than the current element, and add them to the result dictionary.</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Assume that the argument L is a list of at least 3 distinct integers.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Returns a dictionary D whose keys are those of the members e of L,</span></span><br><span class="line"><span class="comment"># if any, that are</span></span><br><span class="line"><span class="comment"># - smaller than the element right before or right after, and</span></span><br><span class="line"><span class="comment"># - larger than the element right before or right after.</span></span><br><span class="line"><span class="comment"># It is considered that</span></span><br><span class="line"><span class="comment"># - the first member of L is right after the last member of L, and</span></span><br><span class="line"><span class="comment"># - the last member of L is right before the first member of L</span></span><br><span class="line"><span class="comment"># (as if making a ring out of the list).</span></span><br><span class="line"><span class="comment"># For a key e in D, the associated value is the pair whose</span></span><br><span class="line"><span class="comment"># first element is the member of L that is right before or right after</span></span><br><span class="line"><span class="comment"># e and smaller than e, and whose second element is the member of L</span></span><br><span class="line"><span class="comment"># that is right before or right after e and greater than e.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f5</span>(<span class="params">L</span>):</span><br><span class="line">    D = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(L)):</span><br><span class="line">        m = L[i - <span class="number">1</span>]</span><br><span class="line">        n = L[(i + <span class="number">1</span>) % <span class="built_in">len</span>(L)]</span><br><span class="line">        <span class="keyword">if</span> n &lt; m:</span><br><span class="line">            m, n = n, m</span><br><span class="line">        <span class="keyword">if</span> m &lt; L[i] &lt; n:</span><br><span class="line">            D[L[i]] = m, n</span><br><span class="line">    <span class="keyword">return</span> D</span><br></pre></td></tr></table></figure>
+
+<h1 id="Exercise-6"><a href="#Exercise-6" class="headerlink" title="Exercise 6:"></a>Exercise 6:</h1><p>This exercise deals with factorizing an integer n into the form 2^k * m, where m is an odd number. If n is negative, the program adds a negative sign to the output. If n is zero, it prints a special message.</p>
+<p>Key Points:</p>
+<ul>
+<li>The program uses a loop to divide n by 2 until n is no longer divisible by 2, counting the number of divisions (k).</li>
+<li>The absolute value of n is used to ensure correct handling of negative numbers, and a sign is added to the final result if the original number was negative.</li>
+<li>The program handles the special case where n &#x3D; 0 by printing a unique message.</li>
+</ul>
+<p>More Details:</p>
+<ol>
+<li>You need to express the given integer n as n &#x3D; 2^k * m.<ul>
+<li>k represents the number of times n can be divided by 2. In other words, it is the power of 2 in the factorization of n.</li>
+<li>m is the remaining odd part after dividing out all factors of 2.</li>
+</ul>
+</li>
+<li>If n is negative, the output should include a negative sign.</li>
+<li>Special case: If n &#x3D; 0, a specific message should be printed.</li>
+<li>The result is printed directly, not returned.</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Assume that the argument n is an integer.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># The output is printed out, not returned.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># You might find the abs() function useful.</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f6</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;0 = 2^k * 0 for all integers k!&quot;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        k = <span class="number">0</span></span><br><span class="line">        ori = n</span><br><span class="line">        <span class="keyword">if</span> n &lt; <span class="number">0</span>:</span><br><span class="line">            sign = <span class="string">&#x27;-&#x27;</span></span><br><span class="line">            n = -n</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            sign = <span class="string">&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">while</span> n % <span class="number">2</span> == <span class="number">0</span>:</span><br><span class="line">            n //= <span class="number">2</span></span><br><span class="line">            k += <span class="number">1</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;ori&#125;</span> = <span class="subst">&#123;sign&#125;</span>2^<span class="subst">&#123;k&#125;</span> * <span class="subst">&#123;n&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>FOR VERY VERY VERY VERY VERY BIG NUMBER:</strong></p>
+<p>When dealing with very large integers, the method of continuously dividing the number by 2 to factor out powers of 2 (2^k) can become inefficient. This is because each division can be costly in terms of computational time, especially for very large numbers with millions or billions of digits. Each division involves recalculating the entire integer, which is slow for large integers.<br>Using Bit Manipulation:</p>
+<p>A much more efficient approach is to use <strong>bit manipulation</strong> to determine how many times a number can be divided by 2 (i.e., how many factors of 2 it has). This method avoids division altogether and instead directly analyzes the binary representation of the number to count the number of trailing zeros, which correspond to the powers of 2 in the factorization.</p>
+<h3 id="Why"><a href="#Why" class="headerlink" title="Why?"></a>Why?</h3><ol>
+<li><p>Bitwise operations are much faster than arithmetic operations like division, especially for large integers. Counting the trailing zeros in a number’s binary representation can be done in constant time.</p>
+</li>
+<li><p>Extracting the lowest set bit of a number allows us to quickly find how many times a number can be divided by 2 without having to repeatedly divide the number. This provides the power of 2 (k) directly.</p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f6</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;0 = 2^k * 0 for all integers k!&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Handle negative sign</span></span><br><span class="line">    sign = <span class="string">&#x27;-&#x27;</span> <span class="keyword">if</span> n &lt; <span class="number">0</span> <span class="keyword">else</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line">    n = <span class="built_in">abs</span>(n)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Using bit manipulation to count how many trailing zeros (powers of 2)</span></span><br><span class="line">    k = (n &amp; -n).bit_length() - <span class="number">1</span>  <span class="comment"># Count trailing zeros by isolating the lowest set bit</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Remove 2^k factor from n</span></span><br><span class="line">    m = n &gt;&gt; k  <span class="comment"># Equivalent to n // 2^k, shifting right by k bits</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Print the result</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;sign&#125;</span><span class="subst">&#123;n&#125;</span> = <span class="subst">&#123;sign&#125;</span>2^<span class="subst">&#123;k&#125;</span> * <span class="subst">&#123;m&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+
+            <!-- 分类页 -->
+            
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Tutorial</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/becdc081.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
     <article id="post-9021_TUT_1_25T1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -308,12 +573,12 @@ var _hmt = _hmt || [];
 
                 
                     <a href="/post/b9bbc455.html" class="archive-article-date">
-  	<time datetime="2025-02-25T05:45:20.241Z" itemprop="datePublished">
+  	<time datetime="2025-03-03T04:38:00.024Z" itemprop="datePublished">
 	<!-- <i class="icon-calendar icon"></i> -->
 
 	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
 	&nbsp;
-	2025-02-25</time>
+	2025-03-03</time>
 	
 	<!-- busuanzi阅读量统计
 	
@@ -475,6 +740,278 @@ var _hmt = _hmt || [];
             
                 <p class="article-more-link">
                     <a class="article-more-a" href="/post/b9bbc455.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
+    <article id="post-9021_TUT_2_25T1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/8036f890.html">9021_TUT_2_25T1</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/8036f890.html" class="archive-article-date">
+  	<time datetime="2025-03-02T11:28:00.000Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2025-03-02</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">2.8k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">17min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <h1 id="Exercise-1"><a href="#Exercise-1" class="headerlink" title="Exercise 1:"></a>Exercise 1:</h1><p>This exercise focuses on input validation and formatting floating-point numbers. The goal is to prompt the user to enter a floating-point number between -1 and 1 (exclusive). If the input is valid, the program rounds the number to two decimal places and prints it. Otherwise, it keeps prompting the user until a valid input is provided.<br>Key Points:</p>
+<ul>
+<li>The program uses a try-except block to catch invalid inputs (e.g., strings that cannot be converted to floats).</li>
+<li>The input() function is wrapped in an infinite while loop to continuously ask for input until the correct condition is met.</li>
+</ul>
+<p>In the updated version of Exercise 1, we use the formatting :.2f instead of round(). Here’s the key difference between the two:</p>
+<ul>
+<li><code>round()</code>: This is a Python built-in function that rounds a number to a specified number of decimal places. For example, round(1.236, 2) will return 1.24. However, the output of round() is still a float, but it does not guarantee a fixed number of decimal places when printed. For instance, round(1.0001, 2) would return 1.0 and only display one decimal place, not two.</li>
+<li><code>:.2f</code>: This is part of Python’s string formatting and ensures the number is displayed with exactly two decimal places, no matter what the number is. It also rounds the number appropriately. For instance, number &#x3D; 1.0 formatted as f”{number:.2f}” will print 1.00. This makes :.2f particularly useful for consistent display of decimal places, which is important for formatting output for users.</li>
+</ul>
+<h3 id="My-Solution"><a href="#My-Solution" class="headerlink" title="My Solution"></a>My Solution</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        i = <span class="built_in">input</span>(<span class="string">&#x27;Enter a floating point number between -1 and 1 excluded: &#x27;</span>)</span><br><span class="line">        number = <span class="built_in">float</span>(i)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&#x27;.&#x27;</span> <span class="keyword">not</span> <span class="keyword">in</span> i:</span><br><span class="line">            <span class="keyword">raise</span> ValueError</span><br><span class="line">        <span class="keyword">if</span> -<span class="number">1</span> &lt; number &lt; <span class="number">1</span>:</span><br><span class="line">            <span class="comment"># not using round() here because it rounds to the nearest even number</span></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&#x27;\nUp to +/-0.005, you input <span class="subst">&#123;number:<span class="number">.2</span>f&#125;</span>&#x27;</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">raise</span> ValueError</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">except</span> ValueError:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;You got that wrong, try again!\n&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Standard-Solution"><a href="#Standard-Solution" class="headerlink" title="Standard Solution"></a>Standard Solution</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        x = <span class="built_in">input</span>(<span class="string">&#x27;Enter a floating point number between -1 and 1 excluded: &#x27;</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&#x27;.&#x27;</span> <span class="keyword">not</span> <span class="keyword">in</span> x:</span><br><span class="line">            <span class="keyword">raise</span> ValueError</span><br><span class="line">        x = <span class="built_in">float</span>(x)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> (-<span class="number">1</span> &lt; x &lt; <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">raise</span> ValueError</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">except</span> ValueError:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;You got that wrong, try again!\n&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;\nUp to +/-0.005, you input <span class="subst">&#123;x:<span class="number">.2</span>f&#125;</span>&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h1 id="Exercise-2"><a href="#Exercise-2" class="headerlink" title="Exercise 2:"></a>Exercise 2:</h1><p>This exercise involves processing a block of text and formatting it into sentences. Each sentence should have its first word capitalized, and the remaining words should be in lowercase. The task is to handle spaces and punctuation properly.</p>
+<p>In other words: <strong>Modify the sentence to conform to English grammar</strong></p>
+<h1 id="Standard-Solution-1"><a href="#Standard-Solution-1" class="headerlink" title="Standard Solution"></a>Standard Solution</h1><ol>
+<li>Split <code>text</code> into a list of words.</li>
+<li>Iterate through the words and apply the following rules:<ul>
+<li>If the word is the first word of the sentence (i.e., the first word or follows a sentence-ending punctuation mark), capitalize it.</li>
+<li>If the word is not the first word of the sentence, make it lowercase.</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f2</span>(<span class="params">text</span>):</span><br><span class="line">    words = text.split()</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(words)):</span><br><span class="line">        <span class="comment"># Ternary Expression</span></span><br><span class="line">        words[i] = words[i].title() <span class="keyword">if</span> i == <span class="number">0</span> <span class="keyword">or</span> words[i - <span class="number">1</span>][-<span class="number">1</span>] <span class="keyword">in</span> <span class="string">&#x27;.!?&#x27;</span>\</span><br><span class="line">            <span class="keyword">else</span> words[i].lower()</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27; &#x27;</span>.join(words)</span><br></pre></td></tr></table></figure>
+
+
+<p>Key Points:</p>
+<ul>
+<li>A regular expression (re.sub) is used to replace multiple spaces with a single space.</li>
+<li>Another regular expression (re.split) is used to split the text into sentences while preserving punctuation marks.</li>
+<li>After splitting, the sentences are processed: the first word is capitalized, and all other words are made lowercase.</li>
+<li>Finally, the processed sentences are recombined into a single formatted text.</li>
+</ul>
+<h3 id="Why-use-re-in-Exercise-2-and-what-is-re"><a href="#Why-use-re-in-Exercise-2-and-what-is-re" class="headerlink" title="Why use re in Exercise 2, and what is re?"></a>Why use re in Exercise 2, and what is re?</h3><p>In Exercise 2, we use re (Python’s regular expression module) to process and format the text input. Let’s break down why re is used and what it is:</p>
+<h3 id="What-is-re"><a href="#What-is-re" class="headerlink" title="What is re?"></a>What is re?</h3><p>re stands for regular expressions, which are powerful tools for matching patterns in strings. The re module in Python allows you to work with regular expressions to search, split, and manipulate text based on specific patterns. Regular expressions are highly flexible and efficient for handling complex string operations.</p>
+<h3 id="Why-use-re-in-Exercise-2"><a href="#Why-use-re-in-Exercise-2" class="headerlink" title="Why use re in Exercise 2?"></a>Why use re in Exercise 2?</h3><p>In this exercise, we need to handle several complex text manipulations:</p>
+<ol>
+<li>Replace multiple spaces with a single space: Sentences in the text may have irregular spaces between words, so we need to normalize these spaces. Instead of writing loops or conditions to handle each case, we use re.sub() with a pattern r’\s+’ to easily match all occurrences of one or more spaces and replace them with a single space.</li>
+<li>Split sentences while preserving punctuation: We need to split the text into individual sentences, where each sentence is followed by punctuation (e.g., ‘.’, ‘!’, or ‘?’). The function re.split(r’([.!?])’, text) allows us to split the text based on punctuation while keeping the punctuation marks, which is crucial for proper sentence reconstruction.</li>
+</ol>
+<p>Regular expressions allow us to:</p>
+<ul>
+<li>Efficiently match patterns like spaces or punctuation.</li>
+<li>Perform complex text transformations with minimal code.</li>
+<li>Handle edge cases that would otherwise require more manual handling.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Assume that the argument text is a string that denotes a text,</span></span><br><span class="line"><span class="comment"># defined as one or more sentences, two successive</span></span><br><span class="line"><span class="comment"># sentences being separated by at least one space,</span></span><br><span class="line"><span class="comment"># the first sentence being possibly preceded with spaces,</span></span><br><span class="line"><span class="comment"># the last sentence being possibly followed by spaces,</span></span><br><span class="line"><span class="comment"># a sentence being defined as at least two words,</span></span><br><span class="line"><span class="comment"># two successive words in a sentence being separated by</span></span><br><span class="line"><span class="comment"># at least one space, a word being defined as a sequence</span></span><br><span class="line"><span class="comment"># of (uppercase or lowercase) letters,</span></span><br><span class="line"><span class="comment"># - possibly followed by a comma for a word that is</span></span><br><span class="line"><span class="comment">#   not the last one in its sentence,</span></span><br><span class="line"><span class="comment"># - definitely followed by a full stop, an exclamation mark</span></span><br><span class="line"><span class="comment">#   or a question mark for a word that is the last one</span></span><br><span class="line"><span class="comment">#   in its sentence.</span></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f2</span>(<span class="params">text</span>):</span><br><span class="line">    <span class="comment"># Use regular expression to replace multiple spaces with a single space</span></span><br><span class="line">    text = re.sub(<span class="string">r&#x27;\s+&#x27;</span>, <span class="string">&#x27; &#x27;</span>, text.strip())</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Correct way to split sentences while preserving delimiters</span></span><br><span class="line">    sentences = re.split(<span class="string">r&#x27;([.!?])&#x27;</span>, text)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Process sentences and punctuation separately</span></span><br><span class="line">    new_text = []</span><br><span class="line">    i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; <span class="built_in">len</span>(sentences)-<span class="number">1</span>:</span><br><span class="line">        sentence = sentences[i].strip()</span><br><span class="line">        <span class="keyword">if</span> sentence:</span><br><span class="line">            sentence =<span class="string">&#x27; &#x27;</span>.join(sentence.capitalize().split())</span><br><span class="line">            <span class="comment"># Rebuild the sentence and add back the punctuation</span></span><br><span class="line">            new_text.append(sentence +sentences[i +<span class="number">1</span>])</span><br><span class="line">        i += <span class="number">2</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27; &#x27;</span>.join(new_text)</span><br></pre></td></tr></table></figure>
+
+<h1 id="Exercise-3"><a href="#Exercise-3" class="headerlink" title="Exercise 3:"></a>Exercise 3:</h1><p>This exercise works with lists of integers and aims to repeatedly remove the first and last elements of the list as long as they are equal. The list is treated as a double-ended queue (deque) for efficient removal of elements from both ends.</p>
+<p>Key Points:</p>
+<ul>
+<li>The deque data structure is used because it provides O(1) operations for popping elements from both ends, which is more efficient than using lists.</li>
+<li>The program checks if the first and last elements of the deque are equal and removes them until this condition is no longer met.</li>
+<li>The deque is converted back to a list before being returned.</li>
+</ul>
+<h3 id="Why-is-deque-more-efficient-than-list-in-Exercise-3"><a href="#Why-is-deque-more-efficient-than-list-in-Exercise-3" class="headerlink" title="Why is deque more efficient than list in Exercise 3?"></a>Why is <code>deque</code> more efficient than <code>list</code> in Exercise 3?</h3><p>In Exercise 3, we are frequently removing elements from both the front (left) and the back (right) of the list. This is where using a deque (double-ended queue) from Python’s collections module becomes more efficient compared to using a standard list.</p>
+<p>Here’s why:</p>
+<ul>
+<li><p>List Behavior: When you use a standard list and call list.pop(0) to remove the first (leftmost) element, it requires shifting all the remaining elements one position to the left. This shift operation takes linear time—O(n), where n is the number of elements in the list. This means that for every removal from the front, the larger the list, the slower the operation becomes.</p>
+<ul>
+<li>Removing from the right side of a list using list.pop() is an O(1) operation (constant time) because no elements need to be shifted, making it efficient only when working from the end of the list.</li>
+</ul>
+</li>
+<li><p>Deque Behavior: A deque (double-ended queue) is specifically designed to support efficient append and pop operations from both ends. In a deque, both popleft() and pop() operations take constant time—O(1)—because the deque is implemented as a doubly linked list. This means no elements need to be shifted when popping from the left or right.</p>
+<ul>
+<li>In Exercise 3, where we need to frequently remove elements from both ends of the list, using a deque ensures that both the removal from the left (popleft()) and the right (pop()) are performed in constant time. This makes the entire process much more efficient, especially for large lists where repeated operations would slow down if we used a standard list.</li>
+</ul>
+</li>
+</ul>
+<h3 id="What-is-a-deque"><a href="#What-is-a-deque" class="headerlink" title="What is a deque?"></a>What is a <code>deque</code>?</h3><p>A deque (short for “double-ended queue”) is a data structure that allows for fast appending and popping of elements from both ends. It is part of the collections module in Python and is optimized for scenarios where you need to efficiently add or remove elements from both ends of the sequence.</p>
+<h3 id="Key-Features-of-deque"><a href="#Key-Features-of-deque" class="headerlink" title="Key Features of deque:"></a>Key Features of <code>deque</code>:</h3><ul>
+<li><code>O(1)</code> time complexity for operations on both ends (append, pop, appendleft, popleft).</li>
+<li>It is implemented as a <strong>doubly linked list</strong>, meaning each element contains a reference to both the previous and next elements, allowing efficient traversal in both directions.</li>
+<li><code>deque</code> is ideal for scenarios where you need frequent and efficient insertions and removals from both the front and back of a sequence, unlike a standard list where such operations are costly at the front.</li>
+</ul>
+<h3 id="Standard-Solution-2"><a href="#Standard-Solution-2" class="headerlink" title="Standard Solution:"></a>Standard Solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f3</span>(<span class="params">L</span>):</span><br><span class="line"><span class="comment"># Remove the list as long as it has at least two elements and the first and last elements are equal</span></span><br><span class="line">    <span class="keyword">while</span> <span class="built_in">len</span>(L) &gt; <span class="number">1</span> <span class="keyword">and</span> L[<span class="number">0</span>] == L[-<span class="number">1</span>]:</span><br><span class="line">        L.pop(<span class="number">0</span>) <span class="comment"># Remove the first element</span></span><br><span class="line">        L.pop(-<span class="number">1</span>) <span class="comment"># Remove the last element</span></span><br><span class="line">    <span class="keyword">return</span> L</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="My-Solution-1"><a href="#My-Solution-1" class="headerlink" title="My Solution:"></a>My Solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f3</span>(<span class="params">L</span>):</span><br><span class="line">    L = deque(L)  <span class="comment"># Convert the list to a deque for efficient popping from both ends</span></span><br><span class="line">    <span class="comment"># Continue removing elements while there are at least two elements and the first and last are equal</span></span><br><span class="line">    <span class="keyword">while</span> <span class="built_in">len</span>(L) &gt; <span class="number">1</span> <span class="keyword">and</span> L[<span class="number">0</span>] == L[-<span class="number">1</span>]:</span><br><span class="line">        L.popleft()  <span class="comment"># Efficiently remove the first element (O(1) operation)</span></span><br><span class="line">        L.pop()      <span class="comment"># Efficiently remove the last element (O(1) operation)</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">list</span>(L)   <span class="comment"># Convert the deque back to a list and return it</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Exercise-4"><a href="#Exercise-4" class="headerlink" title="Exercise 4:"></a>Exercise 4:</h1><p>This exercise deals with lists of integers that are in increasing order. The goal is to remove any element whose value is equal to its index in the list. The program iterates over the list and removes such elements, ensuring the index is correctly adjusted after each removal.</p>
+<p>Key Points:</p>
+<ul>
+<li>The program uses a while loop and checks if the element at index <code>i</code> is equal to <code>i</code>. If true, it removes the element and does not increment i, so that the next element at the same position is checked.</li>
+<li>The <code>remove()</code> function is used to delete the element, which is appropriate for this task.</li>
+<li>Care is taken to ensure that index adjustments are handled correctly.</li>
+</ul>
+<p>The reason we use <code>remove()</code> instead of <code>pop(0)</code> or <code>popleft()</code> in a deque is that we need to specifically remove the value that matches the number we reached. <code>pop()</code> and <code>popleft()</code> remove elements by position, without considering the value, which isn’t suitable for our case.</p>
+<h3 id="Standard-Solution-3"><a href="#Standard-Solution-3" class="headerlink" title="Standard Solution:"></a>Standard Solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f4</span>(<span class="params">L</span>):</span><br><span class="line">    i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; <span class="built_in">len</span>(L):</span><br><span class="line">        <span class="keyword">if</span> L[i] == i:</span><br><span class="line">            L.pop(i)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> L</span><br></pre></td></tr></table></figure>
+
+<h3 id="My-Solution-2"><a href="#My-Solution-2" class="headerlink" title="My Solution:"></a>My Solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f4</span>(<span class="params">L</span>):</span><br><span class="line">    i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; <span class="built_in">len</span>(L):</span><br><span class="line">        <span class="keyword">if</span> L[i] == i:</span><br><span class="line">            L.remove(L[i])  <span class="comment"># Using remove() here since popleft() removes from the left only</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            i += <span class="number">1</span>  <span class="comment"># Only increment i if no element was removed</span></span><br><span class="line">    <span class="keyword">return</span> L</span><br></pre></td></tr></table></figure>
+
+<h1 id="Exercise-5"><a href="#Exercise-5" class="headerlink" title="Exercise 5:"></a>Exercise 5:</h1><p>This exercise works with a circular list of integers. The task is to identify elements that are both larger than one of their adjacent elements and smaller than the other. The result is returned as a dictionary where each key is such an element, and its value is a pair of the adjacent elements (one smaller and one larger).</p>
+<p>Key Points:</p>
+<ul>
+<li>The list is treated as circular, meaning the first element is considered adjacent to the last element.</li>
+<li>The program iterates through the list, compares each element with its neighbors, and stores those that meet the criteria.</li>
+<li>For each valid element, the adjacent smaller and larger elements are stored in a dictionary.</li>
+</ul>
+<p>To solve this problem, we need to create a dictionary D where each key is an element in the list L that satisfies a certain condition, and the value is a tuple of two elements. The first element of this tuple is the adjacent element that is smaller than the current key, and the second element is the adjacent element that is larger than the current key.</p>
+<p>Steps:</p>
+<ol>
+<li>Loop structure: Check each element.</li>
+<li>Processing of adjacent elements: Since the list is cyclic, the previous element of the first element is the last element, and the next element of the last element is the first element.</li>
+<li>Condition check: Find the adjacent elements that are smaller and larger than the current element, and add them to the result dictionary.</li>
+</ol>
+<h3 id="Standard-Solution-4"><a href="#Standard-Solution-4" class="headerlink" title="Standard Solution:"></a>Standard Solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f5</span>(<span class="params">L</span>):</span><br><span class="line">    D = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(L)):</span><br><span class="line">        m = L[i - <span class="number">1</span>]</span><br><span class="line">        L[i]</span><br><span class="line">        <span class="comment"># Treat it as a head-tail circular array</span></span><br><span class="line">        n = L[(i + <span class="number">1</span>) % <span class="built_in">len</span>(L)]</span><br><span class="line">        <span class="comment"># we don&#x27;t care about the order of m and n [0,1,2,4] L[3%4==3]</span></span><br><span class="line">        <span class="keyword">if</span> n &lt; m:</span><br><span class="line">            m, n = n, m</span><br><span class="line">        <span class="comment"># If L[i] is between m and n, store it in the dictionary:</span></span><br><span class="line">        <span class="keyword">if</span> m &lt; L[i] &lt; n:</span><br><span class="line">            D[L[i]] = m, n</span><br><span class="line">    <span class="keyword">return</span> D</span><br></pre></td></tr></table></figure>
+
+<p><code>L[i-1]</code> help us to get the previous element of the current element, <code>0</code> - <code>1</code> is <code>len(L) - 1</code>.<br>and <code>L[(i+1) % len(L)]</code> help us to get the next element of the current element. The modulo operation <code>(i+1) % len(L)</code> ensures that the index wraps around to the beginning of the list when it reaches the end. </p>
+<h1 id="Exercise-6"><a href="#Exercise-6" class="headerlink" title="Exercise 6:"></a>Exercise 6:</h1><p>This exercise deals with factorizing an integer n into the form <code>2^k * m</code>, where <code>m</code> is an odd number. If <code>n</code> is negative, the program adds a negative sign to the output. If <code>n</code> is zero, it prints a special message.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f6</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> n:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;0 = 2^k * 0 for all integers k!&#x27;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    k = <span class="number">0</span></span><br><span class="line">    m = n</span><br><span class="line">    sign = <span class="string">&#x27;-&#x27;</span> <span class="keyword">if</span> n &lt; <span class="number">0</span> <span class="keyword">else</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">while</span> m % <span class="number">2</span> == <span class="number">0</span>:</span><br><span class="line">        m //= <span class="number">2</span></span><br><span class="line">        k += <span class="number">1</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;<span class="subst">&#123;n&#125;</span> = <span class="subst">&#123;sign&#125;</span>2^<span class="subst">&#123;k&#125;</span> * <span class="subst">&#123;<span class="built_in">abs</span>(m)&#125;</span>&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>If n is negative, it keeps track of the sign.</li>
+<li>It repeatedly divides n by 2 while it remains even (n % 2 &#x3D;&#x3D; 0), counting how many times this happens (k).</li>
+<li>The remaining number, m, must be odd, because we divide out all possible factors of 2.</li>
+<li>Finally, it prints the equation:<br><code>&quot;n = sign * 2^k * m&quot;</code></li>
+</ul>
+<p><strong>FOR VERY VERY VERY VERY VERY BIG NUMBER:</strong></p>
+<p>When dealing with very large integers, the method of continuously dividing the number by 2 to factor out powers of 2 (2^k) can become inefficient. This is because each division can be costly in terms of computational time, especially for very large numbers with millions or billions of digits. Each division involves recalculating the entire integer, which is slow for large integers.<br>Using Bit Manipulation:</p>
+<p>A much more efficient approach is to use <strong>bit manipulation</strong> to determine how many times a number can be divided by 2 (i.e., how many factors of 2 it has). This method avoids division altogether and instead directly analyzes the binary representation of the number to count the number of trailing zeros, which correspond to the powers of 2 in the factorization.</p>
+<h3 id="Why"><a href="#Why" class="headerlink" title="Why?"></a>Why?</h3><ol>
+<li><p>Bitwise operations are much faster than arithmetic operations like division, especially for large integers. Counting the trailing zeros in a number’s binary representation can be done in constant time.</p>
+</li>
+<li><p>Extracting the lowest set bit of a number allows us to quickly find how many times a number can be divided by 2 without having to repeatedly divide the number. This provides the power of 2 (k) directly.</p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f6</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;0 = 2^k * 0 for all integers k!&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Handle negative sign</span></span><br><span class="line">    sign = <span class="string">&#x27;-&#x27;</span> <span class="keyword">if</span> n &lt; <span class="number">0</span> <span class="keyword">else</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line">    n = <span class="built_in">abs</span>(n)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Using bit manipulation to count how many trailing zeros (powers of 2)</span></span><br><span class="line">    k = (n &amp; -n).bit_length() - <span class="number">1</span>  <span class="comment"># Count trailing zeros by isolating the lowest set bit</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Remove 2^k factor from n</span></span><br><span class="line">    m = n &gt;&gt; k  <span class="comment"># Equivalent to n // 2^k, shifting right by k bits</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Print the result</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;sign&#125;</span><span class="subst">&#123;n&#125;</span> = <span class="subst">&#123;sign&#125;</span>2^<span class="subst">&#123;k&#125;</span> * <span class="subst">&#123;m&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+
+            <!-- 分类页 -->
+            
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Answer</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/8036f890.html">show all >></a>
                 </p>
             
 
@@ -1004,6 +1541,156 @@ var _hmt = _hmt || [];
             
                 <p class="article-more-link">
                     <a class="article-more-a" href="/post/9a3257a2.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
+    <article id="post-2270. Number of Ways to Split Array" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/c25bb550.html">2270. Number of Ways to Split Array</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/c25bb550.html" class="archive-article-date">
+  	<time datetime="2025-01-13T22:31:00.000Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2025-01-14</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">134字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">1min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <h1 id="QUESTION："><a href="#QUESTION：" class="headerlink" title="QUESTION："></a>QUESTION：</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/number-of-ways-to-split-array/description/">2270. Number of Ways to Split Array.md</a></p>
+<h1 id="My-Think："><a href="#My-Think：" class="headerlink" title="My Think："></a>My Think：</h1><p><code>2 &lt;= nums.length &lt;= 105</code>, 因此我们可以直接获取到第一个数字, 初始状态就在指针于index0, 正要往index1走的时候.<br>然后只需要一次For循环就可以搞定</p>
+<p>重点是第二个方法, 来自题解.</p>
+<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">waysToSplitArray</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        temp_sum = nums[<span class="number">0</span>]</span><br><span class="line">        total_sum = <span class="built_in">sum</span>(nums) - temp_sum</span><br><span class="line">        ans = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(nums)):</span><br><span class="line">            <span class="keyword">if</span> temp_sum &gt;= total_sum:</span><br><span class="line">                ans += <span class="number">1</span></span><br><span class="line">            temp_sum += nums[i]</span><br><span class="line">            total_sum -= nums[i]</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">t = (<span class="built_in">sum</span>(nums) + <span class="number">1</span>) // <span class="number">2</span></span><br><span class="line"><span class="keyword">return</span> <span class="built_in">sum</span>(s &gt;= t <span class="keyword">for</span> s <span class="keyword">in</span> accumulate(nums[:-<span class="number">1</span>]))</span><br></pre></td></tr></table></figure>
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+
+            <!-- 分类页 -->
+            
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Answer</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/c25bb550.html">show all >></a>
                 </p>
             
 
@@ -1600,549 +2287,6 @@ var _hmt = _hmt || [];
 
 <!-- 文章页添加mathjax公式 -->
   
-    <article id="post-3138. Minimum Length of Anagram Concatenation" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/d1339d55.html">3138. Minimum Length of Anagram Concatenation</a>
-    </h2>
-  
-
-
-                
-                    <a href="/post/d1339d55.html" class="archive-article-date">
-  	<time datetime="2024-12-30T10:23:08.032Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2024-12-30</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-                
-
-                
-                    <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">537字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">2min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-                
-            </header>
-        
-
-        <div class="article-entry" itemprop="articleBody">
-            <!-- 添加分类与标签 -->
-            
-                
-                    <h1 id="Description"><a href="#Description" class="headerlink" title="Description:"></a>Description:</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-length-of-anagram-concatenation/description/?envType=daily-question&envId=2024-12-20">https://leetcode.cn/problems/minimum-length-of-anagram-concatenation/description/?envType=daily-question&amp;envId=2024-12-20</a><br>You are given a string <code>s</code>, which is known to be a concatenation of anagrams of some string <code>t</code>.</p>
-<p>Return the minimum possible length of the string <code>t</code>.</p>
-<p>An anagram is formed by rearranging the letters of a string. For example, “aab”, “aba”, and, “baa” are anagrams of “aab”.</p>
-<h4 id="Example-1"><a href="#Example-1" class="headerlink" title="Example 1:"></a>Example 1:</h4><pre><code>Input: s = &quot;abba&quot;
-
-Output: 2
-
-Explanation:
-
-One possible string t could be &quot;ba&quot;.
-</code></pre>
-<h4 id="Example-2"><a href="#Example-2" class="headerlink" title="Example 2:"></a>Example 2:</h4><pre><code>Input: s = &quot;cdef&quot;
-
-Output: 4
-
-Explanation:
-
-One possible string t could be &quot;cdef&quot;, notice that t can be equal to s.
-</code></pre>
-<h1 id="Thinking"><a href="#Thinking" class="headerlink" title="Thinking:"></a>Thinking:</h1><p>Since the problem naturally suggests using a counting method (<code>Counter</code>), we need to find the minimum substring for each string. For example, for <code>abba</code>, the result is <code>ab</code>; for <code>cdef</code>, it’s <code>cdef</code>.<br>We iterate from length <code>1</code> (a single character) onwards, slicing the string to get the current substring.</p>
-<p>Initially, we compute the character count for the original string using <code>Counter</code>, which gives us a dictionary of character frequencies.<br>Next, we only need to check if the count of each character in the current substring multiplied by <code>n/k</code> equals the count in the original string (i.e., whether repeating the current substring x times equals the original string).</p>
-<p>由于题意很容易联想到这道题要进行计数(Counter). 我们需要找到每个字符串的最小子串，<code>abba</code>为<code>ab</code>, <code>cdef</code>为<code>cdef</code>. 于是我们从长度0（即单个字符）开始遍历，期间通过切片的形式来获取当前子串。<br>因为最开始我们对原始字符串进行了Counter，得到了字符数量和字符对应的字典。接下来我们只需要判断当前子串的Counter到的某个字符的数值乘以<code>n/k</code>是否等于原始字符串的Counter的值即可（即当前子串乘以x倍是否等于源字符串）。</p>
-<h1 id="Code"><a href="#Code" class="headerlink" title="Code:"></a>Code:</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> collections</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minAnagramLength</span>(<span class="params">self, s: <span class="built_in">str</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">check</span>(<span class="params">k: <span class="built_in">int</span></span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">            <span class="comment"># 遍历字符串 s，每次取长度为 k 的子串</span></span><br><span class="line">            <span class="comment"># Iterate over the string `s`, taking substrings of length `k`</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, n, k):</span><br><span class="line">                <span class="comment"># 统计每个字符出现的次数</span></span><br><span class="line">                <span class="comment"># Count the occurrences of each character in the current substring</span></span><br><span class="line">                cnt1 = collections.Counter(s[i: i + k])</span><br><span class="line">                <span class="keyword">for</span> c, v <span class="keyword">in</span> cnt.items():</span><br><span class="line">                    <span class="comment"># 如果每个字符出现的次数乘以 n/k != cnt[] return False</span></span><br><span class="line">                    <span class="comment"># If the count of any character multiplied by (n // k) != the original count, return False</span></span><br><span class="line">                    <span class="keyword">if</span> cnt1[c] * (n // k) != v:</span><br><span class="line">                        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">        cnt = collections.Counter(s)</span><br><span class="line">        n = <span class="built_in">len</span>(s)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> n % i == <span class="number">0</span> <span class="keyword">and</span> check(i):</span><br><span class="line">                <span class="keyword">return</span> i</span><br></pre></td></tr></table></figure>
-                
-            
-
-            <!-- 添加打赏 -->
-            
-
-            <!-- 添加版权声明 -->
-            
-
-        </div>
-
-        <!-- 添加置顶 -->
-        <div class="article-info article-info-index">
-            
-
-            <!-- 分类页 -->
-            
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Hash Table</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">String</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Counting</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Prefix Sum</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-            
-
-            <!-- 添加展开全文 -->
-            
-                <p class="article-more-link">
-                    <a class="article-more-a" href="/post/d1339d55.html">show all >></a>
-                </p>
-            
-
-            <!-- 添加分享 -->
-            
-
-            <div class="clearfix"></div>
-
-        </div>
-    </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-    
-
-<!-- 文章页添加mathjax公式 -->
-  
-    <article id="post-1366. Rank Teams by Votes" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/3ab349b3.html">1366. Rank Teams by Votes</a>
-    </h2>
-  
-
-
-                
-                    <a href="/post/3ab349b3.html" class="archive-article-date">
-  	<time datetime="2024-12-30T10:23:07.791Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2024-12-30</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-                
-
-                
-                    <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">1.3k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">7min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-                
-            </header>
-        
-
-        <div class="article-entry" itemprop="articleBody">
-            <!-- 添加分类与标签 -->
-            
-                
-                    <h1 id="QUESTION："><a href="#QUESTION：" class="headerlink" title="QUESTION："></a>QUESTION：</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/rank-teams-by-votes/description/?envType=daily-question&envId=2024-12-29">1366. Rank Teams by Votes.md</a><br>In a special ranking system, each voter gives a rank from highest to lowest to all teams participating in the competition.</p>
-<p>The ordering of teams is decided by who received the most position-one votes. If two or more teams tie in the first position, we consider the second position to resolve the conflict, if they tie again, we continue this process until the ties are resolved. If two or more teams are still tied after considering all positions, we rank them alphabetically based on their team letter.</p>
-<p>You are given an array of strings votes which is the votes of all voters in the ranking systems. Sort all teams according to the ranking system described above.</p>
-<p>Return a string of all teams sorted by the ranking system.</p>
-<p>Example 1:</p>
-<p>Input: votes &#x3D; [“ABC”,”ACB”,”ABC”,”ACB”,”ACB”]<br>Output: “ACB”<br>Explanation:<br>Team A was ranked first place by 5 voters. No other team was voted as first place, so team A is the first team.<br>Team B was ranked second by 2 voters and ranked third by 3 voters.<br>Team C was ranked second by 3 voters and ranked third by 2 voters.<br>As most of the voters ranked C second, team C is the second team, and team B is the third.<br>Example 2:</p>
-<p>Input: votes &#x3D; [“WXYZ”,”XYZW”]<br>Output: “XWYZ”<br>Explanation:<br>X is the winner due to the tie-breaking rule. X has the same votes as W for the first position, but X has one vote in the second position, while W does not have any votes in the second position.<br>Example 3:</p>
-<p>Input: votes &#x3D; [“ZMNAGUEDSJYLBOPHRQICWFXTVK”]<br>Output: “ZMNAGUEDSJYLBOPHRQICWFXTVK”<br>Explanation: Only one voter, so their votes are used for the ranking.</p>
-<p>Constraints:</p>
-<p>1 &lt;&#x3D; votes.length &lt;&#x3D; 1000<br>1 &lt;&#x3D; votes[i].length &lt;&#x3D; 26<br>votes[i].length &#x3D;&#x3D; votes[j].length for 0 &lt;&#x3D; i, j &lt; votes.length.<br>votes[i][j] is an English uppercase letter.<br>All characters of votes[i] are unique.<br>All the characters that occur in votes[0] also occur in votes[j] where 1 &lt;&#x3D; j &lt; votes.length.</p>
-<h1 id="My-Think："><a href="#My-Think：" class="headerlink" title="My Think："></a>My Think：</h1><p>This question requires us to count their votes. The first thing that comes to mind is to build a double structure, similar to this:<br>这道题要求我们统计他们的投票情况. 首先想到的就是构建一个双重结构体, 类似于这样:</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">type <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="type">char</span> A &#123;</span><br><span class="line">        <span class="number">1</span>: <span class="number">1</span>;</span><br><span class="line">        <span class="number">2</span>: <span class="number">1</span>;</span><br><span class="line">        <span class="number">3</span>: <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Then fill in the dictionary in a double loop and sort it. It’s very simple in Python, but I thought it was complicated at first and built the sorting logic manually.<br>Finally, we can use lambda expression <code>sorted_teams = sorted(rank.keys(), key = lambda x: ([-rank[x][i] for i in range(len(votes[0]))], x))</code></p>
-<p>What needs to be noted in Go is the usage of the standard answer. Use <code>slices.SortedFunc</code> to sort the teams. The sorting rules are defined according to the requirements of the question:</p>
-<ol>
-<li>Sort in descending order by votes.</li>
-<li>If the votes are the same, sort in ascending alphabetical order.<br><code>maps.Keys(cnts)</code> gets the keys of all teams (that is, the characters of all teams)<br><code>slices.Compare(cnts[b], cnts[a])</code>: compare the vote slices of two teams and sort in descending order by votes (<code>b</code> comes first).<br><code>cmp.Compare(a, b)</code>: when the votes are the same, sort in ascending alphabetical order.<br><code>cmp.Or</code>: execute the first comparison rule. If the return value is not 0 (that is, there is a priority difference), return directly; otherwise execute the next rule.</li>
-</ol>
-<p>然后在一个双重循环中填写这个字典, 最后进行排序即可. 在Python中十分简单, 但是我一开始想复杂了, 手动构建了排序逻辑.<br>最后用lambda表达式即可<code>sorted_teams = sorted(rank.keys(), key = lambda x: ([-rank[x][i] for i in range(len(votes[0]))], x))</code></p>
-<p>Go里需要注意的是标准答案的用法, 使用 <code>slices.SortedFunc</code> 对团队进行排序，排序规则按题目要求定义：</p>
-<ol>
-<li>按票数降序排列。</li>
-<li>如果票数相同，按字母升序排列。<br><code>maps.Keys(cnts)</code> 获取所有团队的键（即所有团队的字符）<br><code>slices.Compare(cnts[b], cnts[a])</code>：比较两个团队的票数切片，按票数降序排列（<code>b</code> 在前）。<br><code>cmp.Compare(a, b)</code>：当票数相同时，按字母升序排列。<br><code>cmp.Or</code>：执行第一个比较规则，如果返回值非 0（即有优先级差异），直接返回；否则执行下一个规则。</li>
-</ol>
-<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">rankTeams</span>(<span class="params">self, votes: <span class="type">List</span>[<span class="built_in">str</span>]</span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        rank = defaultdict(<span class="keyword">lambda</span>: defaultdict(<span class="built_in">int</span>))</span><br><span class="line">        <span class="keyword">for</span> value <span class="keyword">in</span> votes:</span><br><span class="line">            <span class="keyword">for</span> ind, c <span class="keyword">in</span> <span class="built_in">enumerate</span>(value):</span><br><span class="line">                rank[c][ind] += <span class="number">1</span></span><br><span class="line">        sorted_teams = <span class="built_in">sorted</span>(rank.keys(), key = <span class="keyword">lambda</span> x: ([-rank[x][i] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(votes[<span class="number">0</span>]))], x))</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>.join(sorted_teams)</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">rankTeams_Siz</span>(<span class="params">self, votes: <span class="type">List</span>[<span class="built_in">str</span>]</span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        rank = defaultdict(<span class="keyword">lambda</span>: defaultdict(<span class="built_in">int</span>))</span><br><span class="line">        <span class="keyword">for</span> value <span class="keyword">in</span> votes:</span><br><span class="line">            <span class="keyword">for</span> ind, c <span class="keyword">in</span> <span class="built_in">enumerate</span>(value):</span><br><span class="line">                rank[c][ind] += <span class="number">1</span></span><br><span class="line">        <span class="built_in">print</span>(rank)</span><br><span class="line">        ans = <span class="string">&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(votes[<span class="number">0</span>])):</span><br><span class="line">            temp_ans = <span class="string">&#x27;&#x27;</span></span><br><span class="line">            count = <span class="number">0</span></span><br><span class="line">            <span class="keyword">for</span> key, value <span class="keyword">in</span> rank.items():</span><br><span class="line">                <span class="keyword">if</span> value[i] &gt; count:</span><br><span class="line">                    temp_ans = key</span><br><span class="line">                    count = value[i]</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    <span class="comment"># 如果并列, 则考虑下一位 If there is a tie, consider the next one</span></span><br><span class="line">                    <span class="keyword">while</span> value[i] == count:</span><br><span class="line">                        i += <span class="number">1</span> <span class="comment"># 这个i是临时变量, 直接用 This i is a temporary variable, use it directly</span></span><br><span class="line">                        <span class="keyword">if</span> i &gt; <span class="built_in">len</span>(votes[<span class="number">0</span>]): <span class="comment"># 考虑找到最后都没找到的情况Consider the situation where you find nothing in the end.</span></span><br><span class="line">                            <span class="comment"># 答案值应该是字母顺序 The answer values should be in alphabetical order</span></span><br><span class="line">                            temp_ans = key</span><br><span class="line">                            <span class="keyword">break</span></span><br><span class="line">                        <span class="keyword">if</span> value[i] &gt; count:</span><br><span class="line">                            temp_ans = key</span><br><span class="line">                            count = value[i]</span><br><span class="line">            ans += temp_ans</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">rankTeams</span><span class="params">(votes []<span class="type">string</span>)</span></span> <span class="type">string</span> &#123;</span><br><span class="line">    cnts:=<span class="keyword">map</span>[<span class="type">rune</span>][]<span class="type">int</span>&#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> _,ch := <span class="keyword">range</span> votes[<span class="number">0</span>] &#123;</span><br><span class="line">        cnts[ch]=<span class="built_in">make</span>([]<span class="type">int</span>,<span class="built_in">len</span>(votes[<span class="number">0</span>]))</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> _,vote := <span class="keyword">range</span> votes&#123;</span><br><span class="line">        <span class="keyword">for</span> i,ch := <span class="keyword">range</span> vote&#123;</span><br><span class="line">            cnts[ch][i]++</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    res := slices.SortedFunc(maps.Keys(cnts),<span class="function"><span class="keyword">func</span><span class="params">(a,b <span class="type">rune</span>)</span></span> <span class="type">int</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> cmp.Or(slices.Compare(cnts[b],cnts[a]),cmp.Compare(a,b))</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> <span class="type">string</span>(res)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;sort&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">rankTeams</span><span class="params">(votes []<span class="type">string</span>)</span></span> <span class="type">string</span> &#123;</span><br><span class="line">	rank := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="type">byte</span>]<span class="keyword">map</span>[<span class="type">int</span>]<span class="type">int</span>)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> _, vote := <span class="keyword">range</span> votes &#123;</span><br><span class="line">		<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(vote); i++ &#123;</span><br><span class="line">			team := vote[i]</span><br><span class="line">			<span class="keyword">if</span> _, ok := rank[team]; !ok &#123;</span><br><span class="line">				rank[team] = <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="type">int</span>]<span class="type">int</span>)</span><br><span class="line">			&#125;</span><br><span class="line">			rank[team][i]++</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	teams := <span class="built_in">make</span>([]<span class="type">byte</span>, <span class="number">0</span>, <span class="built_in">len</span>(rank))</span><br><span class="line">	<span class="keyword">for</span> team := <span class="keyword">range</span> rank &#123;</span><br><span class="line">		teams = <span class="built_in">append</span>(teams, team)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	sort.Slice(teams, <span class="function"><span class="keyword">func</span><span class="params">(i, j <span class="type">int</span>)</span></span> <span class="type">bool</span> &#123;</span><br><span class="line">		a, b := teams[i], teams[j]</span><br><span class="line">		<span class="keyword">for</span> k := <span class="number">0</span>; k &lt; <span class="built_in">len</span>(votes[<span class="number">0</span>]); k++ &#123;</span><br><span class="line">			<span class="comment">// 比较两队在 k 排位的票数 // Compare the votes of the two teams in position k</span></span><br><span class="line">			countA, countB := rank[a][k], rank[b][k]</span><br><span class="line">			<span class="keyword">if</span> countA != countB &#123;</span><br><span class="line">				<span class="keyword">return</span> countA &gt; countB <span class="comment">// 按票数降序 Sort by votes in descending order</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> a &lt; b <span class="comment">// 字母升序 Alphabetical ascending</span></span><br><span class="line">	&#125;)</span><br><span class="line">	<span class="comment">// 拼接结果</span></span><br><span class="line">	<span class="keyword">return</span> <span class="type">string</span>(teams)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-                
-            
-
-            <!-- 添加打赏 -->
-            
-
-            <!-- 添加版权声明 -->
-            
-
-        </div>
-
-        <!-- 添加置顶 -->
-        <div class="article-info article-info-index">
-            
-
-            <!-- 分类页 -->
-            
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Answer</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Hash Table</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">String</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Counting</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Sorting</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-            
-
-            <!-- 添加展开全文 -->
-            
-                <p class="article-more-link">
-                    <a class="article-more-a" href="/post/3ab349b3.html">show all >></a>
-                </p>
-            
-
-            <!-- 添加分享 -->
-            
-
-            <div class="clearfix"></div>
-
-        </div>
-    </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-    
-
-<!-- 文章页添加mathjax公式 -->
-  
-    <article id="post-3159. Find Occurrences of an Element in an Array" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/aec413e2.html">3159. Find Occurrences of an Element in an Array</a>
-    </h2>
-  
-
-
-                
-                    <a href="/post/aec413e2.html" class="archive-article-date">
-  	<time datetime="2024-12-28T08:22:07.811Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2024-12-28</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-                
-
-                
-                    <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">632字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">3min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-                
-            </header>
-        
-
-        <div class="article-entry" itemprop="articleBody">
-            <!-- 添加分类与标签 -->
-            
-                
-                    <h1 id="QUESTION："><a href="#QUESTION：" class="headerlink" title="QUESTION："></a>QUESTION：</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-occurrences-of-an-element-in-an-array/description/?envType=daily-question&envId=2024-12-27">3159. Find Occurrences of an Element in an Array.md</a><br>You are given an integer array nums, an integer array queries, and an integer x.</p>
-<p>For each queries[i], you need to find the index of the queries[i]th occurrence of x in the nums array. If there are fewer than queries[i] occurrences of x, the answer should be -1 for that query.</p>
-<p>Return an integer array answer containing the answers to all queries.</p>
-<p>Example 1:</p>
-<p>Input: nums &#x3D; [1,3,1,7], queries &#x3D; [1,3,2,4], x &#x3D; 1</p>
-<p>Output: [0,-1,2,-1]</p>
-<p>Explanation:</p>
-<p>For the 1st query, the first occurrence of 1 is at index 0.<br>For the 2nd query, there are only two occurrences of 1 in nums, so the answer is -1.<br>For the 3rd query, the second occurrence of 1 is at index 2.<br>For the 4th query, there are only two occurrences of 1 in nums, so the answer is -1.<br>Example 2:</p>
-<p>Input: nums &#x3D; [1,2,3], queries &#x3D; [10], x &#x3D; 5</p>
-<p>Output: [-1]</p>
-<p>Explanation:</p>
-<p>For the 1st query, 5 doesn’t exist in nums, so the answer is -1.</p>
-<p>Constraints:</p>
-<p>1 &lt;&#x3D; nums.length, queries.length &lt;&#x3D; 105<br>1 &lt;&#x3D; queries[i] &lt;&#x3D; 105<br>1 &lt;&#x3D; nums[i], x &lt;&#x3D; 104</p>
-<h1 id="My-Think："><a href="#My-Think：" class="headerlink" title="My Think："></a>My Think：</h1><p>I haven’t written a solution for a long time. Now that I’m on vacation, I’m starting over. This question requires us to find “all x’s indices” from the given nums, and then return the index address of the queries-th x.<br>So we can use the list generation formula <code>indices = [i for i, value in enumerate(nums) if value == x]</code> to return a list containing all x’s indices,<br>and then query them one by one.<br>First mistake: I didn’t consider the case where indices is empty, so <code>indices[q-1] out of range</code>.<br>Second mistake: I forgot that the for loop in Golang needs two parameters to receive the value passed by range.</p>
-<p>很久没有写题解了,现在放假了于是重新开始了. 这一道题要求我们从给定的nums中找到”所有x的索引”, 然后返回第queries个x的索引地址即可.<br>于是我们可以用列表生成式<code>indices = [i for i, value in enumerate(nums) if value == x]</code>来返回一个包含所有x索引的列表,<br>然后依次在其中查询即可.<br>第一次错误: 没有考虑indices为空的情况, 于是<code>indices[q-1] out of range</code>.<br>第二次错误: 忘记了Golang里的for循环需要两个参数接收range传来的value.</p>
-<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">occurrencesOfElement</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], queries: <span class="type">List</span>[<span class="built_in">int</span>], x: <span class="built_in">int</span></span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        <span class="comment"># Find the indices of all elements equal to x</span></span><br><span class="line">        indices = [i <span class="keyword">for</span> i, value <span class="keyword">in</span> <span class="built_in">enumerate</span>(nums) <span class="keyword">if</span> value == x]</span><br><span class="line">        <span class="comment"># print(indices)</span></span><br><span class="line">        n = <span class="built_in">len</span>(indices)</span><br><span class="line">        ans = []</span><br><span class="line">        <span class="keyword">for</span> q <span class="keyword">in</span> queries:</span><br><span class="line">            <span class="keyword">if</span> indices <span class="keyword">and</span> q-<span class="number">1</span> &lt; n:</span><br><span class="line">                ans.append(indices[q-<span class="number">1</span>])</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                ans.append(-<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">occurrencesOfElement</span><span class="params">(nums []<span class="type">int</span>, queries []<span class="type">int</span>, x <span class="type">int</span>)</span></span> []<span class="type">int</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> indices []<span class="type">int</span></span><br><span class="line">    <span class="keyword">for</span> i, value := <span class="keyword">range</span> nums &#123;</span><br><span class="line">        <span class="keyword">if</span> value == x &#123;</span><br><span class="line">            indices = <span class="built_in">append</span>(indices, i)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> ans []<span class="type">int</span></span><br><span class="line">    n := <span class="built_in">len</span>(indices)</span><br><span class="line">    <span class="keyword">for</span> _, q := <span class="keyword">range</span> queries &#123; <span class="comment">// &quot;_, q&quot;</span></span><br><span class="line">        <span class="keyword">if</span> n &gt; <span class="number">0</span> &amp;&amp; q<span class="number">-1</span> &lt; n &#123; </span><br><span class="line">            ans = <span class="built_in">append</span>(ans, indices[q<span class="number">-1</span>])</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            ans = <span class="built_in">append</span>(ans, <span class="number">-1</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-                
-            
-
-            <!-- 添加打赏 -->
-            
-
-            <!-- 添加版权声明 -->
-            
-
-        </div>
-
-        <!-- 添加置顶 -->
-        <div class="article-info article-info-index">
-            
-
-            <!-- 分类页 -->
-            
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Answer</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Hash Table</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-            
-
-            <!-- 添加展开全文 -->
-            
-                <p class="article-more-link">
-                    <a class="article-more-a" href="/post/aec413e2.html">show all >></a>
-                </p>
-            
-
-            <!-- 添加分享 -->
-            
-
-            <div class="clearfix"></div>
-
-        </div>
-    </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-    
-
-<!-- 文章页添加mathjax公式 -->
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/2/">下一页 &gt;&gt;</a>
@@ -2197,10 +2341,10 @@ window.MathJax = {
 	  <br>
 	  <div class="footer-center">
 	    <i class="fa fa-file-word-o" aria-hidden="true"></i>
-		<span> 124 篇</span>
+		<span> 126 篇</span>
 		<span class="post-meta-divider">|</span>
 		<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-		<span> <span class="post-count">61.6k</span></span>
+		<span> <span class="post-count">64.6k</span></span>
       </div>
 	  
 	  <!-- 添加不蒜子统计 -->

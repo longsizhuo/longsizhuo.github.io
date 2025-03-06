@@ -294,6 +294,549 @@ var _hmt = _hmt || [];
         <div id="js-content" class="content-ll">
           
   
+    <article id="post-3138. Minimum Length of Anagram Concatenation" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/d1339d55.html">3138. Minimum Length of Anagram Concatenation</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/d1339d55.html" class="archive-article-date">
+  	<time datetime="2024-12-30T10:23:08.032Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2024-12-30</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">537字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">2min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <h1 id="Description"><a href="#Description" class="headerlink" title="Description:"></a>Description:</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-length-of-anagram-concatenation/description/?envType=daily-question&envId=2024-12-20">https://leetcode.cn/problems/minimum-length-of-anagram-concatenation/description/?envType=daily-question&amp;envId=2024-12-20</a><br>You are given a string <code>s</code>, which is known to be a concatenation of anagrams of some string <code>t</code>.</p>
+<p>Return the minimum possible length of the string <code>t</code>.</p>
+<p>An anagram is formed by rearranging the letters of a string. For example, “aab”, “aba”, and, “baa” are anagrams of “aab”.</p>
+<h4 id="Example-1"><a href="#Example-1" class="headerlink" title="Example 1:"></a>Example 1:</h4><pre><code>Input: s = &quot;abba&quot;
+
+Output: 2
+
+Explanation:
+
+One possible string t could be &quot;ba&quot;.
+</code></pre>
+<h4 id="Example-2"><a href="#Example-2" class="headerlink" title="Example 2:"></a>Example 2:</h4><pre><code>Input: s = &quot;cdef&quot;
+
+Output: 4
+
+Explanation:
+
+One possible string t could be &quot;cdef&quot;, notice that t can be equal to s.
+</code></pre>
+<h1 id="Thinking"><a href="#Thinking" class="headerlink" title="Thinking:"></a>Thinking:</h1><p>Since the problem naturally suggests using a counting method (<code>Counter</code>), we need to find the minimum substring for each string. For example, for <code>abba</code>, the result is <code>ab</code>; for <code>cdef</code>, it’s <code>cdef</code>.<br>We iterate from length <code>1</code> (a single character) onwards, slicing the string to get the current substring.</p>
+<p>Initially, we compute the character count for the original string using <code>Counter</code>, which gives us a dictionary of character frequencies.<br>Next, we only need to check if the count of each character in the current substring multiplied by <code>n/k</code> equals the count in the original string (i.e., whether repeating the current substring x times equals the original string).</p>
+<p>由于题意很容易联想到这道题要进行计数(Counter). 我们需要找到每个字符串的最小子串，<code>abba</code>为<code>ab</code>, <code>cdef</code>为<code>cdef</code>. 于是我们从长度0（即单个字符）开始遍历，期间通过切片的形式来获取当前子串。<br>因为最开始我们对原始字符串进行了Counter，得到了字符数量和字符对应的字典。接下来我们只需要判断当前子串的Counter到的某个字符的数值乘以<code>n/k</code>是否等于原始字符串的Counter的值即可（即当前子串乘以x倍是否等于源字符串）。</p>
+<h1 id="Code"><a href="#Code" class="headerlink" title="Code:"></a>Code:</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> collections</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minAnagramLength</span>(<span class="params">self, s: <span class="built_in">str</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">check</span>(<span class="params">k: <span class="built_in">int</span></span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">            <span class="comment"># 遍历字符串 s，每次取长度为 k 的子串</span></span><br><span class="line">            <span class="comment"># Iterate over the string `s`, taking substrings of length `k`</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, n, k):</span><br><span class="line">                <span class="comment"># 统计每个字符出现的次数</span></span><br><span class="line">                <span class="comment"># Count the occurrences of each character in the current substring</span></span><br><span class="line">                cnt1 = collections.Counter(s[i: i + k])</span><br><span class="line">                <span class="keyword">for</span> c, v <span class="keyword">in</span> cnt.items():</span><br><span class="line">                    <span class="comment"># 如果每个字符出现的次数乘以 n/k != cnt[] return False</span></span><br><span class="line">                    <span class="comment"># If the count of any character multiplied by (n // k) != the original count, return False</span></span><br><span class="line">                    <span class="keyword">if</span> cnt1[c] * (n // k) != v:</span><br><span class="line">                        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">        cnt = collections.Counter(s)</span><br><span class="line">        n = <span class="built_in">len</span>(s)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> n % i == <span class="number">0</span> <span class="keyword">and</span> check(i):</span><br><span class="line">                <span class="keyword">return</span> i</span><br></pre></td></tr></table></figure>
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+
+            <!-- 分类页 -->
+            
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Hash Table</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">String</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Counting</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Prefix Sum</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/d1339d55.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
+    <article id="post-1366. Rank Teams by Votes" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/3ab349b3.html">1366. Rank Teams by Votes</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/3ab349b3.html" class="archive-article-date">
+  	<time datetime="2024-12-30T10:23:07.791Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2024-12-30</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">1.3k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">7min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <h1 id="QUESTION："><a href="#QUESTION：" class="headerlink" title="QUESTION："></a>QUESTION：</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/rank-teams-by-votes/description/?envType=daily-question&envId=2024-12-29">1366. Rank Teams by Votes.md</a><br>In a special ranking system, each voter gives a rank from highest to lowest to all teams participating in the competition.</p>
+<p>The ordering of teams is decided by who received the most position-one votes. If two or more teams tie in the first position, we consider the second position to resolve the conflict, if they tie again, we continue this process until the ties are resolved. If two or more teams are still tied after considering all positions, we rank them alphabetically based on their team letter.</p>
+<p>You are given an array of strings votes which is the votes of all voters in the ranking systems. Sort all teams according to the ranking system described above.</p>
+<p>Return a string of all teams sorted by the ranking system.</p>
+<p>Example 1:</p>
+<p>Input: votes &#x3D; [“ABC”,”ACB”,”ABC”,”ACB”,”ACB”]<br>Output: “ACB”<br>Explanation:<br>Team A was ranked first place by 5 voters. No other team was voted as first place, so team A is the first team.<br>Team B was ranked second by 2 voters and ranked third by 3 voters.<br>Team C was ranked second by 3 voters and ranked third by 2 voters.<br>As most of the voters ranked C second, team C is the second team, and team B is the third.<br>Example 2:</p>
+<p>Input: votes &#x3D; [“WXYZ”,”XYZW”]<br>Output: “XWYZ”<br>Explanation:<br>X is the winner due to the tie-breaking rule. X has the same votes as W for the first position, but X has one vote in the second position, while W does not have any votes in the second position.<br>Example 3:</p>
+<p>Input: votes &#x3D; [“ZMNAGUEDSJYLBOPHRQICWFXTVK”]<br>Output: “ZMNAGUEDSJYLBOPHRQICWFXTVK”<br>Explanation: Only one voter, so their votes are used for the ranking.</p>
+<p>Constraints:</p>
+<p>1 &lt;&#x3D; votes.length &lt;&#x3D; 1000<br>1 &lt;&#x3D; votes[i].length &lt;&#x3D; 26<br>votes[i].length &#x3D;&#x3D; votes[j].length for 0 &lt;&#x3D; i, j &lt; votes.length.<br>votes[i][j] is an English uppercase letter.<br>All characters of votes[i] are unique.<br>All the characters that occur in votes[0] also occur in votes[j] where 1 &lt;&#x3D; j &lt; votes.length.</p>
+<h1 id="My-Think："><a href="#My-Think：" class="headerlink" title="My Think："></a>My Think：</h1><p>This question requires us to count their votes. The first thing that comes to mind is to build a double structure, similar to this:<br>这道题要求我们统计他们的投票情况. 首先想到的就是构建一个双重结构体, 类似于这样:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">type <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="type">char</span> A &#123;</span><br><span class="line">        <span class="number">1</span>: <span class="number">1</span>;</span><br><span class="line">        <span class="number">2</span>: <span class="number">1</span>;</span><br><span class="line">        <span class="number">3</span>: <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Then fill in the dictionary in a double loop and sort it. It’s very simple in Python, but I thought it was complicated at first and built the sorting logic manually.<br>Finally, we can use lambda expression <code>sorted_teams = sorted(rank.keys(), key = lambda x: ([-rank[x][i] for i in range(len(votes[0]))], x))</code></p>
+<p>What needs to be noted in Go is the usage of the standard answer. Use <code>slices.SortedFunc</code> to sort the teams. The sorting rules are defined according to the requirements of the question:</p>
+<ol>
+<li>Sort in descending order by votes.</li>
+<li>If the votes are the same, sort in ascending alphabetical order.<br><code>maps.Keys(cnts)</code> gets the keys of all teams (that is, the characters of all teams)<br><code>slices.Compare(cnts[b], cnts[a])</code>: compare the vote slices of two teams and sort in descending order by votes (<code>b</code> comes first).<br><code>cmp.Compare(a, b)</code>: when the votes are the same, sort in ascending alphabetical order.<br><code>cmp.Or</code>: execute the first comparison rule. If the return value is not 0 (that is, there is a priority difference), return directly; otherwise execute the next rule.</li>
+</ol>
+<p>然后在一个双重循环中填写这个字典, 最后进行排序即可. 在Python中十分简单, 但是我一开始想复杂了, 手动构建了排序逻辑.<br>最后用lambda表达式即可<code>sorted_teams = sorted(rank.keys(), key = lambda x: ([-rank[x][i] for i in range(len(votes[0]))], x))</code></p>
+<p>Go里需要注意的是标准答案的用法, 使用 <code>slices.SortedFunc</code> 对团队进行排序，排序规则按题目要求定义：</p>
+<ol>
+<li>按票数降序排列。</li>
+<li>如果票数相同，按字母升序排列。<br><code>maps.Keys(cnts)</code> 获取所有团队的键（即所有团队的字符）<br><code>slices.Compare(cnts[b], cnts[a])</code>：比较两个团队的票数切片，按票数降序排列（<code>b</code> 在前）。<br><code>cmp.Compare(a, b)</code>：当票数相同时，按字母升序排列。<br><code>cmp.Or</code>：执行第一个比较规则，如果返回值非 0（即有优先级差异），直接返回；否则执行下一个规则。</li>
+</ol>
+<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">rankTeams</span>(<span class="params">self, votes: <span class="type">List</span>[<span class="built_in">str</span>]</span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        rank = defaultdict(<span class="keyword">lambda</span>: defaultdict(<span class="built_in">int</span>))</span><br><span class="line">        <span class="keyword">for</span> value <span class="keyword">in</span> votes:</span><br><span class="line">            <span class="keyword">for</span> ind, c <span class="keyword">in</span> <span class="built_in">enumerate</span>(value):</span><br><span class="line">                rank[c][ind] += <span class="number">1</span></span><br><span class="line">        sorted_teams = <span class="built_in">sorted</span>(rank.keys(), key = <span class="keyword">lambda</span> x: ([-rank[x][i] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(votes[<span class="number">0</span>]))], x))</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>.join(sorted_teams)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">rankTeams_Siz</span>(<span class="params">self, votes: <span class="type">List</span>[<span class="built_in">str</span>]</span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        rank = defaultdict(<span class="keyword">lambda</span>: defaultdict(<span class="built_in">int</span>))</span><br><span class="line">        <span class="keyword">for</span> value <span class="keyword">in</span> votes:</span><br><span class="line">            <span class="keyword">for</span> ind, c <span class="keyword">in</span> <span class="built_in">enumerate</span>(value):</span><br><span class="line">                rank[c][ind] += <span class="number">1</span></span><br><span class="line">        <span class="built_in">print</span>(rank)</span><br><span class="line">        ans = <span class="string">&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(votes[<span class="number">0</span>])):</span><br><span class="line">            temp_ans = <span class="string">&#x27;&#x27;</span></span><br><span class="line">            count = <span class="number">0</span></span><br><span class="line">            <span class="keyword">for</span> key, value <span class="keyword">in</span> rank.items():</span><br><span class="line">                <span class="keyword">if</span> value[i] &gt; count:</span><br><span class="line">                    temp_ans = key</span><br><span class="line">                    count = value[i]</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    <span class="comment"># 如果并列, 则考虑下一位 If there is a tie, consider the next one</span></span><br><span class="line">                    <span class="keyword">while</span> value[i] == count:</span><br><span class="line">                        i += <span class="number">1</span> <span class="comment"># 这个i是临时变量, 直接用 This i is a temporary variable, use it directly</span></span><br><span class="line">                        <span class="keyword">if</span> i &gt; <span class="built_in">len</span>(votes[<span class="number">0</span>]): <span class="comment"># 考虑找到最后都没找到的情况Consider the situation where you find nothing in the end.</span></span><br><span class="line">                            <span class="comment"># 答案值应该是字母顺序 The answer values should be in alphabetical order</span></span><br><span class="line">                            temp_ans = key</span><br><span class="line">                            <span class="keyword">break</span></span><br><span class="line">                        <span class="keyword">if</span> value[i] &gt; count:</span><br><span class="line">                            temp_ans = key</span><br><span class="line">                            count = value[i]</span><br><span class="line">            ans += temp_ans</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">rankTeams</span><span class="params">(votes []<span class="type">string</span>)</span></span> <span class="type">string</span> &#123;</span><br><span class="line">    cnts:=<span class="keyword">map</span>[<span class="type">rune</span>][]<span class="type">int</span>&#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> _,ch := <span class="keyword">range</span> votes[<span class="number">0</span>] &#123;</span><br><span class="line">        cnts[ch]=<span class="built_in">make</span>([]<span class="type">int</span>,<span class="built_in">len</span>(votes[<span class="number">0</span>]))</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> _,vote := <span class="keyword">range</span> votes&#123;</span><br><span class="line">        <span class="keyword">for</span> i,ch := <span class="keyword">range</span> vote&#123;</span><br><span class="line">            cnts[ch][i]++</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    res := slices.SortedFunc(maps.Keys(cnts),<span class="function"><span class="keyword">func</span><span class="params">(a,b <span class="type">rune</span>)</span></span> <span class="type">int</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> cmp.Or(slices.Compare(cnts[b],cnts[a]),cmp.Compare(a,b))</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> <span class="type">string</span>(res)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;sort&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">rankTeams</span><span class="params">(votes []<span class="type">string</span>)</span></span> <span class="type">string</span> &#123;</span><br><span class="line">	rank := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="type">byte</span>]<span class="keyword">map</span>[<span class="type">int</span>]<span class="type">int</span>)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> _, vote := <span class="keyword">range</span> votes &#123;</span><br><span class="line">		<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(vote); i++ &#123;</span><br><span class="line">			team := vote[i]</span><br><span class="line">			<span class="keyword">if</span> _, ok := rank[team]; !ok &#123;</span><br><span class="line">				rank[team] = <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="type">int</span>]<span class="type">int</span>)</span><br><span class="line">			&#125;</span><br><span class="line">			rank[team][i]++</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	teams := <span class="built_in">make</span>([]<span class="type">byte</span>, <span class="number">0</span>, <span class="built_in">len</span>(rank))</span><br><span class="line">	<span class="keyword">for</span> team := <span class="keyword">range</span> rank &#123;</span><br><span class="line">		teams = <span class="built_in">append</span>(teams, team)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	sort.Slice(teams, <span class="function"><span class="keyword">func</span><span class="params">(i, j <span class="type">int</span>)</span></span> <span class="type">bool</span> &#123;</span><br><span class="line">		a, b := teams[i], teams[j]</span><br><span class="line">		<span class="keyword">for</span> k := <span class="number">0</span>; k &lt; <span class="built_in">len</span>(votes[<span class="number">0</span>]); k++ &#123;</span><br><span class="line">			<span class="comment">// 比较两队在 k 排位的票数 // Compare the votes of the two teams in position k</span></span><br><span class="line">			countA, countB := rank[a][k], rank[b][k]</span><br><span class="line">			<span class="keyword">if</span> countA != countB &#123;</span><br><span class="line">				<span class="keyword">return</span> countA &gt; countB <span class="comment">// 按票数降序 Sort by votes in descending order</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> a &lt; b <span class="comment">// 字母升序 Alphabetical ascending</span></span><br><span class="line">	&#125;)</span><br><span class="line">	<span class="comment">// 拼接结果</span></span><br><span class="line">	<span class="keyword">return</span> <span class="type">string</span>(teams)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+
+            <!-- 分类页 -->
+            
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Answer</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Hash Table</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">String</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Counting</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Sorting</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/3ab349b3.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
+    <article id="post-3159. Find Occurrences of an Element in an Array" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/aec413e2.html">3159. Find Occurrences of an Element in an Array</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/aec413e2.html" class="archive-article-date">
+  	<time datetime="2024-12-28T08:22:07.811Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2024-12-28</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">632字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">3min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <h1 id="QUESTION："><a href="#QUESTION：" class="headerlink" title="QUESTION："></a>QUESTION：</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-occurrences-of-an-element-in-an-array/description/?envType=daily-question&envId=2024-12-27">3159. Find Occurrences of an Element in an Array.md</a><br>You are given an integer array nums, an integer array queries, and an integer x.</p>
+<p>For each queries[i], you need to find the index of the queries[i]th occurrence of x in the nums array. If there are fewer than queries[i] occurrences of x, the answer should be -1 for that query.</p>
+<p>Return an integer array answer containing the answers to all queries.</p>
+<p>Example 1:</p>
+<p>Input: nums &#x3D; [1,3,1,7], queries &#x3D; [1,3,2,4], x &#x3D; 1</p>
+<p>Output: [0,-1,2,-1]</p>
+<p>Explanation:</p>
+<p>For the 1st query, the first occurrence of 1 is at index 0.<br>For the 2nd query, there are only two occurrences of 1 in nums, so the answer is -1.<br>For the 3rd query, the second occurrence of 1 is at index 2.<br>For the 4th query, there are only two occurrences of 1 in nums, so the answer is -1.<br>Example 2:</p>
+<p>Input: nums &#x3D; [1,2,3], queries &#x3D; [10], x &#x3D; 5</p>
+<p>Output: [-1]</p>
+<p>Explanation:</p>
+<p>For the 1st query, 5 doesn’t exist in nums, so the answer is -1.</p>
+<p>Constraints:</p>
+<p>1 &lt;&#x3D; nums.length, queries.length &lt;&#x3D; 105<br>1 &lt;&#x3D; queries[i] &lt;&#x3D; 105<br>1 &lt;&#x3D; nums[i], x &lt;&#x3D; 104</p>
+<h1 id="My-Think："><a href="#My-Think：" class="headerlink" title="My Think："></a>My Think：</h1><p>I haven’t written a solution for a long time. Now that I’m on vacation, I’m starting over. This question requires us to find “all x’s indices” from the given nums, and then return the index address of the queries-th x.<br>So we can use the list generation formula <code>indices = [i for i, value in enumerate(nums) if value == x]</code> to return a list containing all x’s indices,<br>and then query them one by one.<br>First mistake: I didn’t consider the case where indices is empty, so <code>indices[q-1] out of range</code>.<br>Second mistake: I forgot that the for loop in Golang needs two parameters to receive the value passed by range.</p>
+<p>很久没有写题解了,现在放假了于是重新开始了. 这一道题要求我们从给定的nums中找到”所有x的索引”, 然后返回第queries个x的索引地址即可.<br>于是我们可以用列表生成式<code>indices = [i for i, value in enumerate(nums) if value == x]</code>来返回一个包含所有x索引的列表,<br>然后依次在其中查询即可.<br>第一次错误: 没有考虑indices为空的情况, 于是<code>indices[q-1] out of range</code>.<br>第二次错误: 忘记了Golang里的for循环需要两个参数接收range传来的value.</p>
+<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">occurrencesOfElement</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], queries: <span class="type">List</span>[<span class="built_in">int</span>], x: <span class="built_in">int</span></span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        <span class="comment"># Find the indices of all elements equal to x</span></span><br><span class="line">        indices = [i <span class="keyword">for</span> i, value <span class="keyword">in</span> <span class="built_in">enumerate</span>(nums) <span class="keyword">if</span> value == x]</span><br><span class="line">        <span class="comment"># print(indices)</span></span><br><span class="line">        n = <span class="built_in">len</span>(indices)</span><br><span class="line">        ans = []</span><br><span class="line">        <span class="keyword">for</span> q <span class="keyword">in</span> queries:</span><br><span class="line">            <span class="keyword">if</span> indices <span class="keyword">and</span> q-<span class="number">1</span> &lt; n:</span><br><span class="line">                ans.append(indices[q-<span class="number">1</span>])</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                ans.append(-<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">occurrencesOfElement</span><span class="params">(nums []<span class="type">int</span>, queries []<span class="type">int</span>, x <span class="type">int</span>)</span></span> []<span class="type">int</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> indices []<span class="type">int</span></span><br><span class="line">    <span class="keyword">for</span> i, value := <span class="keyword">range</span> nums &#123;</span><br><span class="line">        <span class="keyword">if</span> value == x &#123;</span><br><span class="line">            indices = <span class="built_in">append</span>(indices, i)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> ans []<span class="type">int</span></span><br><span class="line">    n := <span class="built_in">len</span>(indices)</span><br><span class="line">    <span class="keyword">for</span> _, q := <span class="keyword">range</span> queries &#123; <span class="comment">// &quot;_, q&quot;</span></span><br><span class="line">        <span class="keyword">if</span> n &gt; <span class="number">0</span> &amp;&amp; q<span class="number">-1</span> &lt; n &#123; </span><br><span class="line">            ans = <span class="built_in">append</span>(ans, indices[q<span class="number">-1</span>])</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            ans = <span class="built_in">append</span>(ans, <span class="number">-1</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+
+            <!-- 分类页 -->
+            
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Answer</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Hash Table</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/aec413e2.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
     <article id="post-invisible/9021_TUT_7" class="article article-type-post  article-index" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -2293,545 +2836,6 @@ var _hmt = _hmt || [];
 
 <!-- 文章页添加mathjax公式 -->
   
-    <article id="post-Counting Stars-Inter-Uni Programming Contest" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/a29b0a05.html">Counting Stars-Inter-Uni Programming Contest</a>
-    </h2>
-  
-
-
-                
-                    <a href="/post/a29b0a05.html" class="archive-article-date">
-  	<time datetime="2024-09-21T15:45:02.606Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2024-09-22</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-                
-
-                
-                    <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">299字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">1min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-                
-            </header>
-        
-
-        <div class="article-entry" itemprop="articleBody">
-            <!-- 添加分类与标签 -->
-            
-                
-                    <h1 id="Description"><a href="#Description" class="headerlink" title="Description:"></a>Description:</h1><p><a target="_blank" rel="noopener" href="https://interunia.unswcpmsoc.com/task/Counting%20Stars/">https://interunia.unswcpmsoc.com/task/Counting%20Stars/</a></p>
-<h1 id="Thinking"><a href="#Thinking" class="headerlink" title="Thinking:"></a>Thinking:</h1><ul>
-<li>Given a set of star positions, we need to calculate the minimum number of stars required to explain these positions.</li>
-<li>Meteors (i.e., moving stars) move from left to right, and from high to low (x coordinates increase, y coordinates decrease), without moving horizontally or vertically.</li>
-<li>Each meteor may appear in multiple positions (because it moves), and the final cumulative image will show all the positions it has passed through.</li>
-<li>The positions of fixed stars remain unchanged.</li>
-</ul>
-<p>Therefore, we need to maintain a list of the <strong>last y-coordinate of the current chain</strong>.</p>
-<ol>
-<li><strong>Sort the points</strong>: Sort them by increasing x coordinates.</li>
-<li><strong>Initialization</strong>: Create an empty list <code>last_y</code> to store the last y-coordinate of each chain.</li>
-<li><strong>Traverse the set of points</strong>:<ul>
-<li>For each point (x, y):<ul>
-<li>Use <code>bisect_right</code> to find the first position in <code>last_y</code> that is greater than the current y.</li>
-<li>If the index is less than the length of <code>last_y</code>, it means there is an existing chain that can accommodate the current point, so we update the last y-coordinate of that chain to the current y.</li>
-<li>If the index is equal to the length of <code>last_y</code>, it means no suitable chain is found, so we need to create a new chain and add the current y to <code>last_y</code>.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<h1 id="Code"><a href="#Code" class="headerlink" title="Code:"></a>Code:</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> bisect</span><br><span class="line"></span><br><span class="line">n = <span class="built_in">int</span>(<span class="built_in">input</span>())</span><br><span class="line">stars = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">    x, y = <span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().split())</span><br><span class="line">    stars.append((x, y))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 按 x 坐标递增排序</span></span><br><span class="line">stars.sort(key=<span class="keyword">lambda</span> x: (x[<span class="number">0</span>],))</span><br><span class="line"></span><br><span class="line">last_y = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> x, y <span class="keyword">in</span> stars:</span><br><span class="line">    idx = bisect.bisect_right(last_y, y)</span><br><span class="line">    <span class="keyword">if</span> idx &lt; <span class="built_in">len</span>(last_y):</span><br><span class="line">        last_y[idx] = y  <span class="comment"># 更新链的最后一个 y 坐标</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        last_y.append(y)  <span class="comment"># 创建新的链</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(last_y))</span><br></pre></td></tr></table></figure>
-                
-            
-
-            <!-- 添加打赏 -->
-            
-
-            <!-- 添加版权声明 -->
-            
-
-        </div>
-
-        <!-- 添加置顶 -->
-        <div class="article-info article-info-index">
-            
-
-            <!-- 分类页 -->
-            
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Contest</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Binary Search</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-            
-
-            <!-- 添加展开全文 -->
-            
-                <p class="article-more-link">
-                    <a class="article-more-a" href="/post/a29b0a05.html">show all >></a>
-                </p>
-            
-
-            <!-- 添加分享 -->
-            
-
-            <div class="clearfix"></div>
-
-        </div>
-    </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-    
-
-<!-- 文章页添加mathjax公式 -->
-  
-    <article id="post-Horse Racing-Inter-Uni Programming Contest" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/7ab03a1b.html">Horse Racing-Inter-Uni Programming Contest</a>
-    </h2>
-  
-
-
-                
-                    <a href="/post/7ab03a1b.html" class="archive-article-date">
-  	<time datetime="2024-09-21T12:38:58.316Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2024-09-21</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-                
-
-                
-                    <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">497字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">2min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-                
-            </header>
-        
-
-        <div class="article-entry" itemprop="articleBody">
-            <!-- 添加分类与标签 -->
-            
-                
-                    <h1 id="Description"><a href="#Description" class="headerlink" title="Description:"></a>Description:</h1><p><a target="_blank" rel="noopener" href="https://interunia.unswcpmsoc.com/task/Horse%20Racing/">https://interunia.unswcpmsoc.com/task/Horse%20Racing/</a></p>
-<h1 id="Thinking"><a href="#Thinking" class="headerlink" title="Thinking:"></a>Thinking:</h1><h3 id="Preprocessing-Horse-Information"><a href="#Preprocessing-Horse-Information" class="headerlink" title="Preprocessing Horse Information:"></a>Preprocessing Horse Information:</h3><p>Combine horse information into a list of tuples, <code>horses</code>, where each tuple contains the horse index, starting position, and velocity.<br>Sort the horses by starting position in descending order. If two horses have the same starting position, sort them by velocity in descending order. This is because the horse with the highest starting position leads initially.</p>
-<h3 id="Constructing-the-Leading-Horse-Timeline"><a href="#Constructing-the-Leading-Horse-Timeline" class="headerlink" title="Constructing the Leading Horse Timeline:"></a>Constructing the Leading Horse Timeline:</h3><ul>
-<li>Use a stack <code>stack</code> to maintain the horses that could become the leader.</li>
-<li>For each horse, check if it has the potential to overtake the current leading horse.<ul>
-<li>If the current horse’s speed is less than or equal to the horse at the top of the stack, it can never overtake and is discarded.</li>
-<li>If the current horse’s speed is greater than the top horse’s, calculate when it will overtake the current leader.</li>
-<li>If the calculated overtaking time is invalid (e.g., earlier than the previous overtaking time), adjust the stack by removing horses that can no longer lead.</li>
-</ul>
-</li>
-</ul>
-<h3 id="Handling-Queries"><a href="#Handling-Queries" class="headerlink" title="Handling Queries:"></a>Handling Queries:</h3><p>Use binary search to handle each query time <code>t</code> in the <code>times</code> list to find the corresponding leading horse.<br><code>bisect.bisect_right(times, t) - 1</code> finds the first time point greater than <code>t</code>, then subtract one to get the corresponding horse index.</p>
-<p><strong>Timeline Construction</strong>: We build a timeline that records the time points when the leading horse changes and the horse that leads during that period.</p>
-<p><strong>Binary Search for Queries</strong>: Since the timeline is sorted chronologically, we can efficiently find the leading horse for each query time using binary search.</p>
-<h1 id="Codes"><a href="#Codes" class="headerlink" title="Codes:"></a>Codes:</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">n, q = <span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().split())</span><br><span class="line">s_list = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().split()))</span><br><span class="line">v_list = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().split()))</span><br><span class="line">t_list = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().split()))</span><br><span class="line"></span><br><span class="line">horses = <span class="built_in">list</span>(<span class="built_in">zip</span>(<span class="built_in">range</span>(n), s_list, v_list))</span><br><span class="line"><span class="comment"># Sort horses by decreasing s_i</span></span><br><span class="line">horses.sort(key=<span class="keyword">lambda</span> x: (-x[<span class="number">1</span>], -x[<span class="number">2</span>]))  <span class="comment"># (-s_i, -v_i)</span></span><br><span class="line"></span><br><span class="line">stack = []</span><br><span class="line"><span class="comment"># 存储每次马匹变化的时间点</span></span><br><span class="line">times = []</span><br><span class="line"><span class="comment"># 存储每次马匹变化的编号</span></span><br><span class="line">horse_indices = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> idx, s_i, v_i <span class="keyword">in</span> horses:</span><br><span class="line">    discard = <span class="literal">False</span></span><br><span class="line">    <span class="comment"># 检查是否可以领先</span></span><br><span class="line">    <span class="keyword">while</span> stack:</span><br><span class="line">        <span class="comment"># 看看顶部</span></span><br><span class="line">        jdx, s_j, v_j = stack[-<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">if</span> v_i &lt;= v_j:</span><br><span class="line">            <span class="comment"># 如果它的速度小于或等于当前领导者的速度，它永远无法超越并被丢弃。</span></span><br><span class="line">            discard = <span class="literal">True</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># Compute t_int</span></span><br><span class="line">            t_prev = times[-<span class="number">1</span>] <span class="keyword">if</span> times <span class="keyword">else</span> <span class="number">0.0</span></span><br><span class="line">            <span class="comment"># 可能超过的时间</span></span><br><span class="line">            t_int = (s_j - s_i) / (v_i - v_j)</span><br><span class="line">            <span class="keyword">if</span> t_int &lt;= t_prev:</span><br><span class="line">                stack.pop()</span><br><span class="line">                times.pop()</span><br><span class="line">                horse_indices.pop()</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> discard:</span><br><span class="line">        <span class="keyword">if</span> stack:</span><br><span class="line">            t_int = (s_j - s_i) / (v_i - v_j)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            t_int = <span class="number">0.0</span></span><br><span class="line">        stack.append((idx, s_i, v_i))</span><br><span class="line">        times.append(t_int)</span><br><span class="line">        horse_indices.append(idx)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> bisect</span><br><span class="line"></span><br><span class="line">result = []</span><br><span class="line"><span class="keyword">for</span> t <span class="keyword">in</span> t_list:</span><br><span class="line">    idx = bisect.bisect_right(times, t) -<span class="number">1</span></span><br><span class="line">    idx = <span class="built_in">max</span>(<span class="number">0</span>, idx)</span><br><span class="line">    result.append(horse_indices[idx]+<span class="number">1</span>)  <span class="comment"># +1 to convert to 1-based indexing</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27; &#x27;</span>.join(<span class="built_in">map</span>(<span class="built_in">str</span>, result)))</span><br></pre></td></tr></table></figure>
-                
-            
-
-            <!-- 添加打赏 -->
-            
-
-            <!-- 添加版权声明 -->
-            
-
-        </div>
-
-        <!-- 添加置顶 -->
-        <div class="article-info article-info-index">
-            
-
-            <!-- 分类页 -->
-            
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Contest</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-            
-
-            <!-- 添加展开全文 -->
-            
-                <p class="article-more-link">
-                    <a class="article-more-a" href="/post/7ab03a1b.html">show all >></a>
-                </p>
-            
-
-            <!-- 添加分享 -->
-            
-
-            <div class="clearfix"></div>
-
-        </div>
-    </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-    
-
-<!-- 文章页添加mathjax公式 -->
-  
-    <article id="post-DartsInter-Uni Programming Contest Tasks Leaderboard Contest" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/c61e596.html">DartsInter-Uni Programming Contest Tasks Leaderboard Contest</a>
-    </h2>
-  
-
-
-                
-                    <a href="/post/c61e596.html" class="archive-article-date">
-  	<time datetime="2024-09-20T14:00:00.000Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2024-09-21</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-                
-
-                
-                    <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">1.6k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">9min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-                
-            </header>
-        
-
-        <div class="article-entry" itemprop="articleBody">
-            <!-- 添加分类与标签 -->
-            
-                
-                    <h1 id="Description："><a href="#Description：" class="headerlink" title="Description："></a>Description：</h1><p>Darts<br><a target="_blank" rel="noopener" href="https://interunia.unswcpmsoc.com/task/Darts/">https://interunia.unswcpmsoc.com/task/Darts/</a></p>
-<h1 id="Thinking："><a href="#Thinking：" class="headerlink" title="Thinking："></a>Thinking：</h1><p>This contest is harder than I imaged, this is the second task, and I spent a lot of time but when I checked the Leaderboard and no one has solved it yet, I feel a little bit better.<br>At first, I thought of simply judging whether this point is in the middle of this circle, using Euclidean distance calculation. But later I found that when there are n circles and m darts, the amount of data is surprisingly large. After the brute force cracking timed out, I had to consider a new method.</p>
-<p>We can use the gridded <code>Spatial Indexing</code>, the specific steps are as follows:</p>
-<h3 id="1-Spatial-division-Divide-the-entire-plane-into-grids-of-equal-size-Grid-and-map-the-target-and-dart-to-the-corresponding-grid"><a href="#1-Spatial-division-Divide-the-entire-plane-into-grids-of-equal-size-Grid-and-map-the-target-and-dart-to-the-corresponding-grid" class="headerlink" title="1. Spatial division: Divide the entire plane into grids of equal size (Grid), and map the target and dart to the corresponding grid."></a>1. Spatial division: Divide the entire plane into grids of equal size (Grid), and map the target and dart to the corresponding grid.</h3><p>Purpose:</p>
-<ul>
-<li>Reduce the number of targets that need to be calculated.</li>
-<li>For each dart, you only need to check the targets in its grid and adjacent grids.</li>
-</ul>
-<h3 id="2-Map-Targets-to-Grids"><a href="#2-Map-Targets-to-Grids" class="headerlink" title="2. Map Targets to Grids:"></a>2. Map Targets to Grids:</h3><ul>
-<li>Calculate the bounding box of each target.<ul>
-<li>Lower-left corner: ( (x_i - r_i, y_i - r_i) )</li>
-<li>Upper-right corner: ( (x_i + r_i, y_i + r_i) )</li>
-</ul>
-</li>
-<li>Record all grid cells covered by this rectangle and add the target index to these grid cells.</li>
-</ul>
-<h3 id="3-Map-Darts-to-Grids"><a href="#3-Map-Darts-to-Grids" class="headerlink" title="3. Map Darts to Grids:"></a>3. Map Darts to Grids:</h3><p>For each dart, calculate the grid coordinates where it is located.</p>
-<h3 id="4-Check-if-the-Dart-Hits-a-Target"><a href="#4-Check-if-the-Dart-Hits-a-Target" class="headerlink" title="4. Check if the Dart Hits a Target:"></a>4. Check if the Dart Hits a Target:</h3><ul>
-<li>For each dart, check all targets in its grid and the adjacent 8 grids.</li>
-<li>Calculate the distance from the dart to the center of each target and determine whether it is less than or equal to the square of the target’s radius, i.e., ( (dx - x_i)^2 + (dy - y_i)^2 \leq r_i^2 ).</li>
-</ul>
-<h2 id="Grid-Division-Parameters"><a href="#Grid-Division-Parameters" class="headerlink" title="Grid Division Parameters"></a>Grid Division Parameters</h2><p>Grid size (<code>GRID_SIZE</code>):</p>
-<ul>
-<li>Choose an appropriate grid size, such as 500.</li>
-<li>The choice of grid size requires a trade-off between space and time efficiency.</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">auto get_grid_cell = [&amp;](long long x_n, long long y_n) &#123;</span><br><span class="line">    <span class="built_in">int</span> gx = <span class="built_in">int</span>((x_n - min_x) / s);</span><br><span class="line">    <span class="built_in">int</span> gy = <span class="built_in">int</span>((y_n - min_y) / s);</span><br><span class="line">    <span class="keyword">return</span> make_pair(gx, gy);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>Coordinate mapping function:</p>
-<p>Maps actual coordinates to grid coordinates.</p>
-<ul>
-<li>s is the actual length of each grid cell.</li>
-<li>$min_x$ and $min_y$ are the minimum values among all target and dart coordinates, used to shift the coordinates.</li>
-</ul>
-<h2 id="Mapping-Targets-to-Grids"><a href="#Mapping-Targets-to-Grids" class="headerlink" title="Mapping Targets to Grids"></a>Mapping Targets to Grids</h2><ul>
-<li>Iterate over all targets and calculate their covered grid ranges.</li>
-<li>In these grids, record the indices of the targets.</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="built_in">int</span> idx = <span class="number">0</span>; idx &lt; n; ++idx) &#123;</span><br><span class="line">    <span class="built_in">int</span> x, y, r;</span><br><span class="line">    tie(x, y, r) = circles[idx];</span><br><span class="line">    long long x_min = x - r;</span><br><span class="line">    long long x_max = x + r;</span><br><span class="line">    long long y_min = y - r;</span><br><span class="line">    long long y_max = y + r;</span><br><span class="line">    auto [gx_min, gy_min] = get_grid_cell(x_min, y_min);</span><br><span class="line">    auto [gx_max, gy_max] = get_grid_cell(x_max, y_max);</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">int</span> gx = gx_min; gx &lt;= gx_max; ++gx) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> gy = gy_min; gy &lt;= gy_max; ++gy) &#123;</span><br><span class="line">            long long key = get_grid_key(gx, gy);</span><br><span class="line">            grid[key].push_back(idx); // 存储靶子索引</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="Mapping-Darts-to-Grids"><a href="#Mapping-Darts-to-Grids" class="headerlink" title="Mapping Darts to Grids"></a>Mapping Darts to Grids</h2><ul>
-<li>For each dart, calculate the grid cell it belongs to.</li>
-<li>No need to store darts in grids; we process them directly.</li>
-</ul>
-<h2 id="Checking-if-Darts-Hit-Targets"><a href="#Checking-if-Darts-Hit-Targets" class="headerlink" title="Checking if Darts Hit Targets"></a>Checking if Darts Hit Targets</h2><ul>
-<li>For each dart, get its grid coordinates ( (gx, gy) ).</li>
-<li>Check the dart’s grid cell and its 8 adjacent grid cells.</li>
-<li>For each target in these grids, calculate the distance to the dart.</li>
-<li>If the distance squared is less than or equal to the target’s radius squared, increment the counter.</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (const auto&amp; p : points) &#123;</span><br><span class="line">    <span class="built_in">int</span> dx = p.first;</span><br><span class="line">    <span class="built_in">int</span> dy = p.second;</span><br><span class="line">    auto [gx, gy] = get_grid_cell(dx, dy);</span><br><span class="line">    <span class="built_in">bool</span> found = false;</span><br><span class="line">    </span><br><span class="line">    // Check the grid <span class="keyword">and</span> the <span class="number">8</span> adjacent grids</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">int</span> ix = gx - <span class="number">1</span>; ix &lt;= gx + <span class="number">1</span>; ++ix) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> iy = gy - <span class="number">1</span>; iy &lt;= gy + <span class="number">1</span>; ++iy) &#123;</span><br><span class="line">            long long key = get_grid_key(ix, iy);</span><br><span class="line">            <span class="keyword">if</span> (grid.count(key)) &#123;</span><br><span class="line">                const auto&amp; circle_indices = grid[key];</span><br><span class="line">                <span class="keyword">for</span> (<span class="built_in">int</span> idx : circle_indices) &#123;</span><br><span class="line">                    <span class="built_in">int</span> x, y, r;</span><br><span class="line">                    tie(x, y, r) = circles[idx];</span><br><span class="line">                    // caculate the distance</span><br><span class="line">                    long long dx_sq = (long long)(dx - x) * (dx - x);</span><br><span class="line">                    long long dy_sq = (long long)(dy - y) * (dy - y);</span><br><span class="line">                    long long r_sq = (long long)r * r;</span><br><span class="line">                    <span class="keyword">if</span> (dx_sq + dy_sq &lt;= r_sq) &#123;</span><br><span class="line">                        ans++;</span><br><span class="line">                        found = true;</span><br><span class="line">                        <span class="keyword">break</span>; // The dart has found the target, check the <span class="built_in">next</span> dart</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (found) <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (found) <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h1 id="code"><a href="#code" class="headerlink" title="code:"></a>code:</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line">n, m = <span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().split())</span><br><span class="line"></span><br><span class="line">circles = []</span><br><span class="line"></span><br><span class="line">min_x = min_y = <span class="built_in">float</span>(<span class="string">&#x27;inf&#x27;</span>)</span><br><span class="line">max_x = max_y = <span class="built_in">float</span>(<span class="string">&#x27;-inf&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">    x, y, r = <span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().split())</span><br><span class="line">    circles.append((x, y, r))</span><br><span class="line">    min_x = <span class="built_in">min</span>(min_x, x - r)</span><br><span class="line">    max_x = <span class="built_in">max</span>(max_x, x + r)</span><br><span class="line">    min_y = <span class="built_in">min</span>(min_y, y - r)</span><br><span class="line">    max_y = <span class="built_in">max</span>(max_y, y + r)</span><br><span class="line"></span><br><span class="line">points = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(m):</span><br><span class="line">    dx, dy = <span class="built_in">map</span>(<span class="built_in">int</span>, <span class="built_in">input</span>().split())</span><br><span class="line">    points.append((dx, dy))</span><br><span class="line">    min_x = <span class="built_in">min</span>(min_x, dx)</span><br><span class="line">    max_x = <span class="built_in">max</span>(max_x, dx)</span><br><span class="line">    min_y = <span class="built_in">min</span>(min_y, dy)</span><br><span class="line">    max_y = <span class="built_in">max</span>(max_y, dy)</span><br><span class="line"></span><br><span class="line">GRID_SIZE = <span class="number">500</span></span><br><span class="line">delta_x = max_x - min_x</span><br><span class="line">delta_y = max_y - min_y</span><br><span class="line">s = <span class="built_in">max</span>(delta_x, delta_y) / GRID_SIZE</span><br><span class="line"><span class="keyword">if</span> s == <span class="number">0</span>:</span><br><span class="line">    s = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Function that maps coordinates to grid indices</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_grid_cell</span>(<span class="params">x_n, y_n</span>):</span><br><span class="line">    gx = <span class="built_in">int</span>((x_n - min_x) / s)</span><br><span class="line">    gy = <span class="built_in">int</span>((y_n - min_y) / s)</span><br><span class="line">    <span class="keyword">return</span> gx, gy</span><br><span class="line"></span><br><span class="line">grid = &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Mapping the targets onto the grid</span></span><br><span class="line"><span class="keyword">for</span> idx, (x, y, r) <span class="keyword">in</span> <span class="built_in">enumerate</span>(circles):</span><br><span class="line">    x_min = x - r</span><br><span class="line">    x_max = x + r</span><br><span class="line">    y_min = y - r</span><br><span class="line">    y_max = y + r</span><br><span class="line">    gx_min, gy_min = get_grid_cell(x_min, y_min)</span><br><span class="line">    gx_max, gy_max = get_grid_cell(x_max, y_max)</span><br><span class="line">    <span class="keyword">for</span> gx <span class="keyword">in</span> <span class="built_in">range</span>(gx_min, gx_max + <span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> gy <span class="keyword">in</span> <span class="built_in">range</span>(gy_min, gy_max + <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> (gx, gy) <span class="keyword">not</span> <span class="keyword">in</span> grid:</span><br><span class="line">                grid[(gx, gy)] = []</span><br><span class="line">            grid[(gx, gy)].append(idx)  <span class="comment"># store the target index</span></span><br><span class="line"></span><br><span class="line">ans = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># For each dart, check the target in the grid where it is located</span></span><br><span class="line"><span class="keyword">for</span> dx, dy <span class="keyword">in</span> points:</span><br><span class="line">    gx, gy = get_grid_cell(dx, dy)</span><br><span class="line">    found = <span class="literal">False</span></span><br><span class="line">    <span class="keyword">if</span> (gx, gy) <span class="keyword">in</span> grid:</span><br><span class="line">        <span class="keyword">for</span> idx <span class="keyword">in</span> grid[(gx, gy)]:</span><br><span class="line">            x, y, r = circles[idx]</span><br><span class="line">            <span class="comment"># Determine if the dart is in the target</span></span><br><span class="line">            <span class="keyword">if</span> (dx - x) ** <span class="number">2</span> + (dy - y) ** <span class="number">2</span> &lt;= r ** <span class="number">2</span>:</span><br><span class="line">                ans += <span class="number">1</span></span><br><span class="line">                found = <span class="literal">True</span></span><br><span class="line">                <span class="keyword">break</span>  <span class="comment"># 找到后跳出循环</span></span><br><span class="line">    <span class="comment"># The grids do not overlap and the surrounding grids are not detected?</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(ans)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unordered_map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;climits&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Fast input/output</span></span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">    cin.<span class="built_in">tie</span>(<span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> n, m;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line"></span><br><span class="line">    vector&lt;tuple&lt;<span class="type">int</span>, <span class="type">int</span>, <span class="type">int</span>&gt;&gt; circles;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> min_x = LLONG_MAX, min_y = LLONG_MAX;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> max_x = LLONG_MIN, max_y = LLONG_MIN;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Read circles and update bounding box</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        <span class="type">int</span> x, y, r;</span><br><span class="line">        cin &gt;&gt; x &gt;&gt; y &gt;&gt; r;</span><br><span class="line">        circles.<span class="built_in">emplace_back</span>(x, y, r);</span><br><span class="line">        min_x = <span class="built_in">min</span>(min_x, (<span class="type">long</span> <span class="type">long</span>)x - r);</span><br><span class="line">        max_x = <span class="built_in">max</span>(max_x, (<span class="type">long</span> <span class="type">long</span>)x + r);</span><br><span class="line">        min_y = <span class="built_in">min</span>(min_y, (<span class="type">long</span> <span class="type">long</span>)y - r);</span><br><span class="line">        max_y = <span class="built_in">max</span>(max_y, (<span class="type">long</span> <span class="type">long</span>)y + r);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    vector&lt;pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt;&gt; points;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Read darts and update bounding box</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; m; ++i) &#123;</span><br><span class="line">        <span class="type">int</span> dx, dy;</span><br><span class="line">        cin &gt;&gt; dx &gt;&gt; dy;</span><br><span class="line">        points.<span class="built_in">emplace_back</span>(dx, dy);</span><br><span class="line">        min_x = <span class="built_in">min</span>(min_x, (<span class="type">long</span> <span class="type">long</span>)dx);</span><br><span class="line">        max_x = <span class="built_in">max</span>(max_x, (<span class="type">long</span> <span class="type">long</span>)dx);</span><br><span class="line">        min_y = <span class="built_in">min</span>(min_y, (<span class="type">long</span> <span class="type">long</span>)dy);</span><br><span class="line">        max_y = <span class="built_in">max</span>(max_y, (<span class="type">long</span> <span class="type">long</span>)dy);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="type">const</span> <span class="type">int</span> GRID_SIZE = <span class="number">500</span>;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> delta_x = max_x - min_x;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> delta_y = max_y - min_y;</span><br><span class="line">    <span class="type">double</span> s = <span class="built_in">max</span>(delta_x, delta_y) / (<span class="type">double</span>)GRID_SIZE;</span><br><span class="line">    <span class="keyword">if</span> (s == <span class="number">0</span>) &#123;</span><br><span class="line">        s = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Function to get grid cell indices</span></span><br><span class="line">    <span class="keyword">auto</span> get_grid_cell = [&amp;](<span class="type">long</span> <span class="type">long</span> x_n, <span class="type">long</span> <span class="type">long</span> y_n) &#123;</span><br><span class="line">        <span class="type">int</span> gx = <span class="built_in">int</span>((x_n - min_x) / s);</span><br><span class="line">        <span class="type">int</span> gy = <span class="built_in">int</span>((y_n - min_y) / s);</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">make_pair</span>(gx, gy);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Function to combine gx and gy into a single key</span></span><br><span class="line">    <span class="keyword">auto</span> get_grid_key = [](<span class="type">int</span> gx, <span class="type">int</span> gy) -&gt; <span class="type">long</span> <span class="type">long</span> &#123;</span><br><span class="line">        <span class="built_in">return</span> ((<span class="type">long</span> <span class="type">long</span>)gx &lt;&lt; <span class="number">32</span>) | (<span class="type">unsigned</span> <span class="type">int</span>)gy;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Map from grid cell key to list of circle indices</span></span><br><span class="line">    unordered_map&lt;<span class="type">long</span> <span class="type">long</span>, vector&lt;<span class="type">int</span>&gt;&gt; grid;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Map circles to grid cells</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> idx = <span class="number">0</span>; idx &lt; n; ++idx) &#123;</span><br><span class="line">        <span class="type">int</span> x, y, r;</span><br><span class="line">        <span class="built_in">tie</span>(x, y, r) = circles[idx];</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> x_min = x - r;</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> x_max = x + r;</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> y_min = y - r;</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> y_max = y + r;</span><br><span class="line">        <span class="keyword">auto</span> [gx_min, gy_min] = <span class="built_in">get_grid_cell</span>(x_min, y_min);</span><br><span class="line">        <span class="keyword">auto</span> [gx_max, gy_max] = <span class="built_in">get_grid_cell</span>(x_max, y_max);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> gx = gx_min; gx &lt;= gx_max; ++gx) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> gy = gy_min; gy &lt;= gy_max; ++gy) &#123;</span><br><span class="line">                <span class="type">long</span> <span class="type">long</span> key = <span class="built_in">get_grid_key</span>(gx, gy);</span><br><span class="line">                grid[key].<span class="built_in">push_back</span>(idx); <span class="comment">// Store circle index</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// For each dart, check circles in its grid cell and adjacent cells</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">const</span> <span class="keyword">auto</span>&amp; p : points) &#123;</span><br><span class="line">        <span class="type">int</span> dx = p.first;</span><br><span class="line">        <span class="type">int</span> dy = p.second;</span><br><span class="line">        <span class="keyword">auto</span> [gx, gy] = <span class="built_in">get_grid_cell</span>(dx, dy);</span><br><span class="line">        <span class="type">bool</span> found = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Check the dart&#x27;s grid cell and its 8 neighbors</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> ix = gx - <span class="number">1</span>; ix &lt;= gx + <span class="number">1</span>; ++ix) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> iy = gy - <span class="number">1</span>; iy &lt;= gy + <span class="number">1</span>; ++iy) &#123;</span><br><span class="line">                <span class="type">long</span> <span class="type">long</span> key = <span class="built_in">get_grid_key</span>(ix, iy);</span><br><span class="line">                <span class="keyword">if</span> (grid.<span class="built_in">count</span>(key)) &#123;</span><br><span class="line">                    <span class="type">const</span> <span class="keyword">auto</span>&amp; circle_indices = grid[key];</span><br><span class="line">                    <span class="keyword">for</span> (<span class="type">int</span> idx : circle_indices) &#123;</span><br><span class="line">                        <span class="type">int</span> x, y, r;</span><br><span class="line">                        <span class="built_in">tie</span>(x, y, r) = circles[idx];</span><br><span class="line">                        <span class="comment">// Check if the dart is inside the circle</span></span><br><span class="line">                        <span class="type">long</span> <span class="type">long</span> dx_sq = (<span class="type">long</span> <span class="type">long</span>)(dx - x) * (dx - x);</span><br><span class="line">                        <span class="type">long</span> <span class="type">long</span> dy_sq = (<span class="type">long</span> <span class="type">long</span>)(dy - y) * (dy - y);</span><br><span class="line">                        <span class="type">long</span> <span class="type">long</span> r_sq = (<span class="type">long</span> <span class="type">long</span>)r * r;</span><br><span class="line">                        <span class="keyword">if</span> (dx_sq + dy_sq &lt;= r_sq) &#123;</span><br><span class="line">                            ans++;</span><br><span class="line">                            found = <span class="literal">true</span>;</span><br><span class="line">                            <span class="keyword">break</span>; <span class="comment">// Move to next dart</span></span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (found) <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (found) <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; ans &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-                
-            
-
-            <!-- 添加打赏 -->
-            
-
-            <!-- 添加版权声明 -->
-            
-
-        </div>
-
-        <!-- 添加置顶 -->
-        <div class="article-info article-info-index">
-            
-
-            <!-- 分类页 -->
-            
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Contest</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Inter-Uni Programming Contest</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-            
-
-            <!-- 添加展开全文 -->
-            
-                <p class="article-more-link">
-                    <a class="article-more-a" href="/post/c61e596.html">show all >></a>
-                </p>
-            
-
-            <!-- 添加分享 -->
-            
-
-            <div class="clearfix"></div>
-
-        </div>
-    </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-    
-
-<!-- 文章页添加mathjax公式 -->
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&lt;&lt; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/3/">下一页 &gt;&gt;</a>
@@ -2886,10 +2890,10 @@ window.MathJax = {
 	  <br>
 	  <div class="footer-center">
 	    <i class="fa fa-file-word-o" aria-hidden="true"></i>
-		<span> 124 篇</span>
+		<span> 126 篇</span>
 		<span class="post-meta-divider">|</span>
 		<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-		<span> <span class="post-count">61.6k</span></span>
+		<span> <span class="post-count">64.6k</span></span>
       </div>
 	  
 	  <!-- 添加不蒜子统计 -->
