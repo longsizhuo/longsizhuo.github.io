@@ -294,6 +294,182 @@ var _hmt = _hmt || [];
         <div id="js-content" class="content-ll">
           
   
+    <article id="post-2241. Design an ATM Machine" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/a21411f.html">2241. Design an ATM Machine</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/a21411f.html" class="archive-article-date">
+  	<time datetime="2025-01-06T00:00:00.000Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2025-01-06</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">1.1k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">5min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <h1 id="QUESTION："><a href="#QUESTION：" class="headerlink" title="QUESTION："></a>QUESTION：</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/design-an-atm-machine/description/?envType=daily-question&envId=2025-01-05">2241. Design an ATM Machine.md</a><br>There is an ATM machine that stores banknotes of 5 denominations: 20, 50, 100, 200, and 500 dollars. Initially the ATM is empty. The user can use the machine to deposit or withdraw any amount of money.</p>
+<p>When withdrawing, the machine prioritizes using banknotes of larger values.</p>
+<p>For example, if you want to withdraw $300 and there are 2 $50 banknotes, 1 $100 banknote, and 1 $200 banknote, then the machine will use the $100 and $200 banknotes.<br>However, if you try to withdraw $600 and there are 3 $200 banknotes and 1 $500 banknote, then the withdraw request will be rejected because the machine will first try to use the $500 banknote and then be unable to use banknotes to complete the remaining $100. Note that the machine is not allowed to use the $200 banknotes instead of the $500 banknote.<br>Implement the ATM class:</p>
+<p>ATM() Initializes the ATM object.<br>void deposit(int[] banknotesCount) Deposits new banknotes in the order $20, $50, $100, $200, and $500.<br>int[] withdraw(int amount) Returns an array of length 5 of the number of banknotes that will be handed to the user in the order $20, $50, $100, $200, and $500, and update the number of banknotes in the ATM after withdrawing. Returns [-1] if it is not possible (do not withdraw any banknotes in this case).</p>
+<h1 id="My-Think："><a href="#My-Think：" class="headerlink" title="My Think："></a>My Think：</h1><p>The purpose of this question is to simulate an ATM machine, which returns the amount of money you withdraw, no more and no less. I am greedy, because the second sentence “There are 3 <code>$200</code> bills and 1 <code>$500</code> bill in the machine, so the withdrawal request will be rejected”<br>This shows that we can skip thinking about the knapsack problem in complex dynamic programming and directly consider simple greed.</p>
+<p>Because the denominations of the deposited money are only <code>20</code>, <code>50</code>, <code>100</code>, <code>200</code>, <code>500</code>, we can store them in the list in advance and wait for traversal.</p>
+<p>Then we create a <code>defaultdict()</code> to create a hash table for each denomination in the ATM machine.</p>
+<p><code>deposit()</code> creates a reverse traversal dictionary. Because we need to traverse the dictionary from large denominations to small denominations, the reverse dictionary is very convenient at this time.</p>
+<p>Assuming the initial <code>amount</code> is <code>600</code>, the first denomination traversed is <code>500</code>, It fits the logic of the question very well</p>
+<p>For the <code>withdraw()</code> function, I created a temporary dictionary deep copy storage so that the initial array will not be changed when <code>[-1]</code> is returned. Otherwise, it will be troublesome to backtrack.</p>
+<p>Here, Sylvia and I used two different traversal methods. She traversed the list of denominations, while I traversed the dictionary directly (actually traversed the key directly).</p>
+<ol>
+<li><p>If the current denomination (<code>600</code>) is greater than the current denomination (<code>500</code>), then try to deduct it. If the bank money is withdrawn directly, then look at the next denomination.</p>
+</li>
+<li><p>If it is not withdrawn, then <code>amount</code> deducts the deductible share and then continues to look at the next denomination.</p>
+</li>
+<li><p>If there is still <code>amount</code> left at the end, return <code>[-1]</code>, otherwise calculate how many bills have been consumed in total, which is the answer.</p>
+</li>
+</ol>
+<p>这道题的目的是模拟一台ATM机器, 让你取多少钱, 就返回多少钱, 不能多也不能少. 我是贪心的思想, 因为第二句”机器里有 3 张 <code>$200</code> 的钞票和1 张 <code>$500</code> 的钞票，那么取款请求会被拒绝”<br>这就说明我们可以跳过思考复杂的动态规划中的背包问题, 而直接考虑简单的贪心.</p>
+<p>因为存的钱的面额只有<code>20</code>, <code>50</code>, <code>100</code>, <code>200</code>, <code>500</code> 这五种面额, 于是我们提前存在列表里面等待遍历即可.<br>然后我们创建一个<code>defaultdict()</code>, 为ATM机器里面的每种面额创建哈希表.</p>
+<p><code>deposit()</code>创建了一个反向遍历的字典. 因为我们需要从大面额到小面额遍历字典, 在这个时候反向的字典就很方便.</p>
+<pre><code>假设初始`amount`为`600`, 遍历到的第一个面额就是`500`, 就很符合题目的逻辑
+</code></pre>
+<p><code>withdraw()</code>函数, 我之所以创建了一个临时字典深拷贝储存是在返回<code>[-1]</code>的情况下不更改初始数组. 否则还要回溯挺麻烦的.</p>
+<p>这里我和Sylvia用了两种不同的遍历方式, 她遍历了面额的列表, 而我是直接遍历的字典(实际上直接遍历的key).</p>
+<ol>
+<li>如果当前面额(<code>600</code>)大于了当前面额(<code>500</code>), 那就尝试扣除, 如果直接把银行钱取完了, 那再看下一个面值.</li>
+<li>如果没有取完, 那么<code>amount</code>扣除掉能扣除的份额, 再继续看下一个面额即可.</li>
+<li>到最后<code>amount</code>还有剩余则返回<code>[-1]</code>, 否则计算一共消耗了多少张钞票, 即是答案了.</li>
+</ol>
+<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> copy</span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">List</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ATM</span>:</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        self.sd = defaultdict(<span class="built_in">int</span>)</span><br><span class="line">        self.amount = [<span class="string">&#x27;20&#x27;</span>, <span class="string">&#x27;50&#x27;</span>, <span class="string">&#x27;100&#x27;</span>, <span class="string">&#x27;200&#x27;</span>, <span class="string">&#x27;500&#x27;</span>]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">deposit</span>(<span class="params">self, banknotesCount: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(banknotesCount) - <span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>):</span><br><span class="line">            self.sd[self.amount[i]] += banknotesCount[i]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">withdraw</span>(<span class="params">self, amount: <span class="built_in">int</span></span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        tempSd = copy.deepcopy(self.sd)</span><br><span class="line">        <span class="comment"># key = 面值, value = 张数</span></span><br><span class="line">        <span class="keyword">for</span> key, value <span class="keyword">in</span> tempSd.items():</span><br><span class="line">            <span class="keyword">if</span> amount &gt;= <span class="built_in">int</span>(key) <span class="keyword">and</span> value &gt; <span class="number">0</span>:</span><br><span class="line">                <span class="comment"># 需要多少张钞票</span></span><br><span class="line">                howManyPiece = amount // <span class="built_in">int</span>(key)</span><br><span class="line">                <span class="keyword">if</span> howManyPiece &gt;= value:</span><br><span class="line">                    <span class="comment"># 全部取出来</span></span><br><span class="line">                    tempSd[key] = <span class="number">0</span></span><br><span class="line">                    amount -= value * <span class="built_in">int</span>(key)</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    <span class="comment"># 取出这么多钞票</span></span><br><span class="line">                    tempSd[key] -= howManyPiece</span><br><span class="line">                    amount -= <span class="built_in">int</span>(key) * howManyPiece</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> amount &gt; <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">return</span> [-<span class="number">1</span>]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                ans = []</span><br><span class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> self.sd.keys():</span><br><span class="line">                    ans.append(self.sd[i] - tempSd[i])</span><br><span class="line">                self.sd = copy.deepcopy(tempSd)</span><br><span class="line">                <span class="keyword">return</span> ans[::-<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+
+            <!-- 分类页 -->
+            
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Answer</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/a21411f.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
     <article id="post-3046. Split the Array" class="article article-type-post  article-index" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -1161,11 +1337,11 @@ One possible string t could be &quot;cdef&quot;, notice that t can be equal to s
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Tutorial</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">9021</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">9021</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Tutorial</a>
         		</li>
       		
 		</ul>
@@ -2368,313 +2544,6 @@ One possible string t could be &quot;cdef&quot;, notice that t can be equal to s
 
 <!-- 文章页添加mathjax公式 -->
   
-    <article id="post-invisible/9021_TUT_3" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/671a7e4.html">9021_TUT_3_25T1</a>
-    </h2>
-  
-
-
-                
-                    <a href="/post/671a7e4.html" class="archive-article-date">
-  	<time datetime="2024-09-24T07:26:52.240Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2024-09-24</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-                
-
-                
-                    <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">2.2k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">13min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-                
-            </header>
-        
-
-        <div class="article-entry" itemprop="articleBody">
-            <!-- 添加分类与标签 -->
-            
-                
-                    <h1 id="Exercise-1"><a href="#Exercise-1" class="headerlink" title="Exercise 1"></a>Exercise 1</h1><h3 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description:"></a>Problem Description:</h3><p>You are given two integers, <code>m</code> and <code>n</code>, where:</p>
-<ul>
-<li><code>m</code> represents the number of repeated units (patterns).</li>
-<li><code>n</code> represents the number of elements (underscores) within each unit.</li>
-</ul>
-<p>The goal is to generate a string where:</p>
-<ul>
-<li>Each unit contains <code>n</code> underscores (_), separated by <code>|</code>.</li>
-<li>These units are then concatenated together, separated by <code>*</code>.</li>
-</ul>
-<h3 id="My-Solution"><a href="#My-Solution" class="headerlink" title="My Solution:"></a>My Solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">generate_struct</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;|&#x27;</span>.join(n * [<span class="string">&#x27;_&#x27;</span>])</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f1</span>(<span class="params">m, n</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27; * &#x27;</span>.join(m * [generate_struct(n)])</span><br></pre></td></tr></table></figure>
-
-<h4 id="My-Thought-Process"><a href="#My-Thought-Process" class="headerlink" title="My Thought Process:"></a>My Thought Process:</h4><p>I think of each unit as a separate structure. So, I decompose the problem by breaking down the smallest unit, which is the structure made of underscores joined by <code>|</code>.<br>After constructing each unit, I use <code>join()</code> to combine them together using <code>*</code>.</p>
-<h4 id="Helper-Function-generate-struct-n"><a href="#Helper-Function-generate-struct-n" class="headerlink" title="Helper Function generate_struct(n):"></a>Helper Function generate_struct(n):</h4><p>This function generates the basic structure.<br>It creates a list of underscores (<code>_</code>) of length n and joins them with <code>|</code>.<br>Example: If <code>n = 2</code>, the result will be “<code>_|_</code>“.</p>
-<h3 id="Standard-Solution"><a href="#Standard-Solution" class="headerlink" title="Standard Solution:"></a>Standard Solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f1</span>(<span class="params">m, n</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27; * &#x27;</span>.join(<span class="string">&#x27;|&#x27;</span>.join(<span class="string">&#x27;_&#x27;</span> <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n)) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(m))</span><br></pre></td></tr></table></figure>
-
-<h3 id="Concise-Expression"><a href="#Concise-Expression" class="headerlink" title="Concise Expression:"></a>Concise Expression:</h3><p>The inner <code>join</code> creates a string of <code>n</code> underscores joined by <code>|</code> using a generator expression <code>(&#39;_&#39; for _ in range(n))</code>.<br>The outer <code>join</code> repeats this process <code>m</code> times and concatenates the units using <code>*</code>.</p>
-<p>In summary, my solution focuses on modularity by breaking down the problem into smaller parts (like creating a structural unit), whereas the standard solution compresses everything into one line using list comprehensions.</p>
-<h1 id="Exercise-2"><a href="#Exercise-2" class="headerlink" title="Exercise 2"></a>Exercise 2</h1><h3 id="Problem-Description-1"><a href="#Problem-Description-1" class="headerlink" title="Problem Description:"></a>Problem Description:</h3><p>The goal is to generate a pattern based on the digits of a given number n. Specifically:</p>
-<p>If a digit is odd, it should be represented by a black square (⬛).<br>If a digit is even, it should be represented by a white square (⬜).<br>The program takes a number n as input and prints a string of squares corresponding to the digits of n.</p>
-<h3 id="My-Solution-1"><a href="#My-Solution-1" class="headerlink" title="My Solution:"></a>My Solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f2</span>(<span class="params">n</span>):</span><br><span class="line">    ans = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">str</span>(n):</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">int</span>(i) % <span class="number">2</span> == <span class="number">0</span>:</span><br><span class="line">            ans += <span class="string">&#x27;⬜&#x27;</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            ans += <span class="string">&#x27;⬛&#x27;</span></span><br><span class="line">    <span class="built_in">print</span>(ans)</span><br></pre></td></tr></table></figure>
-
-<h4 id="My-Thought-Process-1"><a href="#My-Thought-Process-1" class="headerlink" title="My Thought Process:"></a>My Thought Process:</h4><ol>
-<li><p>Loop through each digit:<br>Convert the number n to a string to iterate over each digit individually.</p>
-</li>
-<li><p>Check if the digit is even or odd:<br>Convert each digit back to an integer and use the modulus operator (% 2) to check if the digit is even or odd.</p>
-</li>
-<li><p>Append the corresponding square:</p>
-<ul>
-<li>If the digit is even, append a white square (⬜) to the result string.</li>
-<li>If the digit is odd, append a black square (⬛).</li>
-</ul>
-</li>
-<li><p>Print the final string:<br>After processing all the digits, print the final string containing black and white squares.</p>
-</li>
-</ol>
-<h3 id="Standard-Solution-1"><a href="#Standard-Solution-1" class="headerlink" title="Standard Solution:"></a>Standard Solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f2</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;&#x27;</span>.join(&#123;<span class="number">0</span>: <span class="string">&#x27;\u2b1c&#x27;</span>, <span class="number">1</span>: <span class="string">&#x27;\u2b1b&#x27;</span>&#125;[<span class="built_in">int</span>(d) % <span class="number">2</span>] <span class="keyword">for</span> d <span class="keyword">in</span> <span class="built_in">str</span>(n)))</span><br></pre></td></tr></table></figure>
-
-<p>Dr.Martin’s solution is:</p>
-<ol>
-<li>More compact and Pythonic.</li>
-<li>Uses a dictionary and list comprehension for brevity and efficiency.</li>
-<li>The Unicode characters for the squares are referenced directly using their escape sequences (<code>\u2b1c</code> for white, <code>\u2b1b</code> for black).</li>
-</ol>
-<h1 id="Exercise-3"><a href="#Exercise-3" class="headerlink" title="Exercise 3"></a>Exercise 3</h1><h3 id="Problem-Description-2"><a href="#Problem-Description-2" class="headerlink" title="Problem Description:"></a>Problem Description:</h3><p>In this task, the number <code>n</code> is treated as a number expressed in different bases (ranging from 2 to 10), and we aim to convert it into its corresponding base 10 value for each of these bases, where the conversion is valid.</p>
-<p>For n &#x3D; 2143:</p>
-<ul>
-<li><code>2143</code> in base <code>5</code> is equivalent to <code>298</code> in base <code>10</code>.</li>
-<li><code>2143</code> in base <code>6</code> is equivalent to <code>495</code> in base <code>10</code>.</li>
-<li>And so on.</li>
-</ul>
-<p>The goal is to iterate over different base systems from 2 to 10, treat the input number <code>n</code> as if it is expressed in each base, and then convert it to base 10.</p>
-<h3 id="My-Solution-2"><a href="#My-Solution-2" class="headerlink" title="My Solution:"></a>My Solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f3</span>(<span class="params">n: <span class="built_in">int</span></span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>, <span class="number">11</span>):</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="comment"># Treat n as a number in base i and convert it to base 10</span></span><br><span class="line">            value = <span class="built_in">int</span>(<span class="built_in">str</span>(n), i)</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&#x27;<span class="subst">&#123;n&#125;</span> is <span class="subst">&#123;value&#125;</span> in base <span class="subst">&#123;i&#125;</span>&#x27;</span>)</span><br><span class="line">        <span class="keyword">except</span> ValueError:</span><br><span class="line">            <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-<h4 id="My-Thought-Process-2"><a href="#My-Thought-Process-2" class="headerlink" title="My Thought Process:"></a>My Thought Process:</h4><ol>
-<li><p>Iterating over Bases (2 to 10):</p>
-<ul>
-<li>We loop through the base values i ranging from 2 to 10.</li>
-</ul>
-</li>
-<li><p>Conversion Using <code>int()</code>:</p>
-<ul>
-<li>For each base <code>i</code>, we treat the number <code>n</code> as a number in that base. To do this, we first convert <code>n</code> to a string (<code>str(n)</code>) and then use <code>int()</code> to interpret it as a base <code>i</code> number.</li>
-<li>If the digits of <code>n</code> are valid for base <code>i</code>, this conversion succeeds, and the result is the base 10 equivalent of <code>n</code>.</li>
-<li>If the digits of n are not valid for base i (for example, if base 2 is used and n contains digits greater than 1), a ValueError is raised, and we skip the invalid base.</li>
-</ul>
-</li>
-<li><p>Handling Errors with <code>try-except</code>:</p>
-<ul>
-<li>The <code>try-except</code> block ensures that invalid bases are skipped, allowing us to handle cases where the digits in <code>n</code> are not valid for a particular base.</li>
-</ul>
-</li>
-</ol>
-<h3 id="Standard-Solution-2"><a href="#Standard-Solution-2" class="headerlink" title="Standard Solution:"></a>Standard Solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f3</span>(<span class="params">n</span>):</span><br><span class="line">    n_as_string = <span class="built_in">str</span>(n)</span><br><span class="line">    min_base = <span class="built_in">max</span>(<span class="number">2</span>, <span class="built_in">max</span>(&#123;<span class="built_in">int</span>(d) <span class="keyword">for</span> d <span class="keyword">in</span> n_as_string&#125;) + <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">for</span> b <span class="keyword">in</span> <span class="built_in">range</span>(min_base, <span class="number">11</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;<span class="subst">&#123;n&#125;</span> is <span class="subst">&#123;<span class="built_in">int</span>(n_as_string, b)&#125;</span> in base <span class="subst">&#123;b&#125;</span>&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p>It skips the bases where the digits in n are not valid, and it uses a set comprehension to extract the unique digits from n_as_string. The maximum digit is then used to determine the minimum base to start iterating from.</p>
-<h1 id="Exercise-4"><a href="#Exercise-4" class="headerlink" title="Exercise 4"></a>Exercise 4</h1><h3 id="Problem-Description-3"><a href="#Problem-Description-3" class="headerlink" title="Problem Description:"></a>Problem Description:</h3><p>The task is to create a function <code>f4(n, base)</code> that returns a dictionary D, where:</p>
-<p>Keys are integers from <code>0</code> to <code>n</code>.<br>Values are tuples that represent the base <code>base</code> representation of each key, converted from base 10.</p>
-<h3 id="My-Solution-3"><a href="#My-Solution-3" class="headerlink" title="My Solution:"></a>My Solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">convert_to_base</span>(<span class="params">n, base</span>):</span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;0&#x27;</span></span><br><span class="line">    digits = []</span><br><span class="line">    <span class="keyword">while</span> n:</span><br><span class="line">        digits.append(<span class="built_in">str</span>(n % base))</span><br><span class="line">        n //= base</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>.join(digits[::-<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f4</span>(<span class="params">n: <span class="built_in">int</span>, base: <span class="built_in">int</span></span>):</span><br><span class="line">    D = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, n + <span class="number">1</span>):</span><br><span class="line">        D[i] = <span class="built_in">tuple</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, convert_to_base(i, base)))</span><br><span class="line">    <span class="keyword">return</span> D</span><br></pre></td></tr></table></figure>
-
-<h4 id="My-Thought-Process-3"><a href="#My-Thought-Process-3" class="headerlink" title="My Thought Process:"></a>My Thought Process:</h4><ol>
-<li><p>Helper Function <code>convert_to_base(n, base)</code>:</p>
-<ul>
-<li>This function converts a number <code>n</code> from base 10 to the specified base.</li>
-<li>We use a while loop to repeatedly take the modulus (<code>n % base</code>) and append the remainder to the list <code>digits</code>.</li>
-<li>We then divide <code>n</code> by <code>base</code> <code>(n //= base)</code> to reduce it for the next iteration.</li>
-<li>After collecting all digits, we reverse the list and return it as a string.</li>
-</ul>
-</li>
-<li><p>Main Function <code>f4(n, base)</code>:<br>We initialize an empty dictionary <code>D</code>.<br>For each number <code>i</code> from <code>0</code> to <code>n</code>, we convert <code>i</code> to the given base using <code>convert_to_base()</code>.<br>The converted base digits are then mapped to integers and stored in a tuple as the value for each key <code>i</code> in the dictionary.</p>
-</li>
-</ol>
-<h3 id="Explanation-of-Why-map-is-not-Pythonic"><a href="#Explanation-of-Why-map-is-not-Pythonic" class="headerlink" title="Explanation of Why map() is not Pythonic:"></a>Explanation of Why <code>map()</code> is not Pythonic:</h3><p>In the function f4, the use of <code>map(int, convert_to_base(i, base))</code> applies the <code>int</code> function<br>to each element of the result from <code>convert_to_base</code>, effectively converting each character to an integer.</p>
-<p>However, it’s worth noting that the <code>map()</code> function, which originates from functional programming,<br>has largely been superseded by more Pythonic constructs such as list comprehensions.</p>
-<p>These comprehensions are generally considered superior for several reasons:</p>
-<ul>
-<li>They are more elegant and concise.</li>
-<li>They tend to be shorter in terms of syntax, making the code easier to read.</li>
-<li>They are easier to understand for most people, especially those who are more familiar with Python’s<br>standard syntax rather than functional programming constructs.</li>
-<li>In many cases, they are also more efficient in terms of performance.</li>
-</ul>
-<p>For example, instead of using <code>map(int, ...)</code>, the same functionality could be achieved with a<br>list comprehension, like so:</p>
-<p>D[i] &#x3D; tuple([int(digit) for digit in convert_to_base(i, base)])</p>
-<p>This list comprehension achieves the same result but follows a more modern Pythonic style.</p>
-<h3 id="Standard-Solution-3"><a href="#Standard-Solution-3" class="headerlink" title="Standard Solution:"></a>Standard Solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f4</span>(<span class="params">n, base</span>):</span><br><span class="line">    D = &#123;<span class="number">0</span>: (<span class="number">0</span>,)&#125;</span><br><span class="line">    <span class="keyword">for</span> m <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n + <span class="number">1</span>):</span><br><span class="line">        digits = []</span><br><span class="line">        p = m</span><br><span class="line">        <span class="keyword">while</span> p:</span><br><span class="line">            digits.append(p % base)</span><br><span class="line">            p //= base</span><br><span class="line">        D[m] = <span class="built_in">tuple</span>(<span class="built_in">reversed</span>(digits))</span><br><span class="line">    <span class="keyword">return</span> D</span><br></pre></td></tr></table></figure>
-
-<p>Both solutions are valid and achieve the same result. My approach uses a helper function for base conversion, which adds modularity,<br>whereas the standard solution is more concise and directly integrates the conversion logic into the main function.</p>
-<h1 id="Exercise-5"><a href="#Exercise-5" class="headerlink" title="Exercise 5"></a>Exercise 5</h1><p>At the first, try to run this:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="number">0.1</span> + <span class="number">0.2</span>)</span><br></pre></td></tr></table></figure>
-<p>What happened? The result is not 0.3, but 0.30000000000000004. Why?</p>
-<h3 id="Problem-Description-4"><a href="#Problem-Description-4" class="headerlink" title="Problem Description:"></a>Problem Description:</h3><p>The approach we are using in this exercise is designed to expose the limitations of floating-point arithmetic in computers. Let’s break down why this approach leads to precision inaccuracies and why other methods might not reveal these issues as clearly.</p>
-<p>This problem can seem complex, and it’s designed to highlight the subtleties of floating-point arithmetic. Let’s walk through the logic using the test cases to figure out what the function does.</p>
-<h3 id="Key-Concepts"><a href="#Key-Concepts" class="headerlink" title="Key Concepts:"></a>Key Concepts:</h3><ul>
-<li><strong>Floating-point numbers</strong>: Computers store floating-point numbers using a binary format, which often introduces precision errors.</li>
-<li><strong>Precision</strong>: We’re working with two types of precision in this function—simple precision (same as the length of the fractional part) and double precision (twice that length).</li>
-</ul>
-<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution:"></a>Solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f5</span>(<span class="params">integral_part, fractional_part</span>):</span><br><span class="line">    <span class="comment"># Calculate the number of digits in the fractional part</span></span><br><span class="line">    precision = <span class="built_in">len</span>(<span class="built_in">str</span>(fractional_part))</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Concatenate the integral and fractional parts as strings, then convert to a float</span></span><br><span class="line">    a_float = <span class="built_in">float</span>(<span class="built_in">str</span>(integral_part) + <span class="string">&#x27;.&#x27;</span> + <span class="built_in">str</span>(fractional_part))</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Format the float with precision equal to the number of digits in the fractional part (simple precision)</span></span><br><span class="line">    simple_precision = <span class="string">f&#x27;<span class="subst">&#123;a_float:.&#123;precision&#125;</span>f&#125;&#x27;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Append a number of zeros equal to the fractional part length to the simple precision value (extended precision)</span></span><br><span class="line">    extended_simple_precision = simple_precision + <span class="string">&#x27;0&#x27;</span> * precision</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Format the float with precision equal to twice the number of fractional digits (double precision)</span></span><br><span class="line">    double_precision = <span class="string">f&#x27;<span class="subst">&#123;a_float:.&#123;precision * <span class="number">2</span>&#125;</span>f&#125;&#x27;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Print the first part of the output</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;With&#x27;</span>, precision * <span class="number">2</span>, <span class="string">&#x27;digits after the decimal point, &#x27;</span>, end=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Compare if extended precision and double precision values are the same</span></span><br><span class="line">    <span class="keyword">if</span> extended_simple_precision == double_precision:</span><br><span class="line">        <span class="comment"># If they are the same, it means the float is precise and has trailing zeros</span></span><br><span class="line">        <span class="built_in">print</span>(simple_precision, <span class="string">&#x27;prints out with&#x27;</span>, precision, <span class="string">&#x27;trailing&#x27;</span>,</span><br><span class="line">              precision == <span class="number">1</span> <span class="keyword">and</span> <span class="string">&#x27;zero,&#x27;</span> <span class="keyword">or</span> <span class="string">&#x27;zeroes,&#x27;</span>, <span class="string">&#x27;namely, as&#x27;</span>,</span><br><span class="line">              extended_simple_precision</span><br><span class="line">             )</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="comment"># If not, there is a precision error, and no trailing zeros</span></span><br><span class="line">        <span class="built_in">print</span>(simple_precision, <span class="string">&#x27;prints out as&#x27;</span>, double_precision)</span><br></pre></td></tr></table></figure>
-
-<p>Our function attempts to check and display this floating point error with simple precision (<code>simple_precision</code>) and double precision (<code>double_precision</code>). The error becomes more obvious when we represent floating point numbers with higher precision (double the number of decimal places). So in this way, we show that floating point numbers are not always actually stored as we expect them to be with more precise representation.</p>
-<h1 id="Exercise-6"><a href="#Exercise-6" class="headerlink" title="Exercise 6"></a>Exercise 6</h1><h3 id="Problem-Description-5"><a href="#Problem-Description-5" class="headerlink" title="Problem Description:"></a>Problem Description:</h3><p>In this task, we are given:</p>
-<ul>
-<li>A list <code>L</code>, which contains multiple sub-lists of integers, and all sub-lists have the same length <code>n</code>.</li>
-<li>A list <code>fields</code>, which is a permutation of <code>&#123;1, ..., n&#125;</code>.</li>
-</ul>
-<p>We are required to sort the list L by using a multi-key sorting mechanism, where:</p>
-<ul>
-<li>First, the elements in <code>L</code> are sorted based on the position given by the first element of <code>fields</code>.</li>
-<li>If two sub-lists are equal based on the first field, we move to the second field, and so on.</li>
-<li>Finally, if required, the sorting proceeds up to the last field in <code>fields</code>.</li>
-</ul>
-<h3 id="Example-of-Fields-Explanation"><a href="#Example-of-Fields-Explanation" class="headerlink" title="Example of Fields Explanation:"></a>Example of Fields Explanation:</h3><p>If <code>fields = [2, 1]</code>, it means:</p>
-<ol>
-<li>First, sort based on the second element of each sublist.</li>
-<li>If there are ties (same values in the second position), sort based on the first element.</li>
-</ol>
-<h3 id="My-Solution-4"><a href="#My-Solution-4" class="headerlink" title="My Solution:"></a>My Solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f6</span>(<span class="params">L, fields</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">sorted</span>(L, key=<span class="keyword">lambda</span> x: [x[i-<span class="number">1</span>] <span class="keyword">for</span> i <span class="keyword">in</span> fields])</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li><p>Sorting with sorted():<br>The <code>sorted()</code> function is used to sort the list <code>L</code>.<br>The key parameter defines how the sorting will be performed.</p>
-</li>
-<li><p>Lambda Function:<br>The lambda function defines how the sublists will be sorted. It generates a list of values for each sublist based on the positions specified in <code>fields</code>.<br>For example, if <code>fields = [2, 1]</code>, the lambda function will extract the second and first elements from each sublist in that order, and sorting will be done based on this new list.</p>
-</li>
-<li><p>Key Structure:<br>The key is a list of elements from each sublist, indexed by the positions specified in fields. We use <code>x[i - 1]</code> because fields is <code>1-based</code>, and list indexing in Python is <code>0-based</code>.</p>
-</li>
-<li><p>What is Lambda Function?</p>
-</li>
-</ol>
-<p>For example:</p>
-<p>We have:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f = <span class="keyword">lambda</span> x: x * x</span><br></pre></td></tr></table></figure>
-
-<p>This is equivalent to:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> x * x</span><br></pre></td></tr></table></figure>
-
-<p>And lambda function in a sorted function is used to define a custom sorting key.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">L = [(<span class="number">1</span>,<span class="number">2</span>), (<span class="number">3</span>,<span class="number">1</span>), (<span class="number">5</span>,<span class="number">0</span>)]</span><br><span class="line"></span><br><span class="line">SortedL = <span class="built_in">sorted</span>(L, key=<span class="keyword">lambda</span> x: x[<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(SortedL)</span><br></pre></td></tr></table></figure>
-<p>The result is: <code>[(5, 0), (3, 1), (1, 2)]</code>, it sorts the list based on the second element of each tuple.</p>
-<h3 id="Standard-Solution-4"><a href="#Standard-Solution-4" class="headerlink" title="Standard Solution:"></a>Standard Solution:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f6</span>(<span class="params">L, fields</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">sorted</span>(L, key=<span class="keyword">lambda</span> x: <span class="built_in">tuple</span>(x[i - <span class="number">1</span>] <span class="keyword">for</span> i <span class="keyword">in</span> fields))</span><br></pre></td></tr></table></figure>
-
-<p><strong>Why Use a Tuple?</strong>:</p>
-<ul>
-<li>Tuples are often preferred for multi-key sorting because they are immutable, and Python’s built-in sorting functions can efficiently compare tuples.</li>
-<li>Each sublist is transformed into a tuple of its elements based on the order defined by fields. The sorted() function then uses these tuples to sort the list.</li>
-</ul>
-
-                
-            
-
-            <!-- 添加打赏 -->
-            
-
-            <!-- 添加版权声明 -->
-            
-
-        </div>
-
-        <!-- 添加置顶 -->
-        <div class="article-info article-info-index">
-            
-
-            <!-- 分类页 -->
-            
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">9021</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">lab</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-            
-
-            <!-- 添加展开全文 -->
-            
-                <p class="article-more-link">
-                    <a class="article-more-a" href="/post/671a7e4.html">show all >></a>
-                </p>
-            
-
-            <!-- 添加分享 -->
-            
-
-            <div class="clearfix"></div>
-
-        </div>
-    </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-    
-
-<!-- 文章页添加mathjax公式 -->
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&lt;&lt; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/3/">下一页 &gt;&gt;</a>
@@ -2729,10 +2598,10 @@ window.MathJax = {
 	  <br>
 	  <div class="footer-center">
 	    <i class="fa fa-file-word-o" aria-hidden="true"></i>
-		<span> 126 篇</span>
+		<span> 127 篇</span>
 		<span class="post-meta-divider">|</span>
 		<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-		<span> <span class="post-count">64.4k</span></span>
+		<span> <span class="post-count">64.8k</span></span>
       </div>
 	  
 	  <!-- 添加不蒜子统计 -->
