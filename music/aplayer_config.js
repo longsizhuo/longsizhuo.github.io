@@ -2,7 +2,7 @@ const ap = new APlayer({
     container: document.getElementById('aplayer'),
 	// mini: false,
     fixed: true,//吸底模式
-    autoplay: true,//默认是否自动播放
+    autoplay: false,//默认是否自动播放
 	//theme: '#0088cc',
     loop: 'all',
     order: 'random',

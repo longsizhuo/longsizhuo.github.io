@@ -77,7 +77,7 @@ var _hmt = _hmt || [];
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/node-tikzjax@latest/css/fonts.css" /><style>.tikzjax { display: block; text-align: center; user-select: none; }</style></head>
 <body>
 
 <div id="container" q-class="show:isCtnShow">
@@ -294,6 +294,308 @@ var _hmt = _hmt || [];
         <div id="js-content" class="content-ll">
           
   
+    <article id="post-2315统计星号_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/dc8d7590.html">2315. Statistical star number One question daily</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/dc8d7590.html" class="archive-article-date">
+  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2024-01-01</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">119字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">1min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <p><img src="/../assets/img/2023-01-29.png" alt="2023-01-29.png"><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/count-asterisks/description/">2315. Statistical star number</a></p>
+<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>mine：The simple version of the simple out of the stack into the stack<br>@ylq：right<code>|</code>Number count，The number is2Perform the multiple<code>*</code>Count</p>
+<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><figcaption><span>Out of the stack into the stack</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">countAsterisks</span>(<span class="params">self, s: <span class="built_in">str</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        stack = <span class="literal">True</span></span><br><span class="line">        flag = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> s:</span><br><span class="line">            <span class="keyword">if</span> stack:</span><br><span class="line">                <span class="keyword">if</span> i == <span class="string">&#x27;*&#x27;</span>:</span><br><span class="line">                    flag += <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> i == <span class="string">&#x27;|&#x27;</span> <span class="keyword">and</span> stack:</span><br><span class="line">                stack = <span class="literal">False</span></span><br><span class="line">            <span class="keyword">elif</span> i == <span class="string">&#x27;|&#x27;</span> <span class="keyword">and</span> <span class="keyword">not</span> stack:</span><br><span class="line">                stack = <span class="literal">True</span></span><br><span class="line">        <span class="keyword">return</span> flag</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><figcaption><span>ylq</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">countAsterisks</span>(<span class="params">self, s: <span class="built_in">str</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        count1, count2 = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(s)):</span><br><span class="line">            <span class="keyword">if</span> s[i] == <span class="string">&#x27;|&#x27;</span>:</span><br><span class="line">                count1 += <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> count1 % <span class="number">2</span> == <span class="number">0</span> <span class="keyword">and</span> s[i] == <span class="string">&#x27;*&#x27;</span>:</span><br><span class="line">                count2 += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> count2</span><br></pre></td></tr></table></figure>
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+
+            <!-- 分类页 -->
+            
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">One question daily</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/dc8d7590.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
+    <article id="post-2319判断矩阵是否是一个 X 矩阵_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/f7c5db77.html">2319Determine whether the matrix is ​​one X matrix One question daily</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/f7c5db77.html" class="archive-article-date">
+  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2024-01-01</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">141字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">1min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><img src="/../assets/img/2023-01-31%20(2).png" alt="2023-01-31 (2).png"><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/check-if-matrix-is-x-matrix/">2319. Determine whether the matrix is ​​one X matrix</a></p>
+<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>GolangPure violence，PythonLearn Spirit God<br>The downward bidding on the main diagonal needs to be satisfied：i&#x3D;j<br>Opposition to the corner line is satisfied：i+j&#x3D;n−1</p>
+<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">checkXMatrix</span>(<span class="params">self, grid: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">all</span>(</span><br><span class="line">            (v != <span class="number">0</span>) == (i == j <span class="keyword">or</span> i + j == <span class="built_in">len</span>(grid) - <span class="number">1</span>) <span class="keyword">for</span> i, row <span class="keyword">in</span> <span class="built_in">enumerate</span>(grid) <span class="keyword">for</span> j, v <span class="keyword">in</span> <span class="built_in">enumerate</span>(row))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">checkXMatrix</span><span class="params">(grid [][]<span class="type">int</span>)</span></span> <span class="type">bool</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(grid); i++ &#123;</span><br><span class="line">        <span class="keyword">for</span> j := <span class="number">0</span>; j &lt; <span class="built_in">len</span>(grid[i]); j++ &#123;</span><br><span class="line">		<span class="comment">//Two numbers in the first line</span></span><br><span class="line">			<span class="keyword">if</span> (i == j) || (i+j == <span class="built_in">len</span>(grid)<span class="number">-1</span>) &#123;</span><br><span class="line">				<span class="keyword">if</span> grid[i][j] == <span class="number">0</span> &#123;</span><br><span class="line">					<span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">				&#125;</span><br><span class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> grid[i][j] != <span class="number">0</span> &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+
+            <!-- 分类页 -->
+            
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/f7c5db77.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
     <article id="post-2325解密消息_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -459,20 +761,20 @@ var _hmt = _hmt || [];
 
 <!-- 文章页添加mathjax公式 -->
   
-    <article id="post-2998. 使 X 和 Y 相等的最少操作次数_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-2331计算布尔二叉树的值_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
   
     <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/5ee4164.html">2998. make X and Y Equal number of operations</a>
+      <a class="article-title_code_ant" href="/post/a564ea0e.html">2331Calculate the value of the Boolean binary tree One question daily</a>
     </h2>
   
 
 
                 
-                    <a href="/post/5ee4164.html" class="archive-article-date">
+                    <a href="/post/a564ea0e.html" class="archive-article-date">
   	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
 	<!-- <i class="icon-calendar icon"></i> -->
 
@@ -504,7 +806,7 @@ var _hmt = _hmt || [];
 	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
         <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
         <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">204字</span>
+        <span class="post-count">170字</span>
       </span>
     </span>
 
@@ -528,1142 +830,10 @@ var _hmt = _hmt || [];
             <!-- 添加分类与标签 -->
             
                 
-                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><img src="/../assets/img/%E6%88%AA%E5%B1%8F2024-01-10%20%E4%B8%8B%E5%8D%885.12.21.png" alt="screenshot2024-01-10 afternoon5.12.21.png"></p>
-<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>We will first x andNumber of operations 0 Put in a queue。Then，我们不断地从队列中取出当前的值andNumber of operations，Check whether the target value has reached the target value y。<br>if there is not，We will perform possible operation for this value，并将新值andNumber of operations加入队列中，Until finding the shortest path。</p>
-<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minimumOperationsToMakeEqual</span>(<span class="params">self, x: <span class="built_in">int</span>, y: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="comment"># make用队列来进行Priority search</span></span><br><span class="line">        queue = deque([(x, <span class="number">0</span>)])  <span class="comment"># (The current value, Number of operations)</span></span><br><span class="line">        visited = <span class="built_in">set</span>()  <span class="comment"># Used to record the values ​​that have been accessed，Avoid repeated treatment</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> queue:</span><br><span class="line">            current, steps = queue.popleft()</span><br><span class="line">            <span class="keyword">if</span> current == y:</span><br><span class="line">                <span class="keyword">return</span> steps</span><br><span class="line">            visited.add(current)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># Explore four operations</span></span><br><span class="line">            <span class="keyword">if</span> current % <span class="number">11</span> == <span class="number">0</span> <span class="keyword">and</span> current // <span class="number">11</span> <span class="keyword">not</span> <span class="keyword">in</span> visited:</span><br><span class="line">                queue.append((current // <span class="number">11</span>, steps + <span class="number">1</span>))</span><br><span class="line">            <span class="keyword">if</span> current % <span class="number">5</span> == <span class="number">0</span> <span class="keyword">and</span> current // <span class="number">5</span> <span class="keyword">not</span> <span class="keyword">in</span> visited:</span><br><span class="line">                queue.append((current // <span class="number">5</span>, steps + <span class="number">1</span>))</span><br><span class="line">            <span class="keyword">if</span> current - <span class="number">1</span> <span class="keyword">not</span> <span class="keyword">in</span> visited:</span><br><span class="line">                queue.append((current - <span class="number">1</span>, steps + <span class="number">1</span>))</span><br><span class="line">            <span class="keyword">if</span> current + <span class="number">1</span> <span class="keyword">not</span> <span class="keyword">in</span> visited:</span><br><span class="line">                queue.append((current + <span class="number">1</span>, steps + <span class="number">1</span>))</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>  <span class="comment"># 如果无法make x and y equal，Then return -1</span></span><br></pre></td></tr></table></figure>
-                
-            
-
-            <!-- 添加打赏 -->
-            
-
-            <!-- 添加版权声明 -->
-            
-
-        </div>
-
-        <!-- 添加置顶 -->
-        <div class="article-info article-info-index">
-            
-
-            <!-- 分类页 -->
-            
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Dynamic planning</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Priority search</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Memory search</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-            
-
-            <!-- 添加展开全文 -->
-            
-                <p class="article-more-link">
-                    <a class="article-more-a" href="/post/5ee4164.html">show all >></a>
-                </p>
-            
-
-            <!-- 添加分享 -->
-            
-
-            <div class="clearfix"></div>
-
-        </div>
-    </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-    
-
-<!-- 文章页添加mathjax公式 -->
-  
-    <article id="post-2997. 使数组异或和等于 K 的最少操作次数_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/3109a910.html">2997. Make an array or harmony K The minimum number of operations</a>
-    </h2>
-  
-
-
-                
-                    <a href="/post/3109a910.html" class="archive-article-date">
-  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2024-01-01</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-                
-
-                
-                    <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">251字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">1min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-                
-            </header>
-        
-
-        <div class="article-entry" itemprop="articleBody">
-            <!-- 添加分类与标签 -->
-            
-                
-                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><img src="/../assets/img/%E6%88%AA%E5%B1%8F2024-01-10%20%E4%B8%8B%E5%8D%884.17.31.png" alt="screenshot2024-01-10 afternoon4.17.31.png"></p>
-<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><ol>
-<li>firstBit operation有三个特性：<ol>
-<li>Any number and0Different or operational，The result is still the original number，Right now a XOR 0 &#x3D; a。</li>
-<li>Any number and自身Different or operational，turn out0，Right now a XOR a &#x3D; 0。</li>
-<li>Different or operations meet the law of exchange and binding。</li>
-</ol>
-</li>
-</ol>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = 0b1001</span><br><span class="line">b = 0b0110</span><br><span class="line">bin(a ^ b)</span><br><span class="line"></span><br><span class="line">&#x27;0b1111&#x27;</span><br></pre></td></tr></table></figure>
-<p>first，We need to calculate the array nums All elements of all elements，Be remembered xor_sum。Our goal is to make some positions to make xor_sum equal k。</p>
-<p>then，We can consider xor_sum XOR k the result of。Due to the characteristics of different or computing，The difference in any position will cause the bit in the result to be1。this means，We need to change xor_sum and k All different places in binary representation。</p>
-<p>if xor_sum &#x3D; 1010，k &#x3D; 0011，So xor_sum XOR k &#x3D; 1001。We need to change第一位and第四位来让 xor_sum become k。</p>
-<p>That is <code>numsHeterogeneity</code>and <code>k</code>Value, in1The number is the number that needs to be converted。can watch0x3fSolution</p>
-<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><figcaption><span>I am</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minOperations</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], k: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        xor_sum = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">            xor_sum ^= num</span><br><span class="line"></span><br><span class="line">        xor_diff = xor_sum ^ k</span><br><span class="line">        operations = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># Calculate the digits that need to be changed</span></span><br><span class="line">        <span class="keyword">while</span> xor_diff:</span><br><span class="line">            operations += xor_diff &amp; <span class="number">1</span></span><br><span class="line">            xor_diff &gt;&gt;= <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> operations</span><br></pre></td></tr></table></figure>
-<figure class="highlight golang"><figcaption><span>0x3f</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">minOperations</span><span class="params">(nums []<span class="type">int</span>, k <span class="type">int</span>)</span></span> <span class="type">int</span> &#123;</span><br><span class="line">	<span class="keyword">for</span> _, x := <span class="keyword">range</span> nums &#123;</span><br><span class="line">		k ^= x</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> bits.OnesCount(<span class="type">uint</span>(k))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-                
-            
-
-            <!-- 添加打赏 -->
-            
-
-            <!-- 添加版权声明 -->
-            
-
-        </div>
-
-        <!-- 添加置顶 -->
-        <div class="article-info article-info-index">
-            
-
-            <!-- 分类页 -->
-            
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">solved</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Bit operation</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-            
-
-            <!-- 添加展开全文 -->
-            
-                <p class="article-more-link">
-                    <a class="article-more-a" href="/post/3109a910.html">show all >></a>
-                </p>
-            
-
-            <!-- 添加分享 -->
-            
-
-            <div class="clearfix"></div>
-
-        </div>
-    </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-    
-
-<!-- 文章页添加mathjax公式 -->
-  
-    <article id="post-3072. 将元素分配到两个数组中 II_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/48a38683.html">3072. Allocate elements into two arrays II</a>
-    </h2>
-  
-
-
-                
-                    <a href="/post/48a38683.html" class="archive-article-date">
-  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2024-01-01</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-                
-
-                
-                    <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">778字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">4min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-                
-            </header>
-        
-
-        <div class="article-entry" itemprop="articleBody">
-            <!-- 添加分类与标签 -->
-            
-                
-                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><img src="/img_4.png" alt="img_4.png"><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/distribute-elements-into-two-arrays-ii/description/?envType=daily-question&envId=2024-06-05">3072. Allocate elements into two arrays II.md</a><br>“””</p>
-<p>Give you a bidding <strong>1</strong> start、Length <code>n</code> 的整数Array <code>nums</code> 。</p>
-
-<p>Now define function <code>greaterCount</code> ，Make <code>greaterCount(arr, val)</code> 返回Array <code>arr</code> middle<strong> Strict</strong> <code>val</code> Number of elements。</p>
-
-<p>You need to use <code>n</code> Secondary operation，Will <code>nums</code> 的所有元素分配到两个Array <code>arr1</code> and <code>arr2</code> middle。In the first place一Secondary operationmiddle，Will <code>nums[1]</code> Add <code>arr1</code> 。In the first place二Secondary operationmiddle，Will <code>nums[2]</code> Add <code>arr2</code> 。after，In the first place <code>i</code> Secondary operationmiddle：</p>
-
-<ul> 
- <li>if <code>greaterCount(arr1, nums[i]) &gt; greaterCount(arr2, nums[i])</code> ，Will <code>nums[i]</code> Add <code>arr1</code> 。</li> 
- <li>if <code>greaterCount(arr1, nums[i]) &lt; greaterCount(arr2, nums[i])</code> ，Will <code>nums[i]</code> Add <code>arr2</code> 。</li> 
- <li>if <code>greaterCount(arr1, nums[i]) == greaterCount(arr2, nums[i])</code> ，Will <code>nums[i]</code> Add元素数量较少的Arraymiddle。</li> 
- <li>if仍然相等，SoWill <code>nums[i]</code> Add <code>arr1</code> 。</li> 
-</ul>
-
-<p>连接Array <code>arr1</code> and <code>arr2</code> 形成Array <code>result</code> 。For example，if <code>arr1 == [1,2,3]</code> and <code>arr2 == [4,5,6]</code> ，So <code>result = [1,2,3,4,5,6]</code> 。</p>
-
-<p>返回整数Array <code>result</code> 。</p>
-
-<p>&nbsp;</p>
-
-<p><strong class="example">Exemplary example 1：</strong></p>
-
-<pre>
-<strong>enter：</strong>nums = [2,1,3,3]
-<strong>Output：</strong>[2,3,1,3]
-<strong>explain：</strong>exist前两Secondary operation后，arr1 = [2] ，arr2 = [1] 。
-In the first place 3 Secondary operationmiddle，两个Arraymiddle大于 3 Number of elements都yes零，并and长度相等，therefore，Will nums[3] Add arr1 。
-In the first place 4 Secondary operationmiddle，两个Arraymiddle大于 3 Number of elements都yes零，but arr2 Small length，therefore，Will nums[4] Add arr2 。
-exist 4 Secondary operation后，arr1 = [2,3] ，arr2 = [1,3] 。
-therefore，连接形成的Array result yes [2,3,1,3] 。
-</pre>
-
-<p><strong class="example">Exemplary example 2：</strong></p>
-
-<pre>
-<strong>enter：</strong>nums = [5,14,3,1,2]
-<strong>Output：</strong>[5,3,1,2,14]
-<strong>explain：</strong>exist前两Secondary operation后，arr1 = [5] ，arr2 = [14] 。
-In the first place 3 Secondary operationmiddle，两个Arraymiddle大于 3 Number of elements都yes一，并and长度相等，therefore，Will nums[3] Add arr1 。
-In the first place 4 Secondary operationmiddle，arr1 middle大于 1 Number of elements大于 arr2 middle的数量（2 &gt; 1），therefore，Will nums[4] Add arr1 。
-In the first place 5 Secondary operationmiddle，arr1 middle大于 2 Number of elements大于 arr2 middle的数量（2 &gt; 1），therefore，Will nums[5] Add arr1 。
-exist 5 Secondary operation后，arr1 = [5,3,1,2] ，arr2 = [14] 。
-therefore，连接形成的Array result yes [5,3,1,2,14] 。
-</pre>
-
-<p><strong class="example">Exemplary example 3：</strong></p>
-
-<pre>
-<strong>enter：</strong>nums = [3,3,3,3]
-<strong>Output：</strong>[3,3,3,3]
-<strong>explain：</strong>exist 4 Secondary operation后，arr1 = [3,3] ，arr2 = [3,3] 。
-therefore，连接形成的Array result yes [3,3,3,3] 。
-</pre>
-
-<p>&nbsp;</p>
-
-<p><strong>hint：</strong></p>
-
-<ul> 
- <li><code>3 &lt;= n &lt;= 10<sup>5</sup></code></li> 
- <li><code>1 &lt;= nums[i] &lt;= 10<sup>9</sup></code></li> 
-</ul>
-
-<div><div>Related Topics</div><div><li>Tree array</li><li>Thread tree</li><li>Array</li><li>simulation</li></div></div><br><div><li>👍 38</li><li>👎 0</li></div>
-"""
-
-<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><ol>
-<li><p>initialization：<br>首先Will nums Array反转，以便我们可以从最后一个元素start处理。这一步exist最初与学长@Angro beatICPCI learned，<code>pop()</code> Compare <code>pop(0)</code> It is much faster。<br>Will反转后的第一个元素分配给 arr1 and temp1，The second element is allocated to arr2 and temp2。</p>
-</li>
-<li><p>Iteration processing each element：<br>use while Traversal nums Array的剩余元素。<br>For each element，use bisect.bisect_right exist arr1 and arr2 middle找到Compare当前元素小的元素的数量。<br>Re -uselen(arr1)andlen(arr2)Minus this quantity，得到Compare当前元素大的元素的数量。<br>然后进行Compare较To。 为了use二分查找，therefore我们要保证 arr1 and arr2 yes有序的， Pythonmiddleuse <code>insort()</code> To。<br>but同时我们要维持一个答案Array，thereforeappendTo。</p>
-</li>
-<li><p>Merge answer</p>
-</li>
-</ol>
-<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> bisect</span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">List</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">resultArray</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        nums = nums[::-<span class="number">1</span>]</span><br><span class="line">        temp = nums.pop()</span><br><span class="line">        arr1 = [temp]</span><br><span class="line">        temp1 = [temp]</span><br><span class="line">        temp = nums.pop()</span><br><span class="line">        arr2 = [temp]</span><br><span class="line">        temp2 = [temp]</span><br><span class="line">        <span class="keyword">while</span> nums:</span><br><span class="line">            temp = nums.pop()</span><br><span class="line">            <span class="comment"># [28] [2]</span></span><br><span class="line">            index1 = bisect.bisect_right(arr1, temp)</span><br><span class="line">            index2 = bisect.bisect_right(arr2, temp)</span><br><span class="line">            length_1 = <span class="built_in">len</span>(arr1) - index1</span><br><span class="line">            length_2 = <span class="built_in">len</span>(arr2) - index2</span><br><span class="line">            <span class="keyword">if</span> length_1 &gt; length_2:</span><br><span class="line">                bisect.insort(arr1, temp)</span><br><span class="line">                temp1.append(temp)</span><br><span class="line">            <span class="keyword">elif</span> length_1 &lt; length_2:</span><br><span class="line">                bisect.insort(arr2, temp)</span><br><span class="line">                temp2.append(temp)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">if</span> <span class="built_in">len</span>(arr1) &gt; <span class="built_in">len</span>(arr2):</span><br><span class="line">                    bisect.insort(arr2, temp)</span><br><span class="line">                    temp2.append(temp)</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    bisect.insort(arr1, temp)</span><br><span class="line">                    temp1.append(temp)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> temp1 + temp2</span><br></pre></td></tr></table></figure>
-                
-            
-
-            <!-- 添加打赏 -->
-            
-
-            <!-- 添加版权声明 -->
-            
-
-        </div>
-
-        <!-- 添加置顶 -->
-        <div class="article-info article-info-index">
-            
-
-            <!-- 分类页 -->
-            
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">simulation</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Tree array</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Thread tree</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-            
-
-            <!-- 添加展开全文 -->
-            
-                <p class="article-more-link">
-                    <a class="article-more-a" href="/post/48a38683.html">show all >></a>
-                </p>
-            
-
-            <!-- 添加分享 -->
-            
-
-            <div class="clearfix"></div>
-
-        </div>
-    </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-    
-
-<!-- 文章页添加mathjax公式 -->
-  
-    <article id="post-350两个数组的交集_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/616577aa.html">350.The intersection of two array</a>
-    </h2>
-  
-
-
-                
-                    <a href="/post/616577aa.html" class="archive-article-date">
-  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2024-01-01</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-                
-
-                
-                    <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">362字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">2min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-                
-            </header>
-        
-
-        <div class="article-entry" itemprop="articleBody">
-            <!-- 添加分类与标签 -->
-            
-                
-                    <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">350. The intersection of two array II</span><br><span class="line">Simple</span><br><span class="line">883</span><br><span class="line">company</span><br><span class="line">Amazon</span><br><span class="line">company</span><br><span class="line">Byte beating</span><br><span class="line">company</span><br><span class="line">Facebook</span><br><span class="line">Give you two integer arrays nums1 and nums2 ，Please return the intersection of two arrays in the form of an array。The number of times each element in the return result，It should be consistent with the number of times the elements appear in both arrays（If the number of times is inconsistent，Then consider taking the smaller value）。You can consider the order of the output result。</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">Exemplary example 1：</span><br><span class="line"></span><br><span class="line">enter：nums1 = [1,2,2,1], nums2 = [2,2]</span><br><span class="line">Output：[2,2]</span><br><span class="line">Exemplary example 2:</span><br><span class="line"></span><br><span class="line">enter：nums1 = [4,9,5], nums2 = [9,4,9,8,4]</span><br><span class="line">Output：[4,9]</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">hint：</span><br><span class="line"></span><br><span class="line">1 &lt;= nums1.length, nums2.length &lt;= 1000</span><br><span class="line">0 &lt;= nums1[i], nums2[i] &lt;= 1000</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">Advance：</span><br><span class="line"></span><br><span class="line">If the given array has been arranged, the order is good？How will you optimize your algorithm？</span><br><span class="line">if nums1 Size ratio nums2 Small，Which method is better？</span><br><span class="line">if nums2 The elements are stored on the disk，Memory is limited，And you can&#x27;t load all elements at one time to memory，what should you do？</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p><img src="/../assets/img/350_fig1.gif" alt="350_fig1.gif"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">containsNearbyDuplicate</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], k: <span class="built_in">int</span></span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        hash_1 = &#123;&#125;</span><br><span class="line">        hash_2 = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> index, i <span class="keyword">in</span> <span class="built_in">enumerate</span>(nums):</span><br><span class="line">            <span class="keyword">if</span> i <span class="keyword">not</span> <span class="keyword">in</span> hash_1:</span><br><span class="line">                hash_1[i] = <span class="number">1</span></span><br><span class="line">                hash_2[i] = [index]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                hash_1[i] += <span class="number">1</span></span><br><span class="line">                hash_2[i].append(index)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> hash_1:</span><br><span class="line">            <span class="keyword">if</span> hash_1[i] &gt;= <span class="number">2</span>:</span><br><span class="line">                <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(hash_2[i])):</span><br><span class="line">                    <span class="keyword">for</span> m <span class="keyword">in</span> <span class="built_in">range</span>(j + <span class="number">1</span>, <span class="built_in">len</span>(hash_2[i])):</span><br><span class="line">                        <span class="keyword">if</span> <span class="built_in">abs</span>(hash_2[i][j] - hash_2[i][m]) &lt;= k:</span><br><span class="line">                            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># Sort out the meaning：Whether the existence does not exceed k+1k + 1k+1 window，window内有相同元素。</span><br><span class="line">class Solution:</span><br><span class="line">    def containsNearbyDuplicate(self, nums: List[int], k: int) -&gt; bool:</span><br><span class="line">        n = len(nums)</span><br><span class="line">        s = set()</span><br><span class="line">        for i in range(n):</span><br><span class="line">            if i &gt; k:</span><br><span class="line">                s.remove(nums[i - k - 1])</span><br><span class="line">            if nums[i] in s:</span><br><span class="line">                return True</span><br><span class="line">            s.add(nums[i])</span><br><span class="line">        return False</span><br></pre></td></tr></table></figure>
-<p>&amp;&amp;Operate</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">intersect</span>(<span class="params">self, nums1: <span class="type">List</span>[<span class="built_in">int</span>], nums2: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        num1 = collections.Counter(nums1)</span><br><span class="line">        num2 = collections.Counter(nums2)</span><br><span class="line">        num = num1 &amp; num2</span><br><span class="line">        <span class="keyword">return</span> num.elements()</span><br></pre></td></tr></table></figure>
-                
-            
-
-            <!-- 添加打赏 -->
-            
-
-            <!-- 添加版权声明 -->
-            
-
-        </div>
-
-        <!-- 添加置顶 -->
-        <div class="article-info article-info-index">
-            
-
-            <!-- 分类页 -->
-            
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Hash table</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Double pointer</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">solved</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-            
-
-            <!-- 添加展开全文 -->
-            
-                <p class="article-more-link">
-                    <a class="article-more-a" href="/post/616577aa.html">show all >></a>
-                </p>
-            
-
-            <!-- 添加分享 -->
-            
-
-            <div class="clearfix"></div>
-
-        </div>
-    </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-    
-
-<!-- 文章页添加mathjax公式 -->
-  
-    <article id="post-345. 反转字符串中的元音字母_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/1c57c22c.html">345. Voice letter in the reverse string</a>
-    </h2>
-  
-
-
-                
-                    <a href="/post/1c57c22c.html" class="archive-article-date">
-  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2024-01-01</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-                
-
-                
-                    <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">175字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">1min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-                
-            </header>
-        
-
-        <div class="article-entry" itemprop="articleBody">
-            <!-- 添加分类与标签 -->
-            
-                
-                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><img src="/../assets/img/2023-03-13%20(1).png" alt="2023-03-13 (1).png"><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/reverse-vowels-of-a-string/description/">345. Voice letter in the reverse string.md</a></p>
-<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>Write two methods，Watch the reminder of the three leaves of the palace water，Can be made with dual pointers，See if both the elements of both ends are vowel letters。 Improved two editions。</p>
-<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><figcaption><span>Double pointer</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseVowels</span>(<span class="params">self, s: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        vowels = <span class="string">&#x27;aeiouAEIOU&#x27;</span></span><br><span class="line">        start = <span class="number">0</span></span><br><span class="line">        end = <span class="built_in">len</span>(s) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> start &lt; end:</span><br><span class="line">            <span class="keyword">while</span> s[end] <span class="keyword">not</span> <span class="keyword">in</span> vowels <span class="keyword">and</span> start &lt; end:</span><br><span class="line">                end -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">while</span> s[start] <span class="keyword">not</span> <span class="keyword">in</span> vowels <span class="keyword">and</span> start &lt; end:</span><br><span class="line">                start += <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> s[start] <span class="keyword">in</span> vowels <span class="keyword">and</span> s[end] <span class="keyword">in</span> vowels:</span><br><span class="line">                s[start], s[end] = s[end], s[start]</span><br><span class="line">                start += <span class="number">1</span></span><br><span class="line">                end -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>.join(s)</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><figcaption><span>String operation</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseVowels</span>(<span class="params">self, s: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        s = <span class="built_in">list</span>(s)</span><br><span class="line">        vowels = <span class="string">&#x27;aeiouAEIOU&#x27;</span></span><br><span class="line">        ans = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> s:</span><br><span class="line">            <span class="keyword">if</span> i <span class="keyword">in</span> vowels:</span><br><span class="line">                ans.append(i)</span><br><span class="line">        a = <span class="string">&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(s)):</span><br><span class="line">            <span class="keyword">if</span> s[i] <span class="keyword">in</span> vowels:</span><br><span class="line">                a += ans.pop()</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                a += s[i]</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>.join(a)</span><br></pre></td></tr></table></figure>
-                
-            
-
-            <!-- 添加打赏 -->
-            
-
-            <!-- 添加版权声明 -->
-            
-
-        </div>
-
-        <!-- 添加置顶 -->
-        <div class="article-info article-info-index">
-            
-
-            <!-- 分类页 -->
-            
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-            
-
-            <!-- 添加展开全文 -->
-            
-                <p class="article-more-link">
-                    <a class="article-more-a" href="/post/1c57c22c.html">show all >></a>
-                </p>
-            
-
-            <!-- 添加分享 -->
-            
-
-            <div class="clearfix"></div>
-
-        </div>
-    </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-    
-
-<!-- 文章页添加mathjax公式 -->
-  
-    <article id="post-445.两数相加_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/2c4cc46c.html">445.Two numbersII</a>
-    </h2>
-  
-
-
-                
-                    <a href="/post/2c4cc46c.html" class="archive-article-date">
-  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2024-01-01</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-                
-
-                
-                    <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">316字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">1min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-                
-            </header>
-        
-
-        <div class="article-entry" itemprop="articleBody">
-            <!-- 添加分类与标签 -->
-            
-                
-                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><img src="/../assets/img/2023-07-03%20(1).png" alt="2023-07-03 (1).png"><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/add-two-numbers-ii/">445.Two numbers</a></p>
-<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>I have been with yesterday’s question，Find by the way<br>    What is deducted is a very strange one<code>precompiled.listnode.ListNode</code>，But mine is<code>&#39;__main__.ListNode&#39;</code>。<br>Because：Repeatedly defined$ListNode$<br>不反转Linkedof方法可能就是昨天of那种，转化为math做。<br>The code is still<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/add-two-numbers-ii/solution/fan-zhuan-lian-biao-liang-shu-xiang-jia-okw6q/">0x3fof</a><br>and昨天ofanswer法一样</p>
-<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reverseList</span>(<span class="params">self, head: <span class="type">Optional</span>[ListNode]</span>) -&gt; <span class="type">Optional</span>[ListNode]:</span><br><span class="line">        <span class="keyword">if</span> head <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">or</span> head.<span class="built_in">next</span> <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> head</span><br><span class="line">        new_head = self.reverseList(head.<span class="built_in">next</span>)</span><br><span class="line">        head.<span class="built_in">next</span>.<span class="built_in">next</span> = head  <span class="comment"># Direct the next node to yourself</span></span><br><span class="line">        head.<span class="built_in">next</span> = <span class="literal">None</span>  <span class="comment"># 断开指向下一个节点of连接，ensure最终Linkedof末尾节点of next Is an empty node</span></span><br><span class="line">        <span class="keyword">return</span> new_head</span><br><span class="line"></span><br><span class="line">    <span class="comment"># l1 and l2 为当前遍历of节点，carry Be in place</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">addTwo</span>(<span class="params">self, l1: <span class="type">Optional</span>[ListNode], l2: <span class="type">Optional</span>[ListNode], carry=<span class="number">0</span></span>) -&gt; <span class="type">Optional</span>[ListNode]:</span><br><span class="line">        <span class="keyword">if</span> l1 <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">and</span> l2 <span class="keyword">is</span> <span class="literal">None</span>:  <span class="comment"># recursion边界：l1 and l2 都Is an empty node</span></span><br><span class="line">            <span class="keyword">return</span> ListNode(carry) <span class="keyword">if</span> carry <span class="keyword">else</span> <span class="literal">None</span>  <span class="comment"># If you are in place，Just create an additional node</span></span><br><span class="line">        <span class="keyword">if</span> l1 <span class="keyword">is</span> <span class="literal">None</span>:  <span class="comment"># if l1 是空of，Then then l2 一定不Is an empty node</span></span><br><span class="line">            l1, l2 = l2, l1  <span class="comment"># exchange l1 and l2，ensure l1 non empty，从而简化Code</span></span><br><span class="line">        carry += l1.val + (l2.val <span class="keyword">if</span> l2 <span class="keyword">else</span> <span class="number">0</span>)  <span class="comment"># 节点值andcarry加在一起</span></span><br><span class="line">        l1.val = carry % <span class="number">10</span>  <span class="comment"># Each node saves a digital position</span></span><br><span class="line">        l1.<span class="built_in">next</span> = self.addTwo(l1.<span class="built_in">next</span>, l2.<span class="built_in">next</span> <span class="keyword">if</span> l2 <span class="keyword">else</span> <span class="literal">None</span>, carry // <span class="number">10</span>)  <span class="comment"># carry</span></span><br><span class="line">        <span class="keyword">return</span> l1</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">addTwoNumbers</span>(<span class="params">self, l1: <span class="type">Optional</span>[ListNode], l2: <span class="type">Optional</span>[ListNode]</span>) -&gt; <span class="type">Optional</span>[ListNode]:</span><br><span class="line">        l1 = self.reverseList(l1)</span><br><span class="line">        l2 = self.reverseList(l2)  <span class="comment"># l1 and l2 Reversal，Just become【2. Two numbers】Over</span></span><br><span class="line">        l3 = self.addTwo(l1, l2)</span><br><span class="line">        <span class="keyword">return</span> self.reverseList(l3)</span><br></pre></td></tr></table></figure>
-                
-            
-
-            <!-- 添加打赏 -->
-            
-
-            <!-- 添加版权声明 -->
-            
-
-        </div>
-
-        <!-- 添加置顶 -->
-        <div class="article-info article-info-index">
-            
-
-            <!-- 分类页 -->
-            
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">math</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Linked</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">recursion</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Stack</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-            
-
-            <!-- 添加展开全文 -->
-            
-                <p class="article-more-link">
-                    <a class="article-more-a" href="/post/2c4cc46c.html">show all >></a>
-                </p>
-            
-
-            <!-- 添加分享 -->
-            
-
-            <div class="clearfix"></div>
-
-        </div>
-    </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-    
-
-<!-- 文章页添加mathjax公式 -->
-  
-    <article id="post-538.把二叉搜索树转换为累加树_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/32401b69.html">538.Convert the binary search tree to cumulative tree</a>
-    </h2>
-  
-
-
-                
-                    <a href="/post/32401b69.html" class="archive-article-date">
-  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2024-01-01</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-                
-
-                
-                    <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">1.2k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">6min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-                
-            </header>
-        
-
-        <div class="article-entry" itemprop="articleBody">
-            <!-- 添加分类与标签 -->
-            
-                
-                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p>“””</p>
-<p>Give two forks<strong> search </strong>Root node，The node value of the tree is different，Please convert it to a cumulative tree（Greater Sum Tree），Make each node <code>node</code>&nbsp;The new value of the original tree is greater than or equal to the original tree&nbsp;<code>node.val</code>&nbsp;The sum of the value。</p>
-
-<p>remind，二叉searchTree满足下列约束条件：</p>
-
-<ul> 
- <li>The left tree of the node contains only the key<strong> Less than </strong>Node node node。</li> 
- <li>The right tree of the node contains only the key<strong> more than the</strong> Node node node。</li> 
- <li>左右子Tree也必须是二叉searchTree。</li> 
-</ul>
-
-<p><strong>Notice：</strong>This question 1038:&nbsp;<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-search-tree-to-greater-sum-tree/">https://leetcode-cn.com/problems/binary-search-tree-to-greater-sum-tree/</a> same</p>
-
-<p>&nbsp;</p>
-
-<p><strong>Exemplary example 1：</strong></p>
-
-<p><strong><img alt="" src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2019/05/03/tree.png" style="height: 364px; width: 534px;" /></strong></p>
-
-<pre><strong>enter：</strong>[4,1,6,0,2,5,7,null,null,null,3,null,null,null,8]
-<strong>Output：</strong>[30,36,21,36,35,26,15,null,null,null,33,null,null,null,8]
-</pre>
-
-<p><strong>Exemplary example 2：</strong></p>
-
-<pre><strong>enter：</strong>root = [0,null,1]
-<strong>Output：</strong>[1,null,1]
-</pre>
-
-<p><strong>Exemplary example 3：</strong></p>
-
-<pre><strong>enter：</strong>root = [1,0,2]
-<strong>Output：</strong>[3,3,2]
-</pre>
-
-<p><strong>Exemplary example 4：</strong></p>
-
-<pre><strong>enter：</strong>root = [3,2,4,1]
-<strong>Output：</strong>[7,9,4,10]
-</pre>
-
-<p>&nbsp;</p>
-
-<p><strong>hint：</strong></p>
-
-<ul> 
- <li>The number of nodes in the tree is in <code>0</code>&nbsp;and <code>10<sup>4</sup></code><sup>&nbsp;</sup>between。</li> 
- <li>The value of each node <code>-10<sup>4</sup></code>&nbsp;and&nbsp;<code>10<sup>4</sup></code>&nbsp;between。</li> 
- <li>All the values ​​in the tree <strong>互不same</strong> 。</li> 
- <li>给定的Tree为二叉searchTree。</li> 
-</ul>
-
-<div><div>Related Topics</div><div><li>Tree</li><li>深度优先search</li><li>二叉searchTree</li><li>Binary tree</li></div></div><br><div><li>👍 904</li><li>👎 0</li></div>
-"""
-
-<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>method one：Travel in the preface<br>Thinking and algorithm</p>
-<p>本题中要求我们将每个节点的值修改为原来的节点值加上所有more than the它的节点值之and。这样我们只需要Travel in the preface该二叉searchTree，记录过程中的节点值之and，Not continuously update the node value of the nodes you currently traversed，即可得到topic要求的累加Tree。</p>
-<p>Method Two：Morris Traversal<br>Thinking and algorithm</p>
-<p>There is a clever way to be online，只占用常数空间来实现中序Traversal。This method is caused by J. H. Morris exist 1979 Annual thesis「Traversing Binary Trees Simply and Cheaply」Proposed for the first time，Because it is called Morris Traversal。</p>
-<p>我们以一个简单的Binary tree为例进行说明。假设我们要进行中序Traversal的 Morris Traversal。</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="code">    1</span></span><br><span class="line"><span class="code">   / \</span></span><br><span class="line"><span class="code">  2   3</span></span><br><span class="line"><span class="code"> / \</span></span><br><span class="line"><span class="code">4   5</span></span><br><span class="line"><span class="code"></span></span><br></pre></td></tr></table></figure>
-<ol>
-<li><p>Initialization The current node is the root node（current &#x3D; 1）。</p>
-</li>
-<li><p>When the current node is not empty，Execute the following steps：</p>
-<ol>
-<li>The left node of the current node is not empty。We find the front -drive node of the current node，也就是左子Tree中的最右节点。exist这个例子中，The front -drive node is the node5。</li>
-<li>The right node of the front -drive node is empty，Point your right node to the current node（5 -&gt; 1）。</li>
-<li>Move the current node to its left child node（current &#x3D; 2）。</li>
-</ol>
- <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line"> \</span><br><span class="line">  2</span><br><span class="line"> / \</span><br><span class="line">4   5</span><br></pre></td></tr></table></figure>
-<ol>
-<li>The left node of the current node is not empty。We find the front -drive node of the current node，也就是左子Tree中的最右节点。exist这个例子中，The front -drive node is the node4。</li>
-<li>The right node of the front -drive node is empty，Point your right node to the current node（4 -&gt; 2）。</li>
-<li>Move the current node to its left child node（current &#x3D; 4）。</li>
-</ol>
- <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line"> \</span><br><span class="line">  2</span><br><span class="line">   \</span><br><span class="line"><span class="code">    4</span></span><br><span class="line"><span class="code">     \</span></span><br><span class="line"><span class="code">      5</span></span><br><span class="line"><span class="code">    </span></span><br></pre></td></tr></table></figure>
-
-<ol>
-<li><p>The left node of the current node is empty。Output当前节点的值（4）。</p>
-</li>
-<li><p>Move the current node to its right node（current &#x3D; 5）。</p>
-</li>
-<li><p>The left node of the current node is empty。Output当前节点的值（5）。</p>
-</li>
-<li><p>Move the current node to its right node（current &#x3D; 2）。</p>
-</li>
-</ol>
- <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line"> \</span><br><span class="line">  2</span><br><span class="line">   \</span><br><span class="line"><span class="code">    4</span></span><br></pre></td></tr></table></figure>
-<ol>
-<li>The left node of the current node is empty。Output当前节点的值（2）。</li>
-<li>Move the current node to its right node（current &#x3D; 1）。</li>
-</ol>
- <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line"> \</span><br><span class="line">  2</span><br></pre></td></tr></table></figure>
-<ol>
-<li>The left node of the current node is empty。Output当前节点的值（1）。</li>
-<li>Move the current node to its right node（current &#x3D; 3）。</li>
-</ol>
- <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line"> \</span><br><span class="line">  2</span><br></pre></td></tr></table></figure>
-<ol>
-<li>The left node of the current node is empty。Output当前节点的值（3）。</li>
-<li>Move the current node to its right node（current &#x3D; null）。</li>
-</ol>
-</li>
-<li><p>The current node is empty，Traversal结束。</p>
-</li>
-<li></li>
-</ol>
-<p>According to the above steps，通过修改节点between的指针关系，我们完成了对Binary tree的中序Traversal。</p>
-<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><figcaption><span>中序Traversal</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">convertBST</span>(<span class="params">self, root: TreeNode</span>) -&gt; TreeNode:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">dfs</span>(<span class="params">root: TreeNode</span>):</span><br><span class="line">            <span class="keyword">nonlocal</span> total</span><br><span class="line">            <span class="keyword">if</span> root:</span><br><span class="line">                dfs(root.right)</span><br><span class="line">                total += root.val</span><br><span class="line">                root.val = total</span><br><span class="line">                dfs(root.left)</span><br><span class="line">        </span><br><span class="line">        total = <span class="number">0</span></span><br><span class="line">        dfs(root)</span><br><span class="line">        <span class="keyword">return</span> root</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><figcaption><span>MorrisTraversal</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">convertBST</span>(<span class="params">self, root: TreeNode</span>) -&gt; TreeNode:</span><br><span class="line">        <span class="comment"># Get the successor node of the given node（中序Traversal中的下一个节点）</span></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">getSuccessor</span>(<span class="params">node: TreeNode</span>) -&gt; TreeNode:</span><br><span class="line">            succ = node.right</span><br><span class="line">            <span class="keyword">while</span> succ.left <span class="keyword">and</span> succ.left != node:</span><br><span class="line">                succ = succ.left</span><br><span class="line">            <span class="keyword">return</span> succ</span><br><span class="line">        </span><br><span class="line">        total = <span class="number">0</span>  <span class="comment"># 记录累加的节点值之and</span></span><br><span class="line">        node = root  <span class="comment"># The current node initialization is the root node</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> node:</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> node.right:  <span class="comment"># If the right node of the current node is empty</span></span><br><span class="line">                total += node.val  <span class="comment"># Add the value of the current node to the cumulative value</span></span><br><span class="line">                node.val = total  <span class="comment"># Update the value of the current node to accumulate value</span></span><br><span class="line">                node = node.left  <span class="comment"># Move the current node to its left child node</span></span><br><span class="line">            <span class="keyword">else</span>:  <span class="comment"># If the right node of the current node is not empty</span></span><br><span class="line">                succ = getSuccessor(node)  <span class="comment"># Get the successor node of the current node</span></span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> succ.left:  <span class="comment"># If the left node of the successor node is empty</span></span><br><span class="line">                    succ.left = node  <span class="comment"># Point the left -node of the successor node to the current node，Establish a clue</span></span><br><span class="line">                    node = node.right  <span class="comment"># Move the current node to its right node</span></span><br><span class="line">                <span class="keyword">else</span>:  <span class="comment"># If the left node of the successor node is not empty</span></span><br><span class="line">                    succ.left = <span class="literal">None</span>  <span class="comment"># Set the left node of the successor node to empty，Remove clues</span></span><br><span class="line">                    total += node.val  <span class="comment"># Add the value of the current node to the cumulative value</span></span><br><span class="line">                    node.val = total  <span class="comment"># Update the value of the current node to accumulate value</span></span><br><span class="line">                    node = node.left  <span class="comment"># Move the current node to its left child node</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> root  <span class="comment"># Return to the root node</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">convertBST</span>(<span class="params">self, root: TreeNode</span>) -&gt; TreeNode:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">convert</span>(<span class="params">node: TreeNode, total: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> node:</span><br><span class="line">                <span class="keyword">return</span> total</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 递归Traversal右子Tree</span></span><br><span class="line">            total = convert(node.right, total)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># Update the node value to accumulate and add value</span></span><br><span class="line">            total += node.val</span><br><span class="line">            node.val = total</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 递归Traversal左子Tree</span></span><br><span class="line">            total = convert(node.left, total)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> total</span><br><span class="line"></span><br><span class="line">        convert(root, <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> root</span><br></pre></td></tr></table></figure>
+                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><img src="/../assets/img/2023-02-06.png" alt="2023-02-06.png"><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/evaluate-boolean-binary-tree/">2331Calculate the value of the Boolean binary tree</a></p>
+<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>For the currentroot，in the case ofleaf root（That is, the left node is empty），Then judge the current Boolean value（The leaf node must be Boolean instead of judging）。<br>                Otherwise，Until traversing the leaf node，After seeing the left and right children of a sub -tree，Judge the current Valtype，Finally seekingValValue。<br>ifValNot the root node，butValChildren’s nodes as other trees return to the previous layer。</p>
+<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">evaluateTree</span>(<span class="params">self, root: <span class="type">Optional</span>[TreeNode]</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        <span class="keyword">if</span> root.left <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">bool</span>(root.val)</span><br><span class="line">        l = self.evaluateTree(root.left)</span><br><span class="line">        r = self.evaluateTree(root.right)</span><br><span class="line">        <span class="keyword">return</span> l <span class="keyword">or</span> r <span class="keyword">if</span> root.val == <span class="number">2</span> <span class="keyword">else</span> l <span class="keyword">and</span> r</span><br></pre></td></tr></table></figure>
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> TreeNode <span class="keyword">struct</span> &#123;</span><br><span class="line">	Val   <span class="type">int</span></span><br><span class="line">	Left  *TreeNode</span><br><span class="line">	Right *TreeNode</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">evaluateTree</span><span class="params">(root *TreeNode)</span></span> <span class="type">bool</span> &#123;</span><br><span class="line">	<span class="keyword">if</span> root.Left == <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> root.Val == <span class="number">1</span></span><br><span class="line">	&#125;</span><br><span class="line">	l, r := evaluateTree(root.Left), evaluateTree(root.Right)</span><br><span class="line">	<span class="keyword">if</span> root.Val == <span class="number">2</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> l || r</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> l &amp;&amp; r</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
                 
             
 
@@ -1705,7 +875,7 @@ therefore，连接形成的Array result yes [3,3,3,3] 。
             <!-- 添加展开全文 -->
             
                 <p class="article-more-link">
-                    <a class="article-more-a" href="/post/32401b69.html">show all >></a>
+                    <a class="article-more-a" href="/post/a564ea0e.html">show all >></a>
                 </p>
             
 
@@ -1743,20 +913,20 @@ therefore，连接形成的Array result yes [3,3,3,3] 。
 
 <!-- 文章页添加mathjax公式 -->
   
-    <article id="post-6293统计好子数组的数_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-2335. 装满杯子需要的最短总时长_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
   
     <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/81004405.html">6293. Count the number of good array</a>
+      <a class="article-title_code_ant" href="/post/4400daa1.html">2335. The shortest total time to be filled with a cup One question daily</a>
     </h2>
   
 
 
                 
-                    <a href="/post/81004405.html" class="archive-article-date">
+                    <a href="/post/4400daa1.html" class="archive-article-date">
   	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
 	<!-- <i class="icon-calendar icon"></i> -->
 
@@ -1788,7 +958,7 @@ therefore，连接形成的Array result yes [3,3,3,3] 。
 	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
         <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
         <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">187字</span>
+        <span class="post-count">291字</span>
       </span>
     </span>
 
@@ -1812,161 +982,13 @@ therefore，连接形成的Array result yes [3,3,3,3] 。
             <!-- 添加分类与标签 -->
             
                 
-                    <p>At first glance, this question is a double pointer，But I am not familiar with the double pointer，Most of the time was wasted when you set up the framework。   </p>
-<p>This question is the third question of Zhou Sai，The first two questions were killed quickly，But because I slept，It’s only half an hour left when the computer is turned on。     </p>
-<p>always theredebug，Watch this afternoon0x3fSolution。There is a set of explanations of his sliding window algorithm and double pointer。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> count</span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">List</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">countGood</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], k: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        start = <span class="number">0</span></span><br><span class="line">        tail = <span class="number">0</span></span><br><span class="line">        flag = <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(<span class="built_in">set</span>(nums)) == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">if</span> k &gt; <span class="built_in">len</span>(nums) * (<span class="built_in">len</span>(nums)-<span class="number">1</span>) // <span class="number">2</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> start &lt; <span class="built_in">len</span>(nums) - <span class="number">1</span>:</span><br><span class="line">            x = Counter(nums[start:tail])</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(x) &gt;= k:</span><br><span class="line">                flag2 = <span class="number">0</span></span><br><span class="line">                <span class="keyword">for</span> j <span class="keyword">in</span> x:</span><br><span class="line">                    <span class="keyword">if</span> x[j] &gt;= k:</span><br><span class="line">                        flag2 += <span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span> flag2 &gt;= k:</span><br><span class="line">                    flag += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> x:</span><br><span class="line">                    <span class="keyword">if</span> x[i] * (x[i] - <span class="number">1</span>) // <span class="number">2</span> &gt;= k:</span><br><span class="line">                        flag += <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> tail != <span class="built_in">len</span>(nums):</span><br><span class="line">                tail += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                start += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> flag</span><br></pre></td></tr></table></figure>
-                
-            
-
-            <!-- 添加打赏 -->
-            
-
-            <!-- 添加版权声明 -->
-            
-
-        </div>
-
-        <!-- 添加置顶 -->
-        <div class="article-info article-info-index">
-            
-
-            <!-- 分类页 -->
-            
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">unsolved</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-            
-
-            <!-- 添加展开全文 -->
-            
-                <p class="article-more-link">
-                    <a class="article-more-a" href="/post/81004405.html">show all >></a>
-                </p>
-            
-
-            <!-- 添加分享 -->
-            
-
-            <div class="clearfix"></div>
-
-        </div>
-    </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-    
-
-<!-- 文章页添加mathjax公式 -->
-  
-    <article id="post-6275使数组中所有元素相等的最小操作数_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/4e14482b.html">6275. Make all the minimum operations of all elements in the array II</a>
-    </h2>
-  
-
-
-                
-                    <a href="/post/4e14482b.html" class="archive-article-date">
-  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2024-01-01</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-                
-
-                
-                    <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">202字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">1min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-                
-            </header>
-        
-
-        <div class="article-entry" itemprop="articleBody">
-            <!-- 添加分类与标签 -->
-            
-                
-                    <p><img src="/../assets/img/2023-01-22%20(1).png" alt="2023-01-22 (1).png"><br><a target="_blank" rel="noopener" href="https://leetcode.cn/contest/biweekly-contest-96/problems/minimum-operations-to-make-array-equal-ii/">6275. Make all the minimum operations of all elements in the array II</a></p>
-<h1 id="Thought"><a href="#Thought" class="headerlink" title="Thought:"></a>Thought:</h1><p>Weekly Two Questions！！！</p>
-<p>·First use the list derivative to calculate the difference between each element。<br>·Then，Initialize a counter to track the required operations required。<br>·The difference between traversing，And check whether each difference can be removed。<br>·if not，Then return -1，Because the array cannot be equal to the given operation。<br>·If it is eliminated，It removes the absolute value of the difference to add to the counter。<br>·at last，It returns the required number of operations。</p>
-<blockquote>
-<p>for example：<code>[3,0,-6,3]</code>It is every positive number divided by3In harmony，Tested many times，是因为at last一种特殊情况（When two list items, etc.）No consideration。</p>
-</blockquote>
-<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">minOperations</span>(<span class="params">self, nums1: <span class="type">List</span>[<span class="built_in">int</span>], nums2: <span class="type">List</span>[<span class="built_in">int</span>], k: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">if</span> k &lt;= <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">if</span> nums1 != nums2:</span><br><span class="line">                <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        diff = [nums1[i] - nums2[i] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums1))]</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">sum</span>(diff) != <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">sum</span>(diff) % k != <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">        operations = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> index, d <span class="keyword">in</span> <span class="built_in">enumerate</span>(diff):</span><br><span class="line">            <span class="keyword">if</span> d % k != <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> d &gt; <span class="number">0</span>:</span><br><span class="line">                operations += d // k</span><br><span class="line">        <span class="keyword">return</span> operations</span><br></pre></td></tr></table></figure>
+                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><img src="/../assets/img/2023-02-11.png" alt="2023-02-11.png"><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-amount-of-time-to-fill-cups/description/">2335. The shortest total time to be filled with a cup.md</a></p>
+<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><ol>
+<li>This question is very simple，但是我好像没用贪心的Thought。Look at the second test case and find it found，In fact, the minimum number of seconds is to avoid a certain number as much as possible0。<br>So keep sorting，Always operate the two largest numbers。This sending can also be used for DoriamountCase，But because of sorting，I don’t know if it can be used for a large number。<br> Look atylbBig，和我一样但是Big细节处理得很好，Two fewer judgments than me，Then it seems that the classification discussion method below may be a solution to the difficult situation。</li>
+<li>mathematical method？Sort the number of drinks from small to large，Set the quantity x，y，z。Our goal is to match the different drinks as much as possible。<br>like$x+y&lt;&#x3D;z$，The answer isz。like反之，Then set$t&#x3D;(x+y-z)$，t是偶数The answer is<br>$ \frac{t−1}{2} +z$Plus one</li>
+</ol>
+<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">fillCups</span>(<span class="params">self, amount: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        amount.sort()</span><br><span class="line">        count = <span class="number">0</span></span><br><span class="line">        <span class="comment"># Try to avoid returning0</span></span><br><span class="line">        <span class="keyword">while</span> amount[-<span class="number">1</span>] &gt; <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">if</span> amount[-<span class="number">1</span>] &gt; <span class="number">0</span> <span class="keyword">and</span> amount[<span class="number">1</span>] &gt; <span class="number">0</span>:</span><br><span class="line">                amount[-<span class="number">1</span>] -= <span class="number">1</span></span><br><span class="line">                amount[<span class="number">1</span>] -= <span class="number">1</span></span><br><span class="line">                count += <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> amount[-<span class="number">1</span>] &gt; <span class="number">0</span> <span class="keyword">and</span> amount[<span class="number">1</span>] == <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">return</span> count + amount[-<span class="number">1</span>]</span><br><span class="line">            amount.sort()</span><br><span class="line">        <span class="keyword">return</span> count</span><br></pre></td></tr></table></figure>
+<figure class="highlight golang"><figcaption><span>ylb-golang</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&quot;sort&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">fillCups</span><span class="params">(amount []<span class="type">int</span>)</span></span> <span class="type">int</span> &#123;</span><br><span class="line">	ans := <span class="number">0</span></span><br><span class="line">	<span class="keyword">for</span> amount[<span class="number">0</span>] + amount[<span class="number">1</span>] + amount[<span class="number">2</span>] &gt; <span class="number">0</span> &#123;</span><br><span class="line">		sort.Ints(amount)</span><br><span class="line">		ans ++</span><br><span class="line">		amount[<span class="number">2</span>] --</span><br><span class="line">		<span class="keyword">if</span> amount[<span class="number">1</span>] &gt; <span class="number">0</span>&#123;</span><br><span class="line">			amount[<span class="number">1</span>] --</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
                 
             
 
@@ -1997,7 +1019,15 @@ therefore，连接形成的Array result yes [3,3,3,3] 。
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">greedy</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">One question daily</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">golang</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">dp</a>
         		</li>
       		
 		</ul>
@@ -2008,7 +1038,817 @@ therefore，连接形成的Array result yes [3,3,3,3] 。
             <!-- 添加展开全文 -->
             
                 <p class="article-more-link">
-                    <a class="article-more-a" href="/post/4e14482b.html">show all >></a>
+                    <a class="article-more-a" href="/post/4400daa1.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
+    <article id="post-2527_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/20ffa67a.html">2527.Query arrayXorBeautiful value Zhou Sai Third Question</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/20ffa67a.html" class="archive-article-date">
+  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2024-01-01</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">267字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">1min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <p>6289.Query array Xor Beautiful value。</p>
+<p>This question has been studied for a long time，Discovering a mathematical problem，But I didn’t want to be transparent，Because unfamiliar or valuable。So there is no better solution。</p>
+<p>The first is to read the question and learn(nums[i]|nums[j])&amp;nums[k]，becauseijkCan be any value in the array，So the tripleforcycle（It will definitely timeout），Then he was a little bit out of his own，Just a little bit，feeli，jThe value of the value is the same，So add an additional layer of judgment（Dictionary）。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">xorBeauty</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        ans = []</span><br><span class="line">        record = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)):</span><br><span class="line">                <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)):</span><br><span class="line">                    <span class="keyword">if</span> k <span class="keyword">not</span> <span class="keyword">in</span> record:</span><br><span class="line">                        <span class="keyword">if</span> (i,j) <span class="keyword">not</span> <span class="keyword">in</span> record.values():</span><br><span class="line">                            record[k] = (i,j)</span><br><span class="line">                            flag = (nums[i]|nums[j])&amp;nums[k]</span><br><span class="line">                            <span class="keyword">if</span> flag <span class="keyword">not</span> <span class="keyword">in</span> ans:</span><br><span class="line">                                ans.append(flag)</span><br><span class="line">                            <span class="keyword">else</span>:</span><br><span class="line">                                ans.remove(flag)</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(ans) == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        answer = ans[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="built_in">len</span>(ans)):</span><br><span class="line">            answer ^= ans[i]</span><br><span class="line">        <span class="keyword">return</span> answer</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>I have been thinking about how to judge the same situation when I go out today，As a result<a href="/u/endlesscheng">@Lingcha Mountain Aifu</a>Solution，One by one，That’s okay。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def xorBeauty(self, nums: List[int]) -&gt; int:</span><br><span class="line">        return reduce(xor, nums)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>Then do，Search online，It turns out that if the two values ​​are the same，for exampleA^B^A &#x3D; B，Soappend，removeTo implement this function。at lastforcycle求异或值。</p>
+<p>Big Big Code is still studyinging</p>
+
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+
+            <!-- 分类页 -->
+            
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">solved,answer</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/20ffa67a.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
+    <article id="post-2639. 查询网格图中每一列的宽度_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/5a764983.html">2639. Query the width of each column in the grid diagram</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/5a764983.html" class="archive-article-date">
+  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2024-01-01</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">205字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">1min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-the-width-of-columns-of-a-grid/description/?envType=daily-question&envId=2024-04-27">2639. Query the width of each column in the grid diagram.md</a></p>
+<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>The first thing I think is to usemapTo solve，<code>[list(map(lambda x: len(str(x)), row)) for row in grid]</code> Build such an expression，但是topic要求找到列的最大值，If it is done by yourself so manually, you need itO(n^2)Time complexity，SonumpyYou can easily find the iterative value of each column。</p>
+<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">findColumnWidth</span>(<span class="params">self, grid: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">         <span class="comment"># let&#x27;s convert the grid to a numpy array</span></span><br><span class="line">        np_grid = np.array(grid, dtype=<span class="built_in">str</span>)</span><br><span class="line">        <span class="comment"># calculate the length of each element in the grid</span></span><br><span class="line">        lengths = np.vectorize(<span class="built_in">len</span>)(np_grid)</span><br><span class="line">        <span class="comment"># find the maximum length of each column</span></span><br><span class="line">        max_lengths = lengths.<span class="built_in">max</span>(axis=<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> max_lengths.tolist()</span><br></pre></td></tr></table></figure>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">impl</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">find_column_width</span>(grid: <span class="type">Vec</span>&lt;<span class="type">Vec</span>&lt;<span class="type">i32</span>&gt;&gt;) <span class="punctuation">-&gt;</span> <span class="type">Vec</span>&lt;<span class="type">i32</span>&gt; &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">col_n</span> = grid[<span class="number">0</span>].<span class="title function_ invoke__">len</span>();</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">ans</span> = <span class="built_in">vec!</span>[<span class="number">0</span>; col_n];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> <span class="variable">row</span> <span class="keyword">in</span> grid.<span class="title function_ invoke__">iter</span>() &#123;</span><br><span class="line">            <span class="title function_ invoke__">for</span> (i, &amp;num) <span class="keyword">in</span> row.<span class="title function_ invoke__">iter</span>().<span class="title function_ invoke__">enumerate</span>() &#123;</span><br><span class="line">                <span class="keyword">let</span> <span class="variable">length</span> = num.<span class="title function_ invoke__">to_string</span>().<span class="title function_ invoke__">len</span>() <span class="keyword">as</span> <span class="type">i32</span>;</span><br><span class="line">                <span class="keyword">if</span> length &gt; ans[i] &#123;</span><br><span class="line">                    ans[i] = length;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        ans</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+
+            <!-- 分类页 -->
+            
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/5a764983.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
+    <article id="post-2341. 数组能形成多少数对_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/f953c753.html">2341. How much can the array be formed  One question daily</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/f953c753.html" class="archive-article-date">
+  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2024-01-01</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">201字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">1min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><img src="/../assets/img/2023-02-16.png" alt="2023-02-16.png"><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-number-of-pairs-in-array/description/">2341. How much can the array be formed.md</a></p>
+<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><h2 id="I-am："><a href="#I-am：" class="headerlink" title="I am："></a>I am：</h2><p>I don’t know if I saw it“Simple”Two words，This question has the initiative to think about the optimal solution。Actually this timeylbBig guy’s hash table method is still fast。<br>Sort the list，Whether two or two are equal to whether。</p>
+<h2 id="Hash-tableThought："><a href="#Hash-tableThought：" class="headerlink" title="Hash tableThought："></a>Hash tableThought：</h2><p>CounterAfter counting，<code>a+=v//2</code>,<code>b+=v%2</code>For each number x，<br>if x Number of times v more than the 1，You can choose two from the array x Form a number pair，we willv Divide 2 Take down，<br>You can get the current number x Number pairs that can be formed，Then we accumulate this number to the variable s middle。</p>
+<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><figcaption><span>Ordinary count</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numberOfPairs</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        nums.sort()</span><br><span class="line">        ans = [<span class="number">0</span>, <span class="built_in">len</span>(nums)]</span><br><span class="line">        <span class="keyword">for</span> index <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(nums)):</span><br><span class="line">            <span class="keyword">if</span> nums[index - <span class="number">1</span>] == nums[index]:</span><br><span class="line">                ans[<span class="number">0</span>] += <span class="number">1</span></span><br><span class="line">                ans[<span class="number">1</span>] -= <span class="number">2</span></span><br><span class="line">                nums[index - <span class="number">1</span>] = nums[index] = -<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><figcaption><span>Hash table</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">numberOfPairs</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        x = Counter(nums)</span><br><span class="line">        a = <span class="number">0</span></span><br><span class="line">        b = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> k,v <span class="keyword">in</span> x.items():</span><br><span class="line">            a+=v//<span class="number">2</span></span><br><span class="line">            b+=v%<span class="number">2</span></span><br><span class="line">        <span class="keyword">return</span> [a,b]</span><br></pre></td></tr></table></figure>
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+
+            <!-- 分类页 -->
+            
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/f953c753.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
+    <article id="post-24.两两交换链表_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/d030a5a0.html">24.Two or two exchanges linked watches</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/d030a5a0.html" class="archive-article-date">
+  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2024-01-01</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">89字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">1min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p>Give you a linked list，Two or two exchanges are adjacent nodes，And return to the head node of the linked list after exchange。You must complete this question without modifying the internal value of the node（Right now，Can only exchange nodes）。</p>
+
+<p> </p>
+
+<p><strong>Exemplary example 1：</strong></p> 
+<img alt="" src="https://assets.leetcode.com/uploads/2020/10/03/swap_ex1.jpg" style="width: 422px; height: 222px;" /> 
+<pre>
+<strong>enter：</strong>head = [1,2,3,4]
+<strong>Output：</strong>[2,1,4,3]
+</pre>
+
+<p><strong>Exemplary example 2：</strong></p>
+
+<pre>
+<strong>enter：</strong>head = []
+<strong>Output：</strong>[]
+</pre>
+
+<p><strong>Exemplary example 3：</strong></p>
+
+<pre>
+<strong>enter：</strong>head = [1]
+<strong>Output：</strong>[1]
+</pre>
+
+<p> </p>
+
+<p><strong>hint：</strong></p>
+
+<ul> 
+ <li>The number of nodes in the linked list is in the range <code>[0, 100]</code> Inside</li> 
+ <li><code>0 <= Node.val <= 100</code></li> 
+</ul>
+
+<div><div>Related Topics</div><div><li>recursion</li><li>Linked</li></div></div><br><div><li>👍 1785</li><li>👎 0</li></div>
+
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/swap-nodes-in-pairs/description/">24.Two or two exchanges linked watches.md</a></p>
+<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>use head 表示原始Linked的头节点，新的Linked的第二个节点，use newHead 表示新的Linked的头节点，原始Linked的第二个节点，则原始Linked中的其余节点的头节点是 newHead.next。make head.next &#x3D; swapPairs(newHead.next)，Indicates two or two exchanges for the rest of the nodes，The new head node after the exchange is head The next node。然后make newHead.next &#x3D; head，Right now完成了所有节点的交换。最后返回新的Linked的头节点 newHead。<br><img src="/../photos/%EF%BF%BD%DD%B9%EF%BF%BD.gif" alt="recursion.gif"></p>
+<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">swapPairs</span>(<span class="params">self, head: <span class="type">Optional</span>[ListNode]</span>) -&gt; <span class="type">Optional</span>[ListNode]:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> head <span class="keyword">or</span> <span class="keyword">not</span> head.<span class="built_in">next</span>:</span><br><span class="line">            <span class="keyword">return</span> head</span><br><span class="line">        virtual_head = head.<span class="built_in">next</span></span><br><span class="line">        head.<span class="built_in">next</span> = self.swapPairs(virtual_head.<span class="built_in">next</span>)</span><br><span class="line">        virtual_head.<span class="built_in">next</span> = head</span><br><span class="line">        <span class="keyword">return</span> virtual_head</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">swapPairs</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="literal">nullptr</span> <span class="keyword">or</span> head-&gt;next == <span class="literal">nullptr</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode *yummyNode = head-&gt;next;</span><br><span class="line">        head-&gt;next = <span class="built_in">swapPairs</span>(yummyNode-&gt;next);</span><br><span class="line">        yummyNode-&gt;next = head;</span><br><span class="line">        <span class="keyword">return</span> yummyNode;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+
+            <!-- 分类页 -->
+            
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/d030a5a0.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
+    <article id="post-2679.矩阵中的和_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/5277100.html">2679.In the matrix and the harmony</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/5277100.html" class="archive-article-date">
+  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2024-01-01</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">331字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">2min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><img src="/../assets/img/2023-07-05.png" alt="2023-07-05.png"><br><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/sum-in-a-matrix/">2679.In the matrix and the harmony.md</a></p>
+<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p><strong>One -line</strong><br>First of all, the meaning is to find the largest number of each sub -list，Thenpopgo out，Finally ask for peace。<br>The effect of traversing again and again is too bad，So I thought of using itzip一次性Traversal多个子Array。<br>于yes先对每个子ArraySort，Then usezipTraversal，Find the maximum。<br>for example：<br><code>nums = [[7,2,1],[6,4,2],[6,5,3],[3,2,1]]</code><br>Sort后：<br><code>nums = [[1,2,7],[2,4,6],[3,5,6],[1,2,3]]</code><br>Then usezipTraversal得到：<br><code>[(1,2,3,1),(2,4,5,2),(7,6,6,3)]</code><br>Find the maximum：<br><code>[3,5,7]</code><br>Context：<br><code>15</code></p>
+<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">matrixSum</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sum</span>(<span class="built_in">max</span>(i) <span class="keyword">for</span> i <span class="keyword">in</span> \</span><br><span class="line">        <span class="built_in">zip</span>(*(<span class="built_in">sorted</span>(sublist) <span class="keyword">for</span> sublist <span class="keyword">in</span> nums)))</span><br></pre></td></tr></table></figure>
+<h3 id="The-role-and-the-rolezip-explain"><a href="#The-role-and-the-rolezip-explain" class="headerlink" title="*The role and the rolezip()explain"></a>*The role and the rolezip()explain</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">nums = [[<span class="number">1</span>,<span class="number">2</span>,<span class="number">7</span>],[<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>],[<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>],[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums[<span class="number">1</span>])):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)):</span><br><span class="line">        <span class="built_in">print</span>(nums[j][i])</span><br><span class="line"><span class="comment"># ans = 123124527663</span></span><br><span class="line">num1 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">7</span>]</span><br><span class="line">num2 = [<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>]</span><br><span class="line">num3 = [<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">num4 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br></pre></td></tr></table></figure>
+<p><code>zip()</code>The function corresponds to one -to -one elements in multiple lists，Then return onezipObject，Can uselist()Function convert to list。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">zip</span>(num1, num2, num3, num4):</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line"><span class="comment">#(1, 2, 3, 1)</span></span><br><span class="line"><span class="comment">#(2, 4, 5, 2)</span></span><br><span class="line"><span class="comment">#(7, 6, 6, 3)</span></span><br></pre></td></tr></table></figure>
+<p><code>*nums</code>The role ispythonNot a pointer，InsteadnumsEach element in the parameter is passed into the function。I understand here as a list。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># Enumerate</span></span><br><span class="line"><span class="built_in">print</span>(*nums)</span><br><span class="line"><span class="comment"># [1, 2, 7] [2, 4, 6] [3, 5, 6] [1, 2, 3]</span></span><br></pre></td></tr></table></figure>
+<p><code>zip(*nums)</code>WillnumsEach element is passed in as a parameterzip()In the function，Then return onezipObject，Can uselist()Function convert to list。<br><code>zip(*nums)</code>Equivalent to<code>zip(num1, num2, num3, num4)</code>，innum1, num2, num3, num4yesnumsElement。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">zip</span>(*nums):</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line"><span class="comment"># Equivalent</span></span><br><span class="line"><span class="comment">#(1, 2, 3, 1)</span></span><br><span class="line"><span class="comment">#(2, 4, 5, 2)</span></span><br><span class="line"><span class="comment">#(7, 6, 6, 3)</span></span><br></pre></td></tr></table></figure>
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+
+            <!-- 分类页 -->
+            
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">matrix</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Sort</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">simulation</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">heap（Priority queue）</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/5277100.html">show all >></a>
                 </p>
             
 
@@ -2048,7 +1888,7 @@ therefore，连接形成的Array result yes [3,3,3,3] 。
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/7/">&lt;&lt; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/9/">下一页 &gt;&gt;</a>
+      <a class="extend prev" rel="prev" href="/page/7/">&lt;&lt; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/9/">下一页 &gt;&gt;</a>
     </nav>
   
 
@@ -2100,10 +1940,10 @@ window.MathJax = {
 	  <br>
 	  <div class="footer-center">
 	    <i class="fa fa-file-word-o" aria-hidden="true"></i>
-		<span> 120 篇</span>
+		<span> 148 篇</span>
 		<span class="post-meta-divider">|</span>
 		<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-		<span> <span class="post-count">59.9k</span></span>
+		<span> <span class="post-count">121.9k</span></span>
       </div>
 	  
 	  <!-- 添加不蒜子统计 -->
