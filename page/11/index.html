@@ -294,20 +294,20 @@ var _hmt = _hmt || [];
         <div id="js-content" class="content-ll">
           
   
-    <article id="post-6347统计范围内的元音字符串数_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-704二分查找_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
   
     <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/52923acb.html">6347Number of vowel string within the scope of statistics</a>
+      <a class="article-title_code_ant" href="/post/41f30363.html">704. Two -point search</a>
     </h2>
   
 
 
                 
-                    <a href="/post/52923acb.html" class="archive-article-date">
+                    <a href="/post/41f30363.html" class="archive-article-date">
   	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
 	<!-- <i class="icon-calendar icon"></i> -->
 
@@ -339,7 +339,7 @@ var _hmt = _hmt || [];
 	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
         <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
         <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">414字</span>
+        <span class="post-count">194字</span>
       </span>
     </span>
 
@@ -348,7 +348,7 @@ var _hmt = _hmt || [];
       <span class="post-meta-item-icon">
 	    <i class="fa fa-pagelines" aria-hidden="true"></i>
         <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">2min</span>
+        <span class="post-count">1min</span>
       </span>
     </span>
 	
@@ -363,14 +363,10 @@ var _hmt = _hmt || [];
             <!-- 添加分类与标签 -->
             
                 
-                    <h1 id="topic"><a href="#topic" class="headerlink" title="topic"></a>topic</h1><p><img src="/../assets/img/2023-02-05%20(2).png" alt="2023-02-05 (2).png"></p>
-<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>Pay attention to pre -processing and prefixing<br>Prefix and an algorithm，Used to find the prefix and the array。The prefix and definition of the array are defined as the harmony of the prefix element in a certain position of the array。in other words，The prefix and the elements of each position of an array are added to the previous element。</p>
-<p>This code uses prefix and to optimize the query process。It pre -processed whether the first letter of each word is a meta sound，Then save these results in a list。Then，It uses prefix and calculate each query result。</p>
-<p>Specifically，For each query (i, j)，It will be statistics from words[i] arrive words[j] Conditional conditions（The first letter is a Yuan Yin）Number of words。This can be used by using counts[j+1] - counts[i] To be done。This is because counts[j+1] Contain words[0] arrive words[j] Conditional conditionsNumber of words，and counts[i] Contain words[0] arrive words[i-1] Conditional conditionsNumber of words。therefore，counts[j+1] - counts[i] That words[i] arrive words[j] Conditional conditionsNumber of words。</p>
-<p>In the code，counts Arrays use prefix and pre -processing，therefore可以在 O(1) Calculate the results of each query within time。This makes the total running time of the code from coming from O(n^2) Fall to O(n)</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">vowelStrings</span>(<span class="params">self, words: <span class="type">List</span>[<span class="built_in">str</span>], queries: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        yuanyin = &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;e&#x27;</span>, <span class="string">&#x27;i&#x27;</span>, <span class="string">&#x27;o&#x27;</span>, <span class="string">&#x27;u&#x27;</span>&#125;</span><br><span class="line">        ans = []</span><br><span class="line">        <span class="keyword">for</span> i, j <span class="keyword">in</span> queries:</span><br><span class="line">            count = <span class="number">0</span></span><br><span class="line">            <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(i, j + <span class="number">1</span>):</span><br><span class="line">                <span class="keyword">if</span> words[x][<span class="number">0</span>] <span class="keyword">in</span> yuanyin <span class="keyword">and</span> words[x][-<span class="number">1</span>] <span class="keyword">in</span> yuanyin:</span><br><span class="line">                    count += <span class="number">1</span></span><br><span class="line">            ans.append(count)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">vowelStrings</span>(<span class="params">self, words: <span class="type">List</span>[<span class="built_in">str</span>], queries: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        yuanyin = <span class="built_in">set</span>(<span class="string">&#x27;aeiou&#x27;</span>)</span><br><span class="line">        <span class="comment"># Traversing each word，Determine whether its first letter is a metaphysical sound</span></span><br><span class="line">        <span class="comment"># Save the results in words_first_last List</span></span><br><span class="line">        words_first_last = [(word[<span class="number">0</span>] <span class="keyword">in</span> yuanyin, word[-<span class="number">1</span>] <span class="keyword">in</span> yuanyin) <span class="keyword">for</span> word <span class="keyword">in</span> words]</span><br><span class="line">        <span class="comment"># Create counts List，Used to store prefixes and</span></span><br><span class="line">        counts = [<span class="number">0</span>] * (<span class="built_in">len</span>(words) + <span class="number">1</span>)</span><br><span class="line">        <span class="comment"># Traversing each word，Calculate prefix and</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(words)):</span><br><span class="line">            counts[i + <span class="number">1</span>] = counts[i] + <span class="built_in">int</span>(words_first_last[i][<span class="number">0</span>] <span class="keyword">and</span> words_first_last[i][<span class="number">1</span>])</span><br><span class="line">        <span class="comment"># Traversing each query，Calculate the result of the query</span></span><br><span class="line">        ans = [counts[j + <span class="number">1</span>] - counts[i] <span class="keyword">for</span> i, j <span class="keyword">in</span> queries]</span><br><span class="line">        <span class="comment"># Return result</span></span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+                    <p><a target="_blank" rel="noopener" href="https://leetcode.cn/leetbook/read/learning-algorithms-with-leetcode/xsshgi/">https://leetcode.cn/leetbook/read/learning-algorithms-with-leetcode/xsshgi/</a><br>Not difficult，Just recursive to take a note</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">search</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>], target: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">recursion</span>(<span class="params">nums, left, right, target</span>):</span><br><span class="line">            <span class="keyword">if</span> left &gt; right:</span><br><span class="line">                <span class="comment"># Recursive end</span></span><br><span class="line">                <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">            mid = left + (right - left) // <span class="number">2</span></span><br><span class="line">            <span class="keyword">if</span> nums[mid] == target:</span><br><span class="line">                <span class="keyword">return</span> mid</span><br><span class="line">            <span class="keyword">elif</span> nums[mid] &lt; target:</span><br><span class="line">                left = mid + <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                right = mid - <span class="number">1</span></span><br><span class="line">            <span class="keyword">return</span> recursion(nums, left, right, target)</span><br><span class="line"></span><br><span class="line">        left = <span class="number">0</span></span><br><span class="line">        right = <span class="built_in">len</span>(nums) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> recursion(nums, left, right, target)</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/leetbook/read/learning-algorithms-with-leetcode/xssbke/">https://leetcode.cn/leetbook/read/learning-algorithms-with-leetcode/xssbke/</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># The guess API is already defined for you.</span></span><br><span class="line"><span class="comment"># @param num, your guess</span></span><br><span class="line"><span class="comment"># @return -1 if num is higher than the picked number</span></span><br><span class="line"><span class="comment">#          1 if num is lower than the picked number</span></span><br><span class="line"><span class="comment">#          otherwise return 0</span></span><br><span class="line"><span class="comment"># def guess(num: int) -&gt; int:</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">guessNumber</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">            <span class="keyword">def</span> <span class="title function_">recursion</span>(<span class="params">nums, left, right</span>):</span><br><span class="line">                <span class="keyword">if</span> left &gt; right:</span><br><span class="line">                    <span class="comment"># Recursive end</span></span><br><span class="line">                    <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">                mid = left + (right - left) // <span class="number">2</span></span><br><span class="line">                <span class="keyword">if</span> guess(mid) == <span class="number">0</span>:</span><br><span class="line">                    <span class="keyword">return</span> mid</span><br><span class="line">                <span class="keyword">elif</span> guess(mid) == <span class="number">1</span>:</span><br><span class="line">                    left = mid + <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    right = mid - <span class="number">1</span></span><br><span class="line">                <span class="keyword">return</span> recursion(nums, left, right)</span><br><span class="line"></span><br><span class="line">            left = <span class="number">1</span></span><br><span class="line">            right = n</span><br><span class="line">            <span class="keyword">return</span> recursion(n, left, right)</span><br></pre></td></tr></table></figure>
 
                 
             
@@ -409,7 +405,163 @@ var _hmt = _hmt || [];
             <!-- 添加展开全文 -->
             
                 <p class="article-more-link">
-                    <a class="article-more-a" href="/post/52923acb.html">show all >></a>
+                    <a class="article-more-a" href="/post/41f30363.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
+    <article id="post-80_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/73b5ce9c.html">Python beat98.40% collectionsofCounter method！</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/73b5ce9c.html" class="archive-article-date">
+  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2024-01-01</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">214字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">1min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <p>Pyhton <code>collection</code> In the bag <code>Counter()</code> Be rightlist里出现of元素conduct计数，And the output is a dictionary。<br>for example<code>nums=[1, 1, 1, 2, 2, 3]</code> ToCounter后of结果是<code>Counter(&#123;1: 3, 2: 2, 3: 1&#125;)</code>。</p>
+<ol>
+<li>So traverse a dictionary，when<code>value&gt;3</code>of时候<code>value=2</code>，Can be greater than2indivualof元素计数become2indivual。</li>
+<li>So we will<code>Counter(&#123;1: 3, 2: 2, 3: 1&#125;)</code>become<code>Counter(&#123;1: 2, 2: 2, 3: 1&#125;)</code>后再Toelementsconductlist操作就可以得到改变后of列表了。</li>
+</ol>
+<hr>
+<p>Due to the meaning of the question“Input the array「Quote」方式传递of”，So we willnumsJust fill in and fill in</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter <span class="comment"># Imported package</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">removeDuplicates</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        dict1 = Counter(nums)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> dict1:</span><br><span class="line">            <span class="keyword">if</span> dict1[i] &gt; <span class="number">2</span>:</span><br><span class="line">                dict1[i] = <span class="number">2</span></span><br><span class="line">        list1 = <span class="built_in">list</span>(dict1.elements())</span><br><span class="line">        nums.clear() <span class="comment"># clear the list</span></span><br><span class="line">        nums.extend(list1) <span class="comment"># Add the collection to the list</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">len</span>(nums)</span><br></pre></td></tr></table></figure>
+<p>Complexity analysis</p>
+<p>time complexity：<code>O(n)</code>，in <code>n</code> 是数组of长度。We have a maximum of this array once。</p>
+<p>Spatial complexity：<code>O(1)</code>。我们只需要常数of空间存储若干变量。</p>
+
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+
+            <!-- 分类页 -->
+            
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">solved,answer</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/73b5ce9c.html">show all >></a>
                 </p>
             
 
@@ -636,6 +788,170 @@ Sort后，Array becomes [0,1,9,16,100]</pre>
 
 <!-- 文章页添加mathjax公式 -->
   
+    <article id="post-Offer43_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/f0d96a1f.html">Sword finger Offer 43. 1～n Integer 1 Number of times</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/f0d96a1f.html" class="archive-article-date">
+  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2024-01-01</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">213字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">1min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/1nzheng-shu-zhong-1chu-xian-de-ci-shu-lcof/">Sword finger Offer 43. 1～n Integer 1 Number of times</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">countDigitOne</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        mulk = <span class="number">1</span></span><br><span class="line">        ans = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> n &gt;= mulk:</span><br><span class="line">            ans += (n//(mulk * <span class="number">10</span>)) * mulk + <span class="built_in">min</span>(<span class="built_in">max</span>(n % (mulk * <span class="number">10</span>) - mulk + <span class="number">1</span>, <span class="number">0</span>), mulk)</span><br><span class="line">            mulk *= <span class="number">10</span></span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+<p>That day, I made a set of Xiaomi measurement questions.，The first one is calculation1～nmiddle1Number of times。</p>
+<p>Deduction的题号yesSword fingeroffer 43<br>nyes12in the case of，1 10 11 12middle就出现了5Second-rate1。</p>
+<p>因为那套题middle选择题都yes简单难度，So naturally I want to use violent algorithm to crack。</p>
+<p>但yes拿到Deductionmiddle找相同的题的时候却发现标签yesdifficulty[Be ashamedR]。Surmo after timeout[picture2]。</p>
+<p>Then I actually thought about it directly with mathematical methods，But why too lazy, don’t want to find the rules，[picture三]yes标答，I feel that I have to sink in the future and slowly go to do it.。<br>#Deduction #algorithm#Deductionalgorithm #Python</p>
+<p>Error answer：</p>
+<figure class="highlight plaintext"><figcaption><span>[]class Solution:</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def countDigitOne(self, n: int) -&gt; int:</span><br><span class="line">    flag = 0</span><br><span class="line">    for i in range(1, int(n)+1):</span><br><span class="line">        for j in &#x27;&#x27;.join(str(i)):</span><br><span class="line">            if j == &#x27;1&#x27;:</span><br><span class="line">                flag += 1</span><br><span class="line">    return flag</span><br></pre></td></tr></table></figure>
+
+
+
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+
+            <!-- 分类页 -->
+            
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">solved</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">difficulty</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/f0d96a1f.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
     <article id="post-[121]买卖股票的最佳时期_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -755,6 +1071,166 @@ Sort后，Array becomes [0,1,9,16,100]</pre>
             
                 <p class="article-more-link">
                     <a class="article-more-a" href="/post/3a21fe32.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
+    <article id="post-[122]买卖股票的最佳时期II_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/a75da5a.html">122.The best time for buying and selling stocksII</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/a75da5a.html" class="archive-article-date">
+  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2024-01-01</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">92字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">1min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><img src="/../assets/img/%E6%88%AA%E5%B1%8F2023-10-02%20%E4%B8%8B%E5%8D%8811.16.25.png" alt="screenshot2023-10-02 afternoon11.16.25.png"></p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/">122.The best time for buying and selling stocksII.md</a></p>
+<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>I can forget that the price will be reduced the price one day after the first day.，Thinking is to build the minimum child。<br>Then I found that it seems a bit complicated，Have done it again（2023.1.13），I found out that it seems that only one line can be done。</p>
+<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxProfit</span>(<span class="params">self, prices: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sum</span>(<span class="built_in">max</span>(<span class="number">0</span>, prices[i] - prices[i - <span class="number">1</span>]) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(prices)))</span><br></pre></td></tr></table></figure>
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+
+            <!-- 分类页 -->
+            
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Dynamic planning</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">greedy</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/a75da5a.html">show all >></a>
                 </p>
             
 
@@ -954,20 +1430,20 @@ Sort后，Array becomes [0,1,9,16,100]</pre>
 
 <!-- 文章页添加mathjax公式 -->
   
-    <article id="post-[122]买卖股票的最佳时期II_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-[1333]餐厅过滤器_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
   
     <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/a75da5a.html">122.The best time for buying and selling stocksII</a>
+      <a class="article-title_code_ant" href="/post/7f1331bc.html">1333.Restaurant filter</a>
     </h2>
   
 
 
                 
-                    <a href="/post/a75da5a.html" class="archive-article-date">
+                    <a href="/post/7f1331bc.html" class="archive-article-date">
   	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
 	<!-- <i class="icon-calendar icon"></i> -->
 
@@ -999,7 +1475,7 @@ Sort后，Array becomes [0,1,9,16,100]</pre>
 	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
         <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
         <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">92字</span>
+        <span class="post-count">231字</span>
       </span>
     </span>
 
@@ -1023,10 +1499,13 @@ Sort后，Array becomes [0,1,9,16,100]</pre>
             <!-- 添加分类与标签 -->
             
                 
-                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><img src="/../assets/img/%E6%88%AA%E5%B1%8F2023-10-02%20%E4%B8%8B%E5%8D%8811.16.25.png" alt="screenshot2023-10-02 afternoon11.16.25.png"></p>
-<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/">122.The best time for buying and selling stocksII.md</a></p>
-<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>I can forget that the price will be reduced the price one day after the first day.，Thinking is to build the minimum child。<br>Then I found that it seems a bit complicated，Have done it again（2023.1.13），I found out that it seems that only one line can be done。</p>
-<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">maxProfit</span>(<span class="params">self, prices: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sum</span>(<span class="built_in">max</span>(<span class="number">0</span>, prices[i] - prices[i - <span class="number">1</span>]) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(prices)))</span><br></pre></td></tr></table></figure>
+                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><img src="/../assets/img/%E6%88%AA%E5%B1%8F2023-09-27%20%E4%B8%8B%E5%8D%883.45.32.png" alt="screenshot2023-09-27 afternoon3.45.32.png"></p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/filter-restaurants-by-vegan-friendly-price-and-distance/">1333.Restaurant filter.md</a></p>
+<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>This is the beginningpopThought，But time complexity is too high，400ms，It is later changed to a list derivative。<br>I think of the senior said，pop()The running time is okay，But once the index is added inside，It will be particularly slow。<br>sorted and lambda Usage：<br>lambdayesPythonAnonymous function in。it’s here，lambda x: (x[1], x[0])Definitions a acceptance of an elementx（in this case，xyesrestaurantsA list in the list）And return a tuple(x[1], x[0])The function。</p>
+<p>this means，Sort首先基于每个子列表的第二个元素x[1]，Then based on this basisx[0]。in other words，It first followsx[1]进行Sort，ifx[1]same，According tox[0]进行Sort。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> ind &lt; <span class="built_in">len</span>(restaurants):</span><br><span class="line">     i = restaurants[ind]</span><br><span class="line">     <span class="keyword">if</span> veganFriendly == <span class="number">1</span> <span class="keyword">and</span> i[<span class="number">2</span>] == <span class="number">0</span>:</span><br><span class="line">         restaurants.pop(ind)</span><br><span class="line">     <span class="keyword">elif</span> maxPrice &lt; i[<span class="number">3</span>]:</span><br><span class="line">         restaurants.pop(ind)</span><br><span class="line">     <span class="keyword">elif</span> maxDistance &lt; i[<span class="number">4</span>]:</span><br><span class="line">         restaurants.pop(ind)</span><br><span class="line">     <span class="keyword">else</span>:</span><br><span class="line">         ind += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">filterRestaurants</span>(<span class="params">self, restaurants: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]], veganFriendly: <span class="built_in">int</span>, maxPrice: <span class="built_in">int</span>, maxDistance: <span class="built_in">int</span></span>) -&gt; \</span><br><span class="line">            <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        restaurants = [</span><br><span class="line">            i <span class="keyword">for</span> i <span class="keyword">in</span> restaurants</span><br><span class="line">            <span class="keyword">if</span> (veganFriendly == <span class="number">0</span> <span class="keyword">or</span> i[<span class="number">2</span>] == veganFriendly)</span><br><span class="line">               <span class="keyword">and</span> i[<span class="number">3</span>] &lt;= maxPrice</span><br><span class="line">               <span class="keyword">and</span> i[<span class="number">4</span>] &lt;= maxDistance</span><br><span class="line">        ]</span><br><span class="line">        restaurants = <span class="built_in">sorted</span>(restaurants, key=<span class="keyword">lambda</span> x: (x[<span class="number">1</span>], x[<span class="number">0</span>]), reverse=<span class="literal">True</span>)</span><br><span class="line">        <span class="keyword">return</span> [i[<span class="number">0</span>] <span class="keyword">for</span> i <span class="keyword">in</span> restaurants]</span><br></pre></td></tr></table></figure>
                 
             
 
@@ -1061,11 +1540,7 @@ Sort后，Array becomes [0,1,9,16,100]</pre>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Dynamic planning</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">greedy</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Sort</a>
         		</li>
       		
 		</ul>
@@ -1076,171 +1551,7 @@ Sort后，Array becomes [0,1,9,16,100]</pre>
             <!-- 添加展开全文 -->
             
                 <p class="article-more-link">
-                    <a class="article-more-a" href="/post/a75da5a.html">show all >></a>
-                </p>
-            
-
-            <!-- 添加分享 -->
-            
-
-            <div class="clearfix"></div>
-
-        </div>
-    </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-    
-
-<!-- 文章页添加mathjax公式 -->
-  
-    <article id="post-Offer43_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/f0d96a1f.html">Sword finger Offer 43. 1～n Integer 1 Number of times</a>
-    </h2>
-  
-
-
-                
-                    <a href="/post/f0d96a1f.html" class="archive-article-date">
-  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2024-01-01</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-                
-
-                
-                    <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">213字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">1min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-                
-            </header>
-        
-
-        <div class="article-entry" itemprop="articleBody">
-            <!-- 添加分类与标签 -->
-            
-                
-                    <p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/1nzheng-shu-zhong-1chu-xian-de-ci-shu-lcof/">Sword finger Offer 43. 1～n Integer 1 Number of times</a></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">countDigitOne</span>(<span class="params">self, n: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        mulk = <span class="number">1</span></span><br><span class="line">        ans = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> n &gt;= mulk:</span><br><span class="line">            ans += (n//(mulk * <span class="number">10</span>)) * mulk + <span class="built_in">min</span>(<span class="built_in">max</span>(n % (mulk * <span class="number">10</span>) - mulk + <span class="number">1</span>, <span class="number">0</span>), mulk)</span><br><span class="line">            mulk *= <span class="number">10</span></span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
-<p>That day, I made a set of Xiaomi measurement questions.，The first one is calculation1～nmiddle1Number of times。</p>
-<p>Deduction的题号yesSword fingeroffer 43<br>nyes12in the case of，1 10 11 12middle就出现了5Second-rate1。</p>
-<p>因为那套题middle选择题都yes简单难度，So naturally I want to use violent algorithm to crack。</p>
-<p>但yes拿到Deductionmiddle找相同的题的时候却发现标签yesdifficulty[Be ashamedR]。Surmo after timeout[picture2]。</p>
-<p>Then I actually thought about it directly with mathematical methods，But why too lazy, don’t want to find the rules，[picture三]yes标答，I feel that I have to sink in the future and slowly go to do it.。<br>#Deduction #algorithm#Deductionalgorithm #Python</p>
-<p>Error answer：</p>
-<figure class="highlight plaintext"><figcaption><span>[]class Solution:</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def countDigitOne(self, n: int) -&gt; int:</span><br><span class="line">    flag = 0</span><br><span class="line">    for i in range(1, int(n)+1):</span><br><span class="line">        for j in &#x27;&#x27;.join(str(i)):</span><br><span class="line">            if j == &#x27;1&#x27;:</span><br><span class="line">                flag += 1</span><br><span class="line">    return flag</span><br></pre></td></tr></table></figure>
-
-
-
-                
-            
-
-            <!-- 添加打赏 -->
-            
-
-            <!-- 添加版权声明 -->
-            
-
-        </div>
-
-        <!-- 添加置顶 -->
-        <div class="article-info article-info-index">
-            
-
-            <!-- 分类页 -->
-            
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">difficulty</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">solved</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-            
-
-            <!-- 添加展开全文 -->
-            
-                <p class="article-more-link">
-                    <a class="article-more-a" href="/post/f0d96a1f.html">show all >></a>
+                    <a class="article-more-a" href="/post/7f1331bc.html">show all >></a>
                 </p>
             
 
@@ -1608,332 +1919,6 @@ Sort后，Array becomes [0,1,9,16,100]</pre>
 
 <!-- 文章页添加mathjax公式 -->
   
-    <article id="post-[146]LRU 缓存_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/b9130c0e.html">146.LRU cache</a>
-    </h2>
-  
-
-
-                
-                    <a href="/post/b9130c0e.html" class="archive-article-date">
-  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2024-01-01</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-                
-
-                
-                    <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">449字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">2min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-                
-            </header>
-        
-
-        <div class="article-entry" itemprop="articleBody">
-            <!-- 添加分类与标签 -->
-            
-                
-                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p>I met for the first time：’2023&#x2F;3&#x2F;14-15:21’<br><img src="/../assets/img/%E6%88%AA%E5%B1%8F2023-09-25%20%E4%B8%8A%E5%8D%881.14.08.png" alt="screenshot2023-09-25 morning1.14.08.png"></p>
-<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/lru-cache/">146.LRU cache.md</a></p>
-<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>Simple simulation，Use the dictionary to make it，好像完全没用到双向Linked和LRU的Thought。。。I’m guilty，I can remember the air conditioner made in half a year ago。<br>answer就看Code的注释应该就能看懂，I will reply if I don’t understand。</p>
-<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">LRUCache</span>:</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, capacity: <span class="built_in">int</span></span>):</span><br><span class="line">        self.capacity = capacity</span><br><span class="line">        self.cache = collections.OrderedDict()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get</span>(<span class="params">self, key: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        <span class="comment"># ifkeyIn the dictionary，returnvalue</span></span><br><span class="line">        <span class="keyword">if</span> key <span class="keyword">in</span> self.cache:</span><br><span class="line">            self.cache.move_to_end(key)</span><br><span class="line">            <span class="keyword">return</span> self.cache[key]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># ifkey不In the dictionary，return-1</span></span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">put</span>(<span class="params">self, key: <span class="built_in">int</span>, value: <span class="built_in">int</span></span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">if</span> key <span class="keyword">in</span> self.cache:</span><br><span class="line">            <span class="comment"># ifkeyIn the dictionary，renewvalue</span></span><br><span class="line">            self.cache.move_to_end(key)</span><br><span class="line">            self.cache[key] = value</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(self.cache) == self.capacity:</span><br><span class="line">                <span class="comment"># ifkey不In the dictionary，The dictionary is full，Delete the least recently used elements</span></span><br><span class="line">                self.cache.popitem(last=<span class="literal">False</span>)</span><br><span class="line">            <span class="comment"># ifkey不In the dictionary，Dictionary is not full，Add element</span></span><br><span class="line">            <span class="comment"># self.cache.move_to_end(key)</span></span><br><span class="line">            self.cache[key] = value</span><br></pre></td></tr></table></figure>
-
-<h1 id="Second-solution"><a href="#Second-solution" class="headerlink" title="Second solution"></a>Second solution</h1><p><img src="/../assets/img/%E6%88%AA%E5%B1%8F2023-09-25%20%E4%B8%8A%E5%8D%881.25.22.png" alt="screenshot2023-09-25 morning1.25.22.png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Node</span>:</span><br><span class="line">    <span class="comment"># Improve the speed of access attributes，And save memory</span></span><br><span class="line">    __slots__ = <span class="string">&#x27;prev&#x27;</span>, <span class="string">&#x27;next&#x27;</span>, <span class="string">&#x27;key&#x27;</span>, <span class="string">&#x27;value&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, key=<span class="number">0</span>, value=<span class="number">0</span></span>):</span><br><span class="line">        self.key = key</span><br><span class="line">        self.value = value</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LRUCache</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, capacity: <span class="built_in">int</span></span>):</span><br><span class="line">        self.capacity = capacity</span><br><span class="line">        self.dummy = Node()  <span class="comment"># Sentry node</span></span><br><span class="line">        self.dummy.prev = self.dummy</span><br><span class="line">        self.dummy.<span class="built_in">next</span> = self.dummy</span><br><span class="line">        self.key_to_node = <span class="built_in">dict</span>()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_node</span>(<span class="params">self, key: <span class="built_in">int</span></span>) -&gt; <span class="type">Optional</span>[Node]:</span><br><span class="line">        <span class="keyword">if</span> key <span class="keyword">not</span> <span class="keyword">in</span> self.key_to_node:  <span class="comment"># No this book</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        node = self.key_to_node[key]  <span class="comment"># Have this book</span></span><br><span class="line">        self.remove(node)  <span class="comment"># Draw this book</span></span><br><span class="line">        self.push_front(node)  <span class="comment"># Put on the top</span></span><br><span class="line">        <span class="keyword">return</span> node</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get</span>(<span class="params">self, key: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        node = self.get_node(key)</span><br><span class="line">        <span class="keyword">return</span> node.value <span class="keyword">if</span> node <span class="keyword">else</span> -<span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">put</span>(<span class="params">self, key: <span class="built_in">int</span>, value: <span class="built_in">int</span></span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        node = self.get_node(key)</span><br><span class="line">        <span class="keyword">if</span> node:  <span class="comment"># Have this book</span></span><br><span class="line">            node.value = value  <span class="comment"># renew value</span></span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        self.key_to_node[key] = node = Node(key, value)  <span class="comment"># new book</span></span><br><span class="line">        self.push_front(node)  <span class="comment"># Put on the top</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(self.key_to_node) &gt; self.capacity:  <span class="comment"># There are too many books</span></span><br><span class="line">            back_node = self.dummy.prev</span><br><span class="line">            <span class="keyword">del</span> self.key_to_node[back_node.key]</span><br><span class="line">            self.remove(back_node)  <span class="comment"># Remove the last book</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Delete a node（Draw a book）</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">remove</span>(<span class="params">self, x: Node</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        x.prev.<span class="built_in">next</span> = x.<span class="built_in">next</span></span><br><span class="line">        x.<span class="built_in">next</span>.prev = x.prev</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 在Linked头添加一个节点（把一本书Put on the top）</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">push_front</span>(<span class="params">self, x: Node</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        x.prev = self.dummy</span><br><span class="line">        x.<span class="built_in">next</span> = self.dummy.<span class="built_in">next</span></span><br><span class="line">        x.prev.<span class="built_in">next</span> = x</span><br><span class="line">        x.<span class="built_in">next</span>.prev = x</span><br></pre></td></tr></table></figure>
-                
-            
-
-            <!-- 添加打赏 -->
-            
-
-            <!-- 添加版权声明 -->
-            
-
-        </div>
-
-        <!-- 添加置顶 -->
-        <div class="article-info article-info-index">
-            
-
-            <!-- 分类页 -->
-            
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Hash table</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Linked</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">design</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">双向Linked</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-            
-
-            <!-- 添加展开全文 -->
-            
-                <p class="article-more-link">
-                    <a class="article-more-a" href="/post/b9130c0e.html">show all >></a>
-                </p>
-            
-
-            <!-- 添加分享 -->
-            
-
-            <div class="clearfix"></div>
-
-        </div>
-    </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-    
-
-<!-- 文章页添加mathjax公式 -->
-  
-    <article id="post-[1333]餐厅过滤器_translated" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/7f1331bc.html">1333.Restaurant filter</a>
-    </h2>
-  
-
-
-                
-                    <a href="/post/7f1331bc.html" class="archive-article-date">
-  	<time datetime="2023-12-31T13:00:00.000Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2024-01-01</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-                
-
-                
-                    <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">231字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">1min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-                
-            </header>
-        
-
-        <div class="article-entry" itemprop="articleBody">
-            <!-- 添加分类与标签 -->
-            
-                
-                    <h1 id="topic："><a href="#topic：" class="headerlink" title="topic："></a>topic：</h1><p><img src="/../assets/img/%E6%88%AA%E5%B1%8F2023-09-27%20%E4%B8%8B%E5%8D%883.45.32.png" alt="screenshot2023-09-27 afternoon3.45.32.png"></p>
-<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/filter-restaurants-by-vegan-friendly-price-and-distance/">1333.Restaurant filter.md</a></p>
-<h1 id="Thought："><a href="#Thought：" class="headerlink" title="Thought："></a>Thought：</h1><p>This is the beginningpopThought，But time complexity is too high，400ms，It is later changed to a list derivative。<br>I think of the senior said，pop()The running time is okay，But once the index is added inside，It will be particularly slow。<br>sorted and lambda Usage：<br>lambdayesPythonAnonymous function in。it’s here，lambda x: (x[1], x[0])Definitions a acceptance of an elementx（in this case，xyesrestaurantsA list in the list）And return a tuple(x[1], x[0])The function。</p>
-<p>this means，Sort首先基于每个子列表的第二个元素x[1]，Then based on this basisx[0]。in other words，It first followsx[1]进行Sort，ifx[1]same，According tox[0]进行Sort。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> ind &lt; <span class="built_in">len</span>(restaurants):</span><br><span class="line">     i = restaurants[ind]</span><br><span class="line">     <span class="keyword">if</span> veganFriendly == <span class="number">1</span> <span class="keyword">and</span> i[<span class="number">2</span>] == <span class="number">0</span>:</span><br><span class="line">         restaurants.pop(ind)</span><br><span class="line">     <span class="keyword">elif</span> maxPrice &lt; i[<span class="number">3</span>]:</span><br><span class="line">         restaurants.pop(ind)</span><br><span class="line">     <span class="keyword">elif</span> maxDistance &lt; i[<span class="number">4</span>]:</span><br><span class="line">         restaurants.pop(ind)</span><br><span class="line">     <span class="keyword">else</span>:</span><br><span class="line">         ind += <span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="Code："><a href="#Code：" class="headerlink" title="Code："></a>Code：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">filterRestaurants</span>(<span class="params">self, restaurants: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]], veganFriendly: <span class="built_in">int</span>, maxPrice: <span class="built_in">int</span>, maxDistance: <span class="built_in">int</span></span>) -&gt; \</span><br><span class="line">            <span class="type">List</span>[<span class="built_in">int</span>]:</span><br><span class="line">        restaurants = [</span><br><span class="line">            i <span class="keyword">for</span> i <span class="keyword">in</span> restaurants</span><br><span class="line">            <span class="keyword">if</span> (veganFriendly == <span class="number">0</span> <span class="keyword">or</span> i[<span class="number">2</span>] == veganFriendly)</span><br><span class="line">               <span class="keyword">and</span> i[<span class="number">3</span>] &lt;= maxPrice</span><br><span class="line">               <span class="keyword">and</span> i[<span class="number">4</span>] &lt;= maxDistance</span><br><span class="line">        ]</span><br><span class="line">        restaurants = <span class="built_in">sorted</span>(restaurants, key=<span class="keyword">lambda</span> x: (x[<span class="number">1</span>], x[<span class="number">0</span>]), reverse=<span class="literal">True</span>)</span><br><span class="line">        <span class="keyword">return</span> [i[<span class="number">0</span>] <span class="keyword">for</span> i <span class="keyword">in</span> restaurants]</span><br></pre></td></tr></table></figure>
-                
-            
-
-            <!-- 添加打赏 -->
-            
-
-            <!-- 添加版权声明 -->
-            
-
-        </div>
-
-        <!-- 添加置顶 -->
-        <div class="article-info article-info-index">
-            
-
-            <!-- 分类页 -->
-            
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">answer</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Array</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Sort</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-            
-
-            <!-- 添加展开全文 -->
-            
-                <p class="article-more-link">
-                    <a class="article-more-a" href="/post/7f1331bc.html">show all >></a>
-                </p>
-            
-
-            <!-- 添加分享 -->
-            
-
-            <div class="clearfix"></div>
-
-        </div>
-    </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-    
-
-<!-- 文章页添加mathjax公式 -->
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/10/">&lt;&lt; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/12/">下一页 &gt;&gt;</a>
@@ -1988,10 +1973,10 @@ window.MathJax = {
 	  <br>
 	  <div class="footer-center">
 	    <i class="fa fa-file-word-o" aria-hidden="true"></i>
-		<span> 149 篇</span>
+		<span> 150 篇</span>
 		<span class="post-meta-divider">|</span>
 		<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-		<span> <span class="post-count">124.3k</span></span>
+		<span> <span class="post-count">130.4k</span></span>
       </div>
 	  
 	  <!-- 添加不蒜子统计 -->

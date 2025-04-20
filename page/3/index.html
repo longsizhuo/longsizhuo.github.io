@@ -294,6 +294,143 @@ var _hmt = _hmt || [];
         <div id="js-content" class="content-ll">
           
   
+    <article id="post-3046. Split the Array" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h2 itemprop="name">
+      <a class="article-title_code_ant" href="/post/41577de2.html">3046. Split the Array</a>
+    </h2>
+  
+
+
+                
+                    <a href="/post/41577de2.html" class="archive-article-date">
+  	<time datetime="2025-01-04T17:19:57.765Z" itemprop="datePublished">
+	<!-- <i class="icon-calendar icon"></i> -->
+
+	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+	&nbsp;
+	2025-01-05</time>
+	
+	<!-- busuanzi阅读量统计
+	
+	-->
+	
+    <!-- waline阅读量统计 -->
+	
+
+</a>
+
+
+                
+
+                
+                    <!-- 添加标题栏文字统计效果 -->
+<div class="word-count">
+	
+      
+    
+	
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
+        <span class="post-meta-item-text">字数统计: </span>
+        <span class="post-count">297字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+	    <i class="fa fa-pagelines" aria-hidden="true"></i>
+        <span class="post-meta-item-text">阅读时长: </span>
+        <span class="post-count">1min</span>
+      </span>
+    </span>
+	
+
+</div>
+<!-- 添加标题栏文字统计效果结束 -->
+                
+            </header>
+        
+
+        <div class="article-entry" itemprop="articleBody">
+            <!-- 添加分类与标签 -->
+            
+                
+                    <h1 id="Description"><a href="#Description" class="headerlink" title="Description:"></a>Description:</h1><p>You are given an integer array nums of even length. You have to split the array into two parts nums1 and nums2 such that:</p>
+<p>nums1.length &#x3D;&#x3D; nums2.length &#x3D;&#x3D; nums.length &#x2F; 2.<br>nums1 should contain distinct elements.<br>nums2 should also contain distinct elements.<br>Return true if it is possible to split the array, and false otherwise.</p>
+<p>Example 1:</p>
+<p>Input: nums &#x3D; [1,1,2,2,3,4]<br>Output: true<br>Explanation: One of the possible ways to split nums is nums1 &#x3D; [1,2,3] and nums2 &#x3D; [1,2,4].<br>Example 2:</p>
+<p>Input: nums &#x3D; [1,1,1,1]<br>Output: false<br>Explanation: The only possible way to split nums is nums1 &#x3D; [1,1] and nums2 &#x3D; [1,1]. Both nums1 and nums2 do not contain distinct elements. Therefore, we return false.</p>
+<h1 id="Thinking"><a href="#Thinking" class="headerlink" title="Thinking:"></a>Thinking:</h1><p>题目要求判断是否可以将数组分成两个部分，使得两个部分的元素都是不同的。<br>最开始考虑的是<code>Counter()</code>记录每个数字是否满足某个条件，如果不满足就返回<code>False</code>。后面发现不需要<code>Counter</code>，普通的字典记录，中途遇到某个数字大于2就返回False即可。</p>
+<h1 id="Code"><a href="#Code" class="headerlink" title="Code:"></a>Code:</h1><figure class="highlight python"><figcaption><span>O(2n)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">isPossibleToSplit</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        Counter_nums = Counter(nums)</span><br><span class="line">        <span class="keyword">for</span> i, j <span class="keyword">in</span> Counter_nums.items():</span><br><span class="line">            <span class="keyword">if</span> j &gt; <span class="number">2</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><figcaption><span>O(n)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">isPossibleToSplit</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        count = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">            count[num] = count.get(num, <span class="number">0</span>) + <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> count[num] &gt; <span class="number">2</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+                
+            
+
+            <!-- 添加打赏 -->
+            
+
+            <!-- 添加版权声明 -->
+            
+
+        </div>
+
+        <!-- 添加置顶 -->
+        <div class="article-info article-info-index">
+            
+
+            <!-- 分类页 -->
+            
+            
+
+            <!-- 添加展开全文 -->
+            
+                <p class="article-more-link">
+                    <a class="article-more-a" href="/post/41577de2.html">show all >></a>
+                </p>
+            
+
+            <!-- 添加分享 -->
+            
+
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 添加回到顶部和文章目录 -->
+<aside class="wrap-side-operation">
+  <div class="mod-side-operation">
+    
+      <div class="jump-container" id="js-jump-container" style="display:none;">
+        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+          <i class="icon-font icon-back"></i>
+        </a>
+      </div>
+    
+    
+  </div>
+</aside>
+
+<!-- 添加评论 -->
+
+
+<!-- 文章页添加mathjax公式 -->
+
+    
+
+<!-- 文章页添加mathjax公式 -->
+  
     <article id="post-1366. Rank Teams by Votes" class="article article-type-post  article-index" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -2390,207 +2527,6 @@ var _hmt = _hmt || [];
 
 <!-- 文章页添加mathjax公式 -->
   
-    <article id="post-invisible/9021_TUT_1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            <header class="article-header">
-                
-  
-    <h2 itemprop="name">
-      <a class="article-title_code_ant" href="/post/ac786f6f.html">9021_TUT_1</a>
-    </h2>
-  
-
-
-                
-                    <a href="/post/ac786f6f.html" class="archive-article-date">
-  	<time datetime="2024-09-10T14:00:00.000Z" itemprop="datePublished">
-	<!-- <i class="icon-calendar icon"></i> -->
-
-	<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-	&nbsp;
-	2024-09-11</time>
-	
-	<!-- busuanzi阅读量统计
-	
-	-->
-	
-    <!-- waline阅读量统计 -->
-	
-
-</a>
-
-
-                
-
-                
-                    <!-- 添加标题栏文字统计效果 -->
-<div class="word-count">
-	
-      
-    
-	
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <!-- <i class="fa fa-keyboard-o" aria-hidden="true"></i> -->
-        <span class="post-meta-item-text">字数统计: </span>
-        <span class="post-count">626字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-	    <i class="fa fa-pagelines" aria-hidden="true"></i>
-        <span class="post-meta-item-text">阅读时长: </span>
-        <span class="post-count">3min</span>
-      </span>
-    </span>
-	
-
-</div>
-<!-- 添加标题栏文字统计效果结束 -->
-                
-            </header>
-        
-
-        <div class="article-entry" itemprop="articleBody">
-            <!-- 添加分类与标签 -->
-            
-                
-                    <h1 id="Slide-1-Introduction"><a href="#Slide-1-Introduction" class="headerlink" title="Slide 1: Introduction"></a>Slide 1: Introduction</h1><p>Today, we are going to walk through six Python functions that perform various tasks involving integers, lists, and text files. Each function demonstrates different ways to manipulate data, including string formatting, list processing, and reading from files.</p>
-<h1 id="Slide-2-Function-1-f1-m-n"><a href="#Slide-2-Function-1-f1-m-n" class="headerlink" title="Slide 2: Function 1 - f1(m, n)"></a>Slide 2: Function 1 - f1(m, n)</h1><p>The first function, f1, generates a simple string pattern. Here’s how it works:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f1</span>(<span class="params">m, n</span>):</span><br><span class="line">    <span class="keyword">return</span> (<span class="string">&#x27;|&#x27;</span> + <span class="string">&#x27;_&#x27;</span> * n + <span class="string">&#x27;|&#x27;</span>) * m</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>The function takes two integer arguments, m and n. Both are assumed to be at least 0.</li>
-<li>It constructs a pattern consisting of vertical bars (|) enclosing underscores (_), repeated m times. The number of underscores between the bars is determined by n.</li>
-<li>For example, if m &#x3D; 3 and n &#x3D; 4, the output would be:</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">|____||____||____|</span><br></pre></td></tr></table></figure>
-
-<h1 id="Slide-3-Function-2-f2-n"><a href="#Slide-3-Function-2-f2-n" class="headerlink" title="Slide 3: Function 2 - f2(n)"></a>Slide 3: Function 2 - f2(n)</h1><p>The second function, f2, creates a square pattern made up of digits. Here’s the function:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f2</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="keyword">return</span> (<span class="built_in">str</span>(n) * n + <span class="string">&#x27;\n&#x27;</span>) * n</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>This function takes an integer n and generates a square of n rows, where each row contains the digit n repeated n times.</li>
-<li>The pattern ends with a newline after each row.</li>
-<li>For example, if n &#x3D; 3, the output will be:</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">333</span></span><br><span class="line"><span class="number">333</span></span><br><span class="line"><span class="number">333</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="Slide-4-Function-3-f3-L"><a href="#Slide-4-Function-3-f3-L" class="headerlink" title="Slide 4: Function 3 - f3(L)"></a>Slide 4: Function 3 - f3(L)</h1><p>Next, we have f3, which works on a list of integers:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f3</span>(<span class="params">L</span>):</span><br><span class="line">    <span class="keyword">while</span> <span class="built_in">len</span>(L) &gt; <span class="number">1</span> <span class="keyword">and</span> L[<span class="number">0</span>] &gt; L[<span class="number">1</span>]:</span><br><span class="line">        L.remove(L[<span class="number">0</span>])</span><br><span class="line">    <span class="built_in">print</span>(L)</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>This function removes elements from the start of the list until the first two consecutive elements are in non-decreasing order.</li>
-<li>The process continues as long as the first element is strictly greater than the second element.</li>
-<li>Once the list is stable, it prints the modified list.</li>
-<li>For example, if L &#x3D; [9, 8, 7, 10], the function will remove 9, 8, and 7, leaving [10].</li>
-</ol>
-<h1 id="Slide-5-Function-4-f4-D-n"><a href="#Slide-5-Function-4-f4-D-n" class="headerlink" title="Slide 5: Function 4 - f4(D, n)"></a>Slide 5: Function 4 - f4(D, n)</h1><p>The fourth function, f4, works with dictionaries:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f4</span>(<span class="params">D, n</span>):</span><br><span class="line">    <span class="keyword">if</span> n <span class="keyword">not</span> <span class="keyword">in</span> D:</span><br><span class="line">        <span class="keyword">return</span> []</span><br><span class="line">    ans = [n]</span><br><span class="line">    <span class="keyword">while</span> n <span class="keyword">in</span> D <span class="keyword">and</span> D[n] &gt; n:</span><br><span class="line">        ans.append(D[n])</span><br><span class="line">        n = D[n]</span><br><span class="line">    <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>This function takes a dictionary D and an integer n. It generates a strictly increasing sequence of integers based on the relationships defined in the dictionary.</li>
-<li>Starting from n, it appends D[n], D[D[n]], and so on to the list, as long as each subsequent value is greater than the previous one.</li>
-<li>For example, if D &#x3D; {1: 2, 2: 3, 3: 5} and n &#x3D; 1, the function will return [1, 2, 3, 5].</li>
-</ol>
-<h1 id="Slide-6-Function-5-f5-filename"><a href="#Slide-6-Function-5-f5-filename" class="headerlink" title="Slide 6: Function 5 - f5(filename)"></a>Slide 6: Function 5 - f5(filename)</h1><p>The fifth function, f5, reads from a file and processes each line:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f5</span>(<span class="params">filename</span>):</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(filename) <span class="keyword">as</span> f:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> f:</span><br><span class="line">            name, number = i.split(<span class="string">&#x27;,&#x27;</span>)</span><br><span class="line">            number = <span class="built_in">int</span>(number) * <span class="number">1000</span></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;number&#125;</span> people named <span class="subst">&#123;name&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>This function reads a text file, where each line consists of a name and a count separated by a comma.</li>
-<li>The function multiplies the count by 1000 and prints the result in the format: “X people named Y”.</li>
-<li>For example, if the file contains a line “John,5”, it will print:</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5000 people named John</span><br></pre></td></tr></table></figure>
-
-<h1 id="Slide-7-Function-6-f6-filename"><a href="#Slide-7-Function-6-f6-filename" class="headerlink" title="Slide 7: Function 6 - f6(filename)"></a>Slide 7: Function 6 - f6(filename)</h1><p>The final function, f6, also reads from a text file, but with a different format:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f6</span>(<span class="params">filename</span>):</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(filename) <span class="keyword">as</span> f:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> f:</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> i.isspace():</span><br><span class="line">                number, charactor = i.split()</span><br><span class="line">                <span class="built_in">print</span>(<span class="built_in">int</span>(number) * charactor)</span><br></pre></td></tr></table></figure>
-<ol>
-<li>This function reads lines that contain an integer followed by a symbol (e.g., “5 *”).</li>
-<li>It multiplies the symbol by the integer and prints the result.</li>
-<li>For example, if the file contains the line “3 # “, the function will print:</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">### </span><br></pre></td></tr></table></figure>
-
-                
-            
-
-            <!-- 添加打赏 -->
-            
-
-            <!-- 添加版权声明 -->
-            
-
-        </div>
-
-        <!-- 添加置顶 -->
-        <div class="article-info article-info-index">
-            
-
-            <!-- 分类页 -->
-            
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Tutorial</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-            
-
-            <!-- 添加展开全文 -->
-            
-                <p class="article-more-link">
-                    <a class="article-more-a" href="/post/ac786f6f.html">show all >></a>
-                </p>
-            
-
-            <!-- 添加分享 -->
-            
-
-            <div class="clearfix"></div>
-
-        </div>
-    </div>
-</article>
-
-
-
-<!-- 添加回到顶部和文章目录 -->
-<aside class="wrap-side-operation">
-  <div class="mod-side-operation">
-    
-      <div class="jump-container" id="js-jump-container" style="display:none;">
-        <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-          <i class="icon-font icon-back"></i>
-        </a>
-      </div>
-    
-    
-  </div>
-</aside>
-
-<!-- 添加评论 -->
-
-
-<!-- 文章页添加mathjax公式 -->
-
-    
-
-<!-- 文章页添加mathjax公式 -->
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&lt;&lt; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/4/">下一页 &gt;&gt;</a>
@@ -2645,10 +2581,10 @@ window.MathJax = {
 	  <br>
 	  <div class="footer-center">
 	    <i class="fa fa-file-word-o" aria-hidden="true"></i>
-		<span> 149 篇</span>
+		<span> 150 篇</span>
 		<span class="post-meta-divider">|</span>
 		<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-		<span> <span class="post-count">124.3k</span></span>
+		<span> <span class="post-count">130.4k</span></span>
       </div>
 	  
 	  <!-- 添加不蒜子统计 -->
