@@ -123,7 +123,6 @@
 - [post-gu](https://longsizhuo.github.io/post/c87ff78a.html)
 - [Sword finger Offer 68 - II. The recent public ancestor of the binary tree](https://longsizhuo.github.io/post/36f314aa.html)
 - [Sword finger Offer II 021. Delete the countdown of the linked list n Node](https://longsizhuo.github.io/post/3ed2f01c.html)
-- [基础前端](https://longsizhuo.github.io/post/8a05667d.html)
 - [Frontend Development Learning Path](https://longsizhuo.github.io/post/f5ec19b.html)
 - [CSS Fundamentals](https://longsizhuo.github.io/post/2760625b.html)
 - [CSS Layout & Responsive Design](https://longsizhuo.github.io/post/1a732762.html)
@@ -152,6 +151,7 @@
 - [9021_TUT_6](https://longsizhuo.github.io/post/31af57d6.html)
 - [9021_TUT_7](https://longsizhuo.github.io/post/891330b3.html)
 - [9021_TUT_9](https://longsizhuo.github.io/post/69cc4780.html)
+- [9021_TUT_7_25T1](https://longsizhuo.github.io/post/caa1bddf.html)
 
 # longsizhuo123.github.io
 
