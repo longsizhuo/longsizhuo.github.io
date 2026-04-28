@@ -1,4 +1,4 @@
-
+# 文章已经全量迁移到 [involutionhell](https://involutionhell.com/)
 ## 我现在有153篇文章，
 ## 目录：
     
